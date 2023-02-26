@@ -1,0 +1,30 @@
+[
+  {
+    "Id": 1,
+    "Name": "Wódka ze szklank¹",
+    "mainAlcohol": {
+      "Id": 1,
+      "Alcohol": "Wódka"
+    },
+    "difficulty": {
+      "Id": 1,
+      "Level": £atwy
+    },
+    "Ingredients": "200ml Wódka 1 Szklanka",
+    "Description": "Najlepszy drink! Przebiæ go mo¿e jedynie przys³owiowa 'Wóda z gwinta'. Ponadczasowa prostota, która miesza siê z tradycj¹ najwiêkszych PRL-owskich osiedli. Nic tylko piæ!" 
+  },
+  {
+    "Id": 2,
+    "Name": "Cuba libre",
+    "mainAlcohol": {
+      "Id": 3,
+      "Alcohol": "Rum"
+    },
+    "difficulty": {
+      "Id": 1,
+      "Level": "£atwy"
+    },
+    "Ingredients": "40ml Rum 125ml Cola 1/4 Limonki kostki Lodu",
+    "Description": "Niektórzy mogliby powiedzieæ, ¿e po co psuæ rum limonk¹, ale tysi¹ce Kubañczyków nie mo¿e siê myliæ! Zmieszaj wszystkie sk³adniki razem i dorzuæ kostki lodu wed³ug uznania."
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "Id": 1,
+    "Alcohol": "Wódka"
+  },
+  {
+    "Id": 2,
+    "Alcohol": "Whiskey"
+  },
+  {
+    "Id": 3,
+    "Alcohol": "Rum"
+  },
+  {
+    "Id": 4,
+    "Alcohol": "Gin"
+  },
+  {
+    "Id": 5,
+    "Alcohol": "Likier"
+  }
+]
