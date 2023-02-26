@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinkItUp.ConsoleUI", "DrinkItUp.ConsoleUI\DrinkItUp.ConsoleUI.csproj", "{2AC3CC9B-B32A-4B02-95F1-8F7E70D89911}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinkItUp.BusinessLogic", "DrinkItUp.BusinessLogic\DrinkItUp.BusinessLogic.csproj", "{A09F0508-996D-41CA-A1D2-8A53245623BD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2AC3CC9B-B32A-4B02-95F1-8F7E70D89911}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AC3CC9B-B32A-4B02-95F1-8F7E70D89911}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AC3CC9B-B32A-4B02-95F1-8F7E70D89911}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AC3CC9B-B32A-4B02-95F1-8F7E70D89911}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A09F0508-996D-41CA-A1D2-8A53245623BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A09F0508-996D-41CA-A1D2-8A53245623BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A09F0508-996D-41CA-A1D2-8A53245623BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A09F0508-996D-41CA-A1D2-8A53245623BD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CAE45FBC-3B55-43DB-8A7B-3FFF32A07AF2}
+	EndGlobalSection
+EndGlobal
