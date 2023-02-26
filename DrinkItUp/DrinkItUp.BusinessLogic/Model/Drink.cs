@@ -6,7 +6,29 @@ using System.Threading.Tasks;
 
 namespace DrinkItUp.BusinessLogic.Model
 {
-    internal class Drink
+    public class Drink
     {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public MainAlcohol mainAlcohol { get; set; }
+
+        public Difficulty difficulty { get; set; }
+
+        public string Ingredients { get; set; }
+
+        public string Description { get; set; }
+
+        public Drink(int id, string name, MainAlcohol mainalcohol, Difficulty difficulty, string ingredients, string description)
+        {
+            Id = id;
+            Name= name;
+            mainAlcohol = mainalcohol;
+            this.difficulty = difficulty;
+            Ingredients= ingredients;
+            Description = description;
+        }
+
     }
 }
