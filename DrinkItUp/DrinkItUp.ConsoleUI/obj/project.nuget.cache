@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QvM1iYqErBL1DeAo55QuOC/XVEoXubCyRcr0OOnmMH9nV7JuE31Un9pXn2GEXOZPqhSxN+4e50n0PD3msojbjw==",
+  "dgSpecHash": "FyA/iTk3Ggq/0C9NtC8ErqMiyua4xk5CL7q1n2y1ilWZ4d1cl8KCXPDOEioI4aTn4gQjh1Vlq3TpTveTtdKGhQ==",
   "success": true,
-  "projectFilePath": "C:\\myrepo\\JCSZR9-Barmani\\DrinkItUp\\DrinkItUp.ConsoleUI\\DrinkItUp.ConsoleUI.csproj",
+  "projectFilePath": "C:\\Repo\\DrinkItUp\\DrinkItUp\\DrinkItUp.ConsoleUI\\DrinkItUp.ConsoleUI.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

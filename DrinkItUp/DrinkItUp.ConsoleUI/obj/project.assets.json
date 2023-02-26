@@ -8,23 +8,23 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Cood\\.nuget\\packages\\": {},
+    "C:\\Users\\Łukasz Ostrowski\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\myrepo\\JCSZR9-Barmani\\DrinkItUp\\DrinkItUp.ConsoleUI\\DrinkItUp.ConsoleUI.csproj",
+      "projectUniqueName": "C:\\Repo\\DrinkItUp\\DrinkItUp\\DrinkItUp.ConsoleUI\\DrinkItUp.ConsoleUI.csproj",
       "projectName": "DrinkItUp.ConsoleUI",
-      "projectPath": "C:\\myrepo\\JCSZR9-Barmani\\DrinkItUp\\DrinkItUp.ConsoleUI\\DrinkItUp.ConsoleUI.csproj",
-      "packagesPath": "C:\\Users\\Cood\\.nuget\\packages\\",
-      "outputPath": "C:\\myrepo\\JCSZR9-Barmani\\DrinkItUp\\DrinkItUp.ConsoleUI\\obj\\",
+      "projectPath": "C:\\Repo\\DrinkItUp\\DrinkItUp\\DrinkItUp.ConsoleUI\\DrinkItUp.ConsoleUI.csproj",
+      "packagesPath": "C:\\Users\\Łukasz Ostrowski\\.nuget\\packages\\",
+      "outputPath": "C:\\Repo\\DrinkItUp\\DrinkItUp\\DrinkItUp.ConsoleUI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Cood\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Łukasz Ostrowski\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
