@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinkItUp.ConsoleUI", "DrinkItUp.ConsoleUI\DrinkItUp.ConsoleUI.csproj", "{2AC3CC9B-B32A-4B02-95F1-8F7E70D89911}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrinkItUp.ConsoleUI", "DrinkItUp.ConsoleUI\DrinkItUp.ConsoleUI.csproj", "{2AC3CC9B-B32A-4B02-95F1-8F7E70D89911}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinkItUp.BusinessLogic", "DrinkItUp.BusinessLogic\DrinkItUp.BusinessLogic.csproj", "{A09F0508-996D-41CA-A1D2-8A53245623BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrinkItUp.BusinessLogic", "DrinkItUp.BusinessLogic\DrinkItUp.BusinessLogic.csproj", "{A09F0508-996D-41CA-A1D2-8A53245623BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

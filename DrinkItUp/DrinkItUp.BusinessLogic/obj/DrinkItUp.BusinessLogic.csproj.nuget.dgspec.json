@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\myrepo\\JCSZR9-Barmani\\DrinkItUp\\DrinkItUp.BusinessLogic\\DrinkItUp.BusinessLogic.csproj": {}
+    "C:\\Users\\ulisu\\Desktop\\Projects\\InfoShare\\Projekt\\JCSZR9-Barmani\\DrinkItUp\\DrinkItUp.BusinessLogic\\DrinkItUp.BusinessLogic.csproj": {}
   },
   "projects": {
-    "C:\\myrepo\\JCSZR9-Barmani\\DrinkItUp\\DrinkItUp.BusinessLogic\\DrinkItUp.BusinessLogic.csproj": {
+    "C:\\Users\\ulisu\\Desktop\\Projects\\InfoShare\\Projekt\\JCSZR9-Barmani\\DrinkItUp\\DrinkItUp.BusinessLogic\\DrinkItUp.BusinessLogic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\myrepo\\JCSZR9-Barmani\\DrinkItUp\\DrinkItUp.BusinessLogic\\DrinkItUp.BusinessLogic.csproj",
+        "projectUniqueName": "C:\\Users\\ulisu\\Desktop\\Projects\\InfoShare\\Projekt\\JCSZR9-Barmani\\DrinkItUp\\DrinkItUp.BusinessLogic\\DrinkItUp.BusinessLogic.csproj",
         "projectName": "DrinkItUp.BusinessLogic",
-        "projectPath": "C:\\myrepo\\JCSZR9-Barmani\\DrinkItUp\\DrinkItUp.BusinessLogic\\DrinkItUp.BusinessLogic.csproj",
-        "packagesPath": "C:\\Users\\Cood\\.nuget\\packages\\",
-        "outputPath": "C:\\myrepo\\JCSZR9-Barmani\\DrinkItUp\\DrinkItUp.BusinessLogic\\obj\\",
+        "projectPath": "C:\\Users\\ulisu\\Desktop\\Projects\\InfoShare\\Projekt\\JCSZR9-Barmani\\DrinkItUp\\DrinkItUp.BusinessLogic\\DrinkItUp.BusinessLogic.csproj",
+        "packagesPath": "C:\\Users\\ulisu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ulisu\\Desktop\\Projects\\InfoShare\\Projekt\\JCSZR9-Barmani\\DrinkItUp\\DrinkItUp.BusinessLogic\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Cood\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ulisu\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -44,6 +44,12 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
