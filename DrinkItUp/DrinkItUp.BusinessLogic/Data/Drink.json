@@ -1,17 +1,17 @@
 [
   {
     "Id": 1,
-    "Name": "Wódka ze szklank¹",
+    "Name": "WÃ³dka ze szklankÄ…",
     "mainAlcohol": {
       "Id": 1,
-      "Alcohol": "Wódka"
+      "Alcohol": "WÃ³dka"
     },
     "difficulty": {
       "Id": 1,
-      "Level": £atwy
+      "Level": "Åatwy"
     },
-    "Ingredients": "200ml Wódka 1 Szklanka",
-    "Description": "Najlepszy drink! Przebiæ go mo¿e jedynie przys³owiowa 'Wóda z gwinta'. Ponadczasowa prostota, która miesza siê z tradycj¹ najwiêkszych PRL-owskich osiedli. Nic tylko piæ!" 
+    "Ingredients": "200ml WÃ³dka 1 Szklanka",
+    "Description": "Najlepszy drink! PrzebiÄ‡ go moÅ¼e jedynie przysÅ‚owiowa 'WÃ³da z gwinta'. Ponadczasowa prostota, ktÃ³ra miesza siÄ™ z tradycjÄ… najwiÄ™kszych PRL-owskich osiedli. Nic tylko piÄ‡!" 
   },
   {
     "Id": 2,
@@ -22,9 +22,9 @@
     },
     "difficulty": {
       "Id": 1,
-      "Level": "£atwy"
+      "Level": "Åatwy"
     },
     "Ingredients": "40ml Rum 125ml Cola 1/4 Limonki kostki Lodu",
-    "Description": "Niektórzy mogliby powiedzieæ, ¿e po co psuæ rum limonk¹, ale tysi¹ce Kubañczyków nie mo¿e siê myliæ! Zmieszaj wszystkie sk³adniki razem i dorzuæ kostki lodu wed³ug uznania."
+    "Description": "NiektÃ³rzy mogliby powiedzieÄ‡, Å¼e po co psuÄ‡ rum limonkÄ…, ale tysiÄ…ce KubaÅ„czykÃ³w nie moÅ¼e siÄ™ myliÄ‡! Zmieszaj wszystkie skÅ‚adniki razem i dorzuÄ‡ kostki lodu wedÅ‚ug uznania."
   }
 ]

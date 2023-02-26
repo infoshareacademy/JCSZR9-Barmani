@@ -9,9 +9,21 @@
 
   <ItemGroup>
     <Folder Include="Data\" />
-    <Folder Include="Logic\" />
   </ItemGroup>
 
+	<ItemGroup>
+		<None Update="Data\Drink.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Data\MainAlcohol.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Data\Difficulty.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+	
+	
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
   </ItemGroup>
