@@ -9,7 +9,7 @@ namespace DrinkItUp.BusinessLogic.Logic
 {
     public class DrinkLogic
     {
-        // Pobieramy sobie listę z DataMenagera jak prywatne pole wewnątrz klasy, żeby za każdym razem nie odczytywać pliku.
+        // Pobieramy sobie listę z DataMenagera jako prywatne pole wewnątrz klasy, żeby za każdym razem nie odczytywać pliku.
         // Można by było zawsze się odwoływać do DataMenager.Drinks , ale to zła praktyka, przy większym projekcie masakra
         private static List<Drink>? _drinks = DataMenager.Drinks;
 

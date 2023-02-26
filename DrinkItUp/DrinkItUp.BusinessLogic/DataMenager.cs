@@ -30,7 +30,6 @@ namespace DrinkItUp.BusinessLogic
             // Tutaj tworzy zmienną string do której zostanie wczytany cały plik json. itemSerialized bo taka jest konwencja przy używania jsonów. 
             //File.ReadAllText to jest metoda wbudowana w VisualStudio która zczytuje cały plik do stringa. 
             string itemsSerialized = File.ReadAllText(filePath, Encoding.UTF8);
-            Console.WriteLine(itemsSerialized);
             //zwracamy Listę. JsonConvert to metoda wbudowana w paczkę Newtonsoft Json, którą musiałem ściągnąć do naszego projektu. 
             //DeserializeObject bierzę nasz tekst i przekształca go na tę listę.
             // ?? new List<T> zwraca nam pustą listę jeśli nic by nie było w naszym pliku. Ale spoko, dodałem już rekordy
