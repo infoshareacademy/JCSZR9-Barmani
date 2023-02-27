@@ -1,10 +1,10 @@
 ﻿using DrinkItUp.BusinessLogic.Model;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace DrinkItUp.BusinessLogic
 {
@@ -17,11 +17,12 @@ namespace DrinkItUp.BusinessLogic
         public static List<MainAlcohol> MainAlcohols { get; set; } = GetList<MainAlcohol>("MainAlcohol.json");
         public static List<Difficulty> Difficulties { get; set; } = GetList<Difficulty>("Difficulty.json");
 
+        
 
         // Metoda która pobiera dane z pliku
         public static List<T> GetList<T>(string fileName)
         {
-
+            
             // Na początku tworzy zmienną typu string i zapisuje ścieżke pliku. Tutaj użyłem wbudowanych klas w VisualStudio, żeby zawsze pobierało ściężke naszego projektu na początek
             // To jest to Path.Combine(AppDomain.CurrentDomain.BaseDirectory 
             // Później podana jest nazwa folderu. Tutaj "Data" i fileName, który podajemy wyżej.
@@ -33,7 +34,7 @@ namespace DrinkItUp.BusinessLogic
             //zwracamy Listę. JsonConvert to metoda wbudowana w paczkę Newtonsoft Json, którą musiałem ściągnąć do naszego projektu. 
             //DeserializeObject bierzę nasz tekst i przekształca go na tę listę.
             // ?? new List<T> zwraca nam pustą listę jeśli nic by nie było w naszym pliku. Ale spoko, dodałem już rekordy
-            return JsonConvert.DeserializeObject<List<T>>(itemsSerialized) ?? new List<T>();
+            return JsonSerializer.Deserialize<List<T>>(itemsSerialized) ?? new List<T>();
         }
     }
 }

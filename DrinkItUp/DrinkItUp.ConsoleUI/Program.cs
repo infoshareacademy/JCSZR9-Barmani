@@ -9,7 +9,7 @@ namespace DrinkItUp.ConsoleUI
         {
             Console.WriteLine("Hello, World!");
 
-            Console.WriteLine(DrinkLogic.GetById(3).Name);
+            Console.WriteLine(DrinkLogic.GetById(1).Name);
         }
     }
 }
