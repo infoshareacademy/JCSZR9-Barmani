@@ -8,5 +8,9 @@ namespace DrinkItUp.ConsoleUI
 {
     internal class DrinkCard
     {
+
+
+
+
     }
 }

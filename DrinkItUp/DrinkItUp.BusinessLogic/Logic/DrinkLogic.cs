@@ -32,6 +32,38 @@ namespace DrinkItUp.BusinessLogic.Logic
 
         }
 
+        public static List<Drink> GetByDifficulty(List<Drink> drinks,Difficulty difficulty)
+        {
+            try
+            {
+                // Zwracamy obiekt pierwszy znaleziony w liście po Id. To jest Linq czyli metody wbudowane w Visual Studio, na pewno będzie na zajęciach.
+                return (List<Drink>)drinks.Where(c => c.difficulty.Id == difficulty.Id);
+            }
+            catch (Exception ex)
+            {
+                // Zwracamy wódkę ze szklanką w razie wyjątku, to zawsze dobra odpowiedź!! :D Taki żarcik ;P
+                Console.WriteLine("Nie znaleziono drinka po Id");
+                return new List<Drink>();
+            }
+
+        }
+
+        public static List<Drink> GetByAlcohol(List<Drink> drinks, MainAlcohol mainalcohol)
+        {
+            try
+            {
+                // Zwracamy obiekt pierwszy znaleziony w liście po Id. To jest Linq czyli metody wbudowane w Visual Studio, na pewno będzie na zajęciach.
+                return (List<Drink>)drinks.Where(c => c.mainAlcohol.Id == mainalcohol.Id);
+            }
+            catch (Exception ex)
+            {
+                // Zwracamy wódkę ze szklanką w razie wyjątku, to zawsze dobra odpowiedź!! :D Taki żarcik ;P
+                Console.WriteLine("Nie znaleziono drinka po Id");
+                return new List<Drink>();
+            }
+
+        }
+
 
     }
 
