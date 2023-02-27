@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DrinkItUp.BusinessLogic.Logic
 {
-    public class DrinkLogic
+    public static class DrinkLogic
     {
         // Pobieramy sobie listę z DataMenagera jako prywatne pole wewnątrz klasy, żeby za każdym razem nie odczytywać pliku.
         // Można by było zawsze się odwoływać do DataMenager.Drinks , ale to zła praktyka, przy większym projekcie masakra
@@ -26,8 +26,8 @@ namespace DrinkItUp.BusinessLogic.Logic
             catch(Exception ex)
             {
                 // Zwracamy wódkę ze szklanką w razie wyjątku, to zawsze dobra odpowiedź!! :D Taki żarcik ;P
-                Console.WriteLine($"{GetById(1).Name}");
-                return GetById(1);
+                Console.WriteLine("Nie znaleziono drinka po Id");
+                return _drinks.ElementAt(0);
             }
 
         }

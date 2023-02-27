@@ -1,10 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "AsjoHds9tePAaztqFal6uWPK1bNHeqd30eZuK4uce+y4SoBhnZA+pHx/O5Scm5VlcUVKQulYRIXNrpB8lG240g==",
+  "dgSpecHash": "WbyuQJWTF3xPkYmRkhUNZ3+E2pDIoXQAO1nYnzWLBrx+Cqi5YVni+87BlzDYLxF4BEIN6fcZx4pgBmMDjyv+4g==",
   "success": true,
   "projectFilePath": "C:\\Users\\ulisu\\Desktop\\Projects\\InfoShare\\Projekt\\JCSZR9-Barmani\\DrinkItUp\\DrinkItUp.BusinessLogic\\DrinkItUp.BusinessLogic.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\ulisu\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }
