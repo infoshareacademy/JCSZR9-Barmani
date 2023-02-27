@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "QvM1iYqErBL1DeAo55QuOC/XVEoXubCyRcr0OOnmMH9nV7JuE31Un9pXn2GEXOZPqhSxN+4e50n0PD3msojbjw==",
+  "dgSpecHash": "TqZOdyv60OigzWBZHHYVrSjK235RpZymsQr9UPn0VqOCNttoG5SwphSss0Rc0s5yd2ClqMHArXNHFmMxxuBV8g==",
   "success": true,
-  "projectFilePath": "C:\\myrepo\\JCSZR9-Barmani\\DrinkItUp\\DrinkItUp.ConsoleUI\\DrinkItUp.ConsoleUI.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\ulisu\\Desktop\\Projects\\InfoShare\\Projekt\\JCSZR9-Barmani\\DrinkItUp\\DrinkItUp.ConsoleUI\\DrinkItUp.ConsoleUI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ulisu\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512"
+  ],
   "logs": []
 }
