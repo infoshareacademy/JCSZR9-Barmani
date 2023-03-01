@@ -1,5 +1,6 @@
 ﻿
 using DrinkItUp.BusinessLogic.Logic;
+using DrinkItUp.BusinessLogic.Model;
 
 namespace DrinkItUp.ConsoleUI
 {
@@ -7,9 +8,8 @@ namespace DrinkItUp.ConsoleUI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
-
-            Console.WriteLine(DrinkLogic.GetById(1).Name);
+           var list = DrinkCard.GetDrinkCard(DrinkLogic.GetById(2));
+            DrinkCard.ShowDrinkCard(list);
         }
     }
 }
