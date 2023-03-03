@@ -8,8 +8,8 @@ namespace DrinkItUp.ConsoleUI
     {
         static void Main(string[] args)
         {
-           var list = DrinkCard.GetDrinkCard(DrinkLogic.GetById(2));
-            DrinkCard.ShowDrinkCard(list);
+           var list = DrinkCard.GetDrinkCard(DrinkLogic.GetById(1));
+           DrinkCard.ShowDrinkCard(list);
         }
     }
 }
