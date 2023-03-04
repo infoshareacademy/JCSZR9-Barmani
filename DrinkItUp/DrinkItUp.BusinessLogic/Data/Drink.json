@@ -58,5 +58,45 @@
       }
     ],
     "Description": "Niektórzy mogliby powiedzieć, że po co psuć rum limonką, ale tysiące Kubańczyków nie może się mylić! Zmieszaj wszystkie składniki razem i dorzuć kostki lodu według uznania."
+  },
+  {
+    "Id": 3,
+    "Name": "Gin z tonikiem",
+    "mainAlcohol": {
+      "Id": 4,
+      "Alcohol": "Gin"
+    },
+    "difficulty": {
+      "Id": 1,
+      "Level": "Łatwy"
+    },
+    "Ingredients": [
+      {
+        "Quantity": 40,
+        "Unit": 0,
+        "NameOfIngredient": "Ginu"
+      },
+      {
+        "Quantity": 120,
+        "Unit": 0,
+        "NameOfIngredient": "Toniku"
+      },
+      {
+        "Quantity": 2,
+        "Unit": 9,
+        "NameOfIngredient": "Cytryny"
+      },
+      {
+        "Quantity": 3,
+        "Unit": 11,
+        "NameOfIngredient": "Mięty"
+      },
+      {
+        "Quantity": 4,
+        "Unit": 5,
+        "NameOfIngredient": "Lodu"
+      }
+    ],
+    "Description": "Klasyka niewrażliwa na czasy i okoliczności. Najprostszy wybór dla ludzi szukających bardziej wytrawnych smaków. Przed zmieszaniem wszystkiego rozgnieć mięte w szklance. Lód według uznania."
   }
 ]

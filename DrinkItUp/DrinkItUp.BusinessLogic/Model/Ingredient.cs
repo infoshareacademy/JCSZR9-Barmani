@@ -35,7 +35,10 @@ namespace DrinkItUp.BusinessLogic.Model
         kostek,
         plasterek,
         plasterki,
-        szklanka
+        szklanka,
+        listki,
+        listek
+
     }
 }
 
