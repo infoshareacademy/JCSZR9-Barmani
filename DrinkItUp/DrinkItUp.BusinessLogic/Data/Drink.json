@@ -10,8 +10,19 @@
       "Id": 1,
       "Level": "Łatwy"
     },
-    "Ingredients": "200ml Wódka 1 Szklanka",
-    "Description": "Najlepszy drink! Przebić go może jedynie przysłowiowa 'Wóda z gwinta'. Ponadczasowa prostota, która miesza się z tradycją największych PRL-owskich osiedli. Nic tylko pić!" 
+    "Ingredients": [
+      {
+        "Quantity": 200,
+        "Unit": 0,
+        "NameOfIngredient": "Wódki"
+      },
+      {
+        "Quantity": 1,
+        "Unit": 2,
+        "NameOfIngredient": "Szklanka"
+      }
+    ],
+        "Description": "Najlepszy drink! Przebić go może jedynie przysłowiowa 'Wóda z gwinta'. Ponadczasowa prostota, która miesza się z tradycją największych PRL-owskich osiedli. Nic tylko pić!"
   },
   {
     "Id": 2,
@@ -24,7 +35,28 @@
       "Id": 1,
       "Level": "Łatwy"
     },
-    "Ingredients": "40ml Rum 125ml Cola 1/4 Limonki kostki Lodu",
+    "Ingredients": [
+      {
+        "Quantity": 40,
+        "Unit": 0,
+        "NameOfIngredient": "Rumu"
+      },
+      {
+        "Quantity": 125,
+        "Unit": 0,
+        "NameOfIngredient": "Coli"
+      },
+      {
+        "Quantity": 1,
+        "Unit": 8,
+        "NameOfIngredient": "Limonki"
+      },
+      {
+        "Quantity": 4,
+        "Unit": 5,
+        "NameOfIngredient": "Lodu"
+      }
+    ],
     "Description": "Niektórzy mogliby powiedzieć, że po co psuć rum limonką, ale tysiące Kubańczyków nie może się mylić! Zmieszaj wszystkie składniki razem i dorzuć kostki lodu według uznania."
   }
 ]
