@@ -14,12 +14,12 @@
       {
         "Quantity": 200,
         "Unit": 0,
-        "NameOfIngredient": "Wódki"
+        "NameOfIngredient": "wódki"
       },
       {
         "Quantity": 1,
         "Unit": 2,
-        "NameOfIngredient": "Szklanka"
+        "NameOfIngredient": "szklanka"
       }
     ],
         "Description": "Najlepszy drink! Przebić go może jedynie przysłowiowa 'Wóda z gwinta'. Ponadczasowa prostota, która miesza się z tradycją największych PRL-owskich osiedli. Nic tylko pić!"
@@ -39,22 +39,22 @@
       {
         "Quantity": 40,
         "Unit": 0,
-        "NameOfIngredient": "Rumu"
+        "NameOfIngredient": "rumu"
       },
       {
         "Quantity": 125,
         "Unit": 0,
-        "NameOfIngredient": "Coli"
+        "NameOfIngredient": "coli"
       },
       {
         "Quantity": 1,
         "Unit": 8,
-        "NameOfIngredient": "Limonki"
+        "NameOfIngredient": "limonki"
       },
       {
         "Quantity": 4,
         "Unit": 5,
-        "NameOfIngredient": "Lodu"
+        "NameOfIngredient": "lodu"
       }
     ],
     "Description": "Niektórzy mogliby powiedzieć, że po co psuć rum limonką, ale tysiące Kubańczyków nie może się mylić! Zmieszaj wszystkie składniki razem i dorzuć kostki lodu według uznania."
@@ -74,27 +74,27 @@
       {
         "Quantity": 40,
         "Unit": 0,
-        "NameOfIngredient": "Ginu"
+        "NameOfIngredient": "ginu"
       },
       {
         "Quantity": 120,
         "Unit": 0,
-        "NameOfIngredient": "Toniku"
+        "NameOfIngredient": "toniku"
       },
       {
         "Quantity": 2,
         "Unit": 9,
-        "NameOfIngredient": "Cytryny"
+        "NameOfIngredient": "cytryny"
       },
       {
         "Quantity": 3,
         "Unit": 11,
-        "NameOfIngredient": "Mięty"
+        "NameOfIngredient": "mięty"
       },
       {
         "Quantity": 4,
         "Unit": 5,
-        "NameOfIngredient": "Lodu"
+        "NameOfIngredient": "lodu"
       }
     ],
     "Description": "Klasyka niewrażliwa na czasy i okoliczności. Najprostszy wybór dla ludzi szukających bardziej wytrawnych smaków. Przed zmieszaniem wszystkiego rozgnieć mięte w szklance. Lód według uznania."

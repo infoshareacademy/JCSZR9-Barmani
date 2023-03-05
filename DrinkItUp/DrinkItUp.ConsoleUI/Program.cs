@@ -1,4 +1,5 @@
 ﻿
+using DrinkItUp.BusinessLogic;
 using DrinkItUp.BusinessLogic.Logic;
 using DrinkItUp.BusinessLogic.Model;
 
@@ -8,8 +9,9 @@ namespace DrinkItUp.ConsoleUI
     {
         static void Main(string[] args)
         {
-           var list = DrinkCard.GetDrinkCard(DrinkLogic.GetById(3));
-           DrinkCard.ShowDrinkCard(list);
+            SearchEngine.SearchByIngredients(DataMenager.Drinks);
+
+
         }
     }
 }
