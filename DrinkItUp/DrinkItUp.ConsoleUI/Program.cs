@@ -11,8 +11,7 @@ namespace DrinkItUp.ConsoleUI
         {
 
 
-            var drinkCards = DrinkCard.GetDrinkCard(DrinkLogic.GetById(1));
-            DrinkCard.ShowDrinkCard(drinkCards);
+           
 
         }
     }
