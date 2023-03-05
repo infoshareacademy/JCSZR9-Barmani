@@ -9,8 +9,10 @@ namespace DrinkItUp.ConsoleUI
     {
         static void Main(string[] args)
         {
-            SearchEngine.SearchByIngredients(DataMenager.Drinks);
 
+
+            var drinkCards = DrinkCard.GetDrinkCard(DrinkLogic.GetById(1));
+            DrinkCard.ShowDrinkCard(drinkCards);
 
         }
     }
