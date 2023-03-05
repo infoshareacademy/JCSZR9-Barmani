@@ -41,8 +41,8 @@ namespace DrinkItUp.BusinessLogic
             
             await Task.Run(() =>
             {
-                string sPattern = @"^([A-Z]|[a-z]){1,}$";
-                int i = 1;
+                string sPattern = "";
+                int i = 0;
                 int counter = 1;
                 while (true)
                 {
@@ -58,16 +58,16 @@ namespace DrinkItUp.BusinessLogic
                     }
                     else if(key.Key == ConsoleKey.Spacebar)
                     {
-                        sPattern = @"^([A-Z]|[a-z]){1,}$";
-                        i = 1;
+                        sPattern = "";
+                        i = 0;
                         
                     }
                     else
                     {
                         sPattern = sPattern.Insert(i, key.KeyChar.ToString());
                         var regex = new Regex(sPattern);
-                        var list = _listAllIngredientsNames.Where(s => regex.IsMatch(s)).ToList();
-                        
+                        var list = _listAllIngredientsNames.Where(s => s.StartsWith(sPattern)).ToList();
+                        // StartsWith()
                         Console.Write(String.Join(", ", list));
                         i++;
                     }
