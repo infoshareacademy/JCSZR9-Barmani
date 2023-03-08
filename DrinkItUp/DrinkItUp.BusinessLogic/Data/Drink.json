@@ -98,5 +98,40 @@
       }
     ],
     "Description": "Klasyka niewrażliwa na czasy i okoliczności. Najprostszy wybór dla ludzi szukających bardziej wytrawnych smaków. Przed zmieszaniem wszystkiego rozgnieć mięte w szklance. Lód według uznania."
+  },
+  {
+    "Id": 4,
+    "Name": "Blue Lady",
+    "mainAlcohol": {
+      "Id": 4,
+      "Alcohol": "Gin"
+    },
+    "difficulty": {
+      "Id": 1,
+      "Level": "Łatwy"
+    },
+    "Ingredients": [
+      {
+        "Quantity": 50,
+        "Unit": 0,
+        "NameOfIngredient": "ginu"
+      },
+      {
+        "Quantity": 50,
+        "Unit": 0,
+        "NameOfIngredient": "soku z cytryny"
+      },
+      {
+        "Quantity": 25,
+        "Unit": 0,
+        "NameOfIngredient": "likieru Blue Curacao"
+      },
+      {
+        "Quantity": 3,
+        "Unit": 5,
+        "NameOfIngredient": "lodu"
+      }
+    ],
+    "Description": "Wspaniały orzeźwiający drink. Zakochasz się w tym słodko-kwaśnym smaku już przy pierwszym spróbowaniu. Wszystkie składniki wraz z lodem wymieszaj w shakerze, oczywiście dobrze nim potrząsając. Przelej do kieliszka od Martini bądź szklanki. Szklankę bądź kieliszek możesz przyozdobić plasterkiem cytryny!"
   }
 ]

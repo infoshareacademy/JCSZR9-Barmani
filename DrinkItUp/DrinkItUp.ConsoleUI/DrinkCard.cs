@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DrinkItUp.ConsoleUI
 {
-    internal static class DrinkCard
+    public static class DrinkCard
     {
         public static List<Card>? cardsToMenu = new();
 
@@ -96,7 +96,7 @@ namespace DrinkItUp.ConsoleUI
             }
 
 
-
+            Console.WriteLine();
         }
 
     }
