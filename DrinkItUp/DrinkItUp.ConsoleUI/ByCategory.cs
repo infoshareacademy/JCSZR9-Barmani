@@ -30,7 +30,7 @@ namespace DrinkItUp.ConsoleUI
             }
 
             Console.Clear();
-            Console.WriteLine($"Znaleziono {drinks.Count()} pasujący drinków! Oto one:");
+            Console.WriteLine($"Znaleziono {drinks.Count()} pasujące drinki! Oto one:");
             var card = DrinkCard.GetDrinkCard(drinks.ElementAt(listElement));
             DrinkCard.ShowDrinkCard(card);
 
@@ -89,6 +89,7 @@ namespace DrinkItUp.ConsoleUI
                         }
                     }
                     break;
+
                 case ConsoleKey.Escape:
                     Environment.Exit(0);
                     break;

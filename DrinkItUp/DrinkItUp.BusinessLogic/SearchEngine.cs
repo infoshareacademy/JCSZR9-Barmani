@@ -41,7 +41,7 @@ namespace DrinkItUp.BusinessLogic
             
             await Task.Run(() =>
             {
-                string sPattern = "";
+                string sPattern = "([^a-z]|^)([A-Z]|[a-z])*";
                 int i = 0;
                 int counter = 1;
                 while (true)
@@ -58,16 +58,16 @@ namespace DrinkItUp.BusinessLogic
                     }
                     else if(key.Key == ConsoleKey.Spacebar)
                     {
-                        sPattern = "";
-                        i = 0;
+                        sPattern = "([^a-z]|^)([A-Z]|[a-z])*";
+                        i = 10;
                         
                     }
                     else
                     {
                         sPattern = sPattern.Insert(i, key.KeyChar.ToString());
-                        var regex = new Regex(sPattern);
-                        var list = _listAllIngredientsNames.Where(s => s.StartsWith(sPattern)).ToList();
-                        // StartsWith()
+                        var regex = new Regex(sPattern, RegexOptions.IgnoreCase);
+                        var list = _listAllIngredientsNames.Where(s => regex.IsMatch(s)).Take(5).ToList();
+                        // StartsWith() wykluczało np. curacao! REGEX THE BEST!
                         Console.Write(String.Join(", ", list));
                         i++;
                     }
@@ -79,6 +79,7 @@ namespace DrinkItUp.BusinessLogic
 
         public static async void SearchByIngredients(List<Drink> drinkList)
         {
+            Console.Clear();
             GetAllIngredients(drinkList);
             Console.SetCursorPosition((Console.WindowWidth - 100) / 2, Console.CursorTop);
             Console.WriteLine("Napisz co masz w domu! Cytryny? Gin? Tonik? Wpisz w konsole te składniki oddzielając spacją.");
