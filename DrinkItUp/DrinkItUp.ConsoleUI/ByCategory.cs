@@ -8,6 +8,7 @@ namespace DrinkItUp.ConsoleUI
     {
         private static int option = 1;
         private static string color = "✅ \u001b[32m";
+        private static string color2 = "✅ \u001b[31m";
 
         public static void GetDrinks(int mainalcoholId, int difficultyId)
         {
@@ -40,14 +41,14 @@ namespace DrinkItUp.ConsoleUI
 
             for (int i = 0; i < shortMenu.Count; i++)
             {
-                Console.SetCursorPosition((Console.WindowWidth - 10) / 2, Console.CursorTop);
+                Console.SetCursorPosition((Console.WindowWidth - 20) / 2, Console.CursorTop);
                 if (listElement == drinks.Count() - 1 && i == 0)
                 {
-                    Console.WriteLine($"{(option == i + 1 ? color : "   ")} Koniec Listy\u001b[0m");
+                    Console.WriteLine($"{(option == i + 1 ? color2 : "   ")} {shortMenu.ElementAt(i).CardTitle}\u001b[0m");
                 }
                 else if (listElement == 0 && i == 1)
                 {
-                    Console.WriteLine($"{(option == i + 1 ? color : "   ")} Początek Listy\u001b[0m");
+                    Console.WriteLine($"{(option == i + 1 ? color2 : "   ")} {shortMenu.ElementAt(i).CardTitle}\u001b[0m");
                 }
                 else
                 {
