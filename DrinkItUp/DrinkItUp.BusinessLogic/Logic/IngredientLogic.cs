@@ -21,5 +21,22 @@ namespace DrinkItUp.BusinessLogic.Logic
 
             return listString;
         }
+
+        public static HashSet<string> GetAllIngredientsNames(List<Drink> listDrinks)
+        {
+            var hashIngredientsNames = new HashSet<string>();
+            var listString = new List<string>();
+
+            foreach (Drink drink in listDrinks)
+            {
+                foreach (Ingredient ingredient in drink.Ingredients)
+                {
+                    listString.Add(ingredient.NameOfIngredient);
+                }
+                hashIngredientsNames.UnionWith(listString);
+            }
+
+            return hashIngredientsNames;
+        }
     }
 }
