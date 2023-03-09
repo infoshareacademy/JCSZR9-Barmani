@@ -42,7 +42,7 @@ namespace DrinkItUp.BusinessLogic
             await Task.Run(() =>
             {
                 string sPattern = "([^a-z]|^)([A-Z]|[a-z])*";
-                int i = 0;
+                int i = 10;
                 int counter = 1;
                 while (true)
                 {

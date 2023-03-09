@@ -99,5 +99,28 @@ namespace DrinkItUp.ConsoleUI
             Console.WriteLine();
         }
 
+        public static void ShowDrinks(List<Drink> drinks, int listElement)
+        {
+
+            if (listElement > drinks.Count() - 1 || listElement < 0)
+            {
+                Console.WriteLine("Błąd");
+                return;
+
+            }
+
+            Console.Clear();
+            Console.WriteLine($"Znaleziono {drinks.Count()} pasujące drinki! Oto one:");
+            var card = DrinkCard.GetDrinkCard(drinks.ElementAt(listElement));
+            DrinkCard.ShowDrinkCard(card);
+
+            Console.WriteLine();
+
+            var shortMenu = ShortMenu.GetShortMenu();
+            ShortMenu.ShowShortMenu(drinks, shortMenu, listElement);
+        }
+
+
+
     }
 }
