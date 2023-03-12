@@ -19,11 +19,6 @@ namespace DrinkItUp.BusinessLogic.Logic
         }
 
 
-        public static List<Drink> GetAllDrinks()
-        {
-            return _drinks;
-        }
-
         // Metoda która pobiera Obiekt Drink z listy po Id tego drinka. 
         public static Drink GetById(int id)
         {
