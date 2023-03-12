@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DrinkItUp.ConsoleUI
 {
-    internal class Card
+    public class Card
     {
         public int Id { get; set; }
 

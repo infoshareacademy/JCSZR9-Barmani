@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using DrinkItUp.BusinessLogic;
+using DrinkItUp.BusinessLogic.Logic;
+using System.Drawing;
 
 namespace DrinkItUp.ConsoleUI
 {
@@ -45,12 +47,12 @@ namespace DrinkItUp.ConsoleUI
                 {
 
                     Console.SetCursorPosition(left, top);
-                    Console.WriteLine($"{(option == 1 ? color : "   ")} Przeglądaj drinki według alkoholu dominującego\u001b[0m");
-                    Console.WriteLine($"{(option == 2 ? color : "   ")} Wyświetl wszystkie drinki\u001b[0m");
-                    Console.WriteLine($"{(option == 3 ? color : "   ")} Wyszukaj\u001b[0m");
-                    Console.WriteLine($"{(option == 4 ? color : "   ")} Zaskocz mnie\u001b[0m");
-                    Console.WriteLine($"{(option == 5 ? color : "   ")} Dodaj swój drink\u001b[0m");
-                    Console.WriteLine($"{(option == 6 ? color : "   ")} Edytuj istniejący drink\u001b[0m");
+                    Console.WriteLine($"{(option == 1 ? color : "    ")} Przeglądaj drinki według alkoholu dominującego\u001b[0m");
+                    Console.WriteLine($"{(option == 2 ? color : "    ")} Wyświetl wszystkie drinki\u001b[0m");
+                    Console.WriteLine($"{(option == 3 ? color : "    ")} Wyszukaj\u001b[0m");
+                    Console.WriteLine($"{(option == 4 ? color : "    ")} Zaskocz mnie\u001b[0m");
+                    Console.WriteLine($"{(option == 5 ? color : "    ")} Dodaj swój drink\u001b[0m");
+                    Console.WriteLine($"{(option == 6 ? color : "    ")} Edytuj istniejący drink\u001b[0m");
 
 
                     key = Console.ReadKey(false);
@@ -168,23 +170,11 @@ namespace DrinkItUp.ConsoleUI
                             }
 
                         }
-                        if (selectedoption3 == 1)
+                        if (selectedoption3 == 1 || selectedoption3 == 2 || selectedoption3 == 3)
                         {
-                            Console.WriteLine("Wyświetl łatwy");
-
+                            ByCategory.GetDrinks(selectedoption2, selectedoption3);
+                           
                         }
-                        else if (selectedoption3 == 2)
-                        {
-                            Console.WriteLine("Wyświetl średni");
-
-                        }
-                        else if (selectedoption3 == 3)
-                        {
-                            Console.WriteLine("Wyświetl trudny");
-
-                        }
-
-
                     }
                     else if (isSelected2 = false)
                     {
@@ -195,6 +185,8 @@ namespace DrinkItUp.ConsoleUI
                 {
                     Console.Clear();
                     Console.WriteLine("Wyświetlam tu wszystkie drinki");
+                    
+                    DrinkCard.ShowDrinkCard(DrinkCard.GetDrinkCard((DrinkLogic.GetById(1))));
 
                 }
 
@@ -202,6 +194,7 @@ namespace DrinkItUp.ConsoleUI
                 {
                     Console.Clear();
                     Console.WriteLine("Tu będzie wyszukiwarka");
+                    SearchEngine.SearchByIngredientsUI(DrinkLogic.GetAllDrinks());
 
                 }
 

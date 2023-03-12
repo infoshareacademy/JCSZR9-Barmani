@@ -16,11 +16,11 @@ namespace DrinkItUp.BusinessLogic.Model
 
         public Difficulty difficulty { get; set; }
 
-        public string Ingredients { get; set; }
+        public List<Ingredient> Ingredients { get; set; }
 
         public string Description { get; set; }
 
-        public Drink(int id, string name, MainAlcohol mainalcohol, Difficulty difficulty, string ingredients, string description)
+        public Drink(int id, string name, MainAlcohol mainalcohol, Difficulty difficulty, List<Ingredient> ingredients, string description)
         {
             Id = id;
             Name= name;

@@ -1,4 +1,5 @@
-﻿using DrinkItUp.BusinessLogic.Model;
+﻿using DrinkItUp.BusinessLogic.Logic;
+using DrinkItUp.BusinessLogic.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,17 +8,18 @@ using System.Threading.Tasks;
 
 namespace DrinkItUp.ConsoleUI
 {
-    internal static class DrinkCard
+    public static class DrinkCard
     {
         public static List<Card>? cardsToMenu = new();
 
         public static List<Card> GetDrinkCard(Drink drink)
         {
+            
             cardsToMenu.Clear();
             cardsToMenu.Add(new Card(1, drink.Id, "Nazwa: ", drink.Name));
             cardsToMenu.Add(new Card(2, drink.Id, "Główny Alkohol: ", drink.mainAlcohol.Alcohol));
             cardsToMenu.Add(new Card(3, drink.Id, "Trudność przygotowania: ", drink.difficulty.Level));
-            cardsToMenu.Add(new Card(4, drink.Id, "Składniki: ", drink.Ingredients));
+            cardsToMenu.Add(new Card(4, drink.Id, "Składniki: ", "składniki" ));
             cardsToMenu.Add(new Card(5, drink.Id, "Opis przygotowania: ", drink.Description));
             return cardsToMenu;
         }
@@ -73,33 +75,15 @@ namespace DrinkItUp.ConsoleUI
                 }
                 else if ( i == 3)
                 {
-                    Console.WriteLine();
-                    Console.SetCursorPosition((Console.WindowWidth - 50) / 2, Console.CursorTop);
-                    int m = 0;
-                    string stringhelper = drinkCards.ElementAt(i).CardContent;
-                    for (int n = 0; n < stringhelper.Length - 1; n++)
+                    var list = IngredientLogic.IngredientsToList(DrinkLogic.GetById(drinkCards.ElementAt(3).ItemId).Ingredients);
+
+                    for (int j = 0; j < list.Count; j++)
                     {
+                        Console.WriteLine();
+                        Console.SetCursorPosition((Console.WindowWidth - 50) / 2, Console.CursorTop);
 
-                        if (stringhelper[n] == ' ')
-                        {
-                            m++;
-                        }
-
-                        if (m == 2)
-                        {
-                            m = 0;
-                            
-                            stringhelper = stringhelper.Substring(0, n);
-                            Console.WriteLine(stringhelper);
-                            Console.SetCursorPosition((Console.WindowWidth - 50) / 2, Console.CursorTop);
-                            stringhelper = drinkCards.ElementAt(i).CardContent;
-                            drinkCards.ElementAt(i).CardContent = stringhelper.Substring(n + 1, stringhelper.Length - (n + 1));
-                            stringhelper = drinkCards.ElementAt(i).CardContent;
-                            n = 0;
-                        }
-                        
+                        Console.Write(list.ElementAt(j));
                     }
-                    Console.Write(drinkCards.ElementAt(i).CardContent);
 
                 }
                 else
@@ -112,8 +96,31 @@ namespace DrinkItUp.ConsoleUI
             }
 
 
-
+            Console.WriteLine();
         }
+
+        public static void ShowDrinks(List<Drink> drinks, int listElement)
+        {
+
+            if (listElement > drinks.Count() - 1 || listElement < 0)
+            {
+                Console.WriteLine("Błąd");
+                return;
+
+            }
+
+            Console.Clear();
+            Console.WriteLine($"Znaleziono {drinks.Count()} pasujące drinki! Oto one:");
+            var card = DrinkCard.GetDrinkCard(drinks.ElementAt(listElement));
+            DrinkCard.ShowDrinkCard(card);
+
+            Console.WriteLine();
+
+            var shortMenu = ShortMenu.GetShortMenu();
+            ShortMenu.ShowShortMenu(drinks, shortMenu, listElement);
+        }
+
+
 
     }
 }
