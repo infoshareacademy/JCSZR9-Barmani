@@ -188,7 +188,7 @@ namespace DrinkItUp.ConsoleUI
                     Console.Clear();
                     Console.WriteLine("Wyświetlam tu wszystkie drinki");
                     var drinksList = DrinkLogic.GetAllDrinks();
-
+                    DrinkCard.ShowDrinks(drinksList, 0);
 
 
                 }
