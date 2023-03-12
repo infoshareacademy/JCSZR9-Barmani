@@ -19,7 +19,11 @@ namespace DrinkItUp.BusinessLogic.Logic
         }
 
 
-        
+        public static List<Drink> GetAllDrinks()
+        {
+            return _drinks;
+        }
+
         // Metoda która pobiera Obiekt Drink z listy po Id tego drinka. 
         public static Drink GetById(int id)
         {
@@ -37,12 +41,12 @@ namespace DrinkItUp.BusinessLogic.Logic
 
         }
 
-        public static List<Drink> GetByDifficulty(List<Drink> drinks,Difficulty difficulty)
+        public static List<Drink> GetByDifficulty(List<Drink> drinks, int id)
         {
             try
             {
                 
-                return (List<Drink>)drinks.Where(c => c.difficulty.Id == difficulty.Id);
+                return (List<Drink>)drinks.Where(c => c.difficulty.Id == id).ToList();
             }
             catch (Exception ex)
             {
@@ -53,12 +57,12 @@ namespace DrinkItUp.BusinessLogic.Logic
 
         }
 
-        public static List<Drink> GetByAlcohol(List<Drink> drinks, MainAlcohol mainalcohol)
+        public static List<Drink> GetByAlcohol(List<Drink> drinks, int id)
         {
             try
             {
                 
-                return (List<Drink>)drinks.Where(c => c.mainAlcohol.Id == mainalcohol.Id);
+                return (List<Drink>)drinks.Where(c => c.mainAlcohol.Id == id).ToList();
             }
             catch (Exception ex)
             {
@@ -68,6 +72,7 @@ namespace DrinkItUp.BusinessLogic.Logic
             }
 
         }
+
 
 
     }

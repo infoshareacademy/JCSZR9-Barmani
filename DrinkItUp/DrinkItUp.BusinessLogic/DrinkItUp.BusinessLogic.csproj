@@ -7,9 +7,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Data\" />
-  </ItemGroup>
+	<ItemGroup>
+		<Folder Include="Data\" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<None Update="Data\Drink.json">
@@ -21,6 +21,6 @@
 		<None Update="Data\Difficulty.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-	</ItemGroup>
+	</ItemGroup> 
 
 </Project>
