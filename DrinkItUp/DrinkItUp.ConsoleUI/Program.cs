@@ -1,4 +1,8 @@
-﻿using System.Drawing;
+﻿using DrinkItUp.BusinessLogic;
+using DrinkItUp.BusinessLogic.Logic;
+using DrinkItUp.BusinessLogic.Model;
+using System.Drawing;
+using System.Text.Json;
 
 namespace DrinkItUp.ConsoleUI
 {
@@ -195,6 +199,9 @@ namespace DrinkItUp.ConsoleUI
                 {
                     Console.Clear();
                     Console.WriteLine("Wyświetlam tu wszystkie drinki");
+                    var drinksList = DrinkLogic.GetAllDrinks();
+
+
 
                 }
 
