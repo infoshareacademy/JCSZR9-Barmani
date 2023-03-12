@@ -1,0 +1,14 @@
+[
+  {
+    "Id": 1,
+    "Level": "Łatwy"
+  },
+  {
+    "Id": 2,
+    "Level": "Średni"
+  },
+  {
+    "Id": 3,
+    "Level": "Trudny"
+  }
+]
