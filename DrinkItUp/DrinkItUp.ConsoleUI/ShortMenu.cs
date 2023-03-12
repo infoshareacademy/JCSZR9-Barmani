@@ -30,7 +30,12 @@ namespace DrinkItUp.ConsoleUI
 
         
 
-
+        /// <summary>
+        /// Używamy zawsze najpierw ShowDrinks z DrinkCards.
+        /// </summary>
+        /// <param name="drinks"></param>
+        /// <param name="shortMenu"></param>
+        /// <param name="listElement"></param>
         public static void ShowShortMenu(List<Drink> drinks, List<Card> shortMenu, int listElement)
         {
 
@@ -95,6 +100,26 @@ namespace DrinkItUp.ConsoleUI
             DrinkCard.ShowDrinks(drinks, listElement);
 
         }
-    
+
+        public static void ShowShortMenuOneResult()
+        {
+            Console.SetCursorPosition((Console.WindowWidth - 20) / 2, Console.CursorTop);
+            Console.WriteLine($"{color} Wyjście\u001b[0m");
+            ConsoleKeyInfo key = Console.ReadKey(false);
+            switch (key.Key)
+            {
+                case ConsoleKey.Enter:
+                    //Tutaj trzeba wstawić wyjście do menu głównego. 
+                    break;
+
+                case ConsoleKey.Escape:
+                    Environment.Exit(0);
+                    break;
+
+
+            }
+        }
+
+
     }
 }
