@@ -188,6 +188,7 @@ namespace DrinkItUp.ConsoleUI
                     Console.Clear();
                     Console.WriteLine("Wyświetlam tu wszystkie drinki");
                     var drinksList = DrinkLogic.GetAllDrinks();
+                    
                     DrinkCard.ShowDrinks(drinksList, 0);
 
 
@@ -204,6 +205,11 @@ namespace DrinkItUp.ConsoleUI
                 {
                     Console.Clear();
                     Console.WriteLine("Wyskoczy random drink");
+                    var random = new Random();
+                    var drinksList = DrinkLogic.GetAllDrinks();
+                    int i = random.Next(0, (drinksList.Count()-1));
+                    var card = DrinkCard.GetDrinkCard(DrinkLogic.GetById(i));
+                    DrinkCard.ShowDrinkCard(card);
 
                 }
 
