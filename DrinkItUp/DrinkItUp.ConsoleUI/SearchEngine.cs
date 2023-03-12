@@ -127,7 +127,7 @@ namespace DrinkItUp.BusinessLogic
         public static List<Drink> SearchByIngredientsLogic(Dictionary<string, List<Drink>> dictionary)
         {
             var results = new List<Drink>();
-            var listDrinks = DrinkLogic.GetListOfDrinks();
+            var listDrinks = DrinkLogic.GetAllDrinks();
             
 
 

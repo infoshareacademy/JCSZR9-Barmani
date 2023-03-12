@@ -14,7 +14,11 @@ namespace DrinkItUp.BusinessLogic.Logic
         private static List<Drink>? _drinks = DataMenager.Drinks;
 
 
-        
+        public static List<Drink> GetAllDrinks()
+        {
+            return _drinks;
+        }
+
         // Metoda która pobiera Obiekt Drink z listy po Id tego drinka. 
         public static Drink GetById(int id)
         {
@@ -30,11 +34,6 @@ namespace DrinkItUp.BusinessLogic.Logic
                 return _drinks.ElementAt(0);
             }
 
-        }
-
-        public static List<Drink> GetListOfDrinks()
-        {
-            return _drinks;
         }
 
         public static List<Drink> GetByDifficulty(List<Drink> drinks, int id)

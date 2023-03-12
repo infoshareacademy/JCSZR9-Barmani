@@ -10,7 +10,7 @@ namespace DrinkItUp.ConsoleUI
 
         public static void GetDrinks(int mainalcoholId, int difficultyId)
         {
-            var drinks = DrinkLogic.GetListOfDrinks();
+            var drinks = DrinkLogic.GetAllDrinks();
             drinks = DrinkLogic.GetByAlcohol(drinks, mainalcoholId);
             drinks = DrinkLogic.GetByDifficulty(drinks, difficultyId);
 
