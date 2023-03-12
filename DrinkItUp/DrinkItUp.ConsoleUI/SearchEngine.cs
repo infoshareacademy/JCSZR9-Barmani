@@ -22,7 +22,10 @@ namespace DrinkItUp.BusinessLogic
             Console.Write(new string(' ', Console.WindowWidth));
             Console.SetCursorPosition(0, currentLineCursor);
         } 
-
+        /// <summary>
+        /// Podajemy listę wszystkch drinków! Reszta dzieję się sama!
+        /// </summary>
+        /// <param name="drinkList"></param>
         public static void SearchByIngredientsUI(List<Drink> drinkList)
         {
             Console.Clear();
@@ -128,7 +131,6 @@ namespace DrinkItUp.BusinessLogic
         {
             var results = new List<Drink>();
             var listDrinks = DrinkLogic.GetAllDrinks();
-            
 
 
             foreach (var key in dictionary.Keys)
