@@ -128,7 +128,6 @@ namespace DrinkItUp.BusinessLogic
         {
             var results = new List<Drink>();
             var listDrinks = DrinkLogic.GetAllDrinks();
-            
 
 
             foreach (var key in dictionary.Keys)
