@@ -13,11 +13,11 @@ namespace DrinkItUp.BusinessLogic.Logic
         // Można by było zawsze się odwoływać do DataMenager.Drinks , ale to zła praktyka, przy większym projekcie masakra
         private static List<Drink>? _drinks = DataMenager.Drinks;
 
-
         public static List<Drink> GetAllDrinks()
         {
             return _drinks;
         }
+
 
         // Metoda która pobiera Obiekt Drink z listy po Id tego drinka. 
         public static Drink GetById(int id)

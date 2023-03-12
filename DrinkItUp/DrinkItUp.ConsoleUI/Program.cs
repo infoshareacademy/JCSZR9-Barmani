@@ -1,6 +1,8 @@
 ﻿using DrinkItUp.BusinessLogic;
 using DrinkItUp.BusinessLogic.Logic;
+using DrinkItUp.BusinessLogic.Model;
 using System.Drawing;
+using System.Text.Json;
 
 namespace DrinkItUp.ConsoleUI
 {
@@ -185,8 +187,10 @@ namespace DrinkItUp.ConsoleUI
                 {
                     Console.Clear();
                     Console.WriteLine("Wyświetlam tu wszystkie drinki");
+                    var drinksList = DrinkLogic.GetAllDrinks();
                     
-                    DrinkCard.ShowDrinkCard(DrinkCard.GetDrinkCard((DrinkLogic.GetById(1))));
+                    DrinkCard.ShowDrinks(drinksList, 0);
+
 
                 }
 
@@ -194,7 +198,6 @@ namespace DrinkItUp.ConsoleUI
                 {
                     Console.Clear();
                     Console.WriteLine("Tu będzie wyszukiwarka");
-                    SearchEngine.SearchByIngredientsUI(DrinkLogic.GetAllDrinks());
 
                 }
 
@@ -202,6 +205,11 @@ namespace DrinkItUp.ConsoleUI
                 {
                     Console.Clear();
                     Console.WriteLine("Wyskoczy random drink");
+                    var random = new Random();
+                    var drinksList = DrinkLogic.GetAllDrinks();
+                    int i = random.Next(0, (drinksList.Count()-1));
+                    var card = DrinkCard.GetDrinkCard(DrinkLogic.GetById(i));
+                    DrinkCard.ShowDrinkCard(card);
 
                 }
 
