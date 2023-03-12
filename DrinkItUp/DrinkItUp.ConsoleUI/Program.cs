@@ -212,8 +212,9 @@ namespace DrinkItUp.ConsoleUI
                     var random = new Random();
                     var drinksList = DrinkLogic.GetAllDrinks();
                     int i = random.Next(0, (drinksList.Count()-1));
-                    var card = DrinkCard.GetDrinkCard(DrinkLogic.GetById(i));
-                    DrinkCard.ShowDrinkCard(card);
+                    List<Drink> randomDrink = new();
+                    randomDrink.Add(DrinkLogic.GetById(i));
+                    DrinkCard.ShowDrinks(randomDrink, 0);
 
                 }
 

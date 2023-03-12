@@ -15,10 +15,11 @@ namespace DrinkItUp.ConsoleUI
 
 
 
-        public static List<Card>? cardsToMenu = new();
+        
 
         public static List<Card> GetShortMenu()
         {
+            List<Card>? cardsToMenu = new();
 
             cardsToMenu.Clear();
             cardsToMenu.Add(new Card(1, 1, "Następny", ""));
