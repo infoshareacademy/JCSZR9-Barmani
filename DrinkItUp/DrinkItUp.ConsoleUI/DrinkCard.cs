@@ -114,7 +114,7 @@ namespace DrinkItUp.ConsoleUI
             }
 
             Console.Clear();
-            Console.WriteLine($"Znaleziono {drinks.Count()} pasujące drinki! Oto one:");
+            Console.WriteLine($"Drinki do wyświetlenia: {drinks.Count()}. W przypadku więcej niż jednego drinka, użyj 'Następny' bądź 'Poprzedni':");
             var card = DrinkCard.GetDrinkCard(drinks.ElementAt(listElement));
             DrinkCard.ShowDrinkCard(card);
 
