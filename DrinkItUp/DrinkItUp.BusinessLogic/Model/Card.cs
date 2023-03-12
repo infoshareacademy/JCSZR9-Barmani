@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DrinkItUp.ConsoleUI
+namespace DrinkItUp.BusinessLogic.Model
 {
     public class Card
     {

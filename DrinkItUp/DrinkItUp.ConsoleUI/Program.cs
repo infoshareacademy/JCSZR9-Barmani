@@ -1,6 +1,7 @@
 ﻿using DrinkItUp.BusinessLogic;
 using DrinkItUp.BusinessLogic.Logic;
 using DrinkItUp.BusinessLogic.Model;
+using System;
 using System.Drawing;
 using System.Text.Json;
 
@@ -174,7 +175,9 @@ namespace DrinkItUp.ConsoleUI
                         }
                         if (selectedoption3 == 1 || selectedoption3 == 2 || selectedoption3 == 3)
                         {
-                            ByCategory.GetDrinks(selectedoption2, selectedoption3);
+                            var drinks = DrinkLogic.GetDrinksByCategory(selectedoption2, selectedoption3);
+                            DrinkCard.ShowDrinks(drinks, 0);
+                            
                            
                         }
                     }
@@ -198,6 +201,7 @@ namespace DrinkItUp.ConsoleUI
                 {
                     Console.Clear();
                     Console.WriteLine("Tu będzie wyszukiwarka");
+                    SearchEngine.SearchByIngredientsUI(DrinkLogic.GetAllDrinks());
 
                 }
 

@@ -25,7 +25,7 @@ namespace DrinkItUp.BusinessLogic.Logic
             try
             {
                 // Zwracamy obiekt pierwszy znaleziony w liście po Id. To jest Linq czyli metody wbudowane w Visual Studio, na pewno będzie na zajęciach.
-                return _drinks.FirstOrDefault(c => c.Id == id);
+                return _drinks.First(c => c.Id == id);
             }
             catch(Exception ex)
             {
@@ -68,6 +68,13 @@ namespace DrinkItUp.BusinessLogic.Logic
 
         }
 
+        public static List<Drink> GetDrinksByCategory(int mainalcoholId, int difficultyId)
+        {
+            var drinks = DrinkLogic.GetAllDrinks();
+            drinks = DrinkLogic.GetByAlcohol(drinks, mainalcoholId);
+            drinks = DrinkLogic.GetByDifficulty(drinks, difficultyId);
+            return drinks;
+        }
 
 
     }
