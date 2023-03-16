@@ -80,6 +80,11 @@ namespace DrinkItUp.BusinessLogic.Logic
             return drinks;
         }
 
+        public static List<Drink> GetByName(string userInput)
+        {
+            return _drinks.Where(c => c.Name.Contains(userInput)).ToList();
+
+        }
 
     }
 

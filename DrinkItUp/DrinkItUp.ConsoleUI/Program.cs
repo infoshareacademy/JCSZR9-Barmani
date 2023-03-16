@@ -201,7 +201,8 @@ namespace DrinkItUp.ConsoleUI
                 {
                     Console.Clear();
                     Console.WriteLine("Tu będzie wyszukiwarka");
-                    SearchEngine.SearchByIngredientsUI(DrinkLogic.GetAllDrinks());
+                    SearchByNameUI.SearchByName();
+                    //SearchEngine.SearchByIngredientsUI(DrinkLogic.GetAllDrinks());
 
                 }
 
