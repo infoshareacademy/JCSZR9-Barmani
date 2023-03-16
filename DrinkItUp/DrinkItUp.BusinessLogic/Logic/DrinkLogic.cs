@@ -34,42 +34,20 @@ namespace DrinkItUp.BusinessLogic.Logic
             catch(Exception ex)
             {
                 // Zwracamy wódkę ze szklanką w razie wyjątku, to zawsze dobra odpowiedź!! :D Taki żarcik ;P
-                Console.WriteLine("Nie znaleziono drinka po Id");
-                return _drinks.ElementAt(0);
+                Console.WriteLine("Nie znaleziono drinka po ID! Podaję jedyny prawdziwy! Naciśnij dowolny klawisz!");
+                Console.ReadKey();
+                return GetById(1);
             }
-
         }
 
         public static List<Drink> GetByDifficulty(List<Drink> drinks, int id)
-        {
-            try
-            {
-                
+        {                
                 return (List<Drink>)drinks.Where(c => c.difficulty.Id == id).ToList();
-            }
-            catch (Exception ex)
-            {
-                
-                Console.WriteLine("Nie znaleziono drinka po Id");
-                return new List<Drink>();
-            }
-
         }
 
         public static List<Drink> GetByAlcohol(List<Drink> drinks, int id)
-        {
-            try
-            {
-                
-                return (List<Drink>)drinks.Where(c => c.mainAlcohol.Id == id).ToList();
-            }
-            catch (Exception ex)
-            {
-                
-                Console.WriteLine("Nie znaleziono drinka po Id");
-                return new List<Drink>();
-            }
-
+        {                
+                return (List<Drink>)drinks.Where(c => c.mainAlcohol.Id == id).ToList();        
         }
 
         public static List<Drink> GetDrinksByCategory(int mainalcoholId, int difficultyId)

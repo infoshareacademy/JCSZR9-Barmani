@@ -98,7 +98,11 @@ namespace DrinkItUp.ConsoleUI
 
             Console.WriteLine();
         }
-
+        /// <summary>
+        /// Zawsze używamy do wyświetlenia drinków. Jak masz tylko jeden wynik to zawsze włóż go do "List<Drink>"
+        /// </summary>
+        /// <param name="drinks"> Zawsze podajemy Listę! Nawet przy jednym drinku!</param>
+        /// <param name="listElement">Zaczynaj od zera!</param>
         public static void ShowDrinks(List<Drink> drinks, int listElement)
         {
 
@@ -110,14 +114,21 @@ namespace DrinkItUp.ConsoleUI
             }
 
             Console.Clear();
-            Console.WriteLine($"Znaleziono {drinks.Count()} pasujące drinki! Oto one:");
+            Console.WriteLine($"Drinki do wyświetlenia: {drinks.Count()}. W przypadku więcej niż jednego drinka, użyj 'Następny' bądź 'Poprzedni':");
             var card = DrinkCard.GetDrinkCard(drinks.ElementAt(listElement));
             DrinkCard.ShowDrinkCard(card);
 
             Console.WriteLine();
 
-            var shortMenu = ShortMenu.GetShortMenu();
-            ShortMenu.ShowShortMenu(drinks, shortMenu, listElement);
+            if (drinks.Count() > 1)
+            {
+                var shortMenu = ShortMenu.GetShortMenu();
+                ShortMenu.ShowShortMenu(drinks, shortMenu, listElement);
+            }
+            else
+            {
+                ShortMenu.ShowShortMenuOneResult();
+            }
         }
 
 

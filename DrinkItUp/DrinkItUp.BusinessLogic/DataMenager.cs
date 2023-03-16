@@ -35,5 +35,23 @@ namespace DrinkItUp.BusinessLogic
             // ?? new List<T> zwraca nam pustą listę jeśli nic by nie było w naszym pliku. Ale spoko, dodałem już rekordy
             return JsonSerializer.Deserialize<List<T>>(itemsSerialized) ?? new List<T>();
         }
+
+        /// <summary>
+        /// Metoda zapisuje do pliku listę drinków.
+        /// </summary>
+        /// <param name="drinksList">Można zapisać tylko listę drinków. Nie będziemy tworzyć metod do reszty alkoholi</param>
+        public static void SaveListDrinks(List<Drink> drinksList)
+        {
+            string fileName = "Drink.json";
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", fileName);
+
+            string itemsSerialized = JsonSerializer.Serialize(drinksList);
+
+            File.WriteAllText(filePath, itemsSerialized);
+
+
+        }
+
+
     }
 }
