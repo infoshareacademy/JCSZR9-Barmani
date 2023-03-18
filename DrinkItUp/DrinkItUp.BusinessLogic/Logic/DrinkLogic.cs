@@ -48,7 +48,7 @@ namespace DrinkItUp.BusinessLogic.Logic
 
         public static List<Drink> GetDrinksByCategory(int mainalcoholId, int difficultyId)
         {
-            var drinks = DrinkLogic.GetAllDrinks();
+            var drinks = _drinks;
             drinks = DrinkLogic.GetByAlcohol(drinks, mainalcoholId);
             drinks = DrinkLogic.GetByDifficulty(drinks, difficultyId);
             return drinks;

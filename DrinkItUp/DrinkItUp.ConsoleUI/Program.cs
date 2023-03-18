@@ -176,6 +176,7 @@ namespace DrinkItUp.ConsoleUI
                         if (selectedoption3 == 1 || selectedoption3 == 2 || selectedoption3 == 3)
                         {
                             var drinks = DrinkLogic.GetDrinksByCategory(selectedoption2, selectedoption3);
+                            DataMenager.SaveListDrinks(drinks);
                             DrinkCard.ShowDrinks(drinks, 0);
                             
                            
@@ -229,6 +230,8 @@ namespace DrinkItUp.ConsoleUI
                 {
                     Console.Clear();
                     Console.WriteLine("Funkcjonalnosc edycji drinka");
+                    SearchEngine.SearchByIngredientsUI(DrinkLogic.GetAllDrinks());
+                    
 
                 }
 
