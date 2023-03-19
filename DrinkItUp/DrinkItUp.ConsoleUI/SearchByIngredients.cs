@@ -26,10 +26,10 @@ namespace DrinkItUp.BusinessLogic
         /// Podajemy listę wszystkch drinków! Reszta dzieję się sama!
         /// </summary>
         /// <param name="drinkList"></param>
-        public static void SearchByIngredientsUI(List<Drink> drinkList)
+        public static void SearchByIngredientsUI()
         {
             Console.Clear();
-
+            var drinkList = DrinkLogic.GetAllDrinks();
             var listAllIngredientsNames = IngredientLogic.GetAllIngredientsNames(drinkList);
             var dictionaryUserInput= new Dictionary<string, List<Drink>>();
 
