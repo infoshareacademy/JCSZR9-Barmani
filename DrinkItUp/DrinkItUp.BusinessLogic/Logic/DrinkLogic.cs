@@ -55,10 +55,6 @@ namespace DrinkItUp.BusinessLogic.Logic
         }
 
 
-
-
-
-
     }
 
 }
