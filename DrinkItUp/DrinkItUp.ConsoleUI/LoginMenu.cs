@@ -11,19 +11,12 @@ namespace DrinkItUp.ConsoleUI
         
         
         private static int _userAgeToEnter;
-
-        public static int UserAgeToEnter
-        {
-            get { return _userAgeToEnter; }
-            private set { _userAgeToEnter = value; }
-        }
+        public static int UserAgeToEnter;
+        
 
         private static string _userName;
-        public static string UserName
-        {
-            get { return _userName; }
-            private set { _userName = value; }
-        }
+        public static string UserName;
+        
 
         public static void ShowLoginMenu()
         {
