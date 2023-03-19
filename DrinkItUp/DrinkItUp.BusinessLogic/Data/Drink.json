@@ -57,7 +57,7 @@
         "NameSingular": "Limonka"
       },
       {
-        "Quantity": 4,
+        "Quantity": 0,
         "Unit": 5,
         "NameOfIngredient": "lodu",
         "NameSingular": "Lód"
@@ -102,7 +102,7 @@
         "NameSingular": "Mięta"
       },
       {
-        "Quantity": 4,
+        "Quantity": 0,
         "Unit": 5,
         "NameOfIngredient": "lodu",
         "NameSingular": "Lód"
@@ -148,5 +148,203 @@
       }
     ],
     "Description": "Wspaniały orzeźwiający drink. Zakochasz się w tym słodko-kwaśnym smaku już przy pierwszym spróbowaniu. Wszystkie składniki wraz z lodem wymieszaj w shakerze, oczywiście dobrze nim potrząsając. Przelej do kieliszka od Martini bądź szklanki. Szklankę bądź kieliszek możesz przyozdobić plasterkiem cytryny!"
+  },
+  {
+    "Id": 5,
+    "Name": "Gin Daisy",
+    "mainAlcohol": {
+      "Id": 4,
+      "Alcohol": "Gin"
+    },
+    "difficulty": {
+      "Id": 2,
+      "Level": "Średni"
+    },
+    "Ingredients": [
+      {
+        "Quantity": 40,
+        "Unit": 0,
+        "NameOfIngredient": "ginu",
+        "NameSingular": "Gin"
+      },
+      {
+        "Quantity": 20,
+        "Unit": 0,
+        "NameOfIngredient": "soku z cytryny",
+        "NameSingular": "Cytryna"
+      },
+      {
+        "Quantity": 20,
+        "Unit": 0,
+        "NameOfIngredient": "grenadyny",
+        "NameSingular": "Grenadyna"
+      },
+      {
+        "Quantity": 20,
+        "Unit": 0,
+        "NameOfIngredient": "wody gazowanej",
+        "NameSingular": "Woda Gazowana"
+      },
+      {
+        "Quantity": 0,
+        "Unit": 13,
+        "NameOfIngredient": "lód",
+        "NameSingular": "Lód"
+      }
+    ],
+    "Description": "Drink, który zyskał drugą młodość, szczególnie wśród kobiet, ze względu na swój wspaniały wygląd i smak. Połącz wszystkie składniki w shakerze. Wstrząśnij tylko raz energicznym ruchem. Lód kruszony, by uzyskać efekt cieniowania, dodaj osobno do szklanki i powoli zalewaj mieszanką."
+  },
+  {
+    "Id": 6,
+    "Name": "Gin Mule",
+    "mainAlcohol": {
+      "Id": 4,
+      "Alcohol": "Gin"
+    },
+    "difficulty": {
+      "Id": 3,
+      "Level": "Trudny"
+    },
+    "Ingredients": [
+      {
+        "Quantity": 60,
+        "Unit": 0,
+        "NameOfIngredient": "ginu",
+        "NameSingular": "Gin"
+      },
+      {
+        "Quantity": 20,
+        "Unit": 0,
+        "NameOfIngredient": "soku z cytryny",
+        "NameSingular": "Cytryna"
+      },
+      {
+        "Quantity": 100,
+        "Unit": 0,
+        "NameOfIngredient": "piwa imbirowego/Ginger Ale",
+        "NameSingular": "Piwo imbirowe"
+      },
+      {
+        "Quantity": 2,
+        "Unit": 9,
+        "NameOfIngredient": "imbiru",
+        "NameSingular": "Imbir"
+      },
+      {
+        "Quantity": 8,
+        "Unit": 15,
+        "NameOfIngredient": "mięty",
+        "NameSingular": "Mięta"
+      },
+      {
+        "Quantity": 0,
+        "Unit": 13,
+        "NameOfIngredient": "lód",
+        "NameSingular": "Lód"
+      }
+    ],
+    "Description": "Moscow Mule w wersji z ginem! Do szejkera wrzuć mięte, wlej sok z cytryny i dorzuć 2 cienkie plasterki imbiru. Delikatnie duś mudlerem. Następnie dodaj ginu i potrząśnij przez ok. 10 sekund. Do miedziowego kubka wsyp kruszony lód i przez sitko przelej mieszankę. Dopełnij piwem imbirowym/Ginger Ale."
+  },
+  {
+    "Id": 7,
+    "Name": "Sex on the beach",
+    "mainAlcohol": {
+      "Id": 1,
+      "Alcohol": "Wódka"
+    },
+    "difficulty": {
+      "Id": 2,
+      "Level": "Średni"
+    },
+    "Ingredients": [
+      {
+        "Quantity": 80,
+        "Unit": 0,
+        "NameOfIngredient": "wódki",
+        "NameSingular": "Wódka"
+      },
+      {
+        "Quantity": 40,
+        "Unit": 0,
+        "NameOfIngredient": "likieru brzoskwiniowego",
+        "NameSingular": "Likier Brzoskwiniowy"
+      },
+      {
+        "Quantity": 80,
+        "Unit": 0,
+        "NameOfIngredient": "soku pomarańczowego",
+        "NameSingular": "Sok pomarańczowy"
+      },
+      {
+        "Quantity": 80,
+        "Unit": 0,
+        "NameOfIngredient": "soku żurawinowego",
+        "NameSingular": "Sok żurawinowy"
+      },
+      {
+        "Quantity": 0,
+        "Unit": 5,
+        "NameOfIngredient": "lód",
+        "NameSingular": "Lód"
+      }
+    ],
+    "Description": "Dwuwarstwowy drink, którego nie trzeba nikomu przedstawiać. Wypełnij dużą szklankę kostkami lodu do połowy i wlej sok żurawinowy. Do shakera wlej sok pomarańczowy oraz alkohole: wódkę oraz likier brzoskwiniowy. Całość shakera przelej delikatnie po kostkach lodu lub łyżce barmańskiej, uważaj żeby za bardzo nie pomieszać mieszanki z sokiem żurawinowym. Pamiętaj, że przed wypiciem drinka należy pomieszać!"
+  },
+  {
+    "Id": 8,
+    "Name": "Egg Custard Martini",
+    "mainAlcohol": {
+      "Id": 1,
+      "Alcohol": "Wódka"
+    },
+    "difficulty": {
+      "Id": 3,
+      "Level": "Trudny"
+    },
+    "Ingredients": [
+      {
+        "Quantity": 40,
+        "Unit": 0,
+        "NameOfIngredient": "wódki",
+        "NameSingular": "Wódka"
+      },
+      {
+        "Quantity": 10,
+        "Unit": 0,
+        "NameOfIngredient": "wódki waniliowej",
+        "NameSingular": "Wódka waniliowa"
+      },
+      {
+        "Quantity": 10,
+        "Unit": 0,
+        "NameOfIngredient": "whiskey",
+        "NameSingular": "Whiskey"
+      },
+      {
+        "Quantity": 20,
+        "Unit": 0,
+        "NameOfIngredient": "likieru jajecznego",
+        "NameSingular": "Likier jajeczny"
+      },
+      {
+        "Quantity": 10,
+        "Unit": 0,
+        "NameOfIngredient": "syropu cukrowego",
+        "NameSingular": "Syrop cukrowy"
+      },
+      {
+        "Quantity": 0,
+        "Unit": 16,
+        "NameOfIngredient": "gałki muszkatołowej",
+        "NameSingular": "Syrop cukrowy"
+      },
+      {
+        "Quantity": 0,
+        "Unit": 5,
+        "NameOfIngredient": "lodu",
+        "NameSingular": "Lód"
+      }
+    ],
+    "Description": "Kremowy koktajl z wyjątkowym aromatem i bardzo wyrazistym smakiem. Zacznij od przygotowania średniego kieliszka, wypełnij go lodem na czas przygotowania drinka. Do szejkera nasyp lodu, a następniej wlej po kolei wszystkie składniki i wstrząśnij. Przy pomocy sitka odcedź koktajl do schłodzonego kieliszka. Na wierzch koktajlu zetrzyj gałkę muszkatołową."
   }
 ]

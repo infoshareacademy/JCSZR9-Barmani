@@ -39,7 +39,11 @@ namespace DrinkItUp.BusinessLogic.Model
         plasterki,
         szklanka,
         listki,
-        listek
+        listek,
+        kruszony,
+        kruszona,
+        listków,
+        szczypta
 
     }
 }
