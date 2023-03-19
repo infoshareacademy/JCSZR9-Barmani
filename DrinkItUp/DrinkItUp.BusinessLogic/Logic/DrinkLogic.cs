@@ -19,7 +19,11 @@ namespace DrinkItUp.BusinessLogic.Logic
         }
 
 
-        // Metoda która pobiera Obiekt Drink z listy po Id tego drinka. 
+        /// <summary>
+        /// Metoda która pobiera Obiekt Drink z listy po Id tego drinka. 
+        /// </summary>
+        /// <param name="id">Id jest odpowiedzialne za ID drinka</param>
+        /// <returns></returns>
         public static Drink GetById(int id)
         {
             try
@@ -54,6 +58,11 @@ namespace DrinkItUp.BusinessLogic.Logic
             return drinks;
         }
 
+        public static List<Drink> GetByName(string userInput)
+        {
+            return _drinks.Where(c => c.Name.Contains(userInput)).ToList();
+
+        }
 
     }
 
