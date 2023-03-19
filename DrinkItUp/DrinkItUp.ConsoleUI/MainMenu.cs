@@ -22,7 +22,7 @@ namespace DrinkItUp.ConsoleUI
             int CurrentYear = DateTime.Now.Year; // obecny rok
             int option = 1;
             int selectedoption = 0;
-            string color = "\u2714 \u001b[32m";
+            string color = "\u001b[32m";
 
 
 
@@ -69,7 +69,7 @@ namespace DrinkItUp.ConsoleUI
                     Console.SetCursorPosition(0, Console.CursorTop);
                     Console.Write(new string(' ', Console.WindowWidth));
                     Console.SetCursorPosition(0, Console.CursorTop);
-                    Console.WriteLine($"{(option == 7 ? color : "")} wyszukaj po składnikach\u001b[0m");
+                    Console.WriteLine($"{(option == 7 ? color : "")} Wyszukaj po składnikach\u001b[0m");
 
 
                     key = Console.ReadKey(false);
