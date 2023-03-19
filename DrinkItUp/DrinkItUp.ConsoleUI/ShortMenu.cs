@@ -10,8 +10,8 @@ namespace DrinkItUp.ConsoleUI
     public class ShortMenu
     {
         private static int option = 1;
-        private static string color = "✅ \u001b[32m";
-        private static string color2 = "✅ \u001b[31m";
+        private static string color = "\u263A \u001b[32m";
+        private static string color2 = "\u263A \u001b[31m";
 
 
 
@@ -88,6 +88,12 @@ namespace DrinkItUp.ConsoleUI
                             break;
                         }
                     }
+                    else if (option == 3)
+                    {
+                        MainMenu.ShowMainMenu();
+                    
+                    }
+
                     break;
 
                 case ConsoleKey.Escape:
@@ -109,7 +115,7 @@ namespace DrinkItUp.ConsoleUI
             switch (key.Key)
             {
                 case ConsoleKey.Enter:
-                    //Tutaj trzeba wstawić wyjście do menu głównego. 
+                    MainMenu.ShowMainMenu();
                     break;
 
                 case ConsoleKey.Escape:
