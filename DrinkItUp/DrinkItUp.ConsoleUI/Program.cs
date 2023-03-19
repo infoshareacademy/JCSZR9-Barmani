@@ -13,15 +13,15 @@ namespace DrinkItUp.ConsoleUI
 
         {
             bool isSelected = false;
-            bool isSelected2 = false;
-            bool isSelected3 = false;
+            
+            
             ConsoleKeyInfo key;
             int option = 1;
-            int option2 = 1;
-            int option3 = 1;
+            
+            
             int selectedoption = 0;
             int selectedoption2 = 0;
-            int selectedoption3 = 0;
+            
             string color = "✅ \u001b[32m";
             int CurrentYear = DateTime.Now.Year; // obecny rok
 
@@ -91,100 +91,7 @@ namespace DrinkItUp.ConsoleUI
 
                 if (selectedoption == 1)
                 {
-                    Console.WriteLine(String.Format("{0," + Console.WindowWidth / 2 + "}", "Wybierz opcje z Menu"));
-                    Console.WriteLine();
-                    Console.WriteLine();
-                    (int left2, int top2) = Console.GetCursorPosition();
-                    while (!isSelected2)
-                    {
-
-                        Console.SetCursorPosition(left2, top2);
-                        Console.WriteLine($"{(option2 == 1 ? color : "   ")} Wódka\u001b[0m");
-                        Console.WriteLine($"{(option2 == 2 ? color : "   ")} Whisky\u001b[0m");
-                        Console.WriteLine($"{(option2 == 3 ? color : "   ")} Rum\u001b[0m");
-                        Console.WriteLine($"{(option2 == 4 ? color : "   ")} Gin\u001b[0m");
-                        Console.WriteLine($"{(option2 == 5 ? color : "   ")} Likier\u001b[0m");
-
-
-                        key = Console.ReadKey(false);
-                        switch (key.Key)
-                        {
-                            case ConsoleKey.DownArrow:
-
-                                option2 = (option2 == 5 ? 1 : option2 + 1);
-
-                                break;
-
-                            case ConsoleKey.UpArrow:
-
-                                option2 = (option2 == 1 ? 5 : option2 - 1);
-
-                                break;
-
-                            case ConsoleKey.Enter:
-                                isSelected2 = true;
-                                selectedoption2 = option2;
-                                Console.Clear();
-                                break;
-
-                            case ConsoleKey.Escape:
-                                Environment.Exit(0);
-                                break;
-
-                        }
-
-                    }
-                    if (isSelected2 = true)
-                    {
-                        Console.WriteLine(String.Format("{0," + Console.WindowWidth / 2 + "}", "Wybierz opcje z Menu"));
-                        Console.WriteLine();
-                        Console.WriteLine();
-                        (int left3, int top3) = Console.GetCursorPosition();
-                        while (!isSelected3)
-                        {
-
-                            Console.SetCursorPosition(left3, top3);
-                            Console.WriteLine($"{(option3 == 1 ? color : "   ")} Łatwy\u001b[0m");
-                            Console.WriteLine($"{(option3 == 2 ? color : "   ")} Średni\u001b[0m");
-                            Console.WriteLine($"{(option3 == 3 ? color : "   ")} Trudny\u001b[0m");
-
-
-                            key = Console.ReadKey(false);
-                            switch (key.Key)
-                            {
-                                case ConsoleKey.DownArrow:
-                                    option3 = (option3 == 3 ? 1 : option3 + 1);
-                                    break;
-
-                                case ConsoleKey.UpArrow:
-                                    option3 = (option3 == 1 ? 3 : option3 - 1);
-                                    break;
-
-                                case ConsoleKey.Enter:
-                                    isSelected3 = true;
-                                    selectedoption3 = option3;
-                                    Console.Clear();
-                                    break;
-
-                                case ConsoleKey.Escape:
-                                    Environment.Exit(0);
-                                    break;
-
-                            }
-
-                        }
-                        if (selectedoption3 == 1 || selectedoption3 == 2 || selectedoption3 == 3)
-                        {
-                            var drinks = DrinkLogic.GetDrinksByCategory(selectedoption2, selectedoption3);
-                            DrinkCard.ShowDrinks(drinks, 0);
-                            
-                           
-                        }
-                    }
-                    else if (isSelected2 = false)
-                    {
-                        Console.WriteLine("Błąd");
-                    }
+                    AlkoholMenu.ShowAlkoholMenu();
                 }
                 else if (selectedoption == 2)
                 {
