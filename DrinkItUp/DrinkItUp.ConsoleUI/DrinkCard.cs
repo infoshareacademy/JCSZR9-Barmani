@@ -127,7 +127,7 @@ namespace DrinkItUp.ConsoleUI
             }
             else
             {
-                ShortMenu.ShowShortMenuOneResult();
+                ShortMenu.ShowShortMenuOneResult(drinks);
             }
         }
 

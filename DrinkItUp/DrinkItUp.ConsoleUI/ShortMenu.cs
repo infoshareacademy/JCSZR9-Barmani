@@ -107,7 +107,7 @@ namespace DrinkItUp.ConsoleUI
 
         }
 
-        public static void ShowShortMenuOneResult()
+        public static void ShowShortMenuOneResult(List<Drink> drinks)
         {
             Console.SetCursorPosition((Console.WindowWidth - 20) / 2, Console.CursorTop);
             Console.WriteLine($"{color} Wyjście\u001b[0m");
@@ -121,7 +121,9 @@ namespace DrinkItUp.ConsoleUI
                 case ConsoleKey.Escape:
                     Environment.Exit(0);
                     break;
-
+                default:
+                    DrinkCard.ShowDrinks(drinks,0);
+                    break;
 
             }
         }
