@@ -26,17 +26,17 @@ namespace DrinkItUp.ConsoleUI
 
                 Console.SetCursorPosition(left, top);
                 MainMenu.CursorPosition();
-                Console.WriteLine($"{(option == 1 ? color : "   ")} Wódka\u001b[0m");
+                Console.WriteLine($"{(option == 1 ? color : "")} Wódka\u001b[0m");
                 MainMenu.CursorPosition();
-                Console.WriteLine($"{(option == 2 ? color : "   ")} Whisky\u001b[0m");
+                Console.WriteLine($"{(option == 2 ? color : "")} Whisky\u001b[0m");
                 MainMenu.CursorPosition();
-                Console.WriteLine($"{(option == 3 ? color : "   ")} Rum\u001b[0m");
+                Console.WriteLine($"{(option == 3 ? color : "")} Rum\u001b[0m");
                 MainMenu.CursorPosition();
-                Console.WriteLine($"{(option == 4 ? color : "   ")} Gin\u001b[0m");
+                Console.WriteLine($"{(option == 4 ? color : "")} Gin\u001b[0m");
                 MainMenu.CursorPosition();
-                Console.WriteLine($"{(option == 5 ? color : "   ")} Likier\u001b[0m");
+                Console.WriteLine($"{(option == 5 ? color : "")} Likier\u001b[0m");
                 MainMenu.CursorPosition();
-                Console.WriteLine($"{(option == 6 ? color : "   ")} Powrót do Menu Głównego\u001b[0m");
+                Console.WriteLine($"{(option == 6 ? color : "")} Powrót do Menu Głównego\u001b[0m");
 
 
 
