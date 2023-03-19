@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace DrinkItUp.BusinessLogic.Logic
@@ -52,7 +53,7 @@ namespace DrinkItUp.BusinessLogic.Logic
 
         public static List<Drink> GetDrinksByCategory(int mainalcoholId, int difficultyId)
         {
-            var drinks = DrinkLogic.GetAllDrinks();
+            var drinks = _drinks;
             drinks = DrinkLogic.GetByAlcohol(drinks, mainalcoholId);
             drinks = DrinkLogic.GetByDifficulty(drinks, difficultyId);
             return drinks;
@@ -64,6 +65,72 @@ namespace DrinkItUp.BusinessLogic.Logic
 
         }
 
+        public static List<Drink> SearchByIngredientsLogic(Dictionary<string, List<Drink>> dictionary)
+        {
+            var results = new List<Drink>();
+            var listDrinks = DrinkLogic.GetAllDrinks();
+
+            //dodajemy drinki po składnikach wpisanych przez użytkownika do słownika
+            foreach (var key in dictionary.Keys)
+            {
+                string sPattern = "([^a-z]|^)([A-Z]|[a-z])*";
+                sPattern = sPattern.Insert(10, key);
+                var regex = new Regex(sPattern, RegexOptions.IgnoreCase);
+
+                foreach (var drink in listDrinks)
+                {
+                    bool check = false;
+
+                    foreach (var ingredient in drink.Ingredients)
+                    {
+                        if (regex.IsMatch(ingredient.NameSingular))
+                            check = true;
+
+                    }
+
+                    if (check)
+                        dictionary[key].Add(drink);
+
+                }
+
+            }
+
+            // Linq bierze wszystkie drinki ze słownika, sortuje po ilości powtórzeń i wpisuje juz tylko pojedyncze drinki do listy.
+            results = dictionary
+                .SelectMany(l => dictionary.Values)
+                .SelectMany(d => d) // spłaszczamy słownik do listy drinków samych
+                .GroupBy(d => d.Id)
+                .OrderByDescending(k => k.Count())
+                .Select(d => DrinkLogic.GetById(d.Key))
+                .ToList();
+
+            //for (int counter = dictionary.Count(); counter > 0; counter--)
+            //{
+            //    foreach (var key1 in dictionary.Keys)
+            //    {
+            //        foreach (var drink in dictionary[key1])
+            //        {
+            //            int i = 1;
+            //            foreach (var key2 in dictionary.Keys)
+            //            {
+            //                if (key2 != key1)
+            //                {
+            //                    if (dictionary[key2].Contains(drink))
+            //                        i++;
+            //                }
+            //            }
+
+            //            if(i == counter)
+            //            {
+            //                if(!results.Contains(drink))
+            //                    results.Add(drink);
+            //            }
+            //        }
+            //    }
+            //}
+
+            return results;
+        }
     }
 
 }

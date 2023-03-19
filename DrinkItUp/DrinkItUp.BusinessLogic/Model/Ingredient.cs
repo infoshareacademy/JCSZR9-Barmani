@@ -14,6 +14,8 @@ namespace DrinkItUp.BusinessLogic.Model
 
         public string NameOfIngredient { get; set; }
 
+        public string NameSingular { get; set; }
+
         public Ingredient(decimal quantity, Unit unit, string nameOfIngredient)
         {
             Quantity= quantity;

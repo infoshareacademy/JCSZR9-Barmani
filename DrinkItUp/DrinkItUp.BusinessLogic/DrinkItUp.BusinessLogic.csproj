@@ -12,15 +12,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Update="Data\Drink.json">
+		<Content Include="Data\*.*">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-		<None Update="Data\MainAlcohol.json">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-		<None Update="Data\Difficulty.json">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
+			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
+		</Content>
 	</ItemGroup> 
 
 </Project>

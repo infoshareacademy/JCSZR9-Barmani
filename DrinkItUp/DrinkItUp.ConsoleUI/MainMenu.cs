@@ -1,4 +1,5 @@
-﻿using DrinkItUp.BusinessLogic.Logic;
+﻿using DrinkItUp.BusinessLogic;
+using DrinkItUp.BusinessLogic.Logic;
 using DrinkItUp.BusinessLogic.Model;
 
 namespace DrinkItUp.ConsoleUI
@@ -111,6 +112,7 @@ namespace DrinkItUp.ConsoleUI
                 {
                     Console.Clear();
                     Console.WriteLine("Funkcjonalnosc szuka po składnikach");
+                    SearchByIngredients.SearchByIngredientsUI();
                 }
 
                 else if (selectedoption == 5)
