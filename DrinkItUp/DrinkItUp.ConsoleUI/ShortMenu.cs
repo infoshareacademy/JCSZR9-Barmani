@@ -109,7 +109,7 @@ namespace DrinkItUp.ConsoleUI
             switch (key.Key)
             {
                 case ConsoleKey.Enter:
-                    //Tutaj trzeba wstawić wyjście do menu głównego. 
+                    MainMenu.ShowMainMenu();
                     break;
 
                 case ConsoleKey.Escape:

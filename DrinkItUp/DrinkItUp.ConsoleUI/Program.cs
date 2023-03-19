@@ -12,11 +12,7 @@ namespace DrinkItUp.ConsoleUI
         static void Main(string[] args)
 
         {
-
-            MainMenu.ShowMainMenu();
+            LoginMenu.ShowLoginMenu();
         }
-
-
-
     }
 }

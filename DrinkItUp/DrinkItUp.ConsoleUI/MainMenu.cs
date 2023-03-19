@@ -1,27 +1,30 @@
 ﻿using DrinkItUp.BusinessLogic.Logic;
 using DrinkItUp.BusinessLogic.Model;
+using Microsoft.VisualBasic.FileIO;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace DrinkItUp.ConsoleUI
 {
     public static class MainMenu
     {
+        public static int UserAgeToEnter = LoginMenu.UserAgeToEnter;
+        public static int UserName = LoginMenu.UserName;
         public static void ShowMainMenu()
         {
             bool isSelected = false;
             ConsoleKeyInfo key;
+            int CurrentYear = DateTime.Now.Year; // obecny rok
             int option = 1;
             int selectedoption = 0;
-            int selectedoption2 = 0;
             string color = "✅ \u001b[32m";
-            int CurrentYear = DateTime.Now.Year; // obecny rok
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine(String.Format("{0," + Console.WindowWidth / 2 + "}", "Cześć! Podaj swój rok urodzenia"));
-            int UserAgeToEnter = Convert.ToInt32(Console.ReadLine()); // zmienna wieku uzytkownika
-            Console.WriteLine(String.Format("{0," + Console.WindowWidth / 2 + "}", "Podaj swoje imię"));
-            string UserName = Console.ReadLine(); //Zmienna przechowująca imię użytkownika do późniejszego przywitania
-            Console.ResetColor();
-            bool AdultUser;
-            AdultUser = true;
+
+            
+
             if ((CurrentYear - UserAgeToEnter) >= 18)
             {
                 Console.Clear();
@@ -131,7 +134,7 @@ namespace DrinkItUp.ConsoleUI
             }
         }
 
-
+          
+        }
     }
-}
 
