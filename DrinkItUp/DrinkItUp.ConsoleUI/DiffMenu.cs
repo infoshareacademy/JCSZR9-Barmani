@@ -24,17 +24,19 @@ namespace DrinkItUp.ConsoleUI
                 Console.WriteLine($"{(option == 3 ? color : "   ")} Trudny\u001b[0m");
                 Console.WriteLine($"{(option == 4 ? color : "   ")} Wszystkie\u001b[0m");
                 Console.WriteLine($"{(option == 5 ? color : "   ")} Wstecz\u001b[0m");
+                Console.WriteLine($"{(option == 6 ? color : "   ")} Wróć do Menu Głównego\u001b[0m");
+
 
 
                 ConsoleKeyInfo key = Console.ReadKey(false);
                 switch (key.Key)
                 {
                     case ConsoleKey.DownArrow:
-                        option = (option == 5 ? 1 : option + 1);
+                        option = (option == 6 ? 1 : option + 1);
                         break;
 
                     case ConsoleKey.UpArrow:
-                        option = (option == 1 ? 5 : option - 1);
+                        option = (option == 1 ? 6 : option - 1);
                         break;
 
                     case ConsoleKey.Enter:
@@ -59,11 +61,14 @@ namespace DrinkItUp.ConsoleUI
                 drinks = DrinkLogic.GetByAlcohol(drinks, selectedAlkohol);
                 DrinkCard.ShowDrinks(drinks, 0);
             }
-            else
+            else if (selectedoption == 5) 
             {
                 AlkoholMenu.ShowAlkoholMenu();
             }
-
+            else if (selectedoption == 6)
+            {
+                MainMenu.ShowMainMenu();
+            }
         }
 
     }
