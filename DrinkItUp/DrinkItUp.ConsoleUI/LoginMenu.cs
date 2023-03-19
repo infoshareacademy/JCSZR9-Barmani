@@ -33,7 +33,7 @@ namespace DrinkItUp.ConsoleUI
             Console.WriteLine(String.Format("{0," + Console.WindowWidth / 2 + "}", "Cześć! Podaj swój rok urodzenia"));
             UserAgeToEnter = Convert.ToInt32(Console.ReadLine()); // zmienna wieku uzytkownika
             Console.WriteLine(String.Format("{0," + Console.WindowWidth / 2 + "}", "Podaj swoje imię"));
-            string UserName = Console.ReadLine(); //Zmienna przechowująca imię użytkownika do późniejszego przywitania
+            UserName = Console.ReadLine(); //Zmienna przechowująca imię użytkownika do późniejszego przywitania
             Console.ResetColor();
             bool AdultUser;
             AdultUser = true;
