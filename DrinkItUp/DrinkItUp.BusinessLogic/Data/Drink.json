@@ -14,12 +14,14 @@
       {
         "Quantity": 200,
         "Unit": 0,
-        "NameOfIngredient": "wódki"
+        "NameOfIngredient": "wódki",
+        "NameSingular": "Wódka"
       },
       {
         "Quantity": 1,
         "Unit": 2,
-        "NameOfIngredient": "szklanka"
+        "NameOfIngredient": "szklanka",
+        "NameSingular": "Szklanka"
       }
     ],
         "Description": "Najlepszy drink! Przebić go może jedynie przysłowiowa 'Wóda z gwinta'. Ponadczasowa prostota, która miesza się z tradycją największych PRL-owskich osiedli. Nic tylko pić!"
@@ -39,22 +41,26 @@
       {
         "Quantity": 40,
         "Unit": 0,
-        "NameOfIngredient": "rumu"
+        "NameOfIngredient": "rumu",
+        "NameSingular": "Rum"
       },
       {
         "Quantity": 125,
         "Unit": 0,
-        "NameOfIngredient": "coli"
+        "NameOfIngredient": "coli",
+        "NameSingular": "Cola"
       },
       {
         "Quantity": 1,
         "Unit": 8,
-        "NameOfIngredient": "limonki"
+        "NameOfIngredient": "limonki",
+        "NameSingular": "Limonka"
       },
       {
         "Quantity": 4,
         "Unit": 5,
-        "NameOfIngredient": "lodu"
+        "NameOfIngredient": "lodu",
+        "NameSingular": "Lód"
       }
     ],
     "Description": "Niektórzy mogliby powiedzieć, że po co psuć rum limonką, ale tysiące Kubańczyków nie może się mylić! Zmieszaj wszystkie składniki razem i dorzuć kostki lodu według uznania."
@@ -74,27 +80,32 @@
       {
         "Quantity": 40,
         "Unit": 0,
-        "NameOfIngredient": "ginu"
+        "NameOfIngredient": "ginu",
+        "NameSingular": "Gin"
       },
       {
         "Quantity": 120,
         "Unit": 0,
-        "NameOfIngredient": "toniku"
+        "NameOfIngredient": "toniku",
+        "NameSingular": "Tonik"
       },
       {
         "Quantity": 2,
         "Unit": 9,
-        "NameOfIngredient": "cytryny"
+        "NameOfIngredient": "cytryny",
+        "NameSingular": "Cytryny"
       },
       {
         "Quantity": 3,
         "Unit": 11,
-        "NameOfIngredient": "mięty"
+        "NameOfIngredient": "mięty",
+        "NameSingular": "Mięta"
       },
       {
         "Quantity": 4,
         "Unit": 5,
-        "NameOfIngredient": "lodu"
+        "NameOfIngredient": "lodu",
+        "NameSingular": "Lód"
       }
     ],
     "Description": "Klasyka niewrażliwa na czasy i okoliczności. Najprostszy wybór dla ludzi szukających bardziej wytrawnych smaków. Przed zmieszaniem wszystkiego rozgnieć mięte w szklance. Lód według uznania."
@@ -114,22 +125,26 @@
       {
         "Quantity": 50,
         "Unit": 0,
-        "NameOfIngredient": "ginu"
+        "NameOfIngredient": "ginu",
+        "NameSingular": "Gin"
       },
       {
         "Quantity": 50,
         "Unit": 0,
-        "NameOfIngredient": "soku z cytryny"
+        "NameOfIngredient": "soku z cytryny",
+        "NameSingular": "Sok z cytryny"
       },
       {
         "Quantity": 25,
         "Unit": 0,
-        "NameOfIngredient": "likieru Blue Curacao"
+        "NameOfIngredient": "likieru Blue Curacao",
+        "NameSingular": "Blue Curacao"
       },
       {
         "Quantity": 3,
         "Unit": 5,
-        "NameOfIngredient": "lodu"
+        "NameOfIngredient": "lodu",
+        "NameSingular": "Lód"
       }
     ],
     "Description": "Wspaniały orzeźwiający drink. Zakochasz się w tym słodko-kwaśnym smaku już przy pierwszym spróbowaniu. Wszystkie składniki wraz z lodem wymieszaj w shakerze, oczywiście dobrze nim potrząsając. Przelej do kieliszka od Martini bądź szklanki. Szklankę bądź kieliszek możesz przyozdobić plasterkiem cytryny!"

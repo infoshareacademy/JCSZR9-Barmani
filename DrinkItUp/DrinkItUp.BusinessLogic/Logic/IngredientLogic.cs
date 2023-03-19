@@ -31,7 +31,7 @@ namespace DrinkItUp.BusinessLogic.Logic
             {
                 foreach (Ingredient ingredient in drink.Ingredients)
                 {
-                    listString.Add(ingredient.NameOfIngredient);
+                    listString.Add(ingredient.NameSingular);
                 }
                 hashIngredientsNames.UnionWith(listString);
             }

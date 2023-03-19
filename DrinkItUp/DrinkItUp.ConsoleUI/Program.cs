@@ -230,7 +230,7 @@ namespace DrinkItUp.ConsoleUI
                 {
                     Console.Clear();
                     Console.WriteLine("Funkcjonalnosc edycji drinka");
-                    SearchEngine.SearchByIngredientsUI(DrinkLogic.GetAllDrinks());
+                    SearchByIngredients.SearchByIngredientsUI(DrinkLogic.GetAllDrinks());
                     
 
                 }

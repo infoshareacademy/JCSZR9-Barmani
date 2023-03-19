@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace DrinkItUp.BusinessLogic
 {
     
-    public class SearchEngine
+    public class SearchByIngredients
     {
         public static void ClearCurrentConsoleLine()
         {
@@ -38,7 +38,7 @@ namespace DrinkItUp.BusinessLogic
             Console.SetCursorPosition((Console.WindowWidth - 100) / 2, Console.CursorTop);
             Console.WriteLine("Dla przykładu wyżej byłoby to 'cytryny,gin,tonik,' !! Podpowiedzi wyświetlają się u góry!");
             Console.SetCursorPosition((Console.WindowWidth - 100) / 2, Console.CursorTop);
-            Console.WriteLine("Naciśnij TAB żeby dodać pierwszą podpowiedź! Ostatni składnik zatwierdź naciskając Enter! BENG!");
+            Console.WriteLine("Naciśnij TAB żeby dodać pierwszą podpowiedź! Ostatni składnik zatwierdź po przecinku naciskając Enter! BENG!");
             Console.SetCursorPosition((Console.WindowWidth - 100) / 2, Console.CursorTop + 4);
 
             string sPattern = "([^a-z]|^)([A-Z]|[a-z])*";
@@ -57,7 +57,7 @@ namespace DrinkItUp.BusinessLogic
 
                 if (key.Key == ConsoleKey.Enter)
                 {
-                    var results = SearchByIngredientsLogic(dictionaryUserInput);
+                    var results = DrinkLogic.SearchByIngredientsLogic(dictionaryUserInput);
                     if(results != null)
                     {
                         DrinkCard.ShowDrinks(results, 0);
@@ -127,63 +127,7 @@ namespace DrinkItUp.BusinessLogic
 
         }
 
-        public static List<Drink> SearchByIngredientsLogic(Dictionary<string, List<Drink>> dictionary)
-        {
-            var results = new List<Drink>();
-            var listDrinks = DrinkLogic.GetAllDrinks();
-
-
-            foreach (var key in dictionary.Keys)
-            {
-                string sPattern = "([^a-z]|^)([A-Z]|[a-z])*";
-                sPattern = sPattern.Insert(10, key);
-                var regex = new Regex(sPattern, RegexOptions.IgnoreCase);
-
-                foreach(var drink in listDrinks)
-                {
-                    bool check = false;
-
-                    foreach(var ingredient in drink.Ingredients)
-                    {
-                       if(regex.IsMatch(ingredient.NameOfIngredient))
-                            check= true;
-
-                    }
-
-                    if (check)
-                        dictionary[key].Add(drink);
-
-                }
-
-            }
-
-            for (int counter = dictionary.Count(); counter > 0; counter--)
-            {
-                foreach (var key1 in dictionary.Keys)
-                {
-                    foreach (var drink in dictionary[key1])
-                    {
-                        int i = 1;
-                        foreach (var key2 in dictionary.Keys)
-                        {
-                            if (key2 != key1)
-                            {
-                                if (dictionary[key2].Contains(drink))
-                                    i++;
-                            }
-                        }
-
-                        if(i == counter)
-                        {
-                            if(!results.Contains(drink))
-                                results.Add(drink);
-                        }
-                    }
-                }
-            }
-
-            return results;
-        }
+        
 
     }
 }
