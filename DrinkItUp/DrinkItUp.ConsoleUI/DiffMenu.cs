@@ -9,7 +9,7 @@ namespace DrinkItUp.ConsoleUI
         {
             bool isSelected = false;
             int option = 1;
-            string color = "\u001b[32m";
+            string color = "\u263A \u001b[32m";
             int selectedoption = 0;
             Console.WriteLine(String.Format("{0," + Console.WindowWidth / 2 + "}", "Wybierz opcje z Menu"));
             Console.WriteLine();
@@ -67,11 +67,7 @@ namespace DrinkItUp.ConsoleUI
                 drinks = DrinkLogic.GetByAlcohol(drinks, selectedAlkohol);
                 DrinkCard.ShowDrinks(drinks, 0);
             }
-            else if (selectedoption == 5) 
-            {
-                AlkoholMenu.ShowAlkoholMenu();
-            }
-            else if (selectedoption == 6)
+            else
             {
                 MainMenu.ShowMainMenu();
             }

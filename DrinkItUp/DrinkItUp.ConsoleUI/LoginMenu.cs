@@ -9,18 +9,12 @@ namespace DrinkItUp.ConsoleUI
     public static class LoginMenu
     {
         
-        
-        private static int _userAgeToEnter;
         public static int UserAgeToEnter;
-        
-
-        private static string _userName;
         public static string UserName;
-        
 
         public static void ShowLoginMenu()
         {
-            string color = "✅ \u001b[32m";
+            string color = "\u001b[32m";
             int CurrentYear = DateTime.Now.Year; // obecny rok
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(String.Format("{0," + Console.WindowWidth / 2 + "}", "Cześć! Podaj swój rok urodzenia"));

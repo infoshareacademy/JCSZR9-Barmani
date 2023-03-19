@@ -21,7 +21,7 @@ namespace DrinkItUp.ConsoleUI
             int CurrentYear = DateTime.Now.Year; // obecny rok
             int option = 1;
             int selectedoption = 0;
-            string color = "\u001b[32m";
+            string color = "\u263A \u001b[32m";
 
 
 

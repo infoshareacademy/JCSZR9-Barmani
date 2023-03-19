@@ -15,7 +15,7 @@ namespace DrinkItUp.ConsoleUI
         {
             bool isSelected = false;
             int option = 1;
-            string color = "\u001b[32m";
+            string color = "\u263A \u001b[32m";
             int selectedoption = 0;
             Console.WriteLine(String.Format("{0," + Console.WindowWidth / 2 + "}", "Wybierz opcje z Menu"));
             Console.WriteLine();
@@ -68,19 +68,11 @@ namespace DrinkItUp.ConsoleUI
                 }
 
             }
-            if (selectedoption == 1 || selectedoption == 2 || selectedoption == 3)
+            if (selectedoption == 1 || selectedoption == 2 || selectedoption == 3 || selectedoption == 4 || selectedoption == 5)
             {
                 DiffMenu.ShowDiffMenu(selectedoption);
             }
-            else if (selectedoption == 4)
-            {
-                DiffMenu.ShowDiffMenu(selectedoption);
-            }
-            else if (selectedoption == 5)
-            {
-                DiffMenu.ShowDiffMenu(selectedoption);
-            }
-            else if (selectedoption == 6)
+            else
             {
                 MainMenu.ShowMainMenu();
             }
