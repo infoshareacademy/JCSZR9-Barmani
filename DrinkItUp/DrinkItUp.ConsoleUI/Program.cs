@@ -242,7 +242,7 @@ namespace DrinkItUp.ConsoleUI
 
 
 
-                }
+    }
 
                 else if (selectedoption == 6)
                 {
