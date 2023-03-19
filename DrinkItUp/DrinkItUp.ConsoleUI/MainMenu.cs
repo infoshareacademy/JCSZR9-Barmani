@@ -46,15 +46,15 @@ namespace DrinkItUp.ConsoleUI
                     MainMenu.CursorPosition();
                     Console.WriteLine($"{(option == 2 ? color : "")} Wyświetl wszystkie drinki\u001b[0m");
                     MainMenu.CursorPosition();
-                    Console.WriteLine($"{(option == 3 ? color : "")} Wyszukaj\u001b[0m");
+                    Console.WriteLine($"{(option == 3 ? color : "")} Wyszukaj po nazwie\u001b[0m");
                     MainMenu.CursorPosition(); ;
-                    Console.WriteLine($"{(option == 4 ? color : "")} Zaskocz mnie\u001b[0m");
+                    Console.WriteLine($"{(option == 4 ? color : "")} Wyszukaj po składnikach\u001b[0m");
                     MainMenu.CursorPosition();
                     Console.WriteLine($"{(option == 5 ? color : "")} Dodaj swój drink\u001b[0m");
                     MainMenu.CursorPosition();
                     Console.WriteLine($"{(option == 6 ? color : "")} Edytuj istniejący drink\u001b[0m");
                     MainMenu.CursorPosition();
-                    Console.WriteLine($"{(option == 7 ? color : "")} Wyszukaj po składnikach\u001b[0m");
+                    Console.WriteLine($"{(option == 7 ? color : "")} Zaskocz mnie\u001b[0m");
 
 
                     key = Console.ReadKey(false);
@@ -110,14 +110,7 @@ namespace DrinkItUp.ConsoleUI
                 else if (selectedoption == 4)
                 {
                     Console.Clear();
-                    Console.WriteLine("Wyskoczy random drink");
-                    var random = new Random();
-                    var drinksList = DrinkLogic.GetAllDrinks();
-                    int i = random.Next(1, drinksList.Count());
-                    List<Drink> randomDrink = new();
-                    randomDrink.Add(DrinkLogic.GetById(i));
-                    DrinkCard.ShowDrinks(randomDrink, 0);
-
+                    Console.WriteLine("Funkcjonalnosc szuka po składnikach");
                 }
 
                 else if (selectedoption == 5)
@@ -136,7 +129,14 @@ namespace DrinkItUp.ConsoleUI
                 else if (selectedoption == 7)
                 {
                     Console.Clear();
-                    Console.WriteLine("Funkcjonalnosc szuka po składnikach");
+                    Console.WriteLine("Wyskoczy random drink");
+                    var random = new Random();
+                    var drinksList = DrinkLogic.GetAllDrinks();
+                    int i = random.Next(1, drinksList.Count());
+                    List<Drink> randomDrink = new();
+                    randomDrink.Add(DrinkLogic.GetById(i));
+                    DrinkCard.ShowDrinks(randomDrink, 0);
+                    
                 }
 
             }
