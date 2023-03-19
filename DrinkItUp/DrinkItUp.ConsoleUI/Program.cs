@@ -221,7 +221,26 @@ namespace DrinkItUp.ConsoleUI
                 else if (selectedoption == 5)
                 {
                     Console.Clear();
-                    Console.WriteLine("Funkcjonalnosc dodawania drinka");
+                    Console.Write(String.Format("{0," + Console.WindowWidth / 2 + "}", "Podaj nazwę drinka:\t"));
+                    string newDrinkName = Console.ReadLine();
+                    Console.WriteLine();
+                    Console.Write(String.Format("{0," + Console.WindowWidth / 2 + "}", "Podaj jaki jest jego główny alkohol:\t"));
+                    string newDrinkMainAlcohol = Console.ReadLine();
+                    Console.WriteLine();
+                    Console.Write(String.Format("{0," + Console.WindowWidth / 2 + "}", "Określ trudność przygotowania: Łatwy/Średni/Trudny:\t"));
+                    string newDrinkDificulty = Console.ReadLine();
+                    Console.WriteLine();
+                    Console.Write(String.Format("{0," + Console.WindowWidth / 2 + "}", "Ile składników będzie miał Twój drink?:\t"));
+                    string newDrinkIngredient = Console.ReadLine();
+                    Console.WriteLine();
+                    Console.Write(String.Format("{0," + Console.WindowWidth / 2 + "}", "Opisz słowny opis przyrządzenia drinka:\t"));
+                    string newDrinkDescription = Console.ReadLine();
+                    Console.WriteLine();
+                    Console.WriteLine();
+                    (int left2, int top2) = Console.GetCursorPosition();
+
+
+
 
                 }
 
