@@ -4,12 +4,12 @@
     {
         public int Id { get; set; }
 
-        public string Alcohol { get; set; }
+        public string Name { get; set; }
 
         public MainAlcohol(int id, string alcohol)
         {
             Id = id;
-            Alcohol = alcohol;
+            Name = alcohol;
         }
     }
 }

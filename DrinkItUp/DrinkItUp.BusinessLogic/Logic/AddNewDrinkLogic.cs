@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,23 +12,23 @@ namespace DrinkItUp.BusinessLogic.Logic
 
 
     {
-        private static List<Drink>? _drinks = DataMenager.Drinks;
-        
+        private static int _id = DataMenager.Drinks.Max(d => d.Id);
+
+        private static int GetNextId()
+        { 
+            return _id++;
+        }
 
 
-        public static List<Drink> AddNewDrink(string name, MainAlcohol mainalcohol, Difficulty difficulty, List<Ingredient> ingredients, string description)
+        public static void AddNewDrink (string name, MainAlcohol mainalcohol, Difficulty difficulty, List<Ingredient> ingredients, string description)
         {
-            var drinks = DrinkLogic.GetAllDrinks();
-            drinks.Name = name;
-            //List<Drink> drinks.Name = name;
-            //List<Drink> MainAlcohol = mainalcohol;
-            //List<Drink> Difficulty difficulty, 
-            //List<Drink> List< Ingredient > ingredients,
-            //List<Drink> string description
-            //drinks = DrinkLogic.GetByAlcohol(drinks, mainalcoholId);
-            return _drinks;
+            int id = GetNextId();
 
+            var drink = new Drink(id, name, mainalcohol,difficulty, ingredients, description);
 
+            var drinksList = DrinkLogic.GetAllDrinks();
+            drinksList.Add(drink);
+            DataMenager.SaveListDrinks(drinksList);
 
         }
 

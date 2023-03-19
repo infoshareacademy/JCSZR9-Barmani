@@ -17,7 +17,7 @@ namespace DrinkItUp.ConsoleUI
             
             cardsToMenu.Clear();
             cardsToMenu.Add(new Card(1, drink.Id, "Nazwa: ", drink.Name));
-            cardsToMenu.Add(new Card(2, drink.Id, "Główny Alkohol: ", drink.mainAlcohol.Alcohol));
+            cardsToMenu.Add(new Card(2, drink.Id, "Główny Alkohol: ", drink.mainAlcohol.Name));
             cardsToMenu.Add(new Card(3, drink.Id, "Trudność przygotowania: ", drink.difficulty.Level));
             cardsToMenu.Add(new Card(4, drink.Id, "Składniki: ", "składniki" ));
             cardsToMenu.Add(new Card(5, drink.Id, "Opis przygotowania: ", drink.Description));
