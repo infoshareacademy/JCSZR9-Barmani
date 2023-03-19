@@ -88,6 +88,12 @@ namespace DrinkItUp.ConsoleUI
                             break;
                         }
                     }
+                    else if (option == 3)
+                    {
+                        MainMenu.ShowMainMenu();
+                    
+                    }
+
                     break;
 
                 case ConsoleKey.Escape:

@@ -18,8 +18,8 @@ namespace DrinkItUp.ConsoleUI
             private set { _userAgeToEnter = value; }
         }
 
-        private static int _userName;
-        public static int UserName
+        private static string _userName;
+        public static string UserName
         {
             get { return _userName; }
             private set { _userName = value; }
@@ -27,16 +27,11 @@ namespace DrinkItUp.ConsoleUI
 
         public static void ShowLoginMenu()
         {
-            bool isSelected = false;
-            ConsoleKeyInfo key;
-            int option = 1;
-            int selectedoption = 0;
-            int selectedoption2 = 0;
             string color = "✅ \u001b[32m";
             int CurrentYear = DateTime.Now.Year; // obecny rok
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(String.Format("{0," + Console.WindowWidth / 2 + "}", "Cześć! Podaj swój rok urodzenia"));
-            int UserAgeToEnter = Convert.ToInt32(Console.ReadLine()); // zmienna wieku uzytkownika
+            UserAgeToEnter = Convert.ToInt32(Console.ReadLine()); // zmienna wieku uzytkownika
             Console.WriteLine(String.Format("{0," + Console.WindowWidth / 2 + "}", "Podaj swoje imię"));
             string UserName = Console.ReadLine(); //Zmienna przechowująca imię użytkownika do późniejszego przywitania
             Console.ResetColor();

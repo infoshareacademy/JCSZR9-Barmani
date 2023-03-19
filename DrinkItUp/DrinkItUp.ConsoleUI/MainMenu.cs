@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 
 namespace DrinkItUp.ConsoleUI
@@ -13,7 +14,7 @@ namespace DrinkItUp.ConsoleUI
     public static class MainMenu
     {
         public static int UserAgeToEnter = LoginMenu.UserAgeToEnter;
-        public static int UserName = LoginMenu.UserName;
+        public static string UserName = LoginMenu.UserName;
         public static void ShowMainMenu()
         {
             bool isSelected = false;
@@ -41,12 +42,30 @@ namespace DrinkItUp.ConsoleUI
                 {
 
                     Console.SetCursorPosition(left, top);
-                    Console.WriteLine($"{(option == 1 ? color : "    ")} Przeglądaj drinki według alkoholu dominującego\u001b[0m");
-                    Console.WriteLine($"{(option == 2 ? color : "    ")} Wyświetl wszystkie drinki\u001b[0m");
-                    Console.WriteLine($"{(option == 3 ? color : "    ")} Wyszukaj\u001b[0m");
-                    Console.WriteLine($"{(option == 4 ? color : "    ")} Zaskocz mnie\u001b[0m");
-                    Console.WriteLine($"{(option == 5 ? color : "    ")} Dodaj swój drink\u001b[0m");
-                    Console.WriteLine($"{(option == 6 ? color : "    ")} Edytuj istniejący drink\u001b[0m");
+                    Console.SetCursorPosition(0, Console.CursorTop);
+                    Console.Write(new string(' ', Console.WindowWidth));
+                    Console.SetCursorPosition(0, Console.CursorTop);
+                    Console.WriteLine($"{(option == 1 ? color : "")} Przeglądaj drinki według alkoholu dominującego\u001b[0m");
+                    Console.SetCursorPosition(0, Console.CursorTop);
+                    Console.Write(new string(' ', Console.WindowWidth));
+                    Console.SetCursorPosition(0, Console.CursorTop);
+                    Console.WriteLine($"{(option == 2 ? color : "")} Wyświetl wszystkie drinki\u001b[0m");
+                    Console.SetCursorPosition(0, Console.CursorTop);
+                    Console.Write(new string(' ', Console.WindowWidth));
+                    Console.SetCursorPosition(0, Console.CursorTop);
+                    Console.WriteLine($"{(option == 3 ? color : "")} Wyszukaj\u001b[0m");
+                    Console.SetCursorPosition(0, Console.CursorTop);
+                    Console.Write(new string(' ', Console.WindowWidth));
+                    Console.SetCursorPosition(0, Console.CursorTop);
+                    Console.WriteLine($"{(option == 4 ? color : "")} Zaskocz mnie\u001b[0m");
+                    Console.SetCursorPosition(0, Console.CursorTop);
+                    Console.Write(new string(' ', Console.WindowWidth));
+                    Console.SetCursorPosition(0, Console.CursorTop);
+                    Console.WriteLine($"{(option == 5 ? color : "")} Dodaj swój drink\u001b[0m");
+                    Console.SetCursorPosition(0, Console.CursorTop);
+                    Console.Write(new string(' ', Console.WindowWidth));
+                    Console.SetCursorPosition(0, Console.CursorTop);
+                    Console.WriteLine($"{(option == 6 ? color : "")} Edytuj istniejący drink\u001b[0m");
 
 
                     key = Console.ReadKey(false);
@@ -123,7 +142,6 @@ namespace DrinkItUp.ConsoleUI
                 {
                     Console.Clear();
                     Console.WriteLine("Funkcjonalnosc edycji drinka");
-
                 }
 
             }
