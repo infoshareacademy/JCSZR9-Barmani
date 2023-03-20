@@ -43,7 +43,12 @@ namespace DrinkItUp.BusinessLogic.Model
         kruszony,
         kruszona,
         listków,
-        szczypta
+        szczypta,
+        plasterków,
+        sztuk,
+        laska,
+        ćwiartka,
+        ćwiartki
 
     }
 }

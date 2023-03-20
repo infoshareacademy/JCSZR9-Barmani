@@ -90,6 +90,7 @@ namespace DrinkItUp.ConsoleUI
                     }
                     else if (option == 3)
                     {
+                        option = 1;
                         MainMenu.ShowMainMenu();
                     
                     }
