@@ -317,8 +317,8 @@
       {
         "Quantity": 10,
         "Unit": 0,
-        "NameOfIngredient": "whiskey",
-        "NameSingular": "Whiskey"
+        "NameOfIngredient": "whisky",
+        "NameSingular": "Whisky"
       },
       {
         "Quantity": 20,
@@ -346,5 +346,146 @@
       }
     ],
     "Description": "Kremowy koktajl z wyjątkowym aromatem i bardzo wyrazistym smakiem. Zacznij od przygotowania średniego kieliszka, wypełnij go lodem na czas przygotowania drinka. Do szejkera nasyp lodu, a następniej wlej po kolei wszystkie składniki i wstrząśnij. Przy pomocy sitka odcedź koktajl do schłodzonego kieliszka. Na wierzch koktajlu zetrzyj gałkę muszkatołową."
+  },
+  {
+    "Id": 9,
+    "Name": "Bloody Whisky",
+    "mainAlcohol": {
+      "Id": 2,
+      "Alcohol": "Whisky"
+    },
+    "difficulty": {
+      "Id": 1,
+      "Level": "Łatwy"
+    },
+    "Ingredients": [
+      {
+        "Quantity": 45,
+        "Unit": 0,
+        "NameOfIngredient": "whisky",
+        "NameSingular": "Whisky"
+      },
+      {
+        "Quantity": 30,
+        "Unit": 0,
+        "NameOfIngredient": "likieru brzoskwiniowego",
+        "NameSingular": "Likier Brzoskwiniowy"
+      },
+      {
+        "Quantity": 60,
+        "Unit": 0,
+        "NameOfIngredient": "soku żurawinowego",
+        "NameSingular": "Sok żurawinowy"
+      },
+      {
+        "Quantity": 0,
+        "Unit": 5,
+        "NameOfIngredient": "lodu",
+        "NameSingular": "Lód"
+      }
+    ],
+    "Description": "Nazwa 'Bloody Whisky' może kojarzyć się z mocnym drinkiem, ale tak naprawdę to lekki drink z wyraźną brzoskwiniową nutą. Do shakera wrzucamy lód i resztę składników. Wstrząsamy przez jakieś 10 sekund i mieszankę przelewamy do niskiej szklanki."
+  },
+  {
+    "Id": 10,
+    "Name": "Penicylina",
+    "mainAlcohol": {
+      "Id": 2,
+      "Alcohol": "Whisky"
+    },
+    "difficulty": {
+      "Id": 2,
+      "Level": "Średni"
+    },
+    "Ingredients": [
+      {
+        "Quantity": 50,
+        "Unit": 0,
+        "NameOfIngredient": "whisky, najlepiej szkockiej",
+        "NameSingular": "Whisky"
+      },
+      {
+        "Quantity": 30,
+        "Unit": 0,
+        "NameOfIngredient": "soku z cytryny",
+        "NameSingular": "Cytryna"
+      },
+      {
+        "Quantity": 15,
+        "Unit": 0,
+        "NameOfIngredient": "miodu",
+        "NameSingular": "Miód"
+      },
+      {
+        "Quantity": 2,
+        "Unit": 8,
+        "NameOfIngredient": "imbiru",
+        "NameSingular": "Imbir"
+      },
+      {
+        "Quantity": 0,
+        "Unit": 5,
+        "NameOfIngredient": "lodu",
+        "NameSingular": "Lód"
+      }
+    ],
+    "Description": "Słynny koktajl z Nowego Yorku w twoim domu! Na dnie szejkera rozgnieć imbir do uzyskania soku. Wrzuć do tego kilka kostek lodu i wlej pozostałe składniki. Całość wstrząśnij energicznie, a następnie odcedź przez sitko do szklanki wypełnionej świeżym lodem!"
+  },
+  {
+    "Id": 11,
+    "Name": "Fire Cider Punch",
+    "mainAlcohol": {
+      "Id": 2,
+      "Alcohol": "Whisky"
+    },
+    "difficulty": {
+      "Id": 3,
+      "Level": "Trudny"
+    },
+    "Ingredients": [
+      {
+        "Quantity": 200,
+        "Unit": 0,
+        "NameOfIngredient": "Firewhisky",
+        "NameSingular": "Whisky"
+      },
+      {
+        "Quantity": 1.5,
+        "Unit": 1,
+        "NameOfIngredient": "cydru jabłkowego",
+        "NameSingular": "Cydr jabłkowy"
+      },
+      {
+        "Quantity": 100,
+        "Unit": 0,
+        "NameOfIngredient": "soku pomarańczowego",
+        "NameSingular": "Sok pomarańczowy"
+      },
+      {
+        "Quantity": 100,
+        "Unit": 0,
+        "NameOfIngredient": "miodu",
+        "NameSingular": "Miód"
+      },
+      {
+        "Quantity": 2,
+        "Unit": 9,
+        "NameOfIngredient": "pomarańczy",
+        "NameSingular": "Pomarańcza"
+      },
+      {
+        "Quantity": 0,
+        "Unit": 19,
+        "NameOfIngredient": "cynamonu",
+        "NameSingular": "Cynamon"
+      },
+      {
+        "Quantity": 5,
+        "Unit": 18,
+        "NameOfIngredient": "goździków",
+        "NameSingular": "Goździki"
+      }
+    ],
+    "Description": "Rozgrzewający koktajl, niektórzy twierdzą, że prosto z uniwersum Harrego Pottera. W rondelku podgrzej laskę cynamonu z goździkami i plastrami pomarańczy. Dodaj sok, miód i cydr. Podgrzej, ale nie zagotuj, a w ostatniej chwili dodaj Firewhisky. Serwuj na ciepło w szklance z uchem!"
   }
 ]
