@@ -46,7 +46,9 @@ namespace DrinkItUp.BusinessLogic.Model
         szczypta,
         plasterków,
         sztuk,
-        laska
+        laska,
+        ćwiartka,
+        ćwiartki
 
     }
 }
