@@ -53,19 +53,17 @@ namespace DrinkItUp.ConsoleUI
                     MainMenu.CursorPosition();
                     Console.WriteLine($"{(option == 5 ? color : "")} Dodaj swój drink\u001b[0m");
                     MainMenu.CursorPosition();
-                    Console.WriteLine($"{(option == 6 ? color : "")} Edytuj istniejący drink\u001b[0m");
-                    MainMenu.CursorPosition();
-                    Console.WriteLine($"{(option == 7 ? color : "")} Zaskocz mnie\u001b[0m");
+                    Console.WriteLine($"{(option == 6 ? color : "")} Zaskocz mnie\u001b[0m");
 
 
                     key = Console.ReadKey(false);
                     switch (key.Key)
                     {
                         case ConsoleKey.DownArrow:
-                            option = (option == 7 ? 1 : option + 1);
+                            option = (option == 6 ? 1 : option + 1);
                             break;
                         case ConsoleKey.UpArrow:
-                            option = (option == 1 ? 7 : option - 1);
+                            option = (option == 1 ? 6 : option - 1);
                             break;
 
                         case ConsoleKey.Enter:
@@ -121,14 +119,7 @@ namespace DrinkItUp.ConsoleUI
                     Console.WriteLine("Funkcjonalnosc dodawania drinka");
 
                 }
-
                 else if (selectedoption == 6)
-                {
-                    Console.Clear();
-                    Console.WriteLine("Funkcjonalnosc edycji drinka");
-                }
-
-                else if (selectedoption == 7)
                 {
                     Console.Clear();
                     Console.WriteLine("Wyskoczy random drink");
