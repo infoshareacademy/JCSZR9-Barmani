@@ -120,7 +120,8 @@ namespace DrinkItUp.ConsoleUI
                     Console.Clear();
                     Console.WriteLine("Funkcjonalnosc dodawania drinka");
                     AddNewDrinkUI.AddNewDrink();
-
+                    Console.WriteLine("Pomyślnie dodano drink, wciśnij dowolny klawisz aby przejść do głównego menu");
+                    Console.ReadKey();
                 }
 
                 else if (selectedoption == 6)
