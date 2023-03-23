@@ -16,7 +16,7 @@ namespace DrinkItUp.BusinessLogic.Logic
 
         private static int GetNextId()
         { 
-            return _id++;
+            return ++_id;
         }
 
 
