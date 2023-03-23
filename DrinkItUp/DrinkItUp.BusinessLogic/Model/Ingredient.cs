@@ -14,6 +14,8 @@ namespace DrinkItUp.BusinessLogic.Model
 
         public string NameOfIngredient { get; set; }
 
+        public string NameSingular { get; set; }
+
         public Ingredient(decimal quantity, Unit unit, string nameOfIngredient)
         {
             Quantity= quantity;
@@ -37,7 +39,16 @@ namespace DrinkItUp.BusinessLogic.Model
         plasterki,
         szklanka,
         listki,
-        listek
+        listek,
+        kruszony,
+        kruszona,
+        listków,
+        szczypta,
+        plasterków,
+        sztuk,
+        laska,
+        ćwiartka,
+        ćwiartki
 
     }
 }

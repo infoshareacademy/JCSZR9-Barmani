@@ -14,12 +14,14 @@
       {
         "Quantity": 200,
         "Unit": 0,
-        "NameOfIngredient": "wódki"
+        "NameOfIngredient": "wódki",
+        "NameSingular": "Wódka"
       },
       {
         "Quantity": 1,
         "Unit": 2,
-        "NameOfIngredient": "szklanka"
+        "NameOfIngredient": "szklanka",
+        "NameSingular": "Szklanka"
       }
     ],
         "Description": "Najlepszy drink! Przebić go może jedynie przysłowiowa 'Wóda z gwinta'. Ponadczasowa prostota, która miesza się z tradycją największych PRL-owskich osiedli. Nic tylko pić!"
@@ -39,22 +41,26 @@
       {
         "Quantity": 40,
         "Unit": 0,
-        "NameOfIngredient": "rumu"
+        "NameOfIngredient": "rumu",
+        "NameSingular": "Rum"
       },
       {
         "Quantity": 125,
         "Unit": 0,
-        "NameOfIngredient": "coli"
+        "NameOfIngredient": "coli",
+        "NameSingular": "Cola"
       },
       {
         "Quantity": 1,
         "Unit": 8,
-        "NameOfIngredient": "limonki"
+        "NameOfIngredient": "limonki",
+        "NameSingular": "Limonka"
       },
       {
-        "Quantity": 4,
+        "Quantity": 0,
         "Unit": 5,
-        "NameOfIngredient": "lodu"
+        "NameOfIngredient": "lodu",
+        "NameSingular": "Lód"
       }
     ],
     "Description": "Niektórzy mogliby powiedzieć, że po co psuć rum limonką, ale tysiące Kubańczyków nie może się mylić! Zmieszaj wszystkie składniki razem i dorzuć kostki lodu według uznania."
@@ -74,27 +80,32 @@
       {
         "Quantity": 40,
         "Unit": 0,
-        "NameOfIngredient": "ginu"
+        "NameOfIngredient": "ginu",
+        "NameSingular": "Gin"
       },
       {
         "Quantity": 120,
         "Unit": 0,
-        "NameOfIngredient": "toniku"
+        "NameOfIngredient": "toniku",
+        "NameSingular": "Tonik"
       },
       {
         "Quantity": 2,
         "Unit": 9,
-        "NameOfIngredient": "cytryny"
+        "NameOfIngredient": "cytryny",
+        "NameSingular": "Cytryna"
       },
       {
         "Quantity": 3,
         "Unit": 11,
-        "NameOfIngredient": "mięty"
+        "NameOfIngredient": "mięty",
+        "NameSingular": "Mięta"
       },
       {
-        "Quantity": 4,
+        "Quantity": 0,
         "Unit": 5,
-        "NameOfIngredient": "lodu"
+        "NameOfIngredient": "lodu",
+        "NameSingular": "Lód"
       }
     ],
     "Description": "Klasyka niewrażliwa na czasy i okoliczności. Najprostszy wybór dla ludzi szukających bardziej wytrawnych smaków. Przed zmieszaniem wszystkiego rozgnieć mięte w szklance. Lód według uznania."
@@ -114,24 +125,622 @@
       {
         "Quantity": 50,
         "Unit": 0,
-        "NameOfIngredient": "ginu"
+        "NameOfIngredient": "ginu",
+        "NameSingular": "Gin"
       },
       {
         "Quantity": 50,
         "Unit": 0,
-        "NameOfIngredient": "soku z cytryny"
+        "NameOfIngredient": "soku z cytryny",
+        "NameSingular": "Cytryna"
       },
       {
         "Quantity": 25,
         "Unit": 0,
-        "NameOfIngredient": "likieru Blue Curacao"
+        "NameOfIngredient": "likieru Blue Curacao",
+        "NameSingular": "Blue Curacao"
       },
       {
-        "Quantity": 3,
+        "Quantity": 0,
         "Unit": 5,
-        "NameOfIngredient": "lodu"
+        "NameOfIngredient": "lodu",
+        "NameSingular": "Lód"
       }
     ],
     "Description": "Wspaniały orzeźwiający drink. Zakochasz się w tym słodko-kwaśnym smaku już przy pierwszym spróbowaniu. Wszystkie składniki wraz z lodem wymieszaj w shakerze, oczywiście dobrze nim potrząsając. Przelej do kieliszka od Martini bądź szklanki. Szklankę bądź kieliszek możesz przyozdobić plasterkiem cytryny!"
+  },
+  {
+    "Id": 5,
+    "Name": "Gin Daisy",
+    "mainAlcohol": {
+      "Id": 4,
+      "Alcohol": "Gin"
+    },
+    "difficulty": {
+      "Id": 2,
+      "Level": "Średni"
+    },
+    "Ingredients": [
+      {
+        "Quantity": 40,
+        "Unit": 0,
+        "NameOfIngredient": "ginu",
+        "NameSingular": "Gin"
+      },
+      {
+        "Quantity": 20,
+        "Unit": 0,
+        "NameOfIngredient": "soku z cytryny",
+        "NameSingular": "Cytryna"
+      },
+      {
+        "Quantity": 20,
+        "Unit": 0,
+        "NameOfIngredient": "grenadyny",
+        "NameSingular": "Grenadyna"
+      },
+      {
+        "Quantity": 20,
+        "Unit": 0,
+        "NameOfIngredient": "wody gazowanej",
+        "NameSingular": "Woda Gazowana"
+      },
+      {
+        "Quantity": 0,
+        "Unit": 13,
+        "NameOfIngredient": "lód",
+        "NameSingular": "Lód"
+      }
+    ],
+    "Description": "Drink, który zyskał drugą młodość, szczególnie wśród kobiet, ze względu na swój wspaniały wygląd i smak. Połącz wszystkie składniki w shakerze. Wstrząśnij tylko raz energicznym ruchem. Lód kruszony, by uzyskać efekt cieniowania, dodaj osobno do szklanki i powoli zalewaj mieszanką."
+  },
+  {
+    "Id": 6,
+    "Name": "Gin Mule",
+    "mainAlcohol": {
+      "Id": 4,
+      "Alcohol": "Gin"
+    },
+    "difficulty": {
+      "Id": 3,
+      "Level": "Trudny"
+    },
+    "Ingredients": [
+      {
+        "Quantity": 60,
+        "Unit": 0,
+        "NameOfIngredient": "ginu",
+        "NameSingular": "Gin"
+      },
+      {
+        "Quantity": 20,
+        "Unit": 0,
+        "NameOfIngredient": "soku z cytryny",
+        "NameSingular": "Cytryna"
+      },
+      {
+        "Quantity": 100,
+        "Unit": 0,
+        "NameOfIngredient": "piwa imbirowego/Ginger Ale",
+        "NameSingular": "Piwo imbirowe"
+      },
+      {
+        "Quantity": 2,
+        "Unit": 9,
+        "NameOfIngredient": "imbiru",
+        "NameSingular": "Imbir"
+      },
+      {
+        "Quantity": 8,
+        "Unit": 15,
+        "NameOfIngredient": "mięty",
+        "NameSingular": "Mięta"
+      },
+      {
+        "Quantity": 0,
+        "Unit": 13,
+        "NameOfIngredient": "lód",
+        "NameSingular": "Lód"
+      }
+    ],
+    "Description": "Moscow Mule w wersji z ginem! Do szejkera wrzuć mięte, wlej sok z cytryny i dorzuć 2 cienkie plasterki imbiru. Delikatnie duś mudlerem. Następnie dodaj ginu i potrząśnij przez ok. 10 sekund. Do miedziowego kubka wsyp kruszony lód i przez sitko przelej mieszankę. Dopełnij piwem imbirowym/Ginger Ale."
+  },
+  {
+    "Id": 7,
+    "Name": "Sex on the beach",
+    "mainAlcohol": {
+      "Id": 1,
+      "Alcohol": "Wódka"
+    },
+    "difficulty": {
+      "Id": 2,
+      "Level": "Średni"
+    },
+    "Ingredients": [
+      {
+        "Quantity": 80,
+        "Unit": 0,
+        "NameOfIngredient": "wódki",
+        "NameSingular": "Wódka"
+      },
+      {
+        "Quantity": 40,
+        "Unit": 0,
+        "NameOfIngredient": "likieru brzoskwiniowego",
+        "NameSingular": "Likier Brzoskwiniowy"
+      },
+      {
+        "Quantity": 80,
+        "Unit": 0,
+        "NameOfIngredient": "soku pomarańczowego",
+        "NameSingular": "Sok pomarańczowy"
+      },
+      {
+        "Quantity": 80,
+        "Unit": 0,
+        "NameOfIngredient": "soku żurawinowego",
+        "NameSingular": "Sok żurawinowy"
+      },
+      {
+        "Quantity": 0,
+        "Unit": 5,
+        "NameOfIngredient": "lód",
+        "NameSingular": "Lód"
+      }
+    ],
+    "Description": "Dwuwarstwowy drink, którego nie trzeba nikomu przedstawiać. Wypełnij dużą szklankę kostkami lodu do połowy i wlej sok żurawinowy. Do shakera wlej sok pomarańczowy oraz alkohole: wódkę oraz likier brzoskwiniowy. Całość shakera przelej delikatnie po kostkach lodu lub łyżce barmańskiej, uważaj żeby za bardzo nie pomieszać mieszanki z sokiem żurawinowym. Pamiętaj, że przed wypiciem drinka należy pomieszać!"
+  },
+  {
+    "Id": 8,
+    "Name": "Egg Custard Martini",
+    "mainAlcohol": {
+      "Id": 1,
+      "Alcohol": "Wódka"
+    },
+    "difficulty": {
+      "Id": 3,
+      "Level": "Trudny"
+    },
+    "Ingredients": [
+      {
+        "Quantity": 40,
+        "Unit": 0,
+        "NameOfIngredient": "wódki",
+        "NameSingular": "Wódka"
+      },
+      {
+        "Quantity": 10,
+        "Unit": 0,
+        "NameOfIngredient": "wódki waniliowej",
+        "NameSingular": "Wódka waniliowa"
+      },
+      {
+        "Quantity": 10,
+        "Unit": 0,
+        "NameOfIngredient": "whisky",
+        "NameSingular": "Whisky"
+      },
+      {
+        "Quantity": 20,
+        "Unit": 0,
+        "NameOfIngredient": "likieru jajecznego",
+        "NameSingular": "Likier jajeczny"
+      },
+      {
+        "Quantity": 10,
+        "Unit": 0,
+        "NameOfIngredient": "syropu cukrowego",
+        "NameSingular": "Syrop cukrowy"
+      },
+      {
+        "Quantity": 0,
+        "Unit": 16,
+        "NameOfIngredient": "gałki muszkatołowej",
+        "NameSingular": "Syrop cukrowy"
+      },
+      {
+        "Quantity": 0,
+        "Unit": 5,
+        "NameOfIngredient": "lodu",
+        "NameSingular": "Lód"
+      }
+    ],
+    "Description": "Kremowy koktajl z wyjątkowym aromatem i bardzo wyrazistym smakiem. Zacznij od przygotowania średniego kieliszka, wypełnij go lodem na czas przygotowania drinka. Do szejkera nasyp lodu, a następniej wlej po kolei wszystkie składniki i wstrząśnij. Przy pomocy sitka odcedź koktajl do schłodzonego kieliszka. Na wierzch koktajlu zetrzyj gałkę muszkatołową."
+  },
+  {
+    "Id": 9,
+    "Name": "Bloody Whisky",
+    "mainAlcohol": {
+      "Id": 2,
+      "Alcohol": "Whisky"
+    },
+    "difficulty": {
+      "Id": 1,
+      "Level": "Łatwy"
+    },
+    "Ingredients": [
+      {
+        "Quantity": 45,
+        "Unit": 0,
+        "NameOfIngredient": "whisky",
+        "NameSingular": "Whisky"
+      },
+      {
+        "Quantity": 30,
+        "Unit": 0,
+        "NameOfIngredient": "likieru brzoskwiniowego",
+        "NameSingular": "Likier Brzoskwiniowy"
+      },
+      {
+        "Quantity": 60,
+        "Unit": 0,
+        "NameOfIngredient": "soku żurawinowego",
+        "NameSingular": "Sok żurawinowy"
+      },
+      {
+        "Quantity": 0,
+        "Unit": 5,
+        "NameOfIngredient": "lodu",
+        "NameSingular": "Lód"
+      }
+    ],
+    "Description": "Nazwa 'Bloody Whisky' może kojarzyć się z mocnym drinkiem, ale tak naprawdę to lekki drink z wyraźną brzoskwiniową nutą. Do shakera wrzucamy lód i resztę składników. Wstrząsamy przez jakieś 10 sekund i mieszankę przelewamy do niskiej szklanki."
+  },
+  {
+    "Id": 10,
+    "Name": "Penicylina",
+    "mainAlcohol": {
+      "Id": 2,
+      "Alcohol": "Whisky"
+    },
+    "difficulty": {
+      "Id": 2,
+      "Level": "Średni"
+    },
+    "Ingredients": [
+      {
+        "Quantity": 50,
+        "Unit": 0,
+        "NameOfIngredient": "whisky, najlepiej szkockiej",
+        "NameSingular": "Whisky"
+      },
+      {
+        "Quantity": 30,
+        "Unit": 0,
+        "NameOfIngredient": "soku z cytryny",
+        "NameSingular": "Cytryna"
+      },
+      {
+        "Quantity": 15,
+        "Unit": 0,
+        "NameOfIngredient": "miodu",
+        "NameSingular": "Miód"
+      },
+      {
+        "Quantity": 2,
+        "Unit": 9,
+        "NameOfIngredient": "imbiru",
+        "NameSingular": "Imbir"
+      },
+      {
+        "Quantity": 0,
+        "Unit": 5,
+        "NameOfIngredient": "lodu",
+        "NameSingular": "Lód"
+      }
+    ],
+    "Description": "Słynny koktajl z Nowego Yorku w twoim domu! Na dnie szejkera rozgnieć imbir do uzyskania soku. Wrzuć do tego kilka kostek lodu i wlej pozostałe składniki. Całość wstrząśnij energicznie, a następnie odcedź przez sitko do szklanki wypełnionej świeżym lodem!"
+  },
+  {
+    "Id": 11,
+    "Name": "Fire Cider Punch",
+    "mainAlcohol": {
+      "Id": 2,
+      "Alcohol": "Whisky"
+    },
+    "difficulty": {
+      "Id": 3,
+      "Level": "Trudny"
+    },
+    "Ingredients": [
+      {
+        "Quantity": 200,
+        "Unit": 0,
+        "NameOfIngredient": "Firewhisky",
+        "NameSingular": "Whisky"
+      },
+      {
+        "Quantity": 1.5,
+        "Unit": 1,
+        "NameOfIngredient": "cydru jabłkowego",
+        "NameSingular": "Cydr jabłkowy"
+      },
+      {
+        "Quantity": 100,
+        "Unit": 0,
+        "NameOfIngredient": "soku pomarańczowego",
+        "NameSingular": "Sok pomarańczowy"
+      },
+      {
+        "Quantity": 100,
+        "Unit": 0,
+        "NameOfIngredient": "miodu",
+        "NameSingular": "Miód"
+      },
+      {
+        "Quantity": 2,
+        "Unit": 9,
+        "NameOfIngredient": "pomarańczy",
+        "NameSingular": "Pomarańcza"
+      },
+      {
+        "Quantity": 0,
+        "Unit": 19,
+        "NameOfIngredient": "cynamonu",
+        "NameSingular": "Cynamon"
+      },
+      {
+        "Quantity": 5,
+        "Unit": 18,
+        "NameOfIngredient": "goździków",
+        "NameSingular": "Goździki"
+      }
+    ],
+    "Description": "Rozgrzewający koktajl, niektórzy twierdzą, że prosto z uniwersum Harrego Pottera. W rondelku podgrzej laskę cynamonu z goździkami i plastrami pomarańczy. Dodaj sok, miód i cydr. Podgrzej, ale nie zagotuj, a w ostatniej chwili dodaj Firewhisky. Serwuj na ciepło w szklance z uchem!"
+  },
+  {
+    "Id": 12,
+    "Name": "Mojito",
+    "mainAlcohol": {
+      "Id": 3,
+      "Alcohol": "Rum"
+    },
+    "difficulty": {
+      "Id": 3,
+      "Level": "Trudny"
+    },
+    "Ingredients": [
+      {
+        "Quantity": 40,
+        "Unit": 0,
+        "NameOfIngredient": "Białego rumu",
+        "NameSingular": "Rum"
+      },
+      {
+        "Quantity": 20,
+        "Unit": 0,
+        "NameOfIngredient": "syropu cukrowego",
+        "NameSingular": "Syrop cukrowy"
+      },
+      {
+        "Quantity": 2,
+        "Unit": 21,
+        "NameOfIngredient": "limonki",
+        "NameSingular": "Limonka"
+      },
+      {
+        "Quantity": 6,
+        "Unit": 15,
+        "NameOfIngredient": "mięty",
+        "NameSingular": "Mięta"
+      },
+      {
+        "Quantity": 250,
+        "Unit": 0,
+        "NameOfIngredient": "wody gazowanej",
+        "NameSingular": "Woda gazowana"
+      },
+      {
+        "Quantity": 0,
+        "Unit": 13,
+        "NameOfIngredient": "lód",
+        "NameSingular": "Lód"
+      }
+    ],
+    "Description": "Najmodniejszy tropikalny drink, który tylko wydaje się łatwy do przygotowania.Limonkę sparz we wrzątku, pamiętaj żeby odkroić tzw. 'kręgosłup', bo zawiera najwięcej goryczy. Umieść limonkę w szklance i wygnieć muddlerem. Dodaj liście mięty, syrop cukrowy i delkatnie ponownie wygnieć. Uzupełnij szklankę kruszonym lodem do połowy. Dodaj rumu i zamieszaj wszystko. Ponownie dodaj kruszonego lodu i uzupełnij wodą gazowaną. Czas na orzeźwienie! Smacznego!"
+  },
+  {
+    "Id": 13,
+    "Name": "Acapulco",
+    "mainAlcohol": {
+      "Id": 3,
+      "Alcohol": "Rum"
+    },
+    "difficulty": {
+      "Id": 2,
+      "Level": "Średni"
+    },
+    "Ingredients": [
+      {
+        "Quantity": 40,
+        "Unit": 0,
+        "NameOfIngredient": "białego rumu",
+        "NameSingular": "Rum"
+      },
+      {
+        "Quantity": 40,
+        "Unit": 0,
+        "NameOfIngredient": "tequili",
+        "NameSingular": "Tequila"
+      },
+      {
+        "Quantity": 80,
+        "Unit": 0,
+        "NameOfIngredient": "soku ananasowego",
+        "NameSingular": "Sok ananasowy"
+      },
+      {
+        "Quantity": 40,
+        "Unit": 0,
+        "NameOfIngredient": "soku z grejpfruta",
+        "NameSingular": "Sok grejpfrutowy"
+      },
+      {
+        "Quantity": 20,
+        "Unit": 0,
+        "NameOfIngredient": "syropu cukrowego",
+        "NameSingular": "Syrop cukrowy"
+      },
+      {
+        "Quantity": 0,
+        "Unit": 5,
+        "NameOfIngredient": "lodu",
+        "NameSingular": "Lód"
+      }
+    ],
+    "Description": "Nie bez powodu koktajl ten nosi nazwę miasta z gorącego Meksyku. Orzeźwienie gwarantowane! Shaker wypełnij lodem i wlej do niego wszystkie składniki. Wstrząsaj przez jakieś 10 sekund, a następnie odcedź przez sitko do szklanki wypełnionej świeżym lodem. Warto przystroić szklankę ananasem dla pełnego efektu!"
+  },
+  {
+    "Id": 14,
+    "Name": "Margarita",
+    "mainAlcohol": {
+      "Id": 5,
+      "Alcohol": "Likier"
+    },
+    "difficulty": {
+      "Id": 1,
+      "Level": "Łatwy"
+    },
+    "Ingredients": [
+      {
+        "Quantity": 30,
+        "Unit": 0,
+        "NameOfIngredient": "likieru cointreau",
+        "NameSingular": "Cointreau"
+      },
+      {
+        "Quantity": 30,
+        "Unit": 0,
+        "NameOfIngredient": "tequili",
+        "NameSingular": "Tequila"
+      },
+      {
+        "Quantity": 15,
+        "Unit": 0,
+        "NameOfIngredient": "soku z limonki",
+        "NameSingular": "Limonka"
+      },
+      {
+        "Quantity": 15,
+        "Unit": 0,
+        "NameOfIngredient": "soku z cytryny",
+        "NameSingular": "Cytryna"
+      },
+      {
+        "Quantity": 15,
+        "Unit": 0,
+        "NameOfIngredient": "syropu cukrowego",
+        "NameSingular": "Syrop cukrowy"
+      }
+    ],
+    "Description": "Margarita, ale nie na grubym ani cienkim cieście! Letnia klasyka! Składniki wymieszać w shakerze i podawać w schłodzonym kieliszku. Wprawy wymaga przede wszystkim zbalansowanie smaków, słodkiego i kwaśnego!"
+  },
+  {
+    "Id": 15,
+    "Name": "Hemingway Daiquiri",
+    "mainAlcohol": {
+      "Id": 5,
+      "Alcohol": "Likier"
+    },
+    "difficulty": {
+      "Id": 2,
+      "Level": "Średni"
+    },
+    "Ingredients": [
+      {
+        "Quantity": 40,
+        "Unit": 0,
+        "NameOfIngredient": "likieru maraschino",
+        "NameSingular": "Maraschino"
+      },
+      {
+        "Quantity": 40,
+        "Unit": 0,
+        "NameOfIngredient": "soku grejpfrutowego",
+        "NameSingular": "Sok grejpfrutowy"
+      },
+      {
+        "Quantity": 40,
+        "Unit": 0,
+        "NameOfIngredient": "soku z limonki",
+        "NameSingular": "Limonka"
+      },
+      {
+        "Quantity": 120,
+        "Unit": 0,
+        "NameOfIngredient": "rumu",
+        "NameSingular": "Rum"
+      },
+      {
+        "Quantity": 0,
+        "Unit": 5,
+        "NameOfIngredient": "lodu",
+        "NameSingular": "Lód"
+      }
+    ],
+    "Description": "Możecie znać tego drinka pod nazwą Papa doble. Schładzamy kieliszek lodem lub w zamrażarce. Mieszamy składniki w shakerze z kostkami lodu, a później gotową mieszankę przelewamy przez sitko do schłodzonego kieliszka, ale nie dosypujemy już dodatkowo lodu!"
+  },
+  {
+    "Id": 16,
+    "Name": "Toblerone Martini",
+    "mainAlcohol": {
+      "Id": 5,
+      "Alcohol": "Likier"
+    },
+    "difficulty": {
+      "Id": 3,
+      "Level": "Trudny"
+    },
+    "Ingredients": [
+      {
+        "Quantity": 10,
+        "Unit": 0,
+        "NameOfIngredient": "likieru amaretto",
+        "NameSingular": "Amaretto"
+      },
+      {
+        "Quantity": 20,
+        "Unit": 0,
+        "NameOfIngredient": "likieru kakaowego",
+        "NameSingular": "Likier kakaowy"
+      },
+      {
+        "Quantity": 50,
+        "Unit": 0,
+        "NameOfIngredient": "białego rumu",
+        "NameSingular": "Rum"
+      },
+      {
+        "Quantity": 10,
+        "Unit": 0,
+        "NameOfIngredient": "śmietanki 30%",
+        "NameSingular": "Śmietanka"
+      },
+      {
+        "Quantity": 10,
+        "Unit": 0,
+        "NameOfIngredient": "kurzego białka",
+        "NameSingular": "Kurze białko"
+      },
+      {
+        "Quantity": 10,
+        "Unit": 0,
+        "NameOfIngredient": "miodu",
+        "NameSingular": "Miód"
+      },
+      {
+        "Quantity": 0,
+        "Unit": 5,
+        "NameOfIngredient": "lodu",
+        "NameSingular": "Lód"
+      },
+      {
+        "Quantity": 0,
+        "Unit": 16,
+        "NameOfIngredient": "czekolady do dekoracji",
+        "NameSingular": "Czekolada"
+      }
+    ],
+    "Description": "Jeśli jesteś na diecie to unikaj tego drinka, ale dla grubasków szykuję się uczta dla podniebienia! Najpierw wymieszaj w szejkerze miód z rumem, później dodaj pozostałe składniki oraz lód i całość energicznie wstrząśnij. Przelej mieszankę do czystego szejkera przez sito i wstrząśnij jeszcze raz, ale tym razem bez lodu! Koktajl będzie miał wtedy aksamitną konsystencję. Odcedź mieszankę do schłodzonego kieliszka i udekoruj koktajl startą czekoladą!"
   }
 ]

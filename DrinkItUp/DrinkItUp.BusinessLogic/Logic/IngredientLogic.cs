@@ -15,7 +15,7 @@ namespace DrinkItUp.BusinessLogic.Logic
 
             foreach (var ingredient in list)
             {
-                var stringHelper = $"{ingredient.Quantity} {(Unit)ingredient.Unit} {ingredient.NameOfIngredient}";
+                var stringHelper = $"{(ingredient.Quantity == 0 ? "" : ingredient.Quantity + " ")}{(Unit)ingredient.Unit} {ingredient.NameOfIngredient}";
                 listString.Add(stringHelper);
             }
 
@@ -31,7 +31,7 @@ namespace DrinkItUp.BusinessLogic.Logic
             {
                 foreach (Ingredient ingredient in drink.Ingredients)
                 {
-                    listString.Add(ingredient.NameOfIngredient);
+                    listString.Add(ingredient.NameSingular);
                 }
                 hashIngredientsNames.UnionWith(listString);
             }

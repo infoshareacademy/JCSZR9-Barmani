@@ -108,7 +108,9 @@ namespace DrinkItUp.ConsoleUI
 
             if (listElement > drinks.Count() - 1 || listElement < 0)
             {
-                Console.WriteLine("Błąd");
+                Console.WriteLine("Nie znaleziono żadnego Drinka! Naciśnij dowolny klawisz, żeby powrócić do głównego Menu!");
+                Console.ReadKey();
+                MainMenu.ShowMainMenu();
                 return;
 
             }
@@ -127,7 +129,7 @@ namespace DrinkItUp.ConsoleUI
             }
             else
             {
-                ShortMenu.ShowShortMenuOneResult();
+                ShortMenu.ShowShortMenuOneResult(drinks);
             }
         }
 
