@@ -35,8 +35,25 @@ namespace DrinkItUp.BusinessLogic.Logic
                 }
                 hashIngredientsNames.UnionWith(listString);
             }
-
             return hashIngredientsNames;
+        }
+
+
+        public static string UnitsToString()
+        {
+            var stringUnits = string.Empty;
+            var enumCount = Enum.GetNames(typeof(Unit)).Length;
+
+            for (int i = 0; i < enumCount; i++)
+            {
+                if (i % 7 == 6)
+                stringUnits += "\n";
+
+                stringUnits += $"| {i}: {(Unit)i} |";
+
+
+            }
+            return stringUnits;
         }
     }
 }

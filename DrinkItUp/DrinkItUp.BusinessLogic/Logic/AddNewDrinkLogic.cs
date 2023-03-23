@@ -26,19 +26,10 @@ namespace DrinkItUp.BusinessLogic.Logic
 
             var drink = new Drink(id, name, mainalcohol,difficulty, ingredients, description);
 
-            var drinksList = DrinkLogic.GetAllDrinks();
-            drinksList.Add(drink);
-            DataMenager.SaveListDrinks(drinksList);
+            DataMenager.Drinks.Add(drink);
+
+            DataMenager.SaveListDrinks(DataMenager.Drinks);
 
         }
-
-
-
-        // 1. potrzebuje metody do sprawdzenia jaki jest ostatni Id drinka i nadać następny
-        // 2. nazwa alkoholu - dodać do listy
-        // 3. alkohol główny dodawać z ręki czy z listy wyboru (jak w shortmenu)?
-        // 4. difficulty dodawać z ręki czy z listy wyboru (jak w shortmenu)?
-        // 5. ingredients - czy użytkownik musi najpierw wskazać liczbę składników, a nastęnie je wpisywać? 
-
     }
 }
