@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DrinkItUp.BusinessLogic.Model
@@ -16,11 +17,20 @@ namespace DrinkItUp.BusinessLogic.Model
 
         public string NameSingular { get; set; }
 
+        [JsonConstructor]
         public Ingredient(decimal quantity, Unit unit, string nameOfIngredient)
         {
             Quantity= quantity;
             Unit= unit;
             NameOfIngredient= nameOfIngredient;
+        }
+
+        public Ingredient(decimal quantity, Unit unit, string nameOfIngredient, string nameSingular)
+        {
+            Quantity = quantity;
+            Unit = unit;
+            NameOfIngredient = nameOfIngredient;
+            NameSingular = nameSingular;
         }
     }
 

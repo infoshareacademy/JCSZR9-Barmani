@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DrinkItUp.BusinessLogic.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,11 @@ namespace DrinkItUp.BusinessLogic.Logic
                 difficultyString += $"{difficulty.Id}. {difficulty.Level} ";
             }
             return difficultyString;
+        }
+        public static Difficulty DifficultyParse(string str)
+        {
+            var difficulty = DataMenager.Difficulties.FirstOrDefault(a => a.Level.Contains(str));
+            return difficulty;
         }
 
     }

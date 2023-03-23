@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DrinkItUp.BusinessLogic.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,11 +15,15 @@ namespace DrinkItUp.BusinessLogic.Logic
 
             foreach (var alcohol in DataMenager.MainAlcohols)
             {
-                mainAlcoholToString += $"{alcohol.Id}. {alcohol.Name} ";
+                mainAlcoholToString += $"{alcohol.Id}. {alcohol.Alcohol} ";
             }
             return mainAlcoholToString;
         }
 
-
+        public static MainAlcohol AlcoholParse(string alcohol)
+        {
+            var mainAlcohol = DataMenager.MainAlcohols.FirstOrDefault(a => a.Alcohol.Contains(alcohol));
+            return mainAlcohol;
+        }
     }
 }

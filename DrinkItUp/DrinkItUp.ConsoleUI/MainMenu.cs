@@ -119,6 +119,7 @@ namespace DrinkItUp.ConsoleUI
                 {
                     Console.Clear();
                     Console.WriteLine("Funkcjonalnosc dodawania drinka");
+                    AddNewDrinkUI.AddNewDrink();
 
                 }
 
