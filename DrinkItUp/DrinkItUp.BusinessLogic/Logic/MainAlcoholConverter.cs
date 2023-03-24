@@ -25,5 +25,15 @@ namespace DrinkItUp.BusinessLogic.Logic
             var mainAlcohol = DataMenager.MainAlcohols.FirstOrDefault(a => a.Alcohol.Contains(alcohol));
             return mainAlcohol;
         }
+
+        public static bool AlcoholTryParse(string alcohol, out MainAlcohol mainAlcohol)
+        {
+            mainAlcohol = DataMenager.MainAlcohols.FirstOrDefault(a => a.Alcohol.Contains(alcohol));
+
+            if (mainAlcohol == null)
+                return false;
+            else
+                return true;
+        }
     }
 }
