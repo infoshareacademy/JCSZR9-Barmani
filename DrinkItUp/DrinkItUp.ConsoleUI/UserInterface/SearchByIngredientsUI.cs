@@ -25,7 +25,7 @@ namespace DrinkItUp.ConsoleUI.UserInterface
 
 
         /// <summary>
-        /// Podajemy listę wszystkch drinków! Reszta dzieję się sama!
+        /// Wywołujemy metodę bez żadnego parametru! Reszta dzieję się sama!
         /// </summary>
         /// <param name="drinkList"></param>
         public static void SearchByIngredients()
@@ -68,7 +68,10 @@ namespace DrinkItUp.ConsoleUI.UserInterface
                 }
                 else if (key.Key == ConsoleKey.OemComma)
                 {
-                    dictionaryUserInput.Add(stringHelper, new List<Drink>());
+                    if (!dictionaryUserInput.Keys.Contains(stringHelper))
+                    {
+                        dictionaryUserInput.Add(stringHelper, new List<Drink>());
+                    }
                     stringHelper = string.Empty;
                     sPattern = "([^a-z]|^)([A-Z]|[a-z])*";
                     i = 10;
@@ -81,7 +84,10 @@ namespace DrinkItUp.ConsoleUI.UserInterface
                     Console.SetCursorPosition((Console.WindowWidth - 100) / 2 + counter, Console.CursorTop - 2);
                     counter += list.ElementAt(0).Length - (i - 9) + 1;
                     stringHelper = list.ElementAt(0).ToString();
-                    dictionaryUserInput.Add(stringHelper, new List<Drink>());
+                    if (!dictionaryUserInput.Keys.Contains(stringHelper))
+                    {
+                        dictionaryUserInput.Add(stringHelper, new List<Drink>());
+                    }
                     stringHelper = string.Empty;
                     sPattern = "([^a-z]|^)([A-Z]|[a-z])*";
                     i = 10;
