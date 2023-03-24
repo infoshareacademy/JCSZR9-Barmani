@@ -1,17 +1,23 @@
 ﻿using DrinkItUp.BusinessLogic.Logic;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace DrinkItUp.ConsoleUI
+namespace DrinkItUp.ConsoleUI.Menu
 {
-    public static class DiffMenu
+    public static class AlkoholMenu
     {
 
-        public static void ShowDiffMenu(int selectedAlkohol)
+        public static void ShowAlkoholMenu()
         {
             bool isSelected = false;
             int option = 1;
             string color = "\u263A \u001b[32m";
             int selectedoption = 0;
-            Console.WriteLine(String.Format("{0," + Console.WindowWidth / 2 + "}", "Wybierz opcje z Menu"));
+            Console.WriteLine(string.Format("{0," + Console.WindowWidth / 2 + "}", "Wybierz opcje z Menu"));
             Console.WriteLine();
             Console.WriteLine();
             (int left, int top) = Console.GetCursorPosition();
@@ -20,17 +26,17 @@ namespace DrinkItUp.ConsoleUI
 
                 Console.SetCursorPosition(left, top);
                 MainMenu.CursorPosition();
-                Console.WriteLine($"{(option == 1 ? color : "   ")} Łatwy\u001b[0m");
+                Console.WriteLine($"{(option == 1 ? color : "")} Wódka\u001b[0m");
                 MainMenu.CursorPosition();
-                Console.WriteLine($"{(option == 2 ? color : "   ")} Średni\u001b[0m");
+                Console.WriteLine($"{(option == 2 ? color : "")} Whisky\u001b[0m");
                 MainMenu.CursorPosition();
-                Console.WriteLine($"{(option == 3 ? color : "   ")} Trudny\u001b[0m");
+                Console.WriteLine($"{(option == 3 ? color : "")} Rum\u001b[0m");
                 MainMenu.CursorPosition();
-                Console.WriteLine($"{(option == 4 ? color : "   ")} Wszystkie\u001b[0m");
+                Console.WriteLine($"{(option == 4 ? color : "")} Gin\u001b[0m");
                 MainMenu.CursorPosition();
-                Console.WriteLine($"{(option == 5 ? color : "   ")} Wstecz\u001b[0m");
+                Console.WriteLine($"{(option == 5 ? color : "")} Likier\u001b[0m");
                 MainMenu.CursorPosition();
-                Console.WriteLine($"{(option == 6 ? color : "   ")} Wróć do Menu Głównego\u001b[0m");
+                Console.WriteLine($"{(option == 6 ? color : "")} Powrót do Menu Głównego\u001b[0m");
 
 
 
@@ -38,11 +44,15 @@ namespace DrinkItUp.ConsoleUI
                 switch (key.Key)
                 {
                     case ConsoleKey.DownArrow:
-                        option = (option == 6 ? 1 : option + 1);
+
+                        option = option == 6 ? 1 : option + 1;
+
                         break;
 
                     case ConsoleKey.UpArrow:
-                        option = (option == 1 ? 6 : option - 1);
+
+                        option = option == 1 ? 6 : option - 1;
+
                         break;
 
                     case ConsoleKey.Enter:
@@ -54,18 +64,13 @@ namespace DrinkItUp.ConsoleUI
                     case ConsoleKey.Escape:
                         Environment.Exit(0);
                         break;
+
                 }
+
             }
-            if (selectedoption == 1 || selectedoption == 2 || selectedoption == 3)
+            if (selectedoption == 1 || selectedoption == 2 || selectedoption == 3 || selectedoption == 4 || selectedoption == 5)
             {
-                var drinks = DrinkLogic.GetDrinksByCategory(selectedAlkohol, selectedoption);
-                DrinkCard.ShowDrinks(drinks, 0);
-            }
-            else if (selectedoption == 4)
-            {
-                var drinks = DrinkLogic.GetAllDrinks();
-                drinks = DrinkLogic.GetByAlcohol(drinks, selectedAlkohol);
-                DrinkCard.ShowDrinks(drinks, 0);
+                DiffMenu.ShowDiffMenu(selectedoption);
             }
             else
             {

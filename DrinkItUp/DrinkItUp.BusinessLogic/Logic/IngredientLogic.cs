@@ -49,7 +49,7 @@ namespace DrinkItUp.BusinessLogic.Logic
                 if (i % 7 == 6)
                 stringUnits += "\n";
 
-                stringUnits += $"| {i}: {(Unit)i} |";
+                stringUnits += $"| \u001b[32m{i}\u001b[0m: {(Unit)i} |";
 
 
             }

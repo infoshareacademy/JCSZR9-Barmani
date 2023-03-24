@@ -1,8 +1,8 @@
-﻿using DrinkItUp.BusinessLogic;
-using DrinkItUp.BusinessLogic.Logic;
+﻿using DrinkItUp.BusinessLogic.Logic;
 using DrinkItUp.BusinessLogic.Model;
+using DrinkItUp.ConsoleUI.UserInterface;
 
-namespace DrinkItUp.ConsoleUI
+namespace DrinkItUp.ConsoleUI.Menu
 {
     public static class MainMenu
     {
@@ -26,14 +26,14 @@ namespace DrinkItUp.ConsoleUI
 
 
 
-            if ((CurrentYear - UserAgeToEnter) >= 18)
+            if (CurrentYear - UserAgeToEnter >= 18)
             {
                 Console.Clear();
                 Console.WriteLine();
-                Console.WriteLine(String.Format("{0," + Console.WindowWidth / 2 + "}", $"Cześć {UserName}!"));
+                Console.WriteLine(string.Format("{0," + Console.WindowWidth / 2 + "}", $"Cześć {UserName}!"));
                 Console.WriteLine();
                 Console.WriteLine("  _\r\n {_}\r\n |(|\r\n |=|\r\n/   \\\r\n|.--|\r\n||  |\r\n||  |    .    ' .\r\n|'--|  '     \\~~~/\r\n'-=-' \\~~~/   \\_/\r\n       \\_/     Y\r\n        Y     _|_\r\n       _|_");
-                Console.WriteLine(String.Format("{0," + Console.WindowWidth / 2 + "}", "Wybierz opcje z Menu"));
+                Console.WriteLine(string.Format("{0," + Console.WindowWidth / 2 + "}", "Wybierz opcje z Menu"));
                 Console.WriteLine();
                 Console.WriteLine();
                 (int left, int top) = Console.GetCursorPosition();
@@ -42,17 +42,17 @@ namespace DrinkItUp.ConsoleUI
                 {
 
                     Console.SetCursorPosition(left, top);
-                    MainMenu.CursorPosition();
+                    CursorPosition();
                     Console.WriteLine($"{(option == 1 ? color : "")} Przeglądaj drinki według alkoholu dominującego\u001b[0m");
-                    MainMenu.CursorPosition();
+                    CursorPosition();
                     Console.WriteLine($"{(option == 2 ? color : "")} Wyświetl wszystkie drinki\u001b[0m");
-                    MainMenu.CursorPosition();
+                    CursorPosition();
                     Console.WriteLine($"{(option == 3 ? color : "")} Wyszukaj po nazwie\u001b[0m");
-                    MainMenu.CursorPosition(); ;
+                    CursorPosition(); ;
                     Console.WriteLine($"{(option == 4 ? color : "")} Wyszukaj po składnikach\u001b[0m");
-                    MainMenu.CursorPosition();
+                    CursorPosition();
                     Console.WriteLine($"{(option == 5 ? color : "")} Dodaj swój drink\u001b[0m");
-                    MainMenu.CursorPosition();
+                    CursorPosition();
                     Console.WriteLine($"{(option == 6 ? color : "")} Zaskocz mnie\u001b[0m");
 
 
@@ -60,10 +60,10 @@ namespace DrinkItUp.ConsoleUI
                     switch (key.Key)
                     {
                         case ConsoleKey.DownArrow:
-                            option = (option == 6 ? 1 : option + 1);
+                            option = option == 6 ? 1 : option + 1;
                             break;
                         case ConsoleKey.UpArrow:
-                            option = (option == 1 ? 6 : option - 1);
+                            option = option == 1 ? 6 : option - 1;
                             break;
 
                         case ConsoleKey.Enter:
@@ -110,7 +110,7 @@ namespace DrinkItUp.ConsoleUI
                 {
                     Console.Clear();
                     Console.WriteLine("Funkcjonalnosc szuka po składnikach");
-                    SearchByIngredients.SearchByIngredientsUI();
+                    SearchByIngredientsUI.SearchByIngredients();
                 }
 
                 else if (selectedoption == 5)
@@ -131,7 +131,7 @@ namespace DrinkItUp.ConsoleUI
                     List<Drink> randomDrink = new();
                     randomDrink.Add(DrinkLogic.GetById(i));
                     DrinkCard.ShowDrinks(randomDrink, 0);
-                    
+
                 }
 
             }

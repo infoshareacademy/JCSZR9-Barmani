@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DrinkItUp.ConsoleUI
+namespace DrinkItUp.ConsoleUI.Menu
 {
     public class ShortMenu
     {
@@ -15,7 +15,7 @@ namespace DrinkItUp.ConsoleUI
 
 
 
-        
+
 
         public static List<Card> GetShortMenu()
         {
@@ -28,7 +28,7 @@ namespace DrinkItUp.ConsoleUI
             return cardsToMenu;
         }
 
-        
+
 
         /// <summary>
         /// Używamy zawsze najpierw ShowDrinks z DrinkCards.
@@ -60,11 +60,11 @@ namespace DrinkItUp.ConsoleUI
             switch (key.Key)
             {
                 case ConsoleKey.DownArrow:
-                    option = (option == 3 ? 1 : option + 1);
+                    option = option == 3 ? 1 : option + 1;
                     break;
 
                 case ConsoleKey.UpArrow:
-                    option = (option == 1 ? 3 : option - 1);
+                    option = option == 1 ? 3 : option - 1;
                     break;
 
                 case ConsoleKey.Enter:
@@ -92,7 +92,7 @@ namespace DrinkItUp.ConsoleUI
                     {
                         option = 1;
                         MainMenu.ShowMainMenu();
-                    
+
                     }
 
                     break;
@@ -123,7 +123,7 @@ namespace DrinkItUp.ConsoleUI
                     Environment.Exit(0);
                     break;
                 default:
-                    DrinkCard.ShowDrinks(drinks,0);
+                    DrinkCard.ShowDrinks(drinks, 0);
                     break;
 
             }

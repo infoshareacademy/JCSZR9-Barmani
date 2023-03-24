@@ -24,6 +24,15 @@ namespace DrinkItUp.BusinessLogic.Logic
             var difficulty = DataMenager.Difficulties.FirstOrDefault(a => a.Level.Contains(str));
             return difficulty;
         }
+        public static bool DifficultyTryParse(string str, out Difficulty difficulty)
+        {
+            difficulty = DataMenager.Difficulties.FirstOrDefault(a => a.Level.Contains(str));
+
+            if (difficulty == null)
+                return false;
+            else
+                return true;
+        }
 
     }
 }

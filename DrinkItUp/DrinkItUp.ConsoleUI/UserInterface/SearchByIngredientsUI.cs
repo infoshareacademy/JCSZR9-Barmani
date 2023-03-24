@@ -10,10 +10,10 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace DrinkItUp.BusinessLogic
+namespace DrinkItUp.ConsoleUI.UserInterface
 {
-    
-    public class SearchByIngredients
+
+    public class SearchByIngredientsUI
     {
         public static void ClearCurrentConsoleLine()
         {
@@ -21,17 +21,19 @@ namespace DrinkItUp.BusinessLogic
             Console.SetCursorPosition(0, Console.CursorTop);
             Console.Write(new string(' ', Console.WindowWidth));
             Console.SetCursorPosition(0, currentLineCursor);
-        } 
+        }
+
+
         /// <summary>
         /// Podajemy listę wszystkch drinków! Reszta dzieję się sama!
         /// </summary>
         /// <param name="drinkList"></param>
-        public static void SearchByIngredientsUI()
+        public static void SearchByIngredients()
         {
             Console.Clear();
             var drinkList = DrinkLogic.GetAllDrinks();
             var listAllIngredientsNames = IngredientLogic.GetAllIngredientsNames(drinkList);
-            var dictionaryUserInput= new Dictionary<string, List<Drink>>();
+            var dictionaryUserInput = new Dictionary<string, List<Drink>>();
 
             Console.SetCursorPosition((Console.WindowWidth - 100) / 2, Console.CursorTop);
             Console.WriteLine("Napisz co masz w domu! Cytryny? Gin? Tonik? Wpisz w konsole te składniki oddzielając przecinkiem.");
@@ -58,7 +60,7 @@ namespace DrinkItUp.BusinessLogic
                 if (key.Key == ConsoleKey.Enter)
                 {
                     var results = DrinkLogic.SearchByIngredientsLogic(dictionaryUserInput);
-                    if(results != null)
+                    if (results != null)
                     {
                         DrinkCard.ShowDrinks(results, 0);
                     }
@@ -74,9 +76,9 @@ namespace DrinkItUp.BusinessLogic
                 }
                 else if (key.Key == ConsoleKey.Tab)
                 {
-                    Console.SetCursorPosition(((Console.WindowWidth - 100) / 2) + counter - (i - 9), Console.CursorTop + 2);
+                    Console.SetCursorPosition((Console.WindowWidth - 100) / 2 + counter - (i - 9), Console.CursorTop + 2);
                     Console.Write(list.ElementAt(0) + ",");
-                    Console.SetCursorPosition(((Console.WindowWidth - 100) / 2) + counter, Console.CursorTop - 2);
+                    Console.SetCursorPosition((Console.WindowWidth - 100) / 2 + counter, Console.CursorTop - 2);
                     counter += list.ElementAt(0).Length - (i - 9) + 1;
                     stringHelper = list.ElementAt(0).ToString();
                     dictionaryUserInput.Add(stringHelper, new List<Drink>());
@@ -94,11 +96,11 @@ namespace DrinkItUp.BusinessLogic
                         var regex = new Regex(sPattern, RegexOptions.IgnoreCase);
                         list = listAllIngredientsNames.Where(s => regex.IsMatch(s)).Take(5).ToList();
                         // StartsWith() wykluczało np. curacao! REGEX THE BEST!
-                        Console.Write(String.Join(", ", list));
+                        Console.Write(string.Join(", ", list));
                         counter -= 2;
-                        Console.SetCursorPosition(((Console.WindowWidth - 100) / 2) + counter, Console.CursorTop + 2);
+                        Console.SetCursorPosition((Console.WindowWidth - 100) / 2 + counter, Console.CursorTop + 2);
                         Console.Write(" ");
-                        Console.SetCursorPosition(((Console.WindowWidth - 100) / 2) + counter, Console.CursorTop - 2);
+                        Console.SetCursorPosition((Console.WindowWidth - 100) / 2 + counter, Console.CursorTop - 2);
 
                     }
                     else
@@ -110,16 +112,16 @@ namespace DrinkItUp.BusinessLogic
                 }
                 else
                 {
-                    stringHelper = stringHelper.Insert(i-10, key.KeyChar.ToString());
+                    stringHelper = stringHelper.Insert(i - 10, key.KeyChar.ToString());
                     sPattern = sPattern.Insert(i, key.KeyChar.ToString());
                     var regex = new Regex(sPattern, RegexOptions.IgnoreCase);
                     list = listAllIngredientsNames.Where(s => regex.IsMatch(s)).Take(5).ToList();
                     // StartsWith() wykluczało np. curacao! REGEX THE BEST!
-                    Console.Write(String.Join(", ", list));
+                    Console.Write(string.Join(", ", list));
                     i++;
-                    
+
                 }
-                Console.SetCursorPosition(((Console.WindowWidth - 100) / 2) + counter, Console.CursorTop + 2);
+                Console.SetCursorPosition((Console.WindowWidth - 100) / 2 + counter, Console.CursorTop + 2);
                 counter++;
 
             }
@@ -127,7 +129,7 @@ namespace DrinkItUp.BusinessLogic
 
         }
 
-        
+
 
     }
 }
