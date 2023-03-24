@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DrinkItUp.ConsoleUI
+namespace DrinkItUp.ConsoleUI.UserInterface
 {
     public static class SearchByNameUI
     {

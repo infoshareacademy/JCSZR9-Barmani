@@ -1,5 +1,6 @@
 ﻿using DrinkItUp.BusinessLogic.Logic;
 using DrinkItUp.BusinessLogic.Model;
+using DrinkItUp.ConsoleUI.Menu;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 
-namespace DrinkItUp.ConsoleUI
+namespace DrinkItUp.ConsoleUI.UserInterface
 {
     public static class AddNewDrinkUI
     {
@@ -40,12 +41,12 @@ namespace DrinkItUp.ConsoleUI
             } while (true);
 
             do
-            { 
-            Console.WriteLine("Wpisz alkohol słownie zachowując wielkość liter.");
-            Console.WriteLine("Dostępne główne alkohole:");
-            Console.WriteLine(MainAlcoholConverter.MainAlcoholToString());
-            Console.Write("Podaj alkohol dominujący w drinku: ");
-            alcohol = Console.ReadLine();
+            {
+                Console.WriteLine("Wpisz alkohol słownie zachowując wielkość liter.");
+                Console.WriteLine("Dostępne główne alkohole:");
+                Console.WriteLine(MainAlcoholConverter.MainAlcoholToString());
+                Console.Write("Podaj alkohol dominujący w drinku: ");
+                alcohol = Console.ReadLine();
 
                 if (alcohol == "q")
                 {
@@ -120,9 +121,9 @@ namespace DrinkItUp.ConsoleUI
                 description
                 );
 
-            Console.ForegroundColor= ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Pomyślnie dodano drinka, Naciśnij dowolny klawisz aby wyjść do głównego menu.");
-            Console.ForegroundColor = ConsoleColor.Gray; 
+            Console.ForegroundColor = ConsoleColor.Gray;
 
             Console.ReadKey();
             MainMenu.ShowMainMenu();
