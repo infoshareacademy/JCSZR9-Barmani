@@ -67,6 +67,10 @@ namespace DrinkItUp.ConsoleUI.Menu
                 drinks = DrinkLogic.GetByAlcohol(drinks, selectedAlkohol);
                 DrinkCard.ShowDrinks(drinks, 0);
             }
+            else if (selectedoption == 5)
+            {
+                AlkoholMenu.ShowAlkoholMenu();
+            }
             else
             {
                 MainMenu.ShowMainMenu();
