@@ -35,35 +35,13 @@ h2 {
     margin-top: 0;
 }
 
-#tm-video {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    z-index: -1000;
-}
-
-.tm-video-wrapper {
-    position: relative;
-}
-
-#tm-video-control-button {
-    cursor: pointer;
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    z-index: 1000;
-    background-color: rgba(0,0,0,0.5);
-    color: white;
-    padding: 10px;
-}
-
 .tm-container {
     padding: 30px;
 }
 
 .tm-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .tm-left,
