@@ -8,7 +8,9 @@ body {
     font-family: 'Open Sans', Arial, Helvetica, sans-serif;
     font-size: 18px;
     overflow-x: hidden;
-    background-color: #1E5050;
+    background-color: #6c1048;
+    color: white;
+    ;
 }
 
 ul {
@@ -36,7 +38,7 @@ h2 {
 }
 
 .tm-container {
-    padding: 30px;
+    padding: 20px;
 }
 
 .tm-row {
@@ -44,7 +46,10 @@ h2 {
     justify-content: center;
 }
 
-.tm-left,
+.tm-left
+{
+    width: 50%
+}
 .tm-right {
     width: 50%;
 }
@@ -54,7 +59,7 @@ h2 {
 }
 
 .tm-site-header {
-    background-color: white;
+    background-color: yellow;
     color: #099;
     width: 100%;
     height: 160px;
@@ -64,7 +69,7 @@ h2 {
 }
 
 .tm-site-logo {
-    margin-right: 30px;
+    max-width: 300px;
 }
 
 .tm-site-name {
@@ -90,7 +95,7 @@ h2 {
 .tm-page-link {
     min-width: 240px;
     height: 100px;
-    background-color: white;
+    background-color: darkkhaki;
     color: #099;
     display: flex;
     text-decoration: none;
@@ -352,6 +357,7 @@ h2 {
 
     .tm-site-logo {
         margin-right: 20px;
+        max-width: 100px;
     }
 
     .tm-page-link {
@@ -436,6 +442,7 @@ h2 {
 
     .tm-site-logo {
         margin-right: 20px;
+        max-width: 100px;
     }
 
     .tm-list-item {
