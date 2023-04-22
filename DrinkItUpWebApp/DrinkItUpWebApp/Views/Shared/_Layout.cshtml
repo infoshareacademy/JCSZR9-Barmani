@@ -3,44 +3,93 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - DrinkItUpWebApp</title>
+    <title>@ViewData["Title"] - Drink It Up!</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/DrinkItUpWebApp.styles.css" asp-append-version="true" />
+    <script src="https://kit.fontawesome.com/a307082f4d.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet" /> <!-- https://fonts.google.com/ -->
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">DrinkItUpWebApp</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+    <div class="container-fluid main-bg justify-content-center ">
+        <div class="row">
+            <div class="col-lg-12 col-xl-4 my-2">
+                <header class="container-fluid">
+
+                    <div class="d-block">
+                        <div class="foto mx-auto">
+                            <img src="~/img/itLogo.png" class="img-fluid">
+                        </div>
+                    </div>
+
+                    <div class="nav d-grid gap-2">
+
+                        <div class="pinkborda dropdown">
+                            <a href="#drink" class="nav-button dropdown-toggle fw-bolder" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                                <i class="fa-solid fa-magnifying-glass nav-icon"></i>
+                                <span>Wyszukiwarka</span>
+                            </a>
+                            <div class="dropdown-menu pinkborda col-12 align-items-center drop">
+                                <form class="p-3">
+                                     <div class="p-1">
+                                        <input id="search" type="text" name="q" value="" placeholder="Wpisz co masz w lodówce!" class="form-control rounded-pill" maxlength="256">
+                                        <div id="" class=""></div>
+                                        <div class="search-clear"></div>
+                                     </div>
+                                </form>
+                                <button type="submit" title="Szukaj" class="btn btn-warning">
+                                    <span>Szukaj</span>
+                                </button>
+                            </div>
+                            
+                        </div>
+
+                        <div class="pinkborda">
+                            <a href="#drink" class="nav-button fw-bolder" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                                <i class="fa-solid fa-glass-martini nav-icon"></i>
+                                <span>Przeglądaj drinki</span>
+                            </a>
+                        </div>
+
+                        <div class="pinkborda">
+                            <a href="#drink" class="nav-button fw-bolder" >
+                                <i class="fa-solid fa-book-open nav-icon"></i>
+                                <span>Słowniczek</span>
+                            </a>
+                        </div>
+
+                        <div class="pinkborda">
+                            <a href="#drink" class="nav-button fw-bolder" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                                <i class="fa-solid fa-user nav-icon"></i>
+                                <span>Zaloguj się</span>
+                            </a>
+                        </div>
+
+                        <div class="pinkborda">
+                            <a class="nav-button fw-bolder" asp-controller="Home" asp-action="AboutUs">
+                                <i class="fa-solid fa-users nav-icon"></i>
+                                <span>Twórcy</span>
+                            </a>
+                        </div>
+                        
+                    </div>
+
+                </header>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+
+            <div class="col-lg-12 col-xl-8 my-2 pinkborda">
+                <main class="container">
+                   @RenderBody()
+                </main>
+            </div>
+            
+
+            <footer class="d-block col-12 pt-3 mt-4 pinkborda stopka">
+                <p class="ms-1"> © 2023 BARMANI INC!</p>
+            </footer>
+        </div>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - DrinkItUpWebApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

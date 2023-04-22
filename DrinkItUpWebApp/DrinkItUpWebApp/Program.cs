@@ -7,7 +7,8 @@ namespace DrinkItUpWebApp
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews()
+                .AddRazorRuntimeCompilation();
 
             var app = builder.Build();
 
@@ -28,7 +29,7 @@ namespace DrinkItUpWebApp
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Home}/{action=AboutUs}/{id?}");
 
             app.Run();
         }
