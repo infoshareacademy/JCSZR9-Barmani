@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - DrinkItUpWebApp</title>
+    <title>@ViewData["Title"] - Drink It Up!</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/DrinkItUpWebApp.styles.css" asp-append-version="true" />
@@ -14,10 +14,12 @@
     <div class="container-fluid main-bg justify-content-center ">
         <div class="row">
             <div class="col-lg-12 col-xl-4 my-2">
-                <header class="container">
+                <header class="container-fluid">
 
-                    <div class="d-flex justify-content-center">
-                        <img src="img/itLogo.png" class="img-fluid">
+                    <div class="d-block">
+                        <div class="foto mx-auto">
+                            <img src="~/img/itLogo.png" class="img-fluid">
+                        </div>
                     </div>
 
                     <div class="nav d-grid gap-2">
@@ -51,8 +53,8 @@
 
                         <div class="pinkborda">
                             <a href="#drink" class="nav-button fw-bolder" >
-                                <i class="fa-solid fa-glass-martini nav-icon"></i>
-                                <span>Przeglądaj drinki</span>
+                                <i class="fa-solid fa-book-open nav-icon"></i>
+                                <span>Słowniczek</span>
                             </a>
                         </div>
 
@@ -64,7 +66,7 @@
                         </div>
 
                         <div class="pinkborda">
-                            <a href="#drink" class="nav-button fw-bolder" >
+                            <a class="nav-button fw-bolder" asp-controller="Home" asp-action="AboutUs">
                                 <i class="fa-solid fa-users nav-icon"></i>
                                 <span>Twórcy</span>
                             </a>

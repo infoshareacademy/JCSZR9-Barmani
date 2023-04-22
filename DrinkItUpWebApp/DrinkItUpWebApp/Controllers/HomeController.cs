@@ -18,7 +18,7 @@ namespace DrinkItUpWebApp.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult AboutUs()
         {
             return View();
         }
