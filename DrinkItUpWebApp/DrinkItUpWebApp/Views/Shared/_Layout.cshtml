@@ -7,63 +7,87 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/DrinkItUpWebApp.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="fontawesome/css/all.min.css"> <!-- https://fontawesome.com/ -->
+    <script src="https://kit.fontawesome.com/a307082f4d.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet" /> <!-- https://fonts.google.com/ -->
 </head>
 <body>
-    <div class="tm-container">
-        <div class="tm-row">
-            <!-- Site Header -->
-            <div class="tm-left">
-                <div class="tm-left-inner">
-                    <div class="tm-site-logo mx-auto">
-                        <img src="~/img/itLogo.png" class="tm-site-logo">
+    <div class="container-fluid main-bg justify-content-center ">
+        <div class="row">
+            <div class="col-lg-12 col-xl-4 my-2">
+                <header class="container">
+
+                    <div class="d-flex justify-content-center">
+                        <img src="img/itLogo.png" class="img-fluid">
                     </div>
-                    <nav class="tm-site-nav">
-                        <ul class="tm-site-nav-ul">
-                            <li class="tm-page-nav-item">
-                                <a href="#drink" class="tm-page-link active">
-                                    <i class="fas fa-mug-hot tm-page-link-icon"></i>
-                                    <span>Drink Menu</span>
-                                </a>
-                            </li>
-                            <li class="tm-page-nav-item">
-                                <a href="#about" class="tm-page-link">
-                                    <i class="fas fa-users tm-page-link-icon"></i>
-                                    <span>About Us</span>
-                                </a>
-                            </li>
-                            <li class="tm-page-nav-item">
-                                <a href="#special" class="tm-page-link">
-                                    <i class="fas fa-glass-martini tm-page-link-icon"></i>
-                                    <span>Special Items</span>
-                                </a>
-                            </li>
-                            <li class="tm-page-nav-item">
-                                <a href="#contact" class="tm-page-link">
-                                    <i class="fas fa-comments tm-page-link-icon"></i>
-                                    <span>Contact</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+
+                    <div class="nav d-grid gap-2">
+
+                        <div class="pinkborda dropdown">
+                            <a href="#drink" class="nav-button dropdown-toggle fw-bolder" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                                <i class="fa-solid fa-magnifying-glass nav-icon"></i>
+                                <span>Wyszukiwarka</span>
+                            </a>
+                            <div class="dropdown-menu pinkborda col-12 align-items-center drop">
+                                <form class="p-3">
+                                     <div class="p-1">
+                                        <input id="search" type="text" name="q" value="" placeholder="Wpisz co masz w lodówce!" class="form-control rounded-pill" maxlength="256">
+                                        <div id="" class=""></div>
+                                        <div class="search-clear"></div>
+                                     </div>
+                                </form>
+                                <button type="submit" title="Szukaj" class="btn btn-warning">
+                                    <span>Szukaj</span>
+                                </button>
+                            </div>
+                            
+                        </div>
+
+                        <div class="pinkborda">
+                            <a href="#drink" class="nav-button fw-bolder" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                                <i class="fa-solid fa-glass-martini nav-icon"></i>
+                                <span>Przeglądaj drinki</span>
+                            </a>
+                        </div>
+
+                        <div class="pinkborda">
+                            <a href="#drink" class="nav-button fw-bolder" >
+                                <i class="fa-solid fa-glass-martini nav-icon"></i>
+                                <span>Przeglądaj drinki</span>
+                            </a>
+                        </div>
+
+                        <div class="pinkborda">
+                            <a href="#drink" class="nav-button fw-bolder" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                                <i class="fa-solid fa-user nav-icon"></i>
+                                <span>Zaloguj się</span>
+                            </a>
+                        </div>
+
+                        <div class="pinkborda">
+                            <a href="#drink" class="nav-button fw-bolder" >
+                                <i class="fa-solid fa-users nav-icon"></i>
+                                <span>Twórcy</span>
+                            </a>
+                        </div>
+                        
+                    </div>
+
+                </header>
             </div>
-            <div class="tm-right">
-                <main class="tm-main" role="main" class="pb-3">                   
-                        @RenderBody()
+
+            <div class="col-lg-12 col-xl-8 my-2 pinkborda">
+                <main class="container">
+                   @RenderBody()
                 </main>
             </div>
-        </div>
-        <footer class="tm-site-footer">
-            <p class="tm-black-bg tm-footer-text">
-                Copyright 2023 Drink It Up!
+            
 
-                | Design: <a href="https://www.tooplate.com" class="tm-footer-link" rel="sponsored" target="_parent">Tooplate</a>
-            </p>
-        </footer>
+            <footer class="d-block col-12 pt-3 mt-4 pinkborda stopka">
+                <p class="ms-1"> © 2023 BARMANI INC!</p>
+            </footer>
+        </div>
     </div>
-    
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
