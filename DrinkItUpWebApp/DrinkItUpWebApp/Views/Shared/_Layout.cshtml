@@ -26,24 +26,10 @@
 
                     <div class="nav d-grid gap-2">
 
-                        <div class="pinkborda dropdown">
-                            <a href="#drink" class="nav-button dropdown-toggle fw-bolder" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-                                <i class="fa-solid fa-magnifying-glass nav-icon"></i>
-                                <span>Wyszukiwarka</span>
-                            </a>
-                            <div class="dropdown-menu pinkborda col-12 align-items-center drop">
-                                <form class="p-3">
-                                     <div class="p-1">
-                                        <input id="search" type="text" name="q" value="" placeholder="Wpisz co masz w lodówce!" class="form-control rounded-pill" maxlength="256">
-                                        <div id="" class=""></div>
-                                        <div class="search-clear"></div>
-                                     </div>
-                                </form>
-                                <button type="submit" title="Szukaj" class="btn btn-warning">
-                                    <span>Szukaj</span>
-                                </button>
-                            </div>
-                            
+                      
+                        <div class="input-group pinkborda">
+                            <input type="text" class="form-control" placeholder="Wpisz nazwę lub składnik drinka którego szukasz">
+                            <button class="btn btn-outline-secondary search-button" type="button" id="button-addon2">Szukaj</button>
                         </div>
 
                         <div class="pinkborda">
@@ -54,7 +40,7 @@
                         </div>
 
                         <div class="pinkborda">
-                            <a href="#drink" class="nav-button fw-bolder" >
+                            <a href="#drink" class="nav-button fw-bolder" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
                                 <i class="fa-solid fa-blender nav-icon"></i>
                                 <span>Co masz w barku?</span>
                             </a>
