@@ -6,11 +6,11 @@ using System.Text;
 
 namespace DrinkItUpWebApp.Controllers
 {
-    public class LoginController : Controller
+    public class UserController : Controller
     {
         
         // GET: Home
-        public ActionResult Index()
+        public IActionResult Index()
         {
             if ("id" != null)
             {
@@ -24,7 +24,7 @@ namespace DrinkItUpWebApp.Controllers
 
         //GET: Register
 
-        public ActionResult Register(Login id)
+        public ActionResult Register(User id)
         {
             return View();
         }

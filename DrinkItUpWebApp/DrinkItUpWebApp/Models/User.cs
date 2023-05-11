@@ -1,17 +1,17 @@
 ﻿namespace DrinkItUpWebApp.Models
 {
-    public class Login
+    public class User
     {
 
         public int Id { get; set; }
 
-        public string EMail { get; set; }
+        public string Email { get; set; }
 
         public string Password { get; set; }
 
         
 
-        public List<Login> login = new List<Login>();
+        public List<User> login = new List<User>();
 
     }
 }
