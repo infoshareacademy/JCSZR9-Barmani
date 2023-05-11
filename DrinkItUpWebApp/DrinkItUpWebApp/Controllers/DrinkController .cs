@@ -9,7 +9,7 @@ namespace DrinkItUpWebApp.Controllers
             return View();
         }
 
-        public IActionResult DrinkShow()
+        public IActionResult DrinkBrowse()
         {
             return View();
         }
