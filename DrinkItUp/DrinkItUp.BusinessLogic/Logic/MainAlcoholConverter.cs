@@ -35,5 +35,17 @@ namespace DrinkItUp.BusinessLogic.Logic
             else
                 return true;
         }
+
+        public static List<string> MainAlcoholNamesToString()
+        {
+            var list = DataMenager.MainAlcohols;
+            var result = new List<string>();
+            foreach (var alcohol in list)
+            {
+                result.Add(alcohol.Alcohol);
+            }
+
+            return result;
+        }
     }
 }

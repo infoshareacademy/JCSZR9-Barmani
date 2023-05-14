@@ -104,33 +104,10 @@ namespace DrinkItUp.BusinessLogic.Logic
                 .Select(d => DrinkLogic.GetById(d.Key))
                 .ToList();
 
-            //for (int counter = dictionary.Count(); counter > 0; counter--)
-            //{
-            //    foreach (var key1 in dictionary.Keys)
-            //    {
-            //        foreach (var drink in dictionary[key1])
-            //        {
-            //            int i = 1;
-            //            foreach (var key2 in dictionary.Keys)
-            //            {
-            //                if (key2 != key1)
-            //                {
-            //                    if (dictionary[key2].Contains(drink))
-            //                        i++;
-            //                }
-            //            }
-
-            //            if(i == counter)
-            //            {
-            //                if(!results.Contains(drink))
-            //                    results.Add(drink);
-            //            }
-            //        }
-            //    }
-            //}
-
             return results;
         }
+
+
     }
 
 }

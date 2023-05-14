@@ -34,5 +34,17 @@ namespace DrinkItUp.BusinessLogic.Logic
                 return true;
         }
 
+        public static List<string> DifficultiesNamesToString()
+        {
+            var list = DataMenager.Difficulties;
+            var result = new List<string>();
+            foreach (var difficulty in list)
+            {
+                result.Add(difficulty.Level);
+            }
+
+            return result;
+        }
+
     }
 }
