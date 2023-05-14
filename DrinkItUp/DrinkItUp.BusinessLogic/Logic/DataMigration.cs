@@ -107,18 +107,19 @@ namespace DrinkItUp.BusinessLogic.Logic
 
         private void IngredientsToSQL()
         {
-            int ingredientCounter = 0;
+            
             var listDrinks = DataMenager.Drinks;
             foreach (var drink in listDrinks)
             {
                 foreach (var ingredient in drink.Ingredients)
                 {
-                    if (drinkContext.Ingredients.FirstOrDefault(i => i.Name == ingredient.NameSingular && i.UnitId == (int)ingredient.Unit) == null)
-                    {
-                        var ingredientToSQL = new Ingredient { Name = ingredient.NameSingular, UnitId = (int)ingredient.Unit + 1 };
-                        drinkContext.Ingredients.Add(ingredientToSQL);
-                        drinkContext.SaveChanges();
-                    }
+                    var ingredientSQL = drinkContext.Ingredients.FirstOrDefault(i => i.Name == ingredient.NameSingular && i.UnitId == (int)ingredient.Unit + 1);
+                    if (ingredientSQL != null && ingredientSQL.Name == ingredient.NameSingular && ingredientSQL.UnitId == (int)ingredient.Unit + 1)
+                        continue;
+
+                    var ingredientToSQL = new Ingredient { Name = ingredient.NameSingular, UnitId = (int)ingredient.Unit + 1 };
+                    drinkContext.Ingredients.Add(ingredientToSQL);
+                    drinkContext.SaveChanges();
 
                 }
             }
