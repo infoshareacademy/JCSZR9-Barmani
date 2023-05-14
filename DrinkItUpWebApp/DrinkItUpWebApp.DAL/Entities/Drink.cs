@@ -13,12 +13,14 @@ namespace DrinkItUpWebApp.DAL.Entities
         public string Name { get; set; }
 
         public int MainAlcoholId { get; set; }
+
         public MainAlcohol MainAlcohol { get; set; }
+
         public int DifficultyId { get; set; }
+
         public Difficulty Difficulty { get; set; }
 
         public string Description { get; set; }
-
 
     }
 }

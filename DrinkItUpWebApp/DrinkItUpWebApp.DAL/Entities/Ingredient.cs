@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DrinkItUpWebApp.DAL.Entities
 {
-    public class MainAlcohol
+    public class Ingredient
     {
-        public int MainAlcoholId { get; set; }
-
+        
+        public int IngredientId { get; set; }
+       
         public string Name { get; set; }
+
+        public int UnitId { get; set; }
+
+        public Unit Unit { get; set; }
 
     }
 }

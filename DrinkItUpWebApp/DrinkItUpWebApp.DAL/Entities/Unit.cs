@@ -10,6 +10,6 @@ namespace DrinkItUpWebApp.DAL.Entities
     {
         public int UnitId { get; set; }
 
-        public string UnitName { get; set; }
+        public string Name { get; set; }
     }
 }
