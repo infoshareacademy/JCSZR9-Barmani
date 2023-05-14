@@ -1,3 +1,6 @@
+using DrinkItUpWebApp.DAL.Entities;
+using Microsoft.EntityFrameworkCore;
+
 namespace DrinkItUpWebApp
 {
     public class Program
@@ -9,6 +12,8 @@ namespace DrinkItUpWebApp
             // Add services to the container.
             builder.Services.AddControllersWithViews()
                 .AddRazorRuntimeCompilation();
+
+            builder.Services.AddDbContext<DrinkContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("")));
 
             var app = builder.Build();
 

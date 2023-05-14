@@ -12,5 +12,6 @@
   </ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\DrinkItUpBusinessLogic\DrinkItUpBusinessLogic.csproj" />
+		<ProjectReference Include="..\DrinkItUpWebApp.DAL\DrinkItUpWebApp.DAL.csproj" />
 	</ItemGroup>
 </Project>
