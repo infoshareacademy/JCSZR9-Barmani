@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace DrinkItUpWebApp.DAL.Entities
 {
-    internal class Difficulty
+    public class Difficulty
     {
+
+            public int DifficultyId { get; set; }
+
+            public string Name { get; set; }
+
     }
 }
