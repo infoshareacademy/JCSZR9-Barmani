@@ -132,13 +132,13 @@
         "Quantity": 50,
         "Unit": 0,
         "NameOfIngredient": "soku z cytryny",
-        "NameSingular": "Cytryna"
+        "NameSingular": "Sok z cytryny"
       },
       {
         "Quantity": 25,
         "Unit": 0,
         "NameOfIngredient": "likieru Blue Curacao",
-        "NameSingular": "Blue Curacao"
+        "NameSingular": "Likier Blue Curacao"
       },
       {
         "Quantity": 0,
@@ -171,7 +171,7 @@
         "Quantity": 20,
         "Unit": 0,
         "NameOfIngredient": "soku z cytryny",
-        "NameSingular": "Cytryna"
+        "NameSingular": "Sok z cytryny"
       },
       {
         "Quantity": 20,
@@ -216,7 +216,7 @@
         "Quantity": 20,
         "Unit": 0,
         "NameOfIngredient": "soku z cytryny",
-        "NameSingular": "Cytryna"
+        "NameSingular": "Sok z cytryny"
       },
       {
         "Quantity": 100,
@@ -336,7 +336,7 @@
         "Quantity": 0,
         "Unit": 16,
         "NameOfIngredient": "gałki muszkatołowej",
-        "NameSingular": "Syrop cukrowy"
+        "NameSingular": "Gałka muszkatołowa"
       },
       {
         "Quantity": 0,
@@ -408,7 +408,7 @@
         "Quantity": 30,
         "Unit": 0,
         "NameOfIngredient": "soku z cytryny",
-        "NameSingular": "Cytryna"
+        "NameSingular": "Sok z cytryny"
       },
       {
         "Quantity": 15,
@@ -504,7 +504,7 @@
         "Quantity": 40,
         "Unit": 0,
         "NameOfIngredient": "Białego rumu",
-        "NameSingular": "Rum"
+        "NameSingular": "Biały Rum"
       },
       {
         "Quantity": 20,
@@ -606,7 +606,7 @@
         "Quantity": 30,
         "Unit": 0,
         "NameOfIngredient": "likieru cointreau",
-        "NameSingular": "Cointreau"
+        "NameSingular": "Likier Cointreau"
       },
       {
         "Quantity": 30,
@@ -618,13 +618,13 @@
         "Quantity": 15,
         "Unit": 0,
         "NameOfIngredient": "soku z limonki",
-        "NameSingular": "Limonka"
+        "NameSingular": "Sok z limonki"
       },
       {
         "Quantity": 15,
         "Unit": 0,
         "NameOfIngredient": "soku z cytryny",
-        "NameSingular": "Cytryna"
+        "NameSingular": "Sok z cytryny"
       },
       {
         "Quantity": 15,
@@ -651,7 +651,7 @@
         "Quantity": 40,
         "Unit": 0,
         "NameOfIngredient": "likieru maraschino",
-        "NameSingular": "Maraschino"
+        "NameSingular": "Likier Maraschino"
       },
       {
         "Quantity": 40,
@@ -663,7 +663,7 @@
         "Quantity": 40,
         "Unit": 0,
         "NameOfIngredient": "soku z limonki",
-        "NameSingular": "Limonka"
+        "NameSingular": "Sok z limonki"
       },
       {
         "Quantity": 120,
@@ -696,7 +696,7 @@
         "Quantity": 10,
         "Unit": 0,
         "NameOfIngredient": "likieru amaretto",
-        "NameSingular": "Amaretto"
+        "NameSingular": "Likier Amaretto"
       },
       {
         "Quantity": 20,
@@ -708,13 +708,13 @@
         "Quantity": 50,
         "Unit": 0,
         "NameOfIngredient": "białego rumu",
-        "NameSingular": "Rum"
+        "NameSingular": "Biały Rum"
       },
       {
         "Quantity": 10,
         "Unit": 0,
         "NameOfIngredient": "śmietanki 30%",
-        "NameSingular": "Śmietanka"
+        "NameSingular": "Śmietanka 30%"
       },
       {
         "Quantity": 10,
