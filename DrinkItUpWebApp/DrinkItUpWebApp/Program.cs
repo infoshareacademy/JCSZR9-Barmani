@@ -13,7 +13,7 @@ namespace DrinkItUpWebApp
             builder.Services.AddControllersWithViews()
                 .AddRazorRuntimeCompilation();
 
-            builder.Services.AddDbContext<DrinkContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("")));
+            builder.Services.AddDbContext<DrinkContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DrinkContextCS")));
 
             var app = builder.Build();
 
