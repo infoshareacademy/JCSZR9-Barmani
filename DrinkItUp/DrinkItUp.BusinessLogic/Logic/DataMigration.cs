@@ -47,11 +47,12 @@ namespace DrinkItUp.BusinessLogic.Logic
         }
         public void DIUToSQL()
         {
-            //UnitsToSQL();
-            //AlcoholsToSQL();
-            //DifficultiesToSQL();
-            //DrinksToSQL();
+            UnitsToSQL();
+            AlcoholsToSQL();
+            DifficultiesToSQL();
+            DrinksToSQL();
             IngredientsToSQL();
+            DrinkIngredientsToSQL();
         }
         private void UnitsToSQL()
         {
@@ -108,18 +109,33 @@ namespace DrinkItUp.BusinessLogic.Logic
         {
             int ingredientCounter = 0;
             var listDrinks = DataMenager.Drinks;
-            foreach(var drink in listDrinks)
+            foreach (var drink in listDrinks)
             {
                 foreach (var ingredient in drink.Ingredients)
                 {
                     if (drinkContext.Ingredients.FirstOrDefault(i => i.Name == ingredient.NameSingular && i.UnitId == (int)ingredient.Unit) == null)
-                    { 
-                        var ingredientToSQL = new Ingredient { Name = ingredient.NameSingular, UnitId = (int)ingredient.Unit };
+                    {
+                        var ingredientToSQL = new Ingredient { Name = ingredient.NameSingular, UnitId = (int)ingredient.Unit + 1 };
                         drinkContext.Ingredients.Add(ingredientToSQL);
-                        ingredientCounter++;
+
                     }
 
-                    var drinkIngredient = new DrinkIngredient { DrinkId = drink.Id, Quantity = ingredient.Quantity, IngredientId = ingredientCounter };
+                }
+            }
+
+            drinkContext.SaveChanges();
+        }
+        private void DrinkIngredientsToSQL()
+        { 
+            var listDrinks = DataMenager.Drinks;
+            foreach (var drink in listDrinks)
+            {
+                foreach (var ingredient in drink.Ingredients)
+                {
+                    var ingredientId = drinkContext.Ingredients.FirstOrDefault(i => i.Name == ingredient.NameSingular && i.UnitId == (int)ingredient.Unit + 1).IngredientId;
+
+                    var drinkIngredient = new DrinkIngredient { DrinkId = drink.Id, Quantity = ingredient.Quantity, IngredientId = ingredientId };
+                    Console.WriteLine($"{drinkIngredient.DrinkId} + {drinkIngredient.IngredientId}");
                     drinkContext.DrinkIngredients.Add(drinkIngredient);
                 }
             }

@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 
 namespace DrinkItUp.BusinessLogic.Entities
 {
-
+    [PrimaryKey("DrinkId", "IngredientId")]
     public class DrinkIngredient
     {
         public decimal Quantity { get; set; }
-        [Key]
+        
         public int DrinkId { get; set; }
 
         public Drink Drink { get; set; }
-        [Key]
+        
         public int IngredientId { get; set; }
 
         public Ingredient Ingredient { get; set; }
