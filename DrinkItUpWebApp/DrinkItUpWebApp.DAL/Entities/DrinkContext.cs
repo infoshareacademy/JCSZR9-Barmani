@@ -13,6 +13,8 @@ namespace DrinkItUpWebApp.DAL.Entities
         public DrinkContext(DbContextOptions<DrinkContext> options) : base(options)
         {
 
+
+
         }
 
         public DbSet<Drink> Drinks { get;set; }
