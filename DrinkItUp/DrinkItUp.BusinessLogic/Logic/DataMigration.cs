@@ -117,13 +117,13 @@ namespace DrinkItUp.BusinessLogic.Logic
                     {
                         var ingredientToSQL = new Ingredient { Name = ingredient.NameSingular, UnitId = (int)ingredient.Unit + 1 };
                         drinkContext.Ingredients.Add(ingredientToSQL);
-
+                        drinkContext.SaveChanges();
                     }
 
                 }
             }
 
-            drinkContext.SaveChanges();
+            
         }
         private void DrinkIngredientsToSQL()
         { 
