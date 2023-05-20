@@ -2,13 +2,14 @@
 using DrinkItUpWebApp.DAL.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DrinkItUpWebApp.DAL.Repositories
 {
-    public class IngredientRepository : CRDRepository<Ingredient>, IIngredientUpdateRepository
+    public class IngredientRepository : CRDRepository<Ingredient>, IIngredientUpdateRepository, ISearchByNameQueryable<Ingredient>
     {
         private DrinkContext _context;
 
@@ -16,6 +17,17 @@ namespace DrinkItUpWebApp.DAL.Repositories
         {
             _context= drinkContext;
         }
+
+        public IQueryable<Ingredient> SearchByNameQueryable(string name)
+        {
+            var ingredients = _context.Ingredients
+                .Include(i => i.Unit)
+                .Where(i => i.Name == name)
+                .AsQueryable();
+
+            return ingredients;
+        }
+
         public Ingredient? Update(Ingredient ingredient)
         {
             var updatedIngredient = GetById(ingredient.IngredientId);

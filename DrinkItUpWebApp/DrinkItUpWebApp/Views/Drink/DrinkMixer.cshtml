@@ -3,8 +3,40 @@
 *@
 @{
 }
+<script>
+	$(document).ready(function () {
+		$("#searchByIngredients").keyup(function () {
+			$.ajax({
+				type: "POST",
+				url: '@Url.Action("AutoComplete", "Drink")',
+				data: { Prefix: $(this).val() },
+				dataType: "json",
+				success: function (data) {
+					$("#autoCompleteAnswers").html('');
+					$("#autoCompleteAnswers").show();
+					$(data).toArray().forEach((element) => {
+						var inner_html = '<div class="btn btn-warning mx-2 my-2">+' + element + '</div>';
+						$("#autoCompleteAnswers").append(inner_html);
+
+					});
+					
+				}
+			});
+		});
+	});
+</script>
+<div class="input-group pinkborda">
+    <input id="searchByIngredients" type="text" class="form-control" placeholder="Wpisz nazwę lub składnik drinka którego szukasz">
+    <button class="btn btn-outline-secondary search-button" type="button" id="button-addon2">Szukaj</button>
+</div>
+<div id="autoCompleteAnswers">
+ 
+
+</div>
+
 <div class="container justify-content-center">
 <h1 class="lead">Tu będzie Uber wyszukiwarka po składnikach w lodówce!</h1>
 <img src="~/img/fridge.png" class="foto" />
 <h2 class="lead">Stay tuned!</h2>
 </div>
+
