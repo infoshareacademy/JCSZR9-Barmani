@@ -5,11 +5,11 @@ namespace DrinkItUpWebApp.Controllers
 {
     public class DrinkController : Controller
     {
-        private IRepositoryDataIngredient _dataIngredient;
+        
 
-        public DrinkController(IRepositoryDataIngredient dataIngredient)
+        public DrinkController()
         {
-            _dataIngredient = dataIngredient;
+            
         }
 
         public IActionResult DrinkSearch()
