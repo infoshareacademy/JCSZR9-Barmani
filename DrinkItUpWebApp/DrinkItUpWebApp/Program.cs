@@ -1,3 +1,4 @@
+using DrinkItUpBusinessLogic;
 using DrinkItUpWebApp.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +15,7 @@ namespace DrinkItUpWebApp
                 .AddRazorRuntimeCompilation();
 
             builder.Services.AddDbContext<DrinkContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DrinkContextCS")));
+            builder.Services.AddScoped<IRepositoryDataIngredient, IngredientData>();
 
             var app = builder.Build();
 
