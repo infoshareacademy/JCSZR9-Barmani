@@ -3,8 +3,50 @@
 *@
 @{
 }
-<div class="container justify-content-center">
-<h1 class="lead">Tu będzie Uber wyszukiwarka po składnikach w lodówce!</h1>
-<img src="~/img/fridge.png" class="foto" />
-<h2 class="lead">Stay tuned!</h2>
+<script>
+	$(document).ready(function () {
+		$("#searchByIngredients").keyup(function () {
+			$.ajax({
+				type: "POST",
+				url: '@Url.Action("AutoComplete", "Drink")',
+				data: { Prefix: $(this).val() },
+				dataType: "json",
+				success: function (data) {
+					$("#autoCompleteAnswers").html('');
+					$("#autoCompleteAnswers").show();
+					$(data).toArray().forEach((element) => {
+						var inner_html = '<div class="btn btn-warning mx-2 my-2">+' + element + '</div>';
+						$("#autoCompleteAnswers").append(inner_html);
+
+					});
+					
+				}
+			});
+		});
+	});
+</script>
+<div class="row">
+	<div class="col-lg-6 pinkborda">
+		<div class="input-group pinkborda">
+			<input id="searchByIngredients" type="text" class="form-control" placeholder="Wpisuj składniki i dodawaj podpowiedzi!">
+		</div>
+		<div id="autoCompleteAnswers">
+ 
+
+		</div>
+		<div class="form-group">
+			<label for="exampleFormControlSelect2">Albo wybierz je z listy!</label>
+			<select multiple class="form-control" id="listIngredientsName">
+				<option>Cytryna <div class="btn btn-warning">+ Dodaj</div></option>
+				<option>Sok z cytryny <div class="btn btn-warning">+ Dodaj</div></option>
+			</select>
+		</div>
+	</div>
+	<div class="col-lg-6 pinkborda">
+		<div class="container justify-content-center">
+			<h1 class="lead">Tu będzie Uber wyszukiwarka po składnikach w lodówce!</h1>
+			<img src="~/img/fridge.png" class="foto" />
+			<h2 class="lead">Stay tuned!</h2>
+		</div>
+	</div>
 </div>

@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace DrinkItUpWebApp.DAL.Entities
 {
     public class Difficulty
     {
 
-            public int DifficultyId { get; set; }
-
-            public string Name { get; set; }
+        public int DifficultyId { get; set; }
+        [StringLength(7)]
+        public string Name { get; set; } = null!;
 
     }
 }
