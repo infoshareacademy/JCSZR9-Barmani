@@ -1,5 +1,6 @@
 ﻿using DrinkItUpWebApp.DAL.Entities;
 using DrinkItUpWebApp.DAL.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DrinkItUpWebApp.DAL.Repositories
 {
-    public class CRDRepository<T> : ICRDRepository<T> where T : class
+    public abstract class CRDRepository<T> : ICRDRepository<T> where T : class
     {
         private DrinkContext _context;
 
@@ -17,17 +18,17 @@ namespace DrinkItUpWebApp.DAL.Repositories
             _context = context;
         }
 
-        public T Add(T entity)
+        public async Task<T> Add(T entity)
         {
-            _context.Set<T>().Add(entity);
-            Save();
+            await _context.Set<T>().AddAsync(entity);
+            await Save();
             return entity;
         }
 
-        public T Delete(T entity)
+        public async Task<T> Delete(T entity)
         {
             _context.Set<T>().Remove(entity);
-            Save();
+            await Save();
             return entity;
         }
 
@@ -36,15 +37,15 @@ namespace DrinkItUpWebApp.DAL.Repositories
             return _context.Set<T>().AsQueryable();
         }
 
-        public T? GetById(int id)
+        public async Task<T?> GetById(int id)
         {
-            var entity = _context.Set<T>().Find(id);
+            var entity = await _context.Set<T>().FindAsync(id);
             return entity;
         }
 
-        public void Save()
+        public async Task Save()
         {
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

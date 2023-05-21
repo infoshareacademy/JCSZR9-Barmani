@@ -11,13 +11,13 @@ namespace DrinkItUpWebApp.DAL.Repositories.Interfaces
     {
         IQueryable<T> GetAll();
 
-        T? GetById(int id);
+        Task<T?> GetById(int id);
 
-        T Add(T entity);
+        Task<T> Add(T entity);
 
-        T Delete(T entity);
+        Task<T> Delete(T entity);
 
-        void Save();
+        Task Save();
 
 
     }

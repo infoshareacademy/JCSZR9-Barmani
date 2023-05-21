@@ -28,14 +28,14 @@ namespace DrinkItUpWebApp.DAL.Repositories
             return ingredients;
         }
 
-        public Ingredient? Update(Ingredient ingredient)
+        public async Task<Ingredient?> Update(Ingredient ingredient)
         {
-            var updatedIngredient = GetById(ingredient.IngredientId);
+            var updatedIngredient = await GetById(ingredient.IngredientId);
             if(updatedIngredient != null)
             {
                 updatedIngredient.Name= ingredient.Name;
                 updatedIngredient.UnitId= ingredient.UnitId;
-                Save();
+                await Save();
             }
             return updatedIngredient;
         }

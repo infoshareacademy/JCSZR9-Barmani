@@ -9,6 +9,6 @@ namespace DrinkItUpWebApp.DAL.Repositories.Interfaces
 {
     public interface IIngredientUpdateRepository
     {
-        Ingredient? Update(Ingredient ingredient);
+        Task<Ingredient?> Update(Ingredient ingredient);
     }
 }
