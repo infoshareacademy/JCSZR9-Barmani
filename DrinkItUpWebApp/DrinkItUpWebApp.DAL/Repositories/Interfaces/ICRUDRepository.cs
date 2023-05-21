@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Diagnostics;
+﻿using DrinkItUpWebApp.DAL.Entities;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,18 +8,19 @@ using System.Threading.Tasks;
 
 namespace DrinkItUpWebApp.DAL.Repositories.Interfaces
 {
-    public interface ICRDRepository<T> where T : class
+    public interface ICRUDRepository<T> where T : class
     {
         IQueryable<T> GetAll();
 
-        Task<T?> GetById(int id);
+		T Update(T entity);
+
+		Task<T?> GetById(int id);
 
         Task<T> Add(T entity);
 
-        Task<T> Delete(T entity);
+        T Delete(T entity);
 
         Task Save();
-
 
     }
 }

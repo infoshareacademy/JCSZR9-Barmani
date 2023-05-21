@@ -1,4 +1,5 @@
 ﻿using DrinkItUpWebApp.DAL.Repositories;
+using DrinkItUpWebApp.DAL.Repositories.Interfaces;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
@@ -6,9 +7,9 @@ namespace DrinkItUpBusinessLogic
 {
     public class SearchByIngredients
     {
-        private IngredientRepository _ingredientRepository;
+        private IIngredientRepository _ingredientRepository;
 
-        public SearchByIngredients(IngredientRepository ingredientRepository)
+        public SearchByIngredients(IIngredientRepository ingredientRepository)
         {
             _ingredientRepository = ingredientRepository;
         }
