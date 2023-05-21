@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace DrinkItUpWebApp.DAL.Repositories
 {
-    public abstract class CRDRepository<T> : ICRDRepository<T> where T : class
+    public abstract class CRUDRepository<T> : ICRUDRepository<T> where T : class
     {
         private DrinkContext _context;
 
-        public CRDRepository(DrinkContext context)
+        public CRUDRepository(DrinkContext context)
         {
             _context = context;
         }
@@ -25,10 +25,9 @@ namespace DrinkItUpWebApp.DAL.Repositories
             return entity;
         }
 
-        public async Task<T> Delete(T entity)
+        public T Delete(T entity)
         {
             _context.Set<T>().Remove(entity);
-            await Save();
             return entity;
         }
 
@@ -47,5 +46,12 @@ namespace DrinkItUpWebApp.DAL.Repositories
         {
             await _context.SaveChangesAsync();
         }
-    }
+
+		public T Update(T entity)
+		{
+			_context.Set<T>().Update(entity);
+            return entity;
+		}
+
+	}
 }

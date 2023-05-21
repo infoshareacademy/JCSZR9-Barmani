@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DrinkItUpWebApp.DAL.Repositories
 {
-    public class IngredientRepository : CRDRepository<Ingredient>, IIngredientUpdateRepository, ISearchByNameQueryable<Ingredient>
+    public class IngredientRepository : CRUDRepository<Ingredient>, IIngredientRepository
     {
         private DrinkContext _context;
 
@@ -27,17 +27,6 @@ namespace DrinkItUpWebApp.DAL.Repositories
 
             return ingredients;
         }
-
-        public async Task<Ingredient?> Update(Ingredient ingredient)
-        {
-            var updatedIngredient = await GetById(ingredient.IngredientId);
-            if(updatedIngredient != null)
-            {
-                updatedIngredient.Name= ingredient.Name;
-                updatedIngredient.UnitId= ingredient.UnitId;
-                await Save();
-            }
-            return updatedIngredient;
-        }
+    
     }
 }
