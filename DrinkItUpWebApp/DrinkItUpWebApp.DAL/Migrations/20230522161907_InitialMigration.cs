@@ -16,7 +16,7 @@ namespace DrinkItUpWebApp.DAL.Migrations
                 {
                     DifficultyId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(7)", maxLength: 7, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -29,7 +29,7 @@ namespace DrinkItUpWebApp.DAL.Migrations
                 {
                     MainAlcoholId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -42,7 +42,7 @@ namespace DrinkItUpWebApp.DAL.Migrations
                 {
                     UnitId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -55,7 +55,7 @@ namespace DrinkItUpWebApp.DAL.Migrations
                 {
                     DrinkId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     MainAlcoholId = table.Column<int>(type: "int", nullable: false),
                     DifficultyId = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
@@ -83,7 +83,7 @@ namespace DrinkItUpWebApp.DAL.Migrations
                 {
                     IngredientId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     UnitId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -101,12 +101,13 @@ namespace DrinkItUpWebApp.DAL.Migrations
                 name: "DrinkIngredients",
                 columns: table => new
                 {
-                    Quantity = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     DrinkId = table.Column<int>(type: "int", nullable: false),
-                    IngredientId = table.Column<int>(type: "int", nullable: false)
+                    IngredientId = table.Column<int>(type: "int", nullable: false),
+                    Quantity = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_DrinkIngredients", x => new { x.DrinkId, x.IngredientId });
                     table.ForeignKey(
                         name: "FK_DrinkIngredients_Drinks_DrinkId",
                         column: x => x.DrinkId,
@@ -122,11 +123,6 @@ namespace DrinkItUpWebApp.DAL.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_DrinkIngredients_DrinkId",
-                table: "DrinkIngredients",
-                column: "DrinkId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_DrinkIngredients_IngredientId",
                 table: "DrinkIngredients",
                 column: "IngredientId");
@@ -134,17 +130,20 @@ namespace DrinkItUpWebApp.DAL.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Drinks_DifficultyId",
                 table: "Drinks",
-                column: "DifficultyId");
+                column: "DifficultyId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Drinks_MainAlcoholId",
                 table: "Drinks",
-                column: "MainAlcoholId");
+                column: "MainAlcoholId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Ingredients_UnitId",
                 table: "Ingredients",
-                column: "UnitId");
+                column: "UnitId",
+                unique: true);
         }
 
         /// <inheritdoc />
