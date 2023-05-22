@@ -8,7 +8,7 @@
 
         public decimal Quantity { get; set; }
 
-        public string Unit { get; set; } = null!;
+        public UnitDto Unit { get; set; } = null!;
 
 
     }

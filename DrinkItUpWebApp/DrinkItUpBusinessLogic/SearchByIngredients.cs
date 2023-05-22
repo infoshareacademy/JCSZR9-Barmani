@@ -16,15 +16,16 @@ namespace DrinkItUpBusinessLogic
 
         public List<string> GetAllIngredientsMatchingNames(string input)
         {
-            var queryAllIngredientsNames = _ingredientRepository.GetAll()
+            var allIngredientsNames = _ingredientRepository.GetAll()
                 .Select(i => i.Name)
                 .ToList();
-            string sPattern = $"([^a-z]|^){input}([A-Z]|[a-z])*";
-            
-            var regex = new Regex(sPattern, RegexOptions.IgnoreCase);
-            var listMatchingNames = queryAllIngredientsNames.Where(s => regex.IsMatch(s)).Take(5).ToList();
 
-            return listMatchingNames;
+            string pattern = $"([^a-z]|^){input}([A-Z]|[a-z])*";
+            var regex = new Regex(pattern, RegexOptions.IgnoreCase);
+
+            var matchingNames = allIngredientsNames.Where(s => regex.IsMatch(s)).Take(5).ToList();
+
+            return matchingNames;
         }
     }
 }
