@@ -14,12 +14,18 @@ namespace DrinkItUpWebApp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews()
-                .AddRazorRuntimeCompilation();
+                .AddRazorRuntimeCompilation(); // Wprowadzanie zmian w HTMLu na bie¿¹co!
 
+            // DbContext
             builder.Services.AddDbContext<DrinkContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DrinkContextCS")));
+
+            //Services
             builder.Services.AddScoped<IIngredientRepository, IngredientRepository>();
 
-            var app = builder.Build();
+            //AutoMapper
+			builder.Services.AddAutoMapper(typeof(Program).Assembly);
+
+			var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
