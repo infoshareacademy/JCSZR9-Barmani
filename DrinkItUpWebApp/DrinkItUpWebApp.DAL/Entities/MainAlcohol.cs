@@ -13,5 +13,7 @@ namespace DrinkItUpWebApp.DAL.Entities
         [StringLength(25)]
         public string Name { get; set; } = null!;
 
+        public Drink? Drink { get; set; }
+
     }
 }

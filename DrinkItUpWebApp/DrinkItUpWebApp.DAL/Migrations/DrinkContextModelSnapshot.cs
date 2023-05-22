@@ -65,9 +65,11 @@ namespace DrinkItUpWebApp.DAL.Migrations
 
                     b.HasKey("DrinkId");
 
-                    b.HasIndex("DifficultyId");
+                    b.HasIndex("DifficultyId")
+                        .IsUnique();
 
-                    b.HasIndex("MainAlcoholId");
+                    b.HasIndex("MainAlcoholId")
+                        .IsUnique();
 
                     b.ToTable("Drinks");
                 });
@@ -108,7 +110,8 @@ namespace DrinkItUpWebApp.DAL.Migrations
 
                     b.HasKey("IngredientId");
 
-                    b.HasIndex("UnitId");
+                    b.HasIndex("UnitId")
+                        .IsUnique();
 
                     b.ToTable("Ingredients");
                 });
@@ -152,14 +155,14 @@ namespace DrinkItUpWebApp.DAL.Migrations
             modelBuilder.Entity("DrinkItUpWebApp.DAL.Entities.Drink", b =>
                 {
                     b.HasOne("DrinkItUpWebApp.DAL.Entities.Difficulty", "Difficulty")
-                        .WithMany()
-                        .HasForeignKey("DifficultyId")
+                        .WithOne("Drink")
+                        .HasForeignKey("DrinkItUpWebApp.DAL.Entities.Drink", "DifficultyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DrinkItUpWebApp.DAL.Entities.MainAlcohol", "MainAlcohol")
-                        .WithMany()
-                        .HasForeignKey("MainAlcoholId")
+                        .WithOne("Drink")
+                        .HasForeignKey("DrinkItUpWebApp.DAL.Entities.Drink", "MainAlcoholId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -190,12 +193,17 @@ namespace DrinkItUpWebApp.DAL.Migrations
             modelBuilder.Entity("DrinkItUpWebApp.DAL.Entities.Ingredient", b =>
                 {
                     b.HasOne("DrinkItUpWebApp.DAL.Entities.Unit", "Unit")
-                        .WithMany()
-                        .HasForeignKey("UnitId")
+                        .WithOne("Ingredient")
+                        .HasForeignKey("DrinkItUpWebApp.DAL.Entities.Ingredient", "UnitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Unit");
+                });
+
+            modelBuilder.Entity("DrinkItUpWebApp.DAL.Entities.Difficulty", b =>
+                {
+                    b.Navigation("Drink");
                 });
 
             modelBuilder.Entity("DrinkItUpWebApp.DAL.Entities.Drink", b =>
@@ -206,6 +214,16 @@ namespace DrinkItUpWebApp.DAL.Migrations
             modelBuilder.Entity("DrinkItUpWebApp.DAL.Entities.Ingredient", b =>
                 {
                     b.Navigation("DrinkIngredients");
+                });
+
+            modelBuilder.Entity("DrinkItUpWebApp.DAL.Entities.MainAlcohol", b =>
+                {
+                    b.Navigation("Drink");
+                });
+
+            modelBuilder.Entity("DrinkItUpWebApp.DAL.Entities.Unit", b =>
+                {
+                    b.Navigation("Ingredient");
                 });
 #pragma warning restore 612, 618
         }
