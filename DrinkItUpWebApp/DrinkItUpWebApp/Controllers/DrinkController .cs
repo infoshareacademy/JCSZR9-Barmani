@@ -9,12 +9,12 @@ namespace DrinkItUpWebApp.Controllers
 {
     public class DrinkController : Controller
     {
-        private SearchByIngredients _searchByIngredients;
+        private ISearchByIngredients _searchByIngredients;
 
-        public DrinkController(IIngredientRepository ingredientRepository)
+        public DrinkController(ISearchByIngredients searchByIngredients)
         {
 
-            _searchByIngredients = new SearchByIngredients(ingredientRepository);
+            _searchByIngredients = searchByIngredients;
 
         }
 

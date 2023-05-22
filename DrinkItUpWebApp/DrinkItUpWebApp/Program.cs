@@ -20,6 +20,9 @@ namespace DrinkItUpWebApp
             builder.Services.AddDbContext<DrinkContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DrinkContextCS")));
 
             //Services
+            builder.Services.AddScoped<ISearchByIngredients,SearchByIngredients>();
+
+            // Repositories
             builder.Services.AddScoped<IIngredientRepository, IngredientRepository>();
 
             //AutoMapper
