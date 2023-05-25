@@ -21,12 +21,16 @@ namespace DrinkItUpBusinessLogic
 		{
 			var allIngredientsNames = _ingredientRepository.GetAll()
 				.Select(i => i.Name)
+				.Distinct()
 				.ToList();
 
 			string pattern = $"([^a-z]|^){input}([A-Z]|[a-z])*";
 			var regex = new Regex(pattern, RegexOptions.IgnoreCase);
 
-			var matchingNames = allIngredientsNames.Where(s => regex.IsMatch(s)).Take(5).ToList();
+			var matchingNames = allIngredientsNames
+				.Where(s => regex.IsMatch(s))
+				.Take(5)
+				.ToList();
 
 			return matchingNames;
 		}
