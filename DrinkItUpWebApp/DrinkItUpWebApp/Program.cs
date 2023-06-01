@@ -1,4 +1,5 @@
 using DrinkItUpBusinessLogic;
+using DrinkItUpBusinessLogic.Interfaces;
 using DrinkItUpWebApp.DAL.Entities;
 using DrinkItUpWebApp.DAL.Repositories;
 using DrinkItUpWebApp.DAL.Repositories.Interfaces;
@@ -21,10 +22,11 @@ namespace DrinkItUpWebApp
 
             //Services
             builder.Services.AddScoped<ISearchByIngredients,SearchByIngredients>();
+            builder.Services.AddScoped<ISearchByNameOrOneIngredient,SearchByNameOrOneIngredient>();
 
             // Repositories
             builder.Services.AddScoped<IIngredientRepository, IngredientRepository>();
-
+            builder.Services.AddScoped<IDrinkRepository, DrinkRepository>();
             //AutoMapper
 			builder.Services.AddAutoMapper(typeof(Program).Assembly);
 

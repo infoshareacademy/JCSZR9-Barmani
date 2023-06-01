@@ -15,8 +15,4 @@
     <ProjectReference Include="..\DrinkItUpWebApp.DAL\DrinkItUpWebApp.DAL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
-
 </Project>

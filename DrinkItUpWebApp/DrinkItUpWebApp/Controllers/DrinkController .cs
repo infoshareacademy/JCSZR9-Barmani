@@ -1,4 +1,4 @@
-﻿using DrinkItUpBusinessLogic;
+﻿using DrinkItUpBusinessLogic.Interfaces;
 using DrinkItUpWebApp.DAL.Entities;
 using DrinkItUpWebApp.DAL.Repositories;
 using DrinkItUpWebApp.DAL.Repositories.Interfaces;
@@ -20,13 +20,20 @@ namespace DrinkItUpWebApp.Controllers
         }
 
         [HttpPost]
-        public JsonResult AutoComplete(string Prefix)
+        public async Task<JsonResult> AutoCompleteIngredients(string Prefix)
         {
-            var words = _searchByIngredients.GetAllIngredientsMatchingNames(Prefix);
+            var words = await _searchByIngredients.GetAllIngredientsMatchingNames(Prefix);
             return Json(words);
         }
 
-        public IActionResult DrinkSearch()
+		[HttpPost]
+		public JsonResult AutoCompleteMain(string Prefix)
+		{
+			var words = _searchByIngredients.GetAllIngredientsMatchingNames(Prefix);
+			return Json(words);
+		}
+
+		public IActionResult DrinkSearch()
         {
             return View();
         }
@@ -37,9 +44,9 @@ namespace DrinkItUpWebApp.Controllers
             return View();
         }
 
-		public IActionResult DrinkMixerPrep()
+		public async Task<IActionResult> DrinkMixerPrep()
 		{
-			var ingredientsNames = _searchByIngredients.GetAllNamesDistinct();
+			var ingredientsNames = await _searchByIngredients.GetAllNamesDistinct();
 
 			var ingredientsNamesModel = new IngredientsSearchModel();
 

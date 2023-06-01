@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
+using DrinkItUpBusinessLogic.Interfaces;
 using DrinkItUpWebApp.DAL.Repositories;
 using DrinkItUpWebApp.DAL.Repositories.Interfaces;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Text.RegularExpressions;
 
 namespace DrinkItUpBusinessLogic
 {
-	public class SearchByIngredients : ISearchByIngredients
+    public class SearchByIngredients : ISearchByIngredients
 	{
 		private IIngredientRepository _ingredientRepository;
 		private readonly IMapper _mapper;

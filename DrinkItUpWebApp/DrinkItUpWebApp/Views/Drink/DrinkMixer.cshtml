@@ -11,7 +11,7 @@
 		$("#searchByIngredients").keyup(function () {
 			$.ajax({
 				type: "POST",
-				url: '@Url.Action("AutoComplete", "Drink")',
+				url: '@Url.Action("AutoCompleteIngredients", "Drink")',
 				data: { Prefix: $(this).val() },
 				dataType: "json",
 				success: function (data) {

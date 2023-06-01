@@ -12,6 +12,28 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#searchBar").keyup(function () {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("AutoCompleteMain", "Drink")',
+                    data: { Prefix: $(this).val() },
+                    dataType: "json",
+                    success: function (data) {
+                        $("#autoCompleteAnswers").html('');
+                        $("#autoCompleteAnswers").show();
+                        $(data).toArray().forEach((element) => {
+                            var inner_html = '<div class="btn btn-warning mx-1 my-1">+' + element + '</div>';
+                            $("#autoCompleteAnswers").append(inner_html);
+
+                        });
+
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 <body>
     <div class="container-fluid main-bg justify-content-center ">
@@ -29,7 +51,7 @@
 
                       
                         <div class="input-group pinkborda">
-                            <input type="text" class="form-control" placeholder="Wpisz nazwę lub składnik!">
+                            <input id="searchBar"type="text" class="form-control" placeholder="Wpisz nazwę lub składnik!">
                             <button class="btn btn-outline-secondary search-button" type="button" id="button-addon2">Szukaj</button>
                         </div>
 
