@@ -157,8 +157,13 @@ body {
 .stopka {
     background-color: rgba(0,0,0,0.6);
 }
-.ingredientList
-{
+.ingredientList {
+    min-height: 200px;
+    max-height: 300px;
+    overflow: hidden auto;
+}
+.ingredientListSearch {
+    min-height: 100px;
     max-height: 300px;
     overflow: hidden auto;
 }

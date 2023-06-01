@@ -71,30 +71,28 @@ namespace DrinkItUpWebApp.Controllers
 			return RedirectToAction(nameof(DrinkMixer), ingredientsSearch);
 		}
 
-		//[HttpPost]
-		//[ValidateAntiForgeryToken]
-  //      [Route("[controller]/mix1/{allNames}&{searchNames}&{name}")]
-		//public ActionResult DrinkMixerAdd(string allNames,string searchNames, string name)
-		//{
-  //          var searchNamesList = new List<string>();
+		public IActionResult DrinkMixerRemove(string allnames, string searchnames, string name)
+		{
+			var allNamesList = new List<string>();
 
-		//	var allNamesList = _searchByIngredients.GetAllNamesFromSumbit(allNames);
-  //          if(searchNames != null)
-  //          {
-  //              searchNamesList = _searchByIngredients.GetAllNamesFromSumbit(searchNames);
-  //          }
+			var searchNamesList = _searchByIngredients.GetAllNamesFromSumbit(searchnames);
+			if (allnames != null)
+			{
+				allNamesList = _searchByIngredients.GetAllNamesFromSumbit(allnames);
+			}
 
-			
 
-		//	searchNamesList.Add(name);
-		//	allNamesList.Remove(name);
 
-		//	var ingredientsSearch = new IngredientsSearchModel{ IngredientsNames = allNamesList, IngredientsToSearch = searchNamesList }; 
+			searchNamesList.Remove(name);
+			allNamesList.Add(name);
 
-		//	return RedirectToAction(nameof(DrinkMixer),ingredientsSearch);
-		//}
+			var ingredientsSearch = new IngredientsSearchModel { IngredientsNames = allNamesList, IngredientsToSearch = searchNamesList };
 
-        [HttpGet]
+			return RedirectToAction(nameof(DrinkMixer), ingredientsSearch);
+		}
+
+
+		[HttpGet]
         [Route("mixer")]
 		public IActionResult DrinkMixer(IngredientsSearchModel model)
         {

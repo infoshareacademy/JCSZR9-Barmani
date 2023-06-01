@@ -28,15 +28,15 @@
 		});
 	});
 </script>
-<div class="row w-100  h-100">
-	<div class="container-fluid col-lg-6 pinkborda-r">
+<div class="row w-100 h-100">
+	<div class="container-fluid col-md-6 col-lg-6 pinkborda-r">
 		<div class="d-flex justify-content-center p-2">
 			<p class="display-6 fw-bolder">Co masz w barku!?</p>
 		</div>
 		<div class="pinkborda my-2">
 			<input id="searchByIngredients" type="text" class="form-control" placeholder="Wpisuj składniki i dodawaj podpowiedzi...">
 		</div>
-		<div id="autoCompleteAnswers" class="h-25">
+		<div id="autoCompleteAnswers" class="ingredientListSearch">
  
 
 		</div>
@@ -48,24 +48,17 @@
 
 		</div>
 	</div>
-	<div class="container-fluid d-flex h-100 w-50 col-lg-6 pinkborda-l">
-		<div>
-			<p class="lead fw-bolder">Z tego miksujemy!</p>
+	<div class="container-fluid col-md-6 col-lg-6 pinkborda-l">
+		<div class="row">
+			<div class="col-12">
+				<p class="display-6 fw-bolder p-2">Z tego miksujemy:</p>
+			</div>
+			<div class="col-12 my-2 mx-2 container-fluid justify-content-center h-50 pinkborda ingredientList">
+				@await Component.InvokeAsync("ListOfIngredientsToSearch", new {ingredientsNames = Model.IngredientsNames, ingredientsToSearch = Model.IngredientsToSearch })
+			</div>
+			<div class="col-12">
+				<button class="col-12 btn btn-lg btn-warning fw-bolder ">Szukaj po tym co masz w barku!</button>
+			</div>
 		</div>
-		<div class="container justify-content-center h-50">
-			@if(Model.IngredientsToSearch != null)
-			{
-				foreach (var ingredient in Model.IngredientsToSearch)
-				{
-					<div class="btn btn-warning fw-bolder">- @ingredient</div>
-				}
-			}
-			else
-			{
-				<p class="lead fw-bold">Nie dodałeś jeszcze żadnego składnika</p>
-			}
-		</div>
-			<div class="btn btn-lg btn-warning">Szukaj po tym co masz w barku!</div>
-		
 	</div>
 </div>

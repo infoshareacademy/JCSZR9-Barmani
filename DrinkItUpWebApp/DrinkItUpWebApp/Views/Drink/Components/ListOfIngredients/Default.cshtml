@@ -1,14 +1,21 @@
 ﻿
 @model DrinkItUpWebApp.Models.IngredientsSearchModel
 @{
-	var allNames = String.Join(",", Model.IngredientsNames);
+	var allNames = string.Empty;
+	if (Model.IngredientsNames != null)
+	{
+		allNames = String.Join(",", Model.IngredientsNames);
+	}
+
 	var searchNames = string.Empty;
 	if (Model.IngredientsToSearch != null)
 	{
 		searchNames = String.Join(",", Model.IngredientsToSearch);
 	}
-	
+
 }
+@if(Model.IngredientsNames != null)
+{
 <table class="table table-sm table-striped ">
 	<thead>
 		<tr class="justify-content-center">
@@ -21,7 +28,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		@foreach (var ingredient in Model.IngredientsNames)
+		@foreach (var ingredient in Model.IngredientsNames.OrderBy(i => i))
 		{
 			<tr>
 				<td class="">
@@ -38,3 +45,8 @@
 		}
 	</tbody>
 </table>
+}
+else
+{
+	<p class="lead fw-bold text-black p-2">Wykorzystałeś wszystkie dostępne składniki!</p>
+}
