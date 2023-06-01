@@ -20,9 +20,9 @@ namespace DrinkItUpWebApp.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> AutoCompleteIngredients(string Prefix)
+        public JsonResult AutoCompleteIngredients(string Prefix)
         {
-            var words = await _searchByIngredients.GetAllIngredientsMatchingNames(Prefix);
+            var words = _searchByIngredients.GetAllIngredientsMatchingNames(Prefix);
             return Json(words);
         }
 
@@ -44,9 +44,9 @@ namespace DrinkItUpWebApp.Controllers
             return View();
         }
 
-		public async Task<IActionResult> DrinkMixerPrep()
+		public IActionResult DrinkMixerPrep()
 		{
-			var ingredientsNames = await _searchByIngredients.GetAllNamesDistinct();
+			var ingredientsNames = _searchByIngredients.GetAllNamesDistinct();
 
 			var ingredientsNamesModel = new IngredientsSearchModel();
 
@@ -97,6 +97,8 @@ namespace DrinkItUpWebApp.Controllers
 
 			return RedirectToAction(nameof(DrinkMixer), ingredientsSearch);
 		}
+
+
 
 
 		[HttpGet]

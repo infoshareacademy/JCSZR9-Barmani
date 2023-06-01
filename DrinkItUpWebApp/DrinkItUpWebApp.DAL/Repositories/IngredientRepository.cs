@@ -18,12 +18,12 @@ namespace DrinkItUpWebApp.DAL.Repositories
             _context= drinkContext;
         }
 
-        public IQueryable<Ingredient> SearchByNameQueryable(string name)
+        public async Task<List<Ingredient>> SearchByNameAsync(string name)
         {
-            var ingredients = _context.Ingredients
+            var ingredients = await _context.Ingredients
                 .Include(i => i.Unit)
                 .Where(i => i.Name == name)
-                .AsQueryable();
+                .ToListAsync();
 
             return ingredients;
         }

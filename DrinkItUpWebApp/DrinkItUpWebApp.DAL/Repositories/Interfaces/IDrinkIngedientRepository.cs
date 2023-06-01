@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace DrinkItUpWebApp.DAL.Repositories.Interfaces
 {
-	public interface IIngredientRepository : ICRUDRepository<Ingredient>//, ISearchByNameQueryable<Ingredient>
+	public interface IDrinkIngedientRepository : ICRUDRepository<DrinkIngredient>
 	{
-		Task<List<Ingredient>> SearchByNameAsync(string name);
+		Drink GetDrinkByIngredientId(int id);
 	}
 }
