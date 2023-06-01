@@ -39,7 +39,7 @@ namespace DrinkItUpWebApp.Controllers
 
 		public IActionResult DrinkMixerPrep()
 		{
-			var ingredientsNames = _searchByIngredients.GetAllNames();
+			var ingredientsNames = _searchByIngredients.GetAllNamesDistinct();
 
 			var ingredientsNamesModel = new IngredientsSearchModel();
 

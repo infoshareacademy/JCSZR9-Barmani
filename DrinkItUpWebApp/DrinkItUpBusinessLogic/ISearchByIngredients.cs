@@ -4,7 +4,7 @@
 	{
 		List<string> GetAllIngredientsMatchingNames(string input);
 
-		List<string> GetAllNames();
+		List<string> GetAllNamesDistinct();
 
 		List<string> GetAllNamesFromSumbit(string input);
 	}
