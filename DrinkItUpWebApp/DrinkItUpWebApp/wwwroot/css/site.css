@@ -84,6 +84,18 @@ body {
     border-color: #da0b85;
 }
 
+.pinkborda-l {
+    border-left: 4px;
+    border-left-style: solid;
+    border-left-color: #da0b85;
+}
+
+.pinkborda-r {
+    border-right: 4px;
+    border-right-style: solid;
+    border-right-color: #da0b85;
+}
+
 .search-button {
     background-color: #6c1048;
     min-height: 60px;
@@ -144,4 +156,16 @@ body {
 }
 .stopka {
     background-color: rgba(0,0,0,0.6);
+}
+.ingredientList
+{
+    max-height: 300px;
+    overflow: hidden auto;
+}
+.ingredients-th
+{
+    text-align: center;
+}
+.ingredients-td {
+    text-align: center;
 }

@@ -1,4 +1,7 @@
-﻿@*
+﻿@using DrinkItUpWebApp.Models
+@using Microsoft.AspNetCore.Components.Web
+@model IngredientsSearchModel
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -15,7 +18,7 @@
 					$("#autoCompleteAnswers").html('');
 					$("#autoCompleteAnswers").show();
 					$(data).toArray().forEach((element) => {
-						var inner_html = '<div class="btn btn-warning mx-2 my-2">+' + element + '</div>';
+						var inner_html = '<div class="btn btn-warning mx-1 my-1">+' + element + '</div>';
 						$("#autoCompleteAnswers").append(inner_html);
 
 					});
@@ -25,28 +28,44 @@
 		});
 	});
 </script>
-<div class="row">
-	<div class="col-lg-6 pinkborda">
-		<div class="input-group pinkborda">
-			<input id="searchByIngredients" type="text" class="form-control" placeholder="Wpisuj składniki i dodawaj podpowiedzi!">
+<div class="row w-100  h-100">
+	<div class="container-fluid col-lg-6 pinkborda-r">
+		<div class="d-flex justify-content-center p-2">
+			<p class="display-6 fw-bolder">Co masz w barku!?</p>
 		</div>
-		<div id="autoCompleteAnswers">
+		<div class="pinkborda my-2">
+			<input id="searchByIngredients" type="text" class="form-control" placeholder="Wpisuj składniki i dodawaj podpowiedzi...">
+		</div>
+		<div id="autoCompleteAnswers" class="h-25">
  
 
 		</div>
-		<div class="form-group">
-			<label for="exampleFormControlSelect2">Albo wybierz je z listy!</label>
-			<select multiple class="form-control" id="listIngredientsName">
-				<option>Cytryna <div class="btn btn-warning">+ Dodaj</div></option>
-				<option>Sok z cytryny <div class="btn btn-warning">+ Dodaj</div></option>
-			</select>
+		<div>
+			<p class="lead">...lub wybierz z listy!</p>
+		</div>
+		<div class="bg-white h-50 rounded-2 ingredientList">
+			@await Component.InvokeAsync("ListOfIngredients", new {ingredientsNames = Model.IngredientsNames, ingredientsToSearch = Model.IngredientsToSearch })
+
 		</div>
 	</div>
-	<div class="col-lg-6 pinkborda">
-		<div class="container justify-content-center">
-			<h1 class="lead">Tu będzie Uber wyszukiwarka po składnikach w lodówce!</h1>
-			<img src="~/img/fridge.png" class="foto" />
-			<h2 class="lead">Stay tuned!</h2>
+	<div class="container-fluid d-flex h-100 w-50 col-lg-6 pinkborda-l">
+		<div>
+			<p class="lead fw-bolder">Z tego miksujemy!</p>
 		</div>
+		<div class="container justify-content-center h-50">
+			@if(Model.IngredientsToSearch != null)
+			{
+				foreach (var ingredient in Model.IngredientsToSearch)
+				{
+					<div class="btn btn-warning fw-bolder">- @ingredient</div>
+				}
+			}
+			else
+			{
+				<p class="lead fw-bold">Nie dodałeś jeszcze żadnego składnika</p>
+			}
+		</div>
+			<div class="btn btn-lg btn-warning">Szukaj po tym co masz w barku!</div>
+		
 	</div>
 </div>

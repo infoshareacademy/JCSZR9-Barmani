@@ -29,7 +29,7 @@
 
                       
                         <div class="input-group pinkborda">
-                            <input type="text" class="form-control" placeholder="Wpisz nazwę lub składnik drinka którego szukasz">
+                            <input type="text" class="form-control" placeholder="Wpisz nazwę lub składnik!">
                             <button class="btn btn-outline-secondary search-button" type="button" id="button-addon2">Szukaj</button>
                         </div>
 
@@ -41,7 +41,7 @@
                         </div>
 
                         <div class="pinkborda">
-                            <a class="nav-button fw-bolder" asp-controller="Drink" asp-action="DrinkMixer">
+                            <a class="nav-button fw-bolder" asp-controller="Drink" asp-action="DrinkMixerPrep">
                                 <i class="fa-solid fa-blender nav-icon"></i>
                                 <span>Co masz w barku?</span>
                             </a>
@@ -67,7 +67,7 @@
             </div>
 
             <div class="col-lg-12 col-xl-8 my-2 pinkborda">
-                <main class="container">
+                <main class="h-100">
                    @RenderBody()
                 </main>
             </div>

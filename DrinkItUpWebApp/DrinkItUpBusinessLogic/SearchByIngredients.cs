@@ -19,10 +19,7 @@ namespace DrinkItUpBusinessLogic
 
 		public List<string> GetAllIngredientsMatchingNames(string input)
 		{
-			var allIngredientsNames = _ingredientRepository.GetAll()
-				.Select(i => i.Name)
-				.Distinct()
-				.ToList();
+			var allIngredientsNames = GetAllNames();
 
 			string pattern = $"([^a-z]|^){input}([A-Z]|[a-z])*";
 			var regex = new Regex(pattern, RegexOptions.IgnoreCase);
@@ -33,6 +30,23 @@ namespace DrinkItUpBusinessLogic
 				.ToList();
 
 			return matchingNames;
+		}
+
+		public List<string> GetAllNames()
+		{
+			var allIngredientsNames = _ingredientRepository.GetAll()
+				.Select(i => i.Name)
+				.Distinct()
+				.ToList();
+
+			return allIngredientsNames;
+		}
+
+		public List<string> GetAllNamesFromSumbit(string input)
+		{
+			var names = input.Split(',').ToList();
+			return names;
+
 		}
 	}
 }
