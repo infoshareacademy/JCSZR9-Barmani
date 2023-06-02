@@ -29,6 +29,9 @@ namespace DrinkItUpWebApp.MapperProfile
 
             CreateMap<MainAlcoholModel, MainAlcoholDto>();
             CreateMap<MainAlcoholDto, MainAlcohol>();
+
+            CreateMap<DifficultyModel, DifficultyDto>();
+            CreateMap<DifficultyDto, Difficulty>();
         }
 	}
 }
