@@ -1,14 +1,22 @@
 ﻿@using DrinkItUpWebApp.Models
 @model DrinkWithDetailsModel
 
-<div class="d-flex">
+<div class="d-flex h-100 justify-content-center align-items-center">
     <div>
         <img src="~/img/sampledrink.png" class="foto" />
     </div>
 
     <div class="d-inline-block">
-
-
+        <p class="display-5 fw-bolder">@Model.Name</p>
+        <p class="lead fw-bolder">Alkohol dominujący: @Model.MainAlcohol.Name</p>
+        <p class="lead fw-bolder">Poziom trudności: @Model.Difficulty.Name</p>
+        <ul class="lead fw-bolder">Składniki:
+        @foreach(var ingredient in Model.Ingredients)
+        {
+        <li class="lead fw-bold">@ingredient.Name: @ingredient.Quantity @ingredient.Unit.Name</li>
+        }
+        </ul>
+        <p class="lead fw-bolder">Opis przygotowania: @Model.Description</p>
     </div>
 
 </div>

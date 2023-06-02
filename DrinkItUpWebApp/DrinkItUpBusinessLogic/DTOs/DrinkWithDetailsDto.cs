@@ -9,8 +9,10 @@ namespace DrinkItUpBusinessLogic.DTOs
 
         public MainAlcoholDto MainAlcohol { get; set; }
 
-        public Difficulty Difficulty { get; set; }
+        public DifficultyDto Difficulty { get; set; }
 
         public string Description { get; set; }
+
+        public List<IngredientDto> Ingredients { get; set; } = new();
     }
 }

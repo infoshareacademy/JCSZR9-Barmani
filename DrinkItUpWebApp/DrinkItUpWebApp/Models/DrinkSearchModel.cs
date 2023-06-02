@@ -2,7 +2,7 @@
 {
 	public class DrinkSearchModel
 	{
-		public int Id { get; set; }
+		public int DrinkId { get; set; }
 
 		public string Name { get; set; }
 

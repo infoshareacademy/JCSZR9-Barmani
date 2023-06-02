@@ -14,13 +14,13 @@ namespace DrinkItUpBusinessLogic
     public class GetDrinkDetails : IGetDrinkDetails
     {
         private readonly IDrinkRepository _drinkRepository;
-        private readonly IDrinkIngredientRepository _drinkIngredientRepository;
+        private readonly IIngredientRepository _ingredientRepository;
         private readonly IMapper _mapper;
 
-        public GetDrinkDetails(IDrinkRepository drinkRepository, IDrinkIngredientRepository drinkIngredientRepository, IMapper mapper)
+        public GetDrinkDetails(IDrinkRepository drinkRepository, IIngredientRepository ingredientRepository, IMapper mapper)
         {
             _drinkRepository = drinkRepository;
-            _drinkIngredientRepository = drinkIngredientRepository;
+            _ingredientRepository = ingredientRepository;
             _mapper = mapper;
         }
 
@@ -28,12 +28,17 @@ namespace DrinkItUpBusinessLogic
         {
             var drinkWithDeatailsDto = new DrinkWithDetailsDto();
 
-            var drink = await _drinkRepository.GetById(id);
+            var drink = await _drinkRepository.GetByIdWithDetails(id);
 
-            var drinkIngredients = await _drinkIngredientRepository.GetIngredientsByDrinkId(id).ToListAsync();
+            var drinkIngredients = await _ingredientRepository.GetIngredientsByDrinkId(id);
 
             drinkWithDeatailsDto = _mapper.Map<DrinkWithDetailsDto>(drink);
-            drinkWithDeatailsDto.Ingredients = drinkIngredientsDto;
+
+            foreach (var drinkIngredient in drinkIngredients)
+            {
+                var ingredient = _mapper.Map<IngredientDto>(drinkIngredient);
+                drinkWithDeatailsDto.Ingredients.Add(ingredient);
+            }
 
             return drinkWithDeatailsDto;
         }

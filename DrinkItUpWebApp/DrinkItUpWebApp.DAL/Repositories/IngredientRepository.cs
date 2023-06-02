@@ -34,12 +34,24 @@ namespace DrinkItUpWebApp.DAL.Repositories
 			
 		}
 
-        public IQueryable<Ingredient> GetListOfIngredientsByDrinkId(int id)
+        public async Task<IEnumerable<Ingredient>> GetIngredientsByDrinkId(int id)
         {
-            var drinkIngredients = _drinkIngredientRepository.GetIngredientsByDrinkId(id)
-                .
+            var drinkIngredients = _drinkIngredientRepository.GetIngredientsByDrinkId(id).ToList();
 
-            return drinkIngredients;
+
+            var results = new List<Ingredient>();    
+
+            foreach(var drinkIngredient in drinkIngredients)
+            {
+                var ingredient = _context.Ingredients
+                    .Include(i => i.Unit)
+                    .Include(i => i.DrinkIngredients)
+                    .FirstOrDefault(i => i.IngredientId == drinkIngredient.IngredientId);
+
+                results.Add(ingredient);
+            }
+
+            return results;
         }
     }
 }

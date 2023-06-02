@@ -7,7 +7,7 @@
         </div>
     @foreach(var item in Model)
     {
-    <a class="col-3">
+    <a class="col-3" asp-action="DrinkDetails" asp-route-id="@item.DrinkId">
     <div class="card bg-dark my-1">
         <img src="~/img/sampledrink.png" class="card-img-top" alt="...">
         <div class="card-body">

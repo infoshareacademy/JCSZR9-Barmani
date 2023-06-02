@@ -6,7 +6,7 @@
 
         public string Name { get; set; } = null!;
 
-        public decimal Quantity { get; set; }
+        public decimal Quantity { get; set;}
 
         public UnitDto Unit { get; set; } = null!;
 
