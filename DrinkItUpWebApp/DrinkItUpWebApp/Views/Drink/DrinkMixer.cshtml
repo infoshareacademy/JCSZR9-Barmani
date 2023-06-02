@@ -1,10 +1,13 @@
 ﻿@using DrinkItUpWebApp.Models
 @using Microsoft.AspNetCore.Components.Web
 @model IngredientsSearchModel
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
 @{
+	var searchNames = string.Empty;
+	if (Model.IngredientsToSearch != null)
+	{
+		searchNames = String.Join(",", Model.IngredientsToSearch);
+	}
+	
 }
 <script>
 	$(document).ready(function () {
@@ -57,7 +60,10 @@
 				@await Component.InvokeAsync("ListOfIngredientsToSearch", new {ingredientsNames = Model.IngredientsNames, ingredientsToSearch = Model.IngredientsToSearch })
 			</div>
 			<div class="col-12">
-				<button class="col-12 btn btn-lg btn-warning fw-bolder ">Szukaj po tym co masz w barku!</button>
+				<a class="col-12 btn btn-lg btn-warning fw-bolder"
+						asp-action="DrinkMixerResults"
+						asp-route-searchnames="@searchNames"
+				>Szukaj po tym co masz w barku!</a>
 			</div>
 		</div>
 	</div>

@@ -13,7 +13,16 @@ namespace DrinkItUpWebApp.MapperProfile
 			CreateMap<Ingredient, IngredientDto>();
 			CreateMap<Drink, DrinkDto>();
 			CreateMap<DrinkDto, DrinkSearchModel>();
+			CreateMap<Difficulty, DifficultyDto>();
+			CreateMap<MainAlcohol, MainAlcoholDto>();
 
+			CreateMap<Drink,DrinkWithDetailsDto>();
+
+			CreateMap<DifficultyDto, DifficultyModel>();
+			CreateMap<MainAlcoholDto, MainAlcoholModel>();
+			CreateMap<UnitDto, UnitModel>();
+			CreateMap<IngredientDto, IngredientModel>();
+			CreateMap<DrinkWithDetailsDto, DrinkWithDetailsModel>();
 		}
 	}
 }

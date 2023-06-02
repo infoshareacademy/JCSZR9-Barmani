@@ -1,4 +1,6 @@
-﻿using DrinkItUpBusinessLogic.Interfaces;
+﻿using AutoMapper;
+using DrinkItUpBusinessLogic.DTOs;
+using DrinkItUpBusinessLogic.Interfaces;
 using DrinkItUpWebApp.DAL.Entities;
 using DrinkItUpWebApp.DAL.Repositories;
 using DrinkItUpWebApp.DAL.Repositories.Interfaces;
@@ -11,12 +13,14 @@ namespace DrinkItUpWebApp.Controllers
     public class DrinkController : Controller
     {
         private ISearchByIngredients _searchByIngredients;
+        private readonly IGetDrinkDetails _getDrinkDetails;
+        private readonly IMapper _mapper;
 
-        public DrinkController(ISearchByIngredients searchByIngredients)
+        public DrinkController(ISearchByIngredients searchByIngredients, IGetDrinkDetails getDrinkDetails, IMapper mapper)
         {
-
+			_mapper = mapper;
             _searchByIngredients = searchByIngredients;
-
+            _getDrinkDetails = getDrinkDetails;
         }
 
         [HttpPost]
@@ -33,9 +37,10 @@ namespace DrinkItUpWebApp.Controllers
 			return Json(words);
 		}
 
-		public IActionResult DrinkSearch()
+		[HttpGet]
+		public IActionResult DrinkSearch(IEnumerable<DrinkSearchModel> drinks)
         {
-            return View();
+            return View(drinks);
         }
 
         public IActionResult DrinkBrowse()
@@ -44,7 +49,15 @@ namespace DrinkItUpWebApp.Controllers
             return View();
         }
 
-		public IActionResult DrinkMixerPrep()
+        public async Task<IActionResult> DrinkDetails(int id)
+        {
+			var drinkWithDetails = await _getDrinkDetails.GetDrinkToDetailView(id);
+
+			var drinkWithDetailsModel = _mapper.Map<DrinkWithDetailsModel>(drinkWithDetails);
+            return View(drinkWithDetailsModel);
+        }
+
+        public IActionResult DrinkMixerPrep()
 		{
 			var ingredientsNames = _searchByIngredients.GetAllNamesDistinct();
 
@@ -98,6 +111,26 @@ namespace DrinkItUpWebApp.Controllers
 			return RedirectToAction(nameof(DrinkMixer), ingredientsSearch);
 		}
 
+		public async Task<IActionResult> DrinkMixerResults(string searchnames)
+		{
+
+			if (searchnames == null)
+			{
+				return RedirectToAction(nameof(DrinkMixerPrep));
+			}
+
+			var drinksDtos = await _searchByIngredients.GetMatchingDrinksToIngredientsMixer(searchnames);
+
+			var drinks = new List<DrinkSearchModel>();
+			foreach(var drink in drinksDtos)
+			{
+				drinks.Add(_mapper.Map<DrinkSearchModel>(drink));
+			}
+
+
+			return View("DrinkSearch",drinks);
+
+		}
 
 
 

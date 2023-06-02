@@ -11,13 +11,12 @@ namespace DrinkItUpBusinessLogic.DTOs
 	public class DrinkDto
 	{
 		public int DrinkId { get; set; }
-		[StringLength(100)]
-		public string Name { get; set; } = null!;
+		public string Name { get; set; }
 
 		public int MainAlcoholId { get; set; }
 
 		public int DifficultyId { get; set; }
 
-		public string Description { get; set; } = null!;
+		public string Description { get; set; } 
 	}
 }

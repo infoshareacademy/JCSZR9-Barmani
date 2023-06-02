@@ -1,5 +1,6 @@
 ﻿using DrinkItUpWebApp.DAL.Entities;
 using DrinkItUpWebApp.DAL.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DrinkItUpWebApp.DAL.Repositories
 {
-	public class DrinkIngredientRepository : CRUDRepository<DrinkIngredient>, IDrinkIngedientRepository
+	public class DrinkIngredientRepository : CRUDRepository<DrinkIngredient>, IDrinkIngredientRepository
 	{
 		private readonly DrinkContext _context;
 
@@ -17,9 +18,12 @@ namespace DrinkItUpWebApp.DAL.Repositories
 			_context = drinkContext;
 		}
 
-		public Drink GetDrinkByIngredientId(int id)
-		{
-			throw new NotImplementedException();
-		}
-	}
+        public IQueryable<DrinkIngredient> GetIngredientsByDrinkId(int id)
+        {
+            var drinkIngredients = _context.DrinkIngredients
+                .Where(d => d.DrinkId == id);
+
+            return drinkIngredients;
+        }
+    }
 }

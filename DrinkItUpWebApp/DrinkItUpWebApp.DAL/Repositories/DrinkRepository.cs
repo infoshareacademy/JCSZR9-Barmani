@@ -14,14 +14,24 @@ namespace DrinkItUpWebApp.DAL.Repositories
             _context = drinkContext;
         }
 
-		public async Task<List<int>> GetDrinksIdByIngredientId(int id)
+        public async Task<Drink> GetByIdWithDetails(int id)
+        {
+            var drink = await _context.Drinks
+                .Include(d => d.MainAlcohol)
+                .Include(d => d.Difficulty)
+                .FirstOrDefaultAsync(d => d.DrinkId == id);
+
+            return drink;
+        }
+
+        public  List<int> GetDrinksIdByIngredientId(int id)
 		{
-            var drinksId = await _context.Drinks
+            var drinksId = _context.Drinks
                 .Include(d => d.DrinkIngredients)
                 .SelectMany(d => d.DrinkIngredients)
                 .Where(d => d.IngredientId == id)
                 .Select(d => d.DrinkId)
-                .ToListAsync();
+                .ToList();
 
             return drinksId;
 		}
@@ -38,5 +48,7 @@ namespace DrinkItUpWebApp.DAL.Repositories
 
             return drinkss;
         }
+
+        
     }
 }

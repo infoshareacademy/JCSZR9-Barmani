@@ -14,9 +14,19 @@ namespace DrinkItUpBusinessLogic
 			throw new NotImplementedException();
 		}
 
-		public void SearchByOneIngredient()
+        public void SearchByName(string input)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SearchByOneIngredient()
 		{
 			throw new NotImplementedException();
 		}
-	}
+
+        public void SearchByOneIngredient(string input)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

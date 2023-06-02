@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DrinkItUpBusinessLogic.DTOs;
 using DrinkItUpBusinessLogic.Interfaces;
+using DrinkItUpWebApp.DAL.Entities;
 using DrinkItUpWebApp.DAL.Repositories;
 using DrinkItUpWebApp.DAL.Repositories.Interfaces;
 using System.Collections;
@@ -65,11 +66,11 @@ namespace DrinkItUpBusinessLogic
 			{
 				matchingIngredientsToDrinks.Add(ingredient, new List<int>());
 
-				var ingredientsEntities = await _ingredientRepository.SearchByNameAsync(ingredient);
+				var ingredientsEntities = _ingredientRepository.SearchByNameQueryable(ingredient).ToList();
 
 				foreach(var entities in ingredientsEntities)
 				{
-					var drinksId = await _drinkRepository.GetDrinksIdByIngredientId(entities.IngredientId);
+					var drinksId = _drinkRepository.GetDrinksIdByIngredientId(entities.IngredientId);
 					matchingIngredientsToDrinks[ingredient].AddRange(drinksId);
 				}
 			}
@@ -79,13 +80,22 @@ namespace DrinkItUpBusinessLogic
 				.SelectMany(d => d) // spłaszczamy słownik do listy id drinków samych
 				.GroupBy(d => d)
 				.OrderByDescending(k => k.Count())
-				.Select(async d => await _drinkRepository.GetById(d.Key))
+				.Select(d => d.Key)
 				.ToList();
 
-			var drinksDto = new List<DrinkDto>();
-			foreach (var drink in results)
+			var drinks = new List<Drink>();
+
+			foreach(var drinkId in results)
 			{
-				drinksDto.Add(_mapper.Map<DrinkDto>(drink));
+				var drink = await _drinkRepository.GetById(drinkId);
+				drinks.Add(drink);
+			}
+
+			var drinksDto = new List<DrinkDto>();
+			foreach (var drink in drinks)
+			{
+				var drinkDto = _mapper.Map<DrinkDto>(drink);
+				drinksDto.Add(drinkDto);
 			}
 
 			return drinksDto;
