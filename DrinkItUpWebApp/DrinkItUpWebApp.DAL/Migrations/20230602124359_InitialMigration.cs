@@ -130,20 +130,17 @@ namespace DrinkItUpWebApp.DAL.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Drinks_DifficultyId",
                 table: "Drinks",
-                column: "DifficultyId",
-                unique: true);
+                column: "DifficultyId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Drinks_MainAlcoholId",
                 table: "Drinks",
-                column: "MainAlcoholId",
-                unique: true);
+                column: "MainAlcoholId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Ingredients_UnitId",
                 table: "Ingredients",
-                column: "UnitId",
-                unique: true);
+                column: "UnitId");
         }
 
         /// <inheritdoc />

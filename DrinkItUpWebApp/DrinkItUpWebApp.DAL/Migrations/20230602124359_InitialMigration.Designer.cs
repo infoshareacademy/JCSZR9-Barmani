@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DrinkItUpWebApp.DAL.Migrations
 {
     [DbContext(typeof(DrinkContext))]
-    [Migration("20230522183344_EditedEntities")]
-    partial class EditedEntities
+    [Migration("20230602124359_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -111,8 +111,7 @@ namespace DrinkItUpWebApp.DAL.Migrations
 
                     b.HasKey("IngredientId");
 
-                    b.HasIndex("UnitId")
-                        .IsUnique();
+                    b.HasIndex("UnitId");
 
                     b.ToTable("Ingredients");
                 });
@@ -194,8 +193,8 @@ namespace DrinkItUpWebApp.DAL.Migrations
             modelBuilder.Entity("DrinkItUpWebApp.DAL.Entities.Ingredient", b =>
                 {
                     b.HasOne("DrinkItUpWebApp.DAL.Entities.Unit", "Unit")
-                        .WithOne("Ingredient")
-                        .HasForeignKey("DrinkItUpWebApp.DAL.Entities.Ingredient", "UnitId")
+                        .WithMany("Ingredients")
+                        .HasForeignKey("UnitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -214,7 +213,7 @@ namespace DrinkItUpWebApp.DAL.Migrations
 
             modelBuilder.Entity("DrinkItUpWebApp.DAL.Entities.Unit", b =>
                 {
-                    b.Navigation("Ingredient");
+                    b.Navigation("Ingredients");
                 });
 #pragma warning restore 612, 618
         }

@@ -190,7 +190,7 @@ namespace DrinkItUpWebApp.DAL.Migrations
             modelBuilder.Entity("DrinkItUpWebApp.DAL.Entities.Ingredient", b =>
                 {
                     b.HasOne("DrinkItUpWebApp.DAL.Entities.Unit", "Unit")
-                        .WithMany()
+                        .WithMany("Ingredients")
                         .HasForeignKey("UnitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -206,6 +206,11 @@ namespace DrinkItUpWebApp.DAL.Migrations
             modelBuilder.Entity("DrinkItUpWebApp.DAL.Entities.Ingredient", b =>
                 {
                     b.Navigation("DrinkIngredients");
+                });
+
+            modelBuilder.Entity("DrinkItUpWebApp.DAL.Entities.Unit", b =>
+                {
+                    b.Navigation("Ingredients");
                 });
 #pragma warning restore 612, 618
         }
