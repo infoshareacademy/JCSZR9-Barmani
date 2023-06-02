@@ -56,7 +56,7 @@ namespace DrinkItUpBusinessLogic
 
 		}
 
-		public async Task<List<DrinkDto>> GetMatchingDrinksToIngredientsMixer(string input)
+		public async Task<List<DrinkDto>> GetMatchingDrinksToIngredients(string input)
 		{
 			var matchingIngredientsToDrinks = new Dictionary<string, List<int>>();
 

@@ -23,6 +23,9 @@ namespace DrinkItUpWebApp.MapperProfile
 			CreateMap<UnitDto, UnitModel>();
 			CreateMap<IngredientDto, IngredientModel>();
 			CreateMap<DrinkWithDetailsDto, DrinkWithDetailsModel>();
+
+			CreateMap<UnitModel, UnitDto>();
+			CreateMap<UnitDto, Unit>();
 		}
 	}
 }
