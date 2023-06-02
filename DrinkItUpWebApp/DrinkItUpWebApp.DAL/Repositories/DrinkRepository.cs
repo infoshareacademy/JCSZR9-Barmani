@@ -36,19 +36,22 @@ namespace DrinkItUpWebApp.DAL.Repositories
             return drinksId;
 		}
 
-		public IQueryable<Drink> SearchByNameQueryable(string name)
+		public async Task<Drink> SearchByNameAsync(string name)
         {
-            var drinkss = _context.Drinks
+            var drink = await _context.Drinks
                 .Include(d => d.MainAlcohol)
                 .Include(d => d.Difficulty)
                 .Include(d => d.DrinkIngredients)
                 .ThenInclude(d => d.Ingredient)
-                .Where(d => d.Name == name)
-                .AsQueryable();
+                .FirstOrDefaultAsync(d => d.Name == name);
 
-            return drinkss;
+
+            return drink;
         }
 
-        
+        public IQueryable<Drink> SearchByNameQueryable(string name)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

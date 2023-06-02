@@ -37,6 +37,8 @@ namespace DrinkItUpBusinessLogic
             foreach (var drinkIngredient in drinkIngredients)
             {
                 var ingredient = _mapper.Map<IngredientDto>(drinkIngredient);
+                var quantity = drinkIngredient.DrinkIngredients.FirstOrDefault(d => d.DrinkId == drinkWithDeatailsDto.DrinkId).Quantity;
+                ingredient.Quantity = (decimal)quantity;
                 drinkWithDeatailsDto.Ingredients.Add(ingredient);
             }
 

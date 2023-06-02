@@ -14,13 +14,16 @@ namespace DrinkItUpWebApp.Controllers
     {
         private ISearchByIngredients _searchByIngredients;
         private readonly IGetDrinkDetails _getDrinkDetails;
+        private readonly ISearchByNameOrOneIngredient _searchByNameOrOneIngredient;
         private readonly IMapper _mapper;
 
-        public DrinkController(ISearchByIngredients searchByIngredients, IGetDrinkDetails getDrinkDetails, IMapper mapper)
+        public DrinkController(ISearchByIngredients searchByIngredients, IGetDrinkDetails getDrinkDetails, ISearchByNameOrOneIngredient searchByNameOrOneIngredient, IMapper mapper)
         {
+			
 			_mapper = mapper;
             _searchByIngredients = searchByIngredients;
             _getDrinkDetails = getDrinkDetails;
+            _searchByNameOrOneIngredient = searchByNameOrOneIngredient;
         }
 
         [HttpPost]
@@ -31,10 +34,20 @@ namespace DrinkItUpWebApp.Controllers
         }
 
 		[HttpPost]
-		public JsonResult AutoCompleteMain(string Prefix)
+		public async Task<JsonResult> AutoCompleteMain(string Prefix)
 		{
-			var words = _searchByIngredients.GetAllIngredientsMatchingNames(Prefix);
-			return Json(words);
+			var drinks = await _searchByNameOrOneIngredient.SearchByName(Prefix);
+			var drinksModel = new List<DrinkSearchModel>();
+			if(drinks != null)
+			{
+				foreach(var drink in drinks)
+				{
+					var drinkModel = _mapper.Map<DrinkSearchModel>(drink);
+					drinksModel.Add(drinkModel);
+				}
+				return Json(drinksModel);
+			}
+			return Json(null);
 		}
 
 		[HttpGet]

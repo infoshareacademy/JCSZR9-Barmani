@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DrinkItUpBusinessLogic.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,9 @@ namespace DrinkItUpBusinessLogic.Interfaces
 {
 	public interface ISearchByNameOrOneIngredient
 	{
-		void SearchByName(string input);
+		Task<List<DrinkDto>> SearchByName(string input);
 
-		void SearchByOneIngredient(string input);
+
+        void SearchByOneIngredient(string input);
 	}
 }

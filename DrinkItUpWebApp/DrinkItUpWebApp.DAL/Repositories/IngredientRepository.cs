@@ -1,12 +1,6 @@
 ﻿using DrinkItUpWebApp.DAL.Entities;
 using DrinkItUpWebApp.DAL.Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace DrinkItUpWebApp.DAL.Repositories
 {
@@ -43,10 +37,10 @@ namespace DrinkItUpWebApp.DAL.Repositories
 
             foreach(var drinkIngredient in drinkIngredients)
             {
-                var ingredient = _context.Ingredients
+                var ingredient = await _context.Ingredients
                     .Include(i => i.DrinkIngredients)
                     .Include(i => i.Unit)
-                    .First(i => i.IngredientId == drinkIngredient.IngredientId);
+                    .FirstOrDefaultAsync(i => i.IngredientId == drinkIngredient.IngredientId);
 
                 results.Add(ingredient);
             }
