@@ -1,4 +1,5 @@
 using DrinkItUpBusinessLogic;
+using DrinkItUpBusinessLogic.Interfaces;
 using DrinkItUpWebApp.DAL.Entities;
 using DrinkItUpWebApp.DAL.Repositories;
 using DrinkItUpWebApp.DAL.Repositories.Interfaces;
@@ -14,16 +15,21 @@ namespace DrinkItUpWebApp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews()
-                .AddRazorRuntimeCompilation(); // Wprowadzanie zmian w HTMLu na bie¿¹co!
+                .AddRazorRuntimeCompilation(); // Wprowadzanie zmian w HTMLu przy zbudowanej solucji!
 
             // DbContext
             builder.Services.AddDbContext<DrinkContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DrinkContextCS")));
 
             //Services
+            builder.Services.AddScoped<ISearchByIngredients, SearchByIngredients>();
+            builder.Services.AddScoped<ISearchByNameOrOneIngredient, SearchByNameOrOneIngredient>();
+            builder.Services.AddScoped<IGetDrinkDetails, GetDrinkDetails>();
+            // Repositories
             builder.Services.AddScoped<IIngredientRepository, IngredientRepository>();
-
+            builder.Services.AddScoped<IDrinkRepository, DrinkRepository>();
+            builder.Services.AddScoped<IDrinkIngredientRepository, DrinkIngredientRepository>();
             //AutoMapper
-			builder.Services.AddAutoMapper(typeof(Program).Assembly);
+            builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 			var app = builder.Build();
 

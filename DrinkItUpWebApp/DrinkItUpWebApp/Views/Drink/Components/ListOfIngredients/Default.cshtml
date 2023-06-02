@@ -1,0 +1,52 @@
+﻿
+@model DrinkItUpWebApp.Models.IngredientsSearchModel
+@{
+	var allNames = string.Empty;
+	if (Model.IngredientsNames != null)
+	{
+		allNames = String.Join(",", Model.IngredientsNames);
+	}
+
+	var searchNames = string.Empty;
+	if (Model.IngredientsToSearch != null)
+	{
+		searchNames = String.Join(",", Model.IngredientsToSearch);
+	}
+
+}
+@if(Model.IngredientsNames != null)
+{
+<table class="table table-sm table-striped ">
+	<thead>
+		<tr class="justify-content-center">
+			<th class="" >
+				<label>Nazwa składnika</label>
+			</th>
+			<th class="ingredients-th">
+				<label>Masz w barku?</label>
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var ingredient in Model.IngredientsNames.OrderBy(i => i))
+		{
+			<tr>
+				<td class="">
+					<p class="lead">@ingredient</p>
+				</td>
+				<td class="ingredients-td">
+					<a class="btn btn-warning"
+					asp-action="DrinkMixerAdd" 
+					asp-route-allnames="@allNames"
+					asp-route-searchnames="@searchNames"
+					asp-route-name="@ingredient">+ Dodaj</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+}
+else
+{
+	<p class="lead fw-bold text-black p-2">Wykorzystałeś wszystkie dostępne składniki!</p>
+}

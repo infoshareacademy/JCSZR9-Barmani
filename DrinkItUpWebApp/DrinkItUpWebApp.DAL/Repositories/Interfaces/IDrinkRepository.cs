@@ -9,5 +9,9 @@ namespace DrinkItUpWebApp.DAL.Repositories.Interfaces
 {
     public interface IDrinkRepository : ICRUDRepository<Drink>, ISearchByNameQueryable<Drink>
     {
+        Task<Drink> SearchByNameAsync(string name);
+
+        Task<Drink> GetByIdWithDetails(int id);
+        List<int> GetDrinksIdByIngredientId(int id);
     }
 }

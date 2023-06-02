@@ -10,9 +10,11 @@ namespace DrinkItUpWebApp.DAL.Entities
     public class Unit
     {
         public int UnitId { get; set; }
+
         [StringLength(25)]
         public string Name { get; set; } = null!;
 
-        public Ingredient? Ingredient { get; set; }
+        public ICollection<Ingredient> Ingredients { get; set; } = new List<Ingredient>();
+
     }
 }
