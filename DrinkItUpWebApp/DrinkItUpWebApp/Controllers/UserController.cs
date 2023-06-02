@@ -13,12 +13,14 @@ namespace DrinkItUpWebApp.Controllers
     {
         private readonly IUnitService _unitService;
         private readonly IMainAlcoholService _mainAlcoholService;
+        private readonly IDifficultyService _difficultyService;
         private readonly IMapper _mapper;
 
-        public UserController(IUnitService unitService, IMainAlcoholService mainAlcoholService, IMapper mapper)
+        public UserController(IUnitService unitService, IMainAlcoholService mainAlcoholService, IDifficultyService difficultyService, IMapper mapper)
         {
             _mapper = mapper;
             _unitService = unitService;
+            _difficultyService = difficultyService;
             _mainAlcoholService = mainAlcoholService;
         }
 
@@ -63,5 +65,20 @@ namespace DrinkItUpWebApp.Controllers
             return RedirectToAction(nameof(Admin));
         }
 
+
+        [HttpGet]
+        public IActionResult AddDifficulty()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddDifficulty(DifficultyModel model)
+        {
+            var difficultyDto = _mapper.Map<DifficultyDto>(model);
+            await _difficultyService.AddDifficulty(difficultyDto);
+
+            return RedirectToAction(nameof(Admin));
+        }
     }
 }

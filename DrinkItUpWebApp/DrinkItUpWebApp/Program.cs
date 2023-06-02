@@ -26,12 +26,15 @@ namespace DrinkItUpWebApp
             builder.Services.AddScoped<IGetDrinkDetails, GetDrinkDetails>();
             builder.Services.AddScoped<IUnitService, UnitService>();
             builder.Services.AddScoped<IMainAlcoholService, MainAlcoholService>();
+            builder.Services.AddScoped<IDifficultyService, DifficultyService>();
+
             // Repositories
             builder.Services.AddScoped<IIngredientRepository, IngredientRepository>();
             builder.Services.AddScoped<IDrinkRepository, DrinkRepository>();
             builder.Services.AddScoped<IDrinkIngredientRepository, DrinkIngredientRepository>();
             builder.Services.AddScoped<IUnitRepository, UnitRepository>();
             builder.Services.AddScoped<IMainAlcoholRepository, MainAlcoholRepository>();
+            builder.Services.AddScoped<IDifficultyRepository, DifficultyRepository>();
             //AutoMapper
             builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
