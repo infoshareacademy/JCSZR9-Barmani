@@ -46,7 +46,7 @@ namespace DrinkItUpWebApp.DAL.Repositories
                 var ingredient = _context.Ingredients
                     .Include(i => i.Unit)
                     .Include(i => i.DrinkIngredients)
-                    .FirstOrDefault(i => i.IngredientId == drinkIngredient.IngredientId);
+                    .First(i => i.IngredientId == drinkIngredient.IngredientId);
 
                 results.Add(ingredient);
             }
