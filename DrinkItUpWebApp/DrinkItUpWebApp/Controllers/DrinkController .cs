@@ -132,7 +132,7 @@ namespace DrinkItUpWebApp.Controllers
 				return RedirectToAction(nameof(DrinkMixerPrep));
 			}
 
-			var drinksDtos = await _searchByIngredients.GetMatchingDrinksToIngredientsMixer(searchnames);
+			var drinksDtos = await _searchByIngredients.GetMatchingDrinksToIngredients(searchnames);
 
 			var drinks = new List<DrinkSearchModel>();
 			foreach(var drink in drinksDtos)
