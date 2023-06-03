@@ -174,3 +174,25 @@ body {
 .ingredients-td {
     text-align: center;
 }
+.searchResult{
+    max-height: 100px;
+    text-decoration:none;
+    color:black;
+    border-bottom: 1px solid;
+    border-color: black;
+}
+.searchResult:hover
+{
+    background-color: black;
+    color: white;
+}
+.cardSearch {
+    text-decoration: none;
+    color: black;
+    background-color: white;
+}
+
+.cardSearch:hover {
+    background-color: white;
+    color: black;
+}

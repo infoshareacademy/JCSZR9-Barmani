@@ -7,12 +7,12 @@
         </div>
     @foreach(var item in Model)
     {
-    <a class="col-3" asp-action="DrinkDetails" asp-route-id="@item.DrinkId">
-    <div class="card bg-dark my-1">
+    <a class="col-3 text-decoration-none lead" asp-action="DrinkDetails" asp-route-id="@item.DrinkId">
+    <div class="card cardSearch my-1">
         <img src="~/img/sampledrink.png" class="card-img-top" alt="...">
         <div class="card-body">
-            <h5 class="card-title">@item.Name</h5>
-            <p class="card-text text-truncate">@item.Description</p>
+            <h5 class="card-title ">@item.Name</h5>
+            <p class="card-text text-truncate ">@item.Description</p>
         </div>
     </div>
     </a>
