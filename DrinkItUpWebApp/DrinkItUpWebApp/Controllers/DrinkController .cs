@@ -46,6 +46,22 @@ namespace DrinkItUpWebApp.Controllers
 			return Json(null);
 		}
 
+		public async Task<IActionResult> DrinkSearchBar(string input)
+		{
+            var drinks = await _searchByNameOrOneIngredient.SearchByName(input);
+            var drinksModel = new List<DrinkSearchModel>();
+            if (drinks != null)
+            {
+                foreach (var drink in drinks)
+                {
+                    var drinkModel = _mapper.Map<DrinkSearchModel>(drink);
+                    drinksModel.Add(drinkModel);
+                }
+				return View("DrinkSearch", drinksModel);
+            }
+            return RedirectToAction(nameof(DrinkSearch),drinksModel);
+        }
+
 		[HttpGet]
 		public IActionResult DrinkSearch(IEnumerable<DrinkSearchModel> drinks)
         {
