@@ -181,18 +181,17 @@ body {
     border-bottom: 1px solid;
     border-color: black;
 }
-.searchResult:hover
-{
-    background-color: black;
-    color: white;
-}
+    .searchResult:hover {
+        background-color: #943b54;
+        color: white;
+    }
 .cardSearch {
     text-decoration: none;
     color: white;
     background-color: black;
 }
 
-.cardSearch:hover {
-    background-color: white;
-    color: black;
-}
+    .cardSearch:hover {
+        background-color: #943b54;
+        color: black;
+    }

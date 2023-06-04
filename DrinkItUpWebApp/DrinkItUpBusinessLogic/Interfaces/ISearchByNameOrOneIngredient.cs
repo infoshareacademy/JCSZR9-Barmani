@@ -12,6 +12,7 @@ namespace DrinkItUpBusinessLogic.Interfaces
 		Task<List<DrinkDto>> SearchByName(string input);
 
 
-        void SearchByOneIngredient(string input);
-	}
+		Task<List<DrinkDto>> SearchByOneIngredient(string input);
+
+    }
 }

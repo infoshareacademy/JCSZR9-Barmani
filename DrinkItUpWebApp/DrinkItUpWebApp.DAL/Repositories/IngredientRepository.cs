@@ -30,7 +30,7 @@ namespace DrinkItUpWebApp.DAL.Repositories
 
         public async Task<IEnumerable<Ingredient>> GetIngredientsByDrinkId(int id)
         {
-            var drinkIngredients = _drinkIngredientRepository.GetIngredientsByDrinkId(id).ToList();
+            var drinkIngredients = await _drinkIngredientRepository.GetIngredientsByDrinkId(id).ToListAsync();
 
 
             var results = new List<Ingredient>();    

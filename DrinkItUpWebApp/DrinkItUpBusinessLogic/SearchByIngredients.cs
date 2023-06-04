@@ -2,11 +2,8 @@
 using DrinkItUpBusinessLogic.DTOs;
 using DrinkItUpBusinessLogic.Interfaces;
 using DrinkItUpWebApp.DAL.Entities;
-using DrinkItUpWebApp.DAL.Repositories;
 using DrinkItUpWebApp.DAL.Repositories.Interfaces;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Text.RegularExpressions;
 
 namespace DrinkItUpBusinessLogic
@@ -24,9 +21,9 @@ namespace DrinkItUpBusinessLogic
 			_mapper = mapper;
 		}
 
-		public List<string> GetAllIngredientsMatchingNames(string input)
+		public async Task<List<string>> GetAllIngredientsMatchingNames(string input)
 		{
-			var allIngredientsNames = GetAllNamesDistinct();
+			var allIngredientsNames = await GetAllNamesDistinct();
 
 			string pattern = $"([^a-z]|^){input}([A-Z]|[a-z])*";
 			var regex = new Regex(pattern, RegexOptions.IgnoreCase);
@@ -39,12 +36,12 @@ namespace DrinkItUpBusinessLogic
 			return matchingNames;
 		}
 
-		public List<string> GetAllNamesDistinct()
+		public async Task<List<string>> GetAllNamesDistinct()
 		{
-			var allIngredientsNames = _ingredientRepository.GetAll()
+			var allIngredientsNames = await _ingredientRepository.GetAll()
 				.Select(i => i.Name)
 				.Distinct()
-				.ToList();
+				.ToListAsync();
 
 			return allIngredientsNames;
 		}
@@ -66,7 +63,7 @@ namespace DrinkItUpBusinessLogic
 			{
 				matchingIngredientsToDrinks.Add(ingredient, new List<int>());
 
-				var ingredientsEntities = _ingredientRepository.SearchByNameQueryable(ingredient).ToList();
+				var ingredientsEntities = await _ingredientRepository.SearchByNameQueryable(ingredient).ToListAsync();
 
 				foreach(var entities in ingredientsEntities)
 				{
