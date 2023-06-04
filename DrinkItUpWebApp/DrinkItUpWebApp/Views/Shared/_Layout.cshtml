@@ -53,10 +53,10 @@
 
                       
                         <div class="" style="position: relative; width: 100%;">
-                            <div class="input-group pinkborda">
-                                <input id="searchBar"type="text" class="form-control" placeholder="Wpisz nazwę lub składnik!">
-                                <button class="btn btn-outline-secondary search-button" type="button" id="button-addon2">Szukaj</button>
-                            </div>
+                            <form class="input-group pinkborda" asp-controller="Drink" asp-action="DrinkSearchBar">
+                                <input id="searchBar" type="text" name="input" class="form-control" placeholder="Wpisz nazwę lub składnik!">
+                                <input class="btn btn-outline-secondary search-button" type="submit" value="Szukaj" id="button-addon2"  />
+                            </form>
 
                             <div id="autoCompleteMain" hidden class="d-block bg-white rounded pinkborda text-dark lead" style="width: inherit ;position: absolute;top: 65px;max-height: 300px;">
                                 
