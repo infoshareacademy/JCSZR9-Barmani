@@ -25,5 +25,13 @@ namespace DrinkItUpWebApp.DAL.Repositories
 
             return drinkIngredients;
         }
+
+        public IQueryable<DrinkIngredient> GetDrinksByIngredientId(int id)
+        {
+            var drinkIngredients = _context.DrinkIngredients
+                .Where(d => d.IngredientId == id);
+
+            return drinkIngredients;
+        }
     }
 }

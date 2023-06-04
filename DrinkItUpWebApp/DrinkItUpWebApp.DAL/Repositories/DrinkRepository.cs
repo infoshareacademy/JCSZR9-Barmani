@@ -8,10 +8,12 @@ namespace DrinkItUpWebApp.DAL.Repositories
     public class DrinkRepository : CRUDRepository<Drink>, IDrinkRepository
     {
         private DrinkContext _context;
+        private readonly IDrinkIngredientRepository _drinkIngredientRepository;
 
-        public DrinkRepository(DrinkContext drinkContext) : base(drinkContext)
+        public DrinkRepository(DrinkContext drinkContext, IDrinkIngredientRepository drinkIngredientRepository) : base(drinkContext)
         {
             _context = drinkContext;
+            _drinkIngredientRepository = drinkIngredientRepository;
         }
 
         public async Task<Drink> GetByIdWithDetails(int id)
@@ -52,6 +54,24 @@ namespace DrinkItUpWebApp.DAL.Repositories
         public IQueryable<Drink> SearchByNameQueryable(string name)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<Drink>> GetDrinksByIngredientId(int id)
+        {
+            var drinkIngredients = await _drinkIngredientRepository.GetDrinksByIngredientId(id).ToListAsync();
+
+            var results = new List<Drink>();
+
+            foreach (var drinkIngredient in drinkIngredients)
+            {
+                var drink = await _context.Drinks
+                    .Include(i => i.DrinkIngredients)
+                    .FirstOrDefaultAsync(i => i.DrinkId == drinkIngredient.DrinkId);
+
+                results.Add(drink);
+            }
+
+            return results;
         }
     }
 }

@@ -11,5 +11,7 @@ namespace DrinkItUpWebApp.DAL.Repositories.Interfaces
 	{
         IQueryable<DrinkIngredient> GetIngredientsByDrinkId(int id);
 
+        IQueryable<DrinkIngredient> GetDrinksByIngredientId(int id);
+
     }
 }

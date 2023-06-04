@@ -1,12 +1,8 @@
 ﻿using AutoMapper;
-using DrinkItUpBusinessLogic.DTOs;
 using DrinkItUpBusinessLogic.Interfaces;
-using DrinkItUpWebApp.DAL.Entities;
-using DrinkItUpWebApp.DAL.Repositories;
-using DrinkItUpWebApp.DAL.Repositories.Interfaces;
 using DrinkItUpWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.DotNet.MSIdentity.Shared;
+
 
 namespace DrinkItUpWebApp.Controllers
 {
@@ -70,9 +66,9 @@ namespace DrinkItUpWebApp.Controllers
             return View(drinkWithDetailsModel);
         }
 
-        public IActionResult DrinkMixerPrep()
+        public async Task<IActionResult> DrinkMixerPrep()
 		{
-			var ingredientsNames = _searchByIngredients.GetAllNamesDistinct();
+			var ingredientsNames = await _searchByIngredients.GetAllNamesDistinct();
 
 			var ingredientsNamesModel = new IngredientsSearchModel();
 
