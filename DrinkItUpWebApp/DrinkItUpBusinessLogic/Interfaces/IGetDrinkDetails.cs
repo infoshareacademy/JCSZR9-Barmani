@@ -10,5 +10,6 @@ namespace DrinkItUpBusinessLogic.Interfaces
     public interface IGetDrinkDetails
     {
         Task<DrinkWithDetailsDto> GetDrinkToDetailView(int id);
+        Task<List<int>> GetAllDrinksId();
     }
 }

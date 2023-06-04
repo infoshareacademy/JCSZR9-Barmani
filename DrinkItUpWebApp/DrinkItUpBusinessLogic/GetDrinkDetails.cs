@@ -2,12 +2,7 @@
 using DrinkItUpBusinessLogic.DTOs;
 using DrinkItUpBusinessLogic.Interfaces;
 using DrinkItUpWebApp.DAL.Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace DrinkItUpBusinessLogic
 {
@@ -17,11 +12,17 @@ namespace DrinkItUpBusinessLogic
         private readonly IIngredientRepository _ingredientRepository;
         private readonly IMapper _mapper;
 
+
         public GetDrinkDetails(IDrinkRepository drinkRepository, IIngredientRepository ingredientRepository, IMapper mapper)
         {
             _drinkRepository = drinkRepository;
             _ingredientRepository = ingredientRepository;
             _mapper = mapper;
+        }
+
+        public async Task<List<int>> GetAllDrinksId()
+        {
+            return await _drinkRepository.GetAll().Select(d => d.DrinkId).ToListAsync();
         }
 
         public async Task<DrinkWithDetailsDto> GetDrinkToDetailView(int id)

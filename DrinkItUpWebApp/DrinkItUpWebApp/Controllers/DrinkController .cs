@@ -62,6 +62,15 @@ namespace DrinkItUpWebApp.Controllers
             return View();
         }
 
+        public async Task<IActionResult> DrinkSuprise()
+        {
+			var random = new Random();
+			var drinkIds = await _getDrinkDetails.GetAllDrinksId();
+            var randomId = random.Next(0,drinkIds.Count());
+
+            return RedirectToAction(nameof(DrinkDetails), new { id = drinkIds.ElementAt(randomId)});
+        }
+
         public async Task<IActionResult> DrinkDetails(int id)
         {
 			var drinkWithDetails = await _getDrinkDetails.GetDrinkToDetailView(id);
