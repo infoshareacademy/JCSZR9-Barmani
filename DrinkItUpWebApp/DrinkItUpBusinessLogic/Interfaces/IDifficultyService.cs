@@ -10,5 +10,7 @@ namespace DrinkItUpBusinessLogic.Interfaces
     public interface IDifficultyService
     {
         Task<DifficultyDto> AddDifficulty(DifficultyDto difficulty);
+
+        Task<List<DifficultyDto>> GetAll();
     }
 }
