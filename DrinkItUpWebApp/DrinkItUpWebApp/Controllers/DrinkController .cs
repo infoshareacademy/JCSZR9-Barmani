@@ -59,7 +59,7 @@ namespace DrinkItUpWebApp.Controllers
                 }
 				return View("DrinkSearch", drinksModel);
             }
-            return RedirectToAction(nameof(DrinkSearch),drinksModel);
+            return View("DrinkSearch", drinksModel);
         }
 
 		[HttpGet]
