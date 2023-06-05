@@ -10,27 +10,44 @@ namespace DrinkItUpWebApp.Controllers
     {
         private readonly IIngredientService _ingredientService;
         private readonly IMapper _mapper;
-        private List<IngredientModel> _ingredientModels { get; set; }
+        private readonly IUnitService _unitService;
+        private static List<IngredientModel> _ingredientModels { get; set; }
 
-        public IngredientController(IIngredientService ingredientService, IMapper mapper)
+        private static List<UnitModel> _unitModels = new List<UnitModel>();
+
+        public IngredientController(IIngredientService ingredientService, IUnitService unit, IMapper mapper)
         {
             _mapper = mapper;
             _ingredientService = ingredientService;
+            _unitService = unit;
+
+
         }
         // GET: IngredientController
         public async Task<ActionResult> Index()
         {
             var ingredientsDto = await _ingredientService.GetAllIngredientsWithUnits();
             var ingredientModels = new List<IngredientModel>();
-            foreach(var ingredientDto in ingredientsDto)
+            var unitModels = new List<UnitModel>();
+            foreach (var ingredientDto in ingredientsDto)
             {
                 var ingredient = _mapper.Map<IngredientModel>(ingredientDto);
                 ingredientModels.Add(ingredient);
-                _ingredientModels = ingredientModels;
+
+                var unitsDto = await _unitService.GetAll();
+                
+                foreach(var unitDto in unitsDto)
+                {
+                    var unitModel = _mapper.Map<UnitModel>(unitDto);
+                    unitModels.Add(unitModel);
+                }
+   
             }    
 
             var ingredientModel = new IngredientModel();
-            ingredientModel.IngredientsWithUnits = _ingredientModels;
+            ingredientModel.IngredientsWithUnits = ingredientModels;
+            ingredientModel.Units = unitModels;
+
 
             return View(ingredientModel);
         }
@@ -51,9 +68,11 @@ namespace DrinkItUpWebApp.Controllers
         }
 
         // GET: IngredientController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            return View();
+            var model = _mapper.Map<IngredientModel>(await _ingredientService.GetById(id));
+
+            return View(model);
         }
 
         // POST: IngredientController/Edit/5

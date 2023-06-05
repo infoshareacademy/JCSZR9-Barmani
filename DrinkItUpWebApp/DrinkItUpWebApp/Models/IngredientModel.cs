@@ -15,5 +15,7 @@ namespace DrinkItUpWebApp.Models
         public bool IsUsed { get; set; }
 
         public List<IngredientModel> IngredientsWithUnits { get; set;}
+
+        public List<UnitModel> Units { get; set; }
     }
 }

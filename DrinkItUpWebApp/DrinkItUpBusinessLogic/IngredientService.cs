@@ -39,5 +39,10 @@ namespace DrinkItUpBusinessLogic
 
             return ingredientsDto.OrderBy(i => i.Name).ToList();
         }
+
+        public async Task<IngredientDto> GetById(int id)
+        {
+            return _mapper.Map<IngredientDto>(await _repository.GetById(id));
+        }
     }
 }

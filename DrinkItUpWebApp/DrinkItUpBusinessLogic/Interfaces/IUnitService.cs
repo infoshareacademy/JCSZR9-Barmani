@@ -9,6 +9,8 @@ namespace DrinkItUpBusinessLogic.Interfaces
 {
     public interface IUnitService
     {
+        Task<UnitDto> GetById(int id);
+        Task<List<UnitDto>> GetAll();
         Task<UnitDto> AddUnit(UnitDto unit); 
     }
 }

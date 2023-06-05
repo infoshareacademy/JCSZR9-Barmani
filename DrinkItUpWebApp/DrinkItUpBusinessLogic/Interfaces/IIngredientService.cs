@@ -10,5 +10,7 @@ namespace DrinkItUpBusinessLogic.Interfaces
     public interface IIngredientService
     {
         Task<List<IngredientDto>> GetAllIngredientsWithUnits();
+
+        Task<IngredientDto> GetById(int id);
     }
 }
