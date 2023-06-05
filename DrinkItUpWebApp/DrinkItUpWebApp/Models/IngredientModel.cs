@@ -10,6 +10,8 @@ namespace DrinkItUpWebApp.Models
 
         public decimal Quantity { get; set; }
 
+        public int UnitId { get; set; }
+
         public UnitModel Unit { get; set; } = null!;
 
         public bool IsUsed { get; set; }
