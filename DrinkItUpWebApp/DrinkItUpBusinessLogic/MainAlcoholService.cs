@@ -4,6 +4,7 @@ using DrinkItUpBusinessLogic.Interfaces;
 using DrinkItUpWebApp.DAL.Entities;
 using DrinkItUpWebApp.DAL.Repositories;
 using DrinkItUpWebApp.DAL.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,5 +35,17 @@ namespace DrinkItUpBusinessLogic
 
         }
 
+        public async Task<List<MainAlcoholDto>> GetAll()
+        {
+            var mainAlcohols = await _repository.GetAll().ToListAsync();
+            var mainAlcoholsDto = new List<MainAlcoholDto>();
+
+            foreach(var mainAlcohol in mainAlcohols)
+            {
+                var mainAlcoholDto = _mapper.Map<MainAlcoholDto>(mainAlcohol);
+                mainAlcoholsDto.Add(mainAlcoholDto);
+            }
+            return mainAlcoholsDto;
+        }
     }
 }

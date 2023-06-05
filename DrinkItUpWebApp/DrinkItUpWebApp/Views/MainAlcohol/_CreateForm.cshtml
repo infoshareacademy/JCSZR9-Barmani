@@ -1,0 +1,55 @@
+﻿@model DrinkItUpWebApp.Models.MainAlcoholModel
+
+
+
+<div class="accordion container-fluid" id="accordionCRD">
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button bg-warning fw-bold text-black" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Dodaj Główny Alkohol
+            </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show bg-dark" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <div class="row">
+                    <div class="col-12">
+                        <form asp-action="Create">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label for="Name" class="control-label">Nazwa Składnika:</label>
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group my-3">
+                                <input type="submit" value="Dodaj" class="btn btn-warning" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed bg-warning fw-bold text-black" type="button" data-bs-toggle="collapse" data-bs-target="" aria-expanded="false" aria-controls="collapseTwo">
+                Użyj akcji w tabeli, żeby otrzymać
+            </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed bg-warning fw-bold text-black" type="button" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false" aria-controls="collapseThree">
+                dostęp do większej ilości opcji.
+            </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+            </div>
+        </div>
+    </div>
+</div>

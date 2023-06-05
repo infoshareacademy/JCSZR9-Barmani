@@ -10,5 +10,6 @@ namespace DrinkItUpBusinessLogic.Interfaces
     public interface IMainAlcoholService
     {
         Task<MainAlcoholDto> AddMainAlcohol(MainAlcoholDto mainAlcohol);
+        Task<List<MainAlcoholDto>> GetAll();
     }
 }
