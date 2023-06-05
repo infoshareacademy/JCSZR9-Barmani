@@ -9,14 +9,14 @@
                 Dodaj Główny Alkohol
             </button>
         </h2>
-        <div id="collapseOne" class="accordion-collapse collapse show bg-dark" data-bs-parent="#accordionExample">
+        <div id="collapseOne" class="accordion-collapse collapse show bg-dark text-white" data-bs-parent="#accordionExample">
             <div class="accordion-body">
                 <div class="row">
                     <div class="col-12">
                         <form asp-action="Create">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="form-group">
-                                <label for="Name" class="control-label">Nazwa Składnika:</label>
+                                <label for="Name" class="control-label">Nazwa Alkoholu:</label>
                                 <input asp-for="Name" class="form-control" />
                                 <span asp-validation-for="Name" class="text-danger"></span>
                             </div>
@@ -35,7 +35,7 @@
                 Użyj akcji w tabeli, żeby otrzymać
             </button>
         </h2>
-        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+        <div id="collapseTwo" class="accordion-collapse collapse bg-dark text-white" data-bs-parent="#accordionExample">
             <div class="accordion-body">
             </div>
         </div>
@@ -46,7 +46,7 @@
                 dostęp do większej ilości opcji.
             </button>
         </h2>
-        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+        <div id="collapseThree" class="accordion-collapse collapse bg-dark text-white" data-bs-parent="#accordionExample">
             <div class="accordion-body">
                 <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
             </div>
