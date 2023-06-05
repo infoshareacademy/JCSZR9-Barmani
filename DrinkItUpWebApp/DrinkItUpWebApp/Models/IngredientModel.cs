@@ -11,5 +11,11 @@ namespace DrinkItUpWebApp.Models
         public decimal Quantity { get; set; }
 
         public UnitModel Unit { get; set; } = null!;
+
+        public bool IsUsed { get; set; }
+
+        public List<IngredientModel> IngredientsWithUnits { get; set;}
+
+        public List<UnitModel> Units { get; set; }
     }
 }

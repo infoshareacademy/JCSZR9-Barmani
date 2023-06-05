@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace DrinkItUpBusinessLogic.Interfaces
 {
-    public interface IUnitService
+    public interface IIngredientService
     {
-        Task<UnitDto> GetById(int id);
-        Task<List<UnitDto>> GetAll();
-        Task<UnitDto> AddUnit(UnitDto unit); 
+        Task<List<IngredientDto>> GetAllIngredientsWithUnits();
+
+        Task<IngredientDto> GetById(int id);
     }
 }

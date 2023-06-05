@@ -5,8 +5,8 @@
 }
 
 .main-bg {
-    min-height: 100vh;
-    max-width: device-width;
+    min-height: auto;
+    width: auto;
     background: #6c1048;
 }
 
@@ -107,7 +107,7 @@ body {
     padding: 10px;
 }
 
-.search-button:focus {
+.search-button:hover {
     box-shadow: none;
     border-color: #ced4da;
 }
@@ -188,10 +188,29 @@ body {
 .cardSearch {
     text-decoration: none;
     color: white;
-    background-color: black;
+    background-color: #943b54;
 }
 
     .cardSearch:hover {
-        background-color: #943b54;
+        background-color: #da0b85;
         color: black;
     }
+.panel-header
+{
+
+    align-items:center;
+    text-decoration:none;
+    color: white;
+}
+.panel-header-active {
+    height: inherit;
+    text-decoration: none;
+    color: black;
+    background-color: yellow;
+}
+.panel-header:hover
+{
+    height:inherit;
+    color:black;
+    background-color:yellow;
+}
