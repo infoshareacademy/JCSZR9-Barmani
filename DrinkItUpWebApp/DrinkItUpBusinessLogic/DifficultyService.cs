@@ -3,6 +3,7 @@ using DrinkItUpBusinessLogic.DTOs;
 using DrinkItUpBusinessLogic.Interfaces;
 using DrinkItUpWebApp.DAL.Entities;
 using DrinkItUpWebApp.DAL.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace DrinkItUpBusinessLogic
 {
@@ -29,6 +30,18 @@ namespace DrinkItUpBusinessLogic
 
         }
 
+        public async Task<List<DifficultyDto>> GetAll()
+        {
+            var difficulties = await _repository.GetAll().ToListAsync();
+            var difficultiesDto = new List<DifficultyDto>();
+            
+            foreach (var difficulty in difficulties)
+            {
+                var difficultyDto = _mapper.Map<DifficultyDto>(difficulty);
+                difficultiesDto.Add(difficultyDto);
+            }
+            return difficultiesDto;
+        }
     }
 
 }
