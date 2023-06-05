@@ -9,7 +9,7 @@
                 Dodaj Składnik
             </button>
         </h2>
-        <div id="collapseOne" class="accordion-collapse collapse bg-dark" data-bs-parent="#accordionExample">
+        <div id="collapseOne" class="accordion-collapse collapse bg-dark text-white" data-bs-parent="#accordionExample">
             <div class="accordion-body">
                 <div class="row">
                     <div class="col-12">
@@ -45,9 +45,38 @@
                 Edytuj Składnik
             </button>
         </h2>
-        <div id="collapseTwo" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+        <div id="collapseTwo" class="accordion-collapse collapse show bg-dark text-white" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-                Tu będzie Edycja składnika
+                <div class="row">
+                    <div class="col-12">
+                        <form asp-action="Edit">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label for="Name" class="control-label">Nazwa Składnika:</label>
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group my-2">
+                                <label for="Unit" class="control-label">Jednostka:</label>
+                                <select asp-for="Name" class="form-select" aria-label="Select Unit">
+
+                                    @foreach (var unit in Model.Units)
+                                    {
+                                        if (Model.UnitId == unit.UnitId)
+                                        {
+                                            <option selected value="@unit.UnitId">@unit.Name</option>
+                                            continue;
+                                        }
+                                        <option value="@unit.UnitId">@unit.Name</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group my-3">
+                                <input type="submit" value="Edytuj składnik" class="btn btn-warning" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -57,7 +86,7 @@
                 Usuń Składnik
             </button>
         </h2>
-        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+        <div id="collapseThree" class="accordion-collapse collapse bg-dark text-white" data-bs-parent="#accordionExample">
             <div class="accordion-body">
                 Tu będzie usuwanie składnika.
             </div>

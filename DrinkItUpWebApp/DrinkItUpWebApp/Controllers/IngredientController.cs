@@ -11,9 +11,9 @@ namespace DrinkItUpWebApp.Controllers
         private readonly IIngredientService _ingredientService;
         private readonly IMapper _mapper;
         private readonly IUnitService _unitService;
-        private static List<IngredientModel> _ingredientModels { get; set; }
+        
 
-        private static List<UnitModel> _unitModels = new List<UnitModel>();
+            
 
         public IngredientController(IIngredientService ingredientService, IUnitService unit, IMapper mapper)
         {
@@ -21,32 +21,15 @@ namespace DrinkItUpWebApp.Controllers
             _ingredientService = ingredientService;
             _unitService = unit;
 
-
         }
         // GET: IngredientController
         public async Task<ActionResult> Index()
         {
-            var ingredientsDto = await _ingredientService.GetAllIngredientsWithUnits();
-            var ingredientModels = new List<IngredientModel>();
-            var unitModels = new List<UnitModel>();
-            foreach (var ingredientDto in ingredientsDto)
-            {
-                var ingredient = _mapper.Map<IngredientModel>(ingredientDto);
-                ingredientModels.Add(ingredient);
-
-                var unitsDto = await _unitService.GetAll();
-                
-                foreach(var unitDto in unitsDto)
-                {
-                    var unitModel = _mapper.Map<UnitModel>(unitDto);
-                    unitModels.Add(unitModel);
-                }
-   
-            }    
+            
 
             var ingredientModel = new IngredientModel();
-            ingredientModel.IngredientsWithUnits = ingredientModels;
-            ingredientModel.Units = unitModels;
+            ingredientModel.IngredientsWithUnits = await GetAllIngredients();
+            ingredientModel.Units = await GetAllUnits();
 
 
             return View(ingredientModel);
@@ -70,9 +53,10 @@ namespace DrinkItUpWebApp.Controllers
         // GET: IngredientController/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
-            var model = _mapper.Map<IngredientModel>(await _ingredientService.GetById(id));
-
-            return View(model);
+            var ingredientModel = _mapper.Map<IngredientModel>(await _ingredientService.GetById(id));
+            ingredientModel.IngredientsWithUnits = await GetAllIngredients();
+            ingredientModel.Units = await GetAllUnits();
+            return View(ingredientModel);
         }
 
         // POST: IngredientController/Edit/5
@@ -109,6 +93,35 @@ namespace DrinkItUpWebApp.Controllers
             {
                 return View();
             }
+        }
+
+        private async Task<List<UnitModel>> GetAllUnits()
+        {
+            var unitModels = new List<UnitModel>();
+            var unitsDto = await _unitService.GetAll();
+
+            foreach (var unitDto in unitsDto)
+            {
+                var unitModel = _mapper.Map<UnitModel>(unitDto);
+                unitModels.Add(unitModel);
+            }
+
+            return unitModels;
+        }
+
+        public async Task<List<IngredientModel>> GetAllIngredients()
+        {
+            var ingredientsDto = await _ingredientService.GetAllIngredientsWithUnits();
+            var ingredientModels = new List<IngredientModel>();
+
+            foreach (var ingredientDto in ingredientsDto)
+            {
+                var ingredient = _mapper.Map<IngredientModel>(ingredientDto);
+                ingredientModels.Add(ingredient);
+
+            }
+
+            return ingredientModels;
         }
     }
 }

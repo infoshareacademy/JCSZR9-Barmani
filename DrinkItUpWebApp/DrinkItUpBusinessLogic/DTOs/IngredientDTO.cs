@@ -8,6 +8,8 @@
 
         public decimal Quantity { get; set;}
 
+        public int UnitId { get; set; }
+
         public UnitDto Unit { get; set; } = null!;
 
         public bool IsUsed { get; set; } = false;
