@@ -5,9 +5,9 @@
 }
 
 .main-bg {
-    min-height: auto;
-    width: auto;
+    min-height: 100vh;
     background: #6c1048;
+
 }
 
 .main-view-sm {
