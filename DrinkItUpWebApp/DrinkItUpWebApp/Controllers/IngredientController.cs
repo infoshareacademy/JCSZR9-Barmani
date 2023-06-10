@@ -41,17 +41,22 @@ namespace DrinkItUpWebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(IngredientModel model)
         {
+         
             var ingredientDto = _mapper.Map<IngredientDto>(model);
-            ingredientDto = await _ingredientService.Add(ingredientDto);
+            if (await _ingredientService.IsIngredientUnique(ingredientDto))
+            {
+                ingredientDto = await _ingredientService.Add(ingredientDto);
+            }
 
-            try
+            if (ingredientDto.IngredientId != 0)
             {
                 return RedirectToAction(nameof(Edit), new { id = ingredientDto.IngredientId });
             }
-            catch
+            else
             {
-                return View();
+                return RedirectToAction(nameof(Index));
             }
+           
         }
 
         // GET: IngredientController/Edit/5
@@ -67,18 +72,20 @@ namespace DrinkItUpWebApp.Controllers
         // POST: IngredientController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(IngredientModel model)
         {
-            try
+            var ingredientDto = _mapper.Map<IngredientDto>(model);
+            if (await _ingredientService.IsIngredientUnique(ingredientDto))
             {
-                return RedirectToAction(nameof(Index));
+                ingredientDto = await _ingredientService.Update(ingredientDto);
+                return RedirectToAction(nameof(Edit), new { id = ingredientDto.IngredientId });
             }
-            catch
-            {
-                return View();
-            }
+
+            return RedirectToAction(nameof(Edit), new { id = ingredientDto.IngredientId });
+
         }
 
+        [HttpGet]
         // GET: IngredientController/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
@@ -91,16 +98,18 @@ namespace DrinkItUpWebApp.Controllers
         // POST: IngredientController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(int id, IngredientModel model)
         {
-            try
+            if(await _ingredientService.IngredientIsUsed(id))
             {
+                return RedirectToAction(nameof(Edit), new { id = id });
+            }
+
+            if(await _ingredientService.Remove(id))
                 return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            else
+                return RedirectToAction(nameof(Edit), new { id = id });
+
         }
 
         private async Task<List<UnitModel>> GetAllUnits()

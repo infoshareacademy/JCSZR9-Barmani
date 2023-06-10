@@ -21,7 +21,6 @@ namespace DrinkItUpWebApp.DAL.Repositories
         public async Task<T> Add(T entity)
         {
             await _context.Set<T>().AddAsync(entity);
-            await Save();
             return entity;
         }
 
