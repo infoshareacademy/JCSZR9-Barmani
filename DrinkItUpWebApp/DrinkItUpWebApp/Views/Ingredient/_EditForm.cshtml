@@ -52,13 +52,18 @@
                         <form asp-action="Edit">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="form-group">
+                                <label for="IngredientId" class="control-label">Id</label>
+                                <input asp-for="IngredientId" class="form-control" disabled />
+                                <span asp-validation-for="IngredientId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
                                 <label for="Name" class="control-label">Nazwa Składnika:</label>
-                                <input asp-for="Name" class="form-control" />
+                                <input asp-for="Name" class="form-control"  />
                                 <span asp-validation-for="Name" class="text-danger"></span>
                             </div>
                             <div class="form-group my-2">
-                                <label for="Unit" class="control-label">Jednostka:</label>
-                                <select asp-for="Name" class="form-select" aria-label="Select Unit">
+                                <label for="UnitId" class="control-label">Jednostka:</label>
+                                <select asp-for="UnitId" class="form-select" aria-label="Select Unit">
 
                                     @foreach (var unit in Model.Units)
                                     {
@@ -88,7 +93,53 @@
         </h2>
         <div id="collapseThree" class="accordion-collapse collapse bg-dark text-white" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-                Tu będzie usuwanie składnika.
+                <div class="row">
+                    <div class="col-12">
+                        <form asp-action="Delete">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label for="IngredientId" class="control-label">Id</label>
+                                <input asp-for="IngredientId" class="form-control" disabled />
+                                <span asp-validation-for="IngredientId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="Name" class="control-label">Nazwa Składnika:</label>
+                                <input asp-for="Name" class="form-control" disabled />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group my-2">
+                                <label for="UnitId" class="control-label">Jednostka:</label>
+                                <select asp-for="UnitId" class="form-select" disabled aria-label="Select Unit">
+
+                                    @foreach (var unit in Model.Units)
+                                    {
+                                        if (Model.UnitId == unit.UnitId)
+                                        {
+                                            <option selected value="@unit.UnitId">@unit.Name</option>
+                                            continue;
+                                        }
+                                        <option value="@unit.UnitId">@unit.Name</option>
+                                    }
+                                </select>
+                            </div>
+
+                                @if(Model.IsUsed)
+                                {
+                                    <p class="text-warning">Usuń składnik ze wszystkich drinków, żeby odblokować możliwość jego usunięcia z bazy!</p>
+
+                                    <div class="form-group my-3">
+                                        <input type="submit" value="Usuń składnik" disabled class="btn btn-warning" />
+                                    </div>
+                                }
+                                else
+                                {
+                                <div class="form-group my-3">
+                                    <input type="submit" value="Usuń składnik" class="btn btn-warning" />
+                                </div>
+                                }                               
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

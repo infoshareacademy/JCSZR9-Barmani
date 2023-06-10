@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DrinkItUpBusinessLogic.DTOs;
 using DrinkItUpBusinessLogic.Interfaces;
 using DrinkItUpWebApp.Models;
 using Microsoft.AspNetCore.Http;
@@ -38,11 +39,14 @@ namespace DrinkItUpWebApp.Controllers
         // POST: IngredientController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(IngredientModel model)
         {
+            var ingredientDto = _mapper.Map<IngredientDto>(model);
+            ingredientDto = await _ingredientService.Add(ingredientDto);
+
             try
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Edit), new { id = ingredientDto.IngredientId });
             }
             catch
             {
@@ -56,6 +60,7 @@ namespace DrinkItUpWebApp.Controllers
             var ingredientModel = _mapper.Map<IngredientModel>(await _ingredientService.GetById(id));
             ingredientModel.IngredientsWithUnits = await GetAllIngredients();
             ingredientModel.Units = await GetAllUnits();
+
             return View(ingredientModel);
         }
 
@@ -75,9 +80,12 @@ namespace DrinkItUpWebApp.Controllers
         }
 
         // GET: IngredientController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            var ingredientModel = _mapper.Map<IngredientModel>(await _ingredientService.GetById(id));
+            ingredientModel.IngredientsWithUnits = await GetAllIngredients();
+            ingredientModel.Units = await GetAllUnits();
+            return View(ingredientModel);
         }
 
         // POST: IngredientController/Delete/5
