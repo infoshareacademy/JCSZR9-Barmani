@@ -32,6 +32,10 @@ namespace DrinkItUpWebApp.MapperProfile
 
             CreateMap<DifficultyModel, DifficultyDto>();
             CreateMap<DifficultyDto, Difficulty>();
+
+			CreateMap<IngredientModel, IngredientDto>();
+			CreateMap<IngredientDto, Ingredient>();
+			
         }
 	}
 }

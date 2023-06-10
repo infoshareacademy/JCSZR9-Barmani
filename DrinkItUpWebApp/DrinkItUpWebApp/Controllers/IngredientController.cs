@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DrinkItUpBusinessLogic.DTOs;
 using DrinkItUpBusinessLogic.Interfaces;
 using DrinkItUpWebApp.Models;
 using Microsoft.AspNetCore.Http;
@@ -38,16 +39,24 @@ namespace DrinkItUpWebApp.Controllers
         // POST: IngredientController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(IngredientModel model)
         {
-            try
+         
+            var ingredientDto = _mapper.Map<IngredientDto>(model);
+            if (await _ingredientService.IsIngredientUnique(ingredientDto))
+            {
+                ingredientDto = await _ingredientService.Add(ingredientDto);
+            }
+
+            if (ingredientDto.IngredientId != 0)
+            {
+                return RedirectToAction(nameof(Edit), new { id = ingredientDto.IngredientId });
+            }
+            else
             {
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+           
         }
 
         // GET: IngredientController/Edit/5
@@ -56,43 +65,51 @@ namespace DrinkItUpWebApp.Controllers
             var ingredientModel = _mapper.Map<IngredientModel>(await _ingredientService.GetById(id));
             ingredientModel.IngredientsWithUnits = await GetAllIngredients();
             ingredientModel.Units = await GetAllUnits();
+
             return View(ingredientModel);
         }
 
         // POST: IngredientController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(IngredientModel model)
         {
-            try
+            var ingredientDto = _mapper.Map<IngredientDto>(model);
+            if (await _ingredientService.IsIngredientUnique(ingredientDto))
             {
-                return RedirectToAction(nameof(Index));
+                ingredientDto = await _ingredientService.Update(ingredientDto);
+                return RedirectToAction(nameof(Edit), new { id = ingredientDto.IngredientId });
             }
-            catch
-            {
-                return View();
-            }
+
+            return RedirectToAction(nameof(Edit), new { id = ingredientDto.IngredientId });
+
         }
 
+        [HttpGet]
         // GET: IngredientController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            var ingredientModel = _mapper.Map<IngredientModel>(await _ingredientService.GetById(id));
+            ingredientModel.IngredientsWithUnits = await GetAllIngredients();
+            ingredientModel.Units = await GetAllUnits();
+            return View(ingredientModel);
         }
 
         // POST: IngredientController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(int id, IngredientModel model)
         {
-            try
+            if(await _ingredientService.IngredientIsUsed(id))
             {
+                return RedirectToAction(nameof(Edit), new { id = id });
+            }
+
+            if(await _ingredientService.Remove(id))
                 return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            else
+                return RedirectToAction(nameof(Edit), new { id = id });
+
         }
 
         private async Task<List<UnitModel>> GetAllUnits()

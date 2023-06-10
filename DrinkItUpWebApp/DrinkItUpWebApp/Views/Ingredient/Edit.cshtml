@@ -1,15 +1,15 @@
 ﻿@model DrinkItUpWebApp.Models.IngredientModel
 
-<div class="row">
-    <div class="d-inline-block">
-        <div class="col-12 d-flex stopka mx-1 my-1 justify-content-center">
+<div class="row" style="width: inherit;">
+    <div class="d-block">
+        <div class="col-12 d-flex stopka my-1 justify-content-center">
             <p class="display-6 fw-bolder">Panel Administracyjny</p>
         </div>
-        <div class="col-12 d-flex lead fw-bold stopka text-center align-items-center mx-1 my-2 " style="height:60px">
+        <div class="col-12 d-flex lead fw-bold stopka text-center align-items-center my-2 " style="height:60px">
 
             <a class="col-2 panel-header">Drinki</a>
-            <a class="col-3 panel-header">Główne Alkohole</a>
-            <a class="col-3 panel-header">Poziomy Trudności</a>
+            <a class="col-3 panel-header" asp-controller="MainAlcohol" asp-action="Index">Główne Alkohole</a>
+            <a class="col-3 panel-header" asp-controller="Difficulty" asp-action="Index">Poziomy Trudności</a>
             <a class="col-2 panel-header-active">Składniki</a>
             <a class="col-2 panel-header">Jednostki</a>
 
@@ -68,19 +68,6 @@
             </div>
         </div>
 
-        <div class="d-inline-block col-12">
-            <p class="lead fw-bolder">Główne Alkohole</p>
-            <a asp-action="AddMainAlcohol" class="btn btn-warning"> Dodaj Główny Alkohol!</a>
-
-            <p class="lead fw-bolder">Poziom Trudności</p>
-            <a asp-action="AddDifficulty" class="btn btn-warning"> Dodaj Poziom Trudności!</a>
-
-            <p class="lead fw-bolder">Składniki</p>
-
-
-            <p class="lead fw-bolder">Jednostki</p>
-            <a asp-action="AddUnit" class="btn btn-warning"> Dodaj Jednostkę!</a>
-        </div>
     </div>
 </div>
 @section Scripts {
