@@ -17,11 +17,13 @@ namespace DrinkItUpBusinessLogic
     {
         private readonly IUnitRepository _repository;
         private readonly IMapper _mapper;
+        private readonly IIngredientRepository _ingredientRepository;
 
-        public UnitService(IUnitRepository repository, IMapper mapper)
+        public UnitService(IUnitRepository repository, IMapper mapper, IIngredientRepository ingredientRepository)
         {
             _repository = repository;
             _mapper = mapper;
+            _ingredientRepository = ingredientRepository;
         }
 
         public async Task<UnitDto> AddUnit(UnitDto unitDto)
@@ -51,7 +53,12 @@ namespace DrinkItUpBusinessLogic
                 var unitDto = _mapper.Map<UnitDto>(unit);
                 unitsDto.Add(unitDto);
             }
-            return unitsDto;
+            return unitsDto.OrderBy(u => u.Name).ToList();
+        }
+
+        public async Task<bool> UnitIsUsed(int id)
+        {
+            return await _ingredientRepository.GetAll().Select(i => i.UnitId).ContainsAsync(id);
         }
     }
 }

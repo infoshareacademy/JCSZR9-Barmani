@@ -12,5 +12,7 @@ namespace DrinkItUpBusinessLogic.Interfaces
         Task<UnitDto> GetById(int id);
         Task<List<UnitDto>> GetAll();
         Task<UnitDto> AddUnit(UnitDto unit); 
+
+        Task<bool> UnitIsUsed(int id);
     }
 }
