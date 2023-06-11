@@ -1,17 +1,17 @@
-﻿@model DrinkItUpWebApp.Models.MainAlcoholModel
+﻿@model DrinkItUpWebApp.Models.UnitModel
 
 <div class="row">
     <div class="d-inline-block">
-        <div class="col-12 d-flex stopka mx-1 my-1 justify-content-center">
+        <div class="col-12 d-flex stopka my-1 justify-content-center">
             <p class="display-6 fw-bolder">Panel Administracyjny</p>
         </div>
-        <div class="col-12 d-flex lead fw-bold stopka text-center align-items-center mx-1 my-2 " style="height:60px">
+        <div class="col-12 d-flex lead fw-bold stopka text-center align-items-center my-2 " style="height:60px">
 
             <a class="col-2 panel-header">Drinki</a>
-            <a class="col-3 panel-header-active">Główne Alkohole</a>
+            <a class="col-3 panel-header" asp-controller="MainAlcohol" asp-action="Index">Główne Alkohole</a>
             <a class="col-3 panel-header" asp-controller="Difficulty" asp-action="Index">Poziomy Trudności</a>
             <a class="col-2 panel-header" asp-controller="Ingredient" asp-action="Index">Składniki</a>
-            <a class="col-2 panel-header" asp-controller="Unit" asp-action="Index">Jednostki</a>
+            <a class="col-2 panel-header-active">Jednostki</a>
 
         </div>
         <div class="col-12">
@@ -30,7 +30,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model.MainAlcohols)
+                            @foreach (var item in Model.Units)
                             {
 
                                 <tr>
@@ -48,8 +48,8 @@
                                         }
                                     </td>
                                     <td>
-                                        <a class="btn btn-sm btn-warning lead" asp-action="Edit" asp-route-id="@item.MainAlcoholId">Edytuj</a> |
-                                        <a class="btn btn-sm btn-warning lead" asp-action="Delete" asp-route-id="@item.MainAlcoholId">Usuń</a>
+                                        <a class="btn btn-sm btn-warning lead" asp-action="Edit" asp-route-id="@item.UnitId">Edytuj</a> |
+                                        <a class="btn btn-sm btn-warning lead" asp-action="Delete" asp-route-id="@item.UnitId">Usuń</a>
                                     </td>
                                 </tr>
                             }
@@ -58,23 +58,9 @@
                 </div>
 
                 <div class="col-4 d-flex stopka p-1">
-                    <partial name="_CreateForm" , model="Model">
+                    <partial name="_EditForm" , model="Model">
                 </div>
             </div>
-        </div>
-
-        <div class="d-inline-block col-12">
-            <p class="lead fw-bolder">Główne Alkohole</p>
-            <a asp-action="AddMainAlcohol" class="btn btn-warning"> Dodaj Główny Alkohol!</a>
-
-            <p class="lead fw-bolder">Poziom Trudności</p>
-            <a asp-action="AddDifficulty" class="btn btn-warning"> Dodaj Poziom Trudności!</a>
-
-            <p class="lead fw-bolder">Składniki</p>
-
-
-            <p class="lead fw-bolder">Jednostki</p>
-            <a asp-action="AddUnit" class="btn btn-warning"> Dodaj Jednostkę!</a>
         </div>
     </div>
 </div>

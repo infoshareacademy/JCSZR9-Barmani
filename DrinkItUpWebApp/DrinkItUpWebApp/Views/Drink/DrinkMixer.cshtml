@@ -31,8 +31,8 @@
 		});
 	});
 </script>
-<div class="row w-100 h-100">
-	<div class="container-fluid col-md-6 col-lg-6 pinkborda-r">
+<div class="row h-100 p-2" style="width: inherit;">
+	<div class="d-block col-md-6 col-lg-6 pinkborda-r">
 		<div class="d-flex justify-content-center p-2">
 			<p class="display-6 fw-bolder">Co masz w barku!?</p>
 		</div>
@@ -51,20 +51,20 @@
 
 		</div>
 	</div>
-	<div class="container-fluid col-md-6 col-lg-6 pinkborda-l">
-		<div class="row">
+	<div class="d-block col-md-6 col-lg-6 p-2 pinkborda-l">
+
 			<div class="col-12">
 				<p class="display-6 fw-bolder p-2">Z tego miksujemy:</p>
 			</div>
-			<div class="col-12 my-2 mx-2 container-fluid justify-content-center h-50 pinkborda ingredientList">
+			<div class="col-12 my-2  container-fluid justify-content-center h-50 pinkborda ingredientList">
 				@await Component.InvokeAsync("ListOfIngredientsToSearch", new {ingredientsNames = Model.IngredientsNames, ingredientsToSearch = Model.IngredientsToSearch })
 			</div>
-			<div class="col-12">
+
 				<a class="col-12 btn btn-lg btn-warning fw-bolder"
 						asp-action="DrinkMixerResults"
 						asp-route-searchnames="@searchNames"
 				>Szukaj po tym co masz w barku!</a>
-			</div>
-		</div>
+
+
 	</div>
 </div>

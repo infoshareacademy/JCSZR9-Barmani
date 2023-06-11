@@ -24,7 +24,7 @@ namespace DrinkItUpBusinessLogic
             _mapper = mapper;
         }
 
-        public async Task<List<string>> GetAllNamesDistinct()
+        private async Task<List<string>> GetAllDrinkNamesDistinct()
         {
             var allDrinksNames = await _drinkRepository.GetAll()
                 .Select(i => i.Name)
@@ -42,7 +42,7 @@ namespace DrinkItUpBusinessLogic
                 return drinks;
             }
 
-            var allDrinksNames = await GetAllNamesDistinct();
+            var allDrinksNames = await GetAllDrinkNamesDistinct();
 
             string pattern = $"([^a-z]|^){input}([A-Z]|[a-z])*";
             var regex = new Regex(pattern, RegexOptions.IgnoreCase);
@@ -72,7 +72,7 @@ namespace DrinkItUpBusinessLogic
                 drinksToShow.Add(drink);
             }
 
-            return drinksToShow.Take(3).ToList();
+            return drinksToShow.ToList();
         }
 
         

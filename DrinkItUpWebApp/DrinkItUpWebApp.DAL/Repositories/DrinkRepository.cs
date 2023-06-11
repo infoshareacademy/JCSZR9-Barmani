@@ -26,14 +26,14 @@ namespace DrinkItUpWebApp.DAL.Repositories
             return drink;
         }
 
-        public  List<int> GetDrinksIdByIngredientId(int id)
+        public async Task<List<int>> GetDrinksIdByIngredientId(int id)
 		{
-            var drinksId = _context.Drinks
+            var drinksId = await _context.Drinks
                 .Include(d => d.DrinkIngredients)
                 .SelectMany(d => d.DrinkIngredients)
                 .Where(d => d.IngredientId == id)
                 .Select(d => d.DrinkId)
-                .ToList();
+                .ToListAsync();
 
             return drinksId;
 		}

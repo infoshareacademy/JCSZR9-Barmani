@@ -4,6 +4,8 @@ using DrinkItUpBusinessLogic.Interfaces;
 using DrinkItUpWebApp.DAL.Entities;
 using DrinkItUpWebApp.DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
 namespace DrinkItUpBusinessLogic
@@ -23,12 +25,17 @@ namespace DrinkItUpBusinessLogic
 
 		public async Task<List<string>> GetAllIngredientsMatchingNames(string input)
 		{
+			var matchingNames = new List<string>();
+			if(input == string.Empty || input == null)
+			{
+				return matchingNames;
+			}
 			var allIngredientsNames = await GetAllNamesDistinct();
 
 			string pattern = $"([^a-z]|^){input}([A-Z]|[a-z])*";
 			var regex = new Regex(pattern, RegexOptions.IgnoreCase);
 
-			var matchingNames = allIngredientsNames
+			matchingNames = allIngredientsNames
 				.Where(s => regex.IsMatch(s))
 				.Take(5)
 				.ToList();
@@ -53,7 +60,7 @@ namespace DrinkItUpBusinessLogic
 
 		}
 
-		public async Task<List<DrinkDto>> GetMatchingDrinksToIngredients(string input)
+		public async Task<Dictionary<string,List<DrinkDto>>> GetMatchingDrinksToIngredients(string input)
 		{
 			var matchingIngredientsToDrinks = new Dictionary<string, List<int>>();
 
@@ -67,35 +74,39 @@ namespace DrinkItUpBusinessLogic
 
 				foreach(var entities in ingredientsEntities)
 				{
-					var drinksId = _drinkRepository.GetDrinksIdByIngredientId(entities.IngredientId);
+					var drinksId = await _drinkRepository.GetDrinksIdByIngredientId(entities.IngredientId);
 					matchingIngredientsToDrinks[ingredient].AddRange(drinksId);
 				}
 			}
 
 			var results = matchingIngredientsToDrinks
-				.SelectMany(l => matchingIngredientsToDrinks.Values)
-				.SelectMany(d => d) // spłaszczamy słownik do listy id drinków samych
-				.GroupBy(d => d)
-				.OrderByDescending(k => k.Count())
-				.Select(d => d.Key)
+				.SelectMany(l => l.Value)
+				.GroupBy(l => l)
+				.OrderByDescending(l => l.Count())
 				.ToList();
+				
 
-			var drinks = new List<Drink>();
+				
 
-			foreach(var drinkId in results)
+
+			var drinks = new Dictionary<string, List<DrinkDto>>();
+
+
+			foreach (var key in results)
 			{
-				var drink = await _drinkRepository.GetById(drinkId);
-				drinks.Add(drink);
+
+				string msg = $"Pasujące składniki: {key.Count()}";
+				var drink = _mapper.Map<DrinkDto>(await _drinkRepository.GetByIdWithDetails(key.Key));
+				if (drinks.ContainsKey(msg))
+					drinks[msg].Add(drink);
+				else
+					drinks.Add(msg, new List<DrinkDto> { drink });
+
 			}
 
-			var drinksDto = new List<DrinkDto>();
-			foreach (var drink in drinks)
-			{
-				var drinkDto = _mapper.Map<DrinkDto>(drink);
-				drinksDto.Add(drinkDto);
-			}
 
-			return drinksDto;
+
+			return drinks;
 		}
 	}
 }

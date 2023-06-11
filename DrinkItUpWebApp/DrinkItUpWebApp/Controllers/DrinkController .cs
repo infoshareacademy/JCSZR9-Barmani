@@ -21,14 +21,15 @@ namespace DrinkItUpWebApp.Controllers
             _getDrinkDetails = getDrinkDetails;
             _searchByNameOrOneIngredient = searchByNameOrOneIngredient;
         }
-
+		// Dla wyszukiwania po składnikach wyszukiwarka, podpowiedzi.
         [HttpPost]
-        public JsonResult AutoCompleteIngredients(string Prefix)
+        public async Task<JsonResult> AutoCompleteIngredients(string Prefix)
         {
-            var words = _searchByIngredients.GetAllIngredientsMatchingNames(Prefix);
+            var words = await _searchByIngredients.GetAllIngredientsMatchingNames(Prefix);
             return Json(words);
         }
 
+		// Szukaj dla Głównej wyszukiwarki
 		[HttpPost]
 		public async Task<JsonResult> AutoCompleteMain(string Prefix)
 		{
@@ -41,31 +42,39 @@ namespace DrinkItUpWebApp.Controllers
 					var drinkModel = _mapper.Map<DrinkSearchModel>(drink);
 					drinksModel.Add(drinkModel);
 				}
-				return Json(drinksModel);
+				return Json(drinksModel.Take(3));
 			}
 			return Json(null);
 		}
 
+		
 		public async Task<IActionResult> DrinkSearchBar(string input)
 		{
+			string msg = "Wyniki wyszukiwania:";
             var drinks = await _searchByNameOrOneIngredient.SearchByName(input);
-            var drinksModel = new List<DrinkSearchModel>();
+            var drinksModel = new Dictionary<string, List<DrinkSearchModel>>();
             if (drinks != null)
             {
                 foreach (var drink in drinks)
                 {
                     var drinkModel = _mapper.Map<DrinkSearchModel>(drink);
-                    drinksModel.Add(drinkModel);
+					if (drinksModel.ContainsKey(msg))
+						drinksModel[msg].Add(drinkModel);
+                    else
+						drinksModel.Add("Wyniki wyszukiwania:",new List<DrinkSearchModel> { drinkModel });
                 }
-				return View("DrinkSearch", drinksModel);
+				var drinkSearch = new DrinkSearchModel();
+				drinkSearch.Results = drinksModel;
+                return View("DrinkSearch", drinkSearch);
             }
-            return View("DrinkSearch", drinksModel);
+            return RedirectToAction(nameof(DrinkSearch), drinksModel);
         }
 
 		[HttpGet]
-		public IActionResult DrinkSearch(IEnumerable<DrinkSearchModel> drinks)
+		public IActionResult DrinkSearch(DrinkSearchModel drinkSearch)
         {
-            return View(drinks);
+
+            return View(drinkSearch);
         }
 
         public IActionResult DrinkBrowse()
@@ -74,6 +83,7 @@ namespace DrinkItUpWebApp.Controllers
             return View();
         }
 
+		//Zaskocz mnie
         public async Task<IActionResult> DrinkSuprise()
         {
 			var random = new Random();
@@ -83,6 +93,7 @@ namespace DrinkItUpWebApp.Controllers
             return RedirectToAction(nameof(DrinkDetails), new { id = drinkIds.ElementAt(randomId)});
         }
 
+		//Widok Szczegółowy
         public async Task<IActionResult> DrinkDetails(int id)
         {
 			var drinkWithDetails = await _getDrinkDetails.GetDrinkToDetailView(id);
@@ -91,6 +102,7 @@ namespace DrinkItUpWebApp.Controllers
             return View(drinkWithDetailsModel);
         }
 
+		// Wyszukiwanie po składnikach
         public async Task<IActionResult> DrinkMixerPrep()
 		{
 			var ingredientsNames = await _searchByIngredients.GetAllNamesDistinct();
@@ -155,14 +167,23 @@ namespace DrinkItUpWebApp.Controllers
 
 			var drinksDtos = await _searchByIngredients.GetMatchingDrinksToIngredients(searchnames);
 
-			var drinks = new List<DrinkSearchModel>();
-			foreach(var drink in drinksDtos)
+			var drinks = new Dictionary<string, List<DrinkSearchModel>>();
+			foreach(var drinkKey in drinksDtos.Keys)
 			{
-				drinks.Add(_mapper.Map<DrinkSearchModel>(drink));
+				foreach (var drinkDto in drinksDtos[drinkKey])
+				{
+					var drinkModel = _mapper.Map<DrinkSearchModel>(drinkDto);
+
+					if (drinks.ContainsKey(drinkKey))
+						drinks[drinkKey].Add(drinkModel);
+					else
+						drinks.Add(drinkKey, new List<DrinkSearchModel> { drinkModel });
+				}
 			}
 
-
-			return View("DrinkSearch",drinks);
+			var drinkSearch = new DrinkSearchModel();
+			drinkSearch.Results = drinks;
+			return View("DrinkSearch",drinkSearch);
 
 		}
 
