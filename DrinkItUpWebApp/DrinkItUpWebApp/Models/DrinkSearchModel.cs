@@ -1,4 +1,6 @@
-﻿namespace DrinkItUpWebApp.Models
+﻿using Microsoft.Identity.Client;
+
+namespace DrinkItUpWebApp.Models
 {
 	public class DrinkSearchModel
 	{
@@ -6,6 +8,12 @@
 
 		public string Name { get; set; }
 
+		public MainAlcoholModel MainAlcohol { get; set; }
+
+		public DifficultyModel Difficulty { get; set; }
+
 		public string Description { get; set; }
+
+		public Dictionary<string, List<DrinkSearchModel>> Results { get; set; }
 	}
 }

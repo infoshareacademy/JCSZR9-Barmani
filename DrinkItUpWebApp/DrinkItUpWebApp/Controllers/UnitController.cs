@@ -49,6 +49,11 @@ namespace DrinkItUpWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
+            if(id == 0)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
             var unitDtoFromSubmit = await _unitService.GetById(id);
             if(unitDtoFromSubmit == null)
             {
@@ -92,6 +97,11 @@ namespace DrinkItUpWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
+            if (id == 0)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
             var unitDtoFromSubmit = await _unitService.GetById(id);
             if (unitDtoFromSubmit == null)
             {

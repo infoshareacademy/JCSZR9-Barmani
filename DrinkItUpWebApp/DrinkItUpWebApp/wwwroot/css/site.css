@@ -188,11 +188,11 @@ body {
 .cardSearch {
     text-decoration: none;
     color: white;
-    background-color: #943b54;
+    background-color: black;
 }
 
     .cardSearch:hover {
-        background-color: #da0b85;
+        background-color: darkkhaki;
         color: black;
     }
 .panel-header

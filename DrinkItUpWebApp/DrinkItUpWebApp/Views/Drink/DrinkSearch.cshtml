@@ -1,29 +1,49 @@
-﻿@model IEnumerable<DrinkItUpWebApp.Models.DrinkSearchModel>
+﻿@model DrinkItUpWebApp.Models.DrinkSearchModel
 
-<div class="container-fluid mx-0 p-0">
-    <div class="row">
-        <div class="col-12">
-            @if (Model.Count() == 0)
-            {
-                <p class="display-6 fw-bolder">Niestety, nie znaleziono żadnego pasującego drinka.</p>
-            }
-            else
-            {
-                 <p class="display-6 fw-bolder">Znalezione drinki:</p>
-            }
-        </div>
-    @foreach(var item in Model)
+<div class="h-100 d-block mx-1 p-1 stopka text-center">
+    @if (Model.Results.Count() == 0)
     {
-    <a class="col-3 text-decoration-none lead" asp-action="DrinkDetails" asp-route-id="@item.DrinkId">
-    <div class="card cardSearch my-1">
-        <img src="~/img/sampledrink.png" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title ">@item.Name</h5>
-            <p class="card-text text-truncate ">@item.Description</p>
-        </div>
-    </div>
-    </a>
+        <div class="d-flex my-1 border-bottom-4 border-warning ">
+            <p class="display-6 fw-bolder ">Niestety, nie znaleziono żadnego pasującego drinka.</p>
+        </div>    
     }
-        <a class="btn btn-lg btn-warning fw-bolder col-12 my-2" onclick="history.back()">Powrót</a>
-    </div>
+    else
+    {
+        foreach (var key in Model.Results.Keys)
+        {
+             <div class="d-flex my-2 border-bottom border-warning ">
+                <p class="display-6 fw-bolder">@key</p>
+             </div>
+            foreach (var drink in Model.Results[key])
+            {
+                <a class="text-decoration-none lead " asp-action="DrinkDetails" asp-route-id="@drink.DrinkId">
+                    <div class="my-2 pinkborda cardSearch d-flex justify-content-center align-items-center" style="height: 160px;">
+                        <div class="row d-flex justify-content-center align-items-center" style="width: inherit;height:inherit;">
+                                <div class="col-2">
+                                <img src="~/img/sampledrink.png" class="" style="max-height: 150px;" alt="...">
+                                </div>
+
+                                <p class="col-2 fs-4 fw-bold">@drink.Name</p>
+
+
+
+                                <div class="d-inline-block col-3">
+                                    <p>Alkohol Główny: @drink.MainAlcohol.Name</p>
+                                    <p>Poziom trudności: @drink.Difficulty.Name</p>
+                                </div>
+
+                                <div class="col-5">
+                                    <span class="fw-bold" >Opis przygotowania:</span>
+                                    <p >@drink.Description.Substring(0,100) ...</p>
+                                </div>
+                        </div>
+                    </div>
+                </a>
+            }
+        }
+    }
+
+
+    <a class="btn btn-lg btn-warning fw-bolder my-2" onclick="history.back()">Powrót</a>
+
 </div>

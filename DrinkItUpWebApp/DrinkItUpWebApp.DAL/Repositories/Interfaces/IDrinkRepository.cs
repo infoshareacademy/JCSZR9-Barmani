@@ -12,7 +12,7 @@ namespace DrinkItUpWebApp.DAL.Repositories.Interfaces
         Task<Drink> SearchByNameAsync(string name);
 
         Task<Drink> GetByIdWithDetails(int id);
-        List<int> GetDrinksIdByIngredientId(int id);
+        Task<List<int>> GetDrinksIdByIngredientId(int id);
 
         Task<IEnumerable<Drink>> GetDrinksByIngredientId(int id);
     }

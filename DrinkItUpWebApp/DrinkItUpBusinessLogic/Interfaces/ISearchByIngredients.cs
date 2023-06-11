@@ -10,7 +10,8 @@ namespace DrinkItUpBusinessLogic.Interfaces
 
         List<string> GetAllNamesFromSumbit(string input);
 
-		Task<List<DrinkDto>> GetMatchingDrinksToIngredients(string input);
+        Task<Dictionary<string, List<DrinkDto>>> GetMatchingDrinksToIngredients(string input);
 
-	}
+
+    }
 }
