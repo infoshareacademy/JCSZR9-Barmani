@@ -5,5 +5,8 @@
 		public string CategoryName { get; set; }
 
 		public string Value { get; set; }
+
+		public IEnumerable<string> Values { get; set; }
+		public IEnumerable<DrinkSearchModel> Results { get; set; }
 	}
 }
