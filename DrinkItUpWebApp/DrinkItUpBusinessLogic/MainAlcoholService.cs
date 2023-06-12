@@ -47,5 +47,10 @@ namespace DrinkItUpBusinessLogic
             }
             return mainAlcoholsDto;
         }
+
+        public async Task<MainAlcoholDto> GetById(int id)
+        {
+            return _mapper.Map<MainAlcoholDto>(await _repository.GetById(id)); 
+        }
     }
 }

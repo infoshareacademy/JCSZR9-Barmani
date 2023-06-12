@@ -75,5 +75,25 @@ namespace DrinkItUpWebApp.DAL.Repositories
 
             return results;
         }
-    }
+
+		public async Task<IEnumerable<Drink>> GetDrinksByMainAlcoholId(int id)
+		{
+            var result = await GetAll().Include(d => d.MainAlcohol)
+                .Include(d => d.Difficulty)
+                .Where(d => d.MainAlcoholId == id)
+                .ToListAsync();
+
+            return result;
+		}
+
+		public async Task<IEnumerable<Drink>> GetDrinksByDifficultyId(int id)
+		{
+			var result = await GetAll().Include(d => d.MainAlcohol)
+				.Include(d => d.Difficulty)
+				.Where(d => d.DifficultyId == id)
+				.ToListAsync();
+
+			return result;
+		}
+	}
 }

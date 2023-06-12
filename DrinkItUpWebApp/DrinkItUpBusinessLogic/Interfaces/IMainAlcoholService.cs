@@ -11,5 +11,8 @@ namespace DrinkItUpBusinessLogic.Interfaces
     {
         Task<MainAlcoholDto> AddMainAlcohol(MainAlcoholDto mainAlcohol);
         Task<List<MainAlcoholDto>> GetAll();
-    }
+
+        Task<MainAlcoholDto> GetById(int id);
+
+	}
 }

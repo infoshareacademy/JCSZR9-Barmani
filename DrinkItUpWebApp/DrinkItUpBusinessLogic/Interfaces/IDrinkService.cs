@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace DrinkItUpBusinessLogic.Interfaces
 {
-    public interface IDrinkiService
+    public interface IDrinkService
     {
         Task<DrinkDto> GetByIdWithCategories(int id);
-    }
+
+        Task<IEnumerable<DrinkDto>> GetAll();
+
+	}
 }

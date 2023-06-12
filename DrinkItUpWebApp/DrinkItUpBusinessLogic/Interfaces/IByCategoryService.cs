@@ -9,8 +9,8 @@ namespace DrinkItUpBusinessLogic.Interfaces
 {
 	public interface IByCategoryService
 	{
-		Task<DrinkDto> GetDrinksByMainAlcoholId(int mainAlcoholId);
+		Task<IEnumerable<DrinkDto>> GetDrinksByMainAlcoholId(int mainAlcoholId);
 
-		Task<DrinkDto> GetDrinksByDifficultyId(int difficultyId);
+		Task<IEnumerable<DrinkDto>> GetDrinksByDifficultyId(int difficultyId);
 	}
 }

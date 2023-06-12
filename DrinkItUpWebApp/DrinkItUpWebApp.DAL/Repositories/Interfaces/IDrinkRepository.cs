@@ -15,5 +15,8 @@ namespace DrinkItUpWebApp.DAL.Repositories.Interfaces
         Task<List<int>> GetDrinksIdByIngredientId(int id);
 
         Task<IEnumerable<Drink>> GetDrinksByIngredientId(int id);
-    }
+
+		Task<IEnumerable<Drink>> GetDrinksByMainAlcoholId(int id);
+		Task<IEnumerable<Drink>> GetDrinksByDifficultyId(int id);
+	}
 }

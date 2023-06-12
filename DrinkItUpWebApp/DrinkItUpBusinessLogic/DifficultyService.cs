@@ -42,7 +42,12 @@ namespace DrinkItUpBusinessLogic
             }
             return difficultiesDto;
         }
-    }
+
+		public async Task<DifficultyDto> GetById(int id)
+		{
+			return _mapper.Map<DifficultyDto>(await _repository.GetById(id));
+		}
+	}
 
 }
 
