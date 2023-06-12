@@ -14,5 +14,7 @@ namespace DrinkItUpBusinessLogic.Interfaces
 
         Task<MainAlcoholDto> GetById(int id);
 
+        Task<MainAlcoholDto> GetByName(string name);
+
 	}
 }

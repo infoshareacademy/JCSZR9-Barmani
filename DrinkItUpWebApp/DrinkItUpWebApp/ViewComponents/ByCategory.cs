@@ -29,14 +29,27 @@ namespace DrinkItUpWebApp.ViewComponents
 		{
 			if(category.CategoryName == "Alkohol dominujący")
 			{
-                var drinks = await _drinkService.GetAll();
+				var mainAlcoholDtos = await _mainAlcoholService.GetAll();
+				category.Values = mainAlcoholDtos.Select(m => m.Name).ToList();
+				if(category.Value == null)
+					category.Value = category.Values.FirstOrDefault();
+
+				var mainAlcohol = await _mainAlcoholService.GetByName(category.Value);
+				var drinks = await _byCategoryService.GetDrinksByMainAlcoholId(mainAlcohol.MainAlcoholId);
                 category.Results = drinks.Select(d => _mapper.Map<DrinkSearchModel>(d));
 
                 return View("CategoryAlcohol", category);
             }
 			else if(category.CategoryName == "Poziom trudności")
 			{
-                var drinks = await _drinkService.GetAll();
+				var difficultyDtos = await _difficultyService.GetAll();
+				category.Values = difficultyDtos.Select(d => d.Name).ToList();
+
+                if (category.Value == null)
+                    category.Value = category.Values.FirstOrDefault();
+
+				var difficulty = await _difficultyService.GetByName(category.Value);
+				var drinks = await _byCategoryService.GetDrinksByDifficultyId(difficulty.DifficultyId);
                 category.Results = drinks.Select(d => _mapper.Map<DrinkSearchModel>(d));
 
                 return View("CategoryDifficulty", category);

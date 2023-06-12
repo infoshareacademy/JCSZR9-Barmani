@@ -47,7 +47,14 @@ namespace DrinkItUpBusinessLogic
 		{
 			return _mapper.Map<DifficultyDto>(await _repository.GetById(id));
 		}
-	}
+
+        public async Task<DifficultyDto> GetByName(string name)
+        {
+            var difficulty = await _repository.SearchByNameQueryable(name).FirstOrDefaultAsync();
+            var difficultyDto = _mapper.Map<DifficultyDto>(difficulty);
+            return difficultyDto;
+        }
+    }
 
 }
 

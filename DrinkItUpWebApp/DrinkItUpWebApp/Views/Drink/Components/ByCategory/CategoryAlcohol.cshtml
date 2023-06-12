@@ -7,7 +7,7 @@
         });
     });//]]>
 </script>
-<div class="col-12 d-flex lead fw-bold stopka text-center align-items-center my-2 " style="height:90px">
+<div class="col-12 d-flex lead fw-bold stopka text-center align-items-center my-2 border-bottom border-warning" style="height:90px">
     <form name="CategoryName" asp-action="DrinkBrowse">
     <div class="form-group mx-1 my-1">
         <label for="CategoryName" class="control-label">Sortuj po:</label>
@@ -20,10 +20,15 @@
  
     </div>
     </form>
-    <div class="form-group">
+    <div class="d-flex fs-3">
         @foreach(var item in Model.Values)
         {
-        <input class="panel-header mx-1 form-group" asp-controller="Drink" asp-action="DrinkBrowse" asp-route-value="@item" type="submit" value="@item" />
+            if(item == Model.Value)
+            {
+               <a asp-for="CategoryName" class="panel-header-active mx-2 form-group">@item</a> 
+               continue;
+            }
+            <a asp-for="CategoryName" class="panel-header mx-2 form-group" asp-route-categoryname="Alkohol dominujący" asp-route-value="@item" type="submit">@item</a>
         }
     </div>
 
@@ -42,7 +47,7 @@
 
 
                 <div class="d-inline-block col-3">
-                    <p>Alkohol Główny: @drink.MainAlcohol.Name</p>
+                    <p>Alkohol dominujący: @drink.MainAlcohol.Name</p>
                     <p>Poziom trudności: @drink.Difficulty.Name</p>
                 </div>
 

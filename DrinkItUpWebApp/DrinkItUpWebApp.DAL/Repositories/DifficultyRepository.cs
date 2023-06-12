@@ -16,5 +16,12 @@ namespace DrinkItUpWebApp.DAL.Repositories
         {
             _context = context;
         }
+
+        public IQueryable<Difficulty> SearchByNameQueryable(string name)
+        {
+            return _context.Difficulties
+                .Where(x => x.Name == name)
+                .AsQueryable();
+        }
     }
 }
