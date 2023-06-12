@@ -28,6 +28,7 @@ namespace DrinkItUpWebApp
             builder.Services.AddScoped<IMainAlcoholService, MainAlcoholService>();
             builder.Services.AddScoped<IDifficultyService, DifficultyService>();
             builder.Services.AddScoped<IIngredientService, IngredientService>();
+            builder.Services.AddScoped<IByCategoryService, ByCategoryService>();
 
             // Repositories
             builder.Services.AddScoped<IIngredientRepository, IngredientRepository>();

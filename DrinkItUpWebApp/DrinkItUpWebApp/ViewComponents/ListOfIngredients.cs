@@ -8,7 +8,7 @@ namespace DrinkItUpWebApp.ViewComponents
 		public async Task<IViewComponentResult> InvokeAsync(List<string> ingredientsNames, List<string> ingredientsToSearch)
 		{
 			var ingredientsNamesModel = new IngredientsSearchModel { IngredientsNames = ingredientsNames, IngredientsToSearch = ingredientsToSearch };
-
+			
 			return View(ingredientsNamesModel);
 		}
 	}
