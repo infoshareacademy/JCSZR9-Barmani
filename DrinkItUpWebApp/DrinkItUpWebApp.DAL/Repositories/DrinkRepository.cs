@@ -29,8 +29,6 @@ namespace DrinkItUpWebApp.DAL.Repositories
         public async Task<List<int>> GetDrinksIdByIngredientId(int id)
 		{
             var drinksId = await _context.Drinks
-                .Include(d => d.MainAlcohol)
-                .Include(d => d.Difficulty)
                 .Include(d => d.DrinkIngredients)
                 .SelectMany(d => d.DrinkIngredients)
                 .Where(d => d.IngredientId == id)
@@ -67,6 +65,8 @@ namespace DrinkItUpWebApp.DAL.Repositories
             foreach (var drinkIngredient in drinkIngredients)
             {
                 var drink = await _context.Drinks
+                    .Include(d=> d.MainAlcohol)
+                    .Include(d => d.Difficulty)
                     .Include(i => i.DrinkIngredients)
                     .FirstOrDefaultAsync(i => i.DrinkId == drinkIngredient.DrinkId);
 
