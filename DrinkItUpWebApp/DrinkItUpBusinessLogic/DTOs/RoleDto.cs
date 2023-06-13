@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DrinkItUpWebApp.DAL.Entities
+namespace DrinkItUpBusinessLogic.DTOs
 {
-    public class Role
+    public class RoleDto
     {
         public int RoleId { get; set; }
         [MaxLength(25)]

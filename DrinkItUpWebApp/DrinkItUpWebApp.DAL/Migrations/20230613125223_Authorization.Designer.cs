@@ -4,6 +4,7 @@ using DrinkItUpWebApp.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DrinkItUpWebApp.DAL.Migrations
 {
     [DbContext(typeof(DrinkContext))]
-    partial class DrinkContextModelSnapshot : ModelSnapshot
+    [Migration("20230613125223_Authorization")]
+    partial class Authorization
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -170,23 +173,6 @@ namespace DrinkItUpWebApp.DAL.Migrations
                     b.HasKey("RoleId");
 
                     b.ToTable("Roles");
-
-                    b.HasData(
-                        new
-                        {
-                            RoleId = 1,
-                            Name = "Administrator"
-                        },
-                        new
-                        {
-                            RoleId = 2,
-                            Name = "Użytkownik Premium"
-                        },
-                        new
-                        {
-                            RoleId = 3,
-                            Name = "Użytkownik"
-                        });
                 });
 
             modelBuilder.Entity("DrinkItUpWebApp.DAL.Entities.Unit", b =>

@@ -3,6 +3,7 @@ using DrinkItUpBusinessLogic.Interfaces;
 using DrinkItUpWebApp.DAL.Entities;
 using DrinkItUpWebApp.DAL.Repositories;
 using DrinkItUpWebApp.DAL.Repositories.Interfaces;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace DrinkItUpWebApp
@@ -20,6 +21,9 @@ namespace DrinkItUpWebApp
             // DbContext
             builder.Services.AddDbContext<DrinkContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DrinkContextCS")));
 
+            //Account
+            builder.Services.AddScoped<IPasswordHasher,PasswordHasher>();
+
             //Services
             builder.Services.AddScoped<ISearchByIngredients, SearchByIngredients>();
             builder.Services.AddScoped<ISearchByNameOrOneIngredient, SearchByNameOrOneIngredient>();
@@ -30,7 +34,8 @@ namespace DrinkItUpWebApp
             builder.Services.AddScoped<IIngredientService, IngredientService>();
             builder.Services.AddScoped<IDrinkService, DrinkService>();
             builder.Services.AddScoped<IByCategoryService, ByCategoryService>();
-
+            builder.Services.AddScoped<IUserService, UserService>();
+            
             // Repositories
             builder.Services.AddScoped<IIngredientRepository, IngredientRepository>();
             builder.Services.AddScoped<IDrinkRepository, DrinkRepository>();
@@ -38,6 +43,8 @@ namespace DrinkItUpWebApp
             builder.Services.AddScoped<IUnitRepository, UnitRepository>();
             builder.Services.AddScoped<IMainAlcoholRepository, MainAlcoholRepository>();
             builder.Services.AddScoped<IDifficultyRepository, DifficultyRepository>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            //builder.Services.AddScoped<ICRUDRepository<Role>, CRUDRepository<Role>>();
             //AutoMapper
             builder.Services.AddAutoMapper(typeof(Program).Assembly);
 

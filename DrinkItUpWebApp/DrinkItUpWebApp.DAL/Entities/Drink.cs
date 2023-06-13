@@ -23,7 +23,7 @@ namespace DrinkItUpWebApp.DAL.Entities
 
         public string Description { get; set; } = null!;
 
-
+        public ICollection<Like> Likes { get; set; } = new List<Like>();
         public ICollection<DrinkIngredient> DrinkIngredients { get; set; } = new List<DrinkIngredient>();
 
     }
