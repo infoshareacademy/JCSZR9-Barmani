@@ -1,10 +1,10 @@
-﻿@{
-    ViewData["Title"] = "Przeglądaj Drinki";
+﻿@model DrinkItUpWebApp.Models.CategoryModel
 
-}
-
-<div class="text-center">
-    <p class="lead text-center">
-        Sie pisze... cierpliwości.
-    </p>
+<div class="row">
+    <div class="d-inline-block">
+        <div class="col-12 d-flex stopka my-1 justify-content-center">
+            <p class="display-6 fw-bolder">Przeglądaj drinki!</p>
+        </div>
+        @await Component.InvokeAsync("ByCategory", new { category = Model})
+    </div>
 </div>

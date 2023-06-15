@@ -9,6 +9,6 @@ namespace DrinkItUpWebApp.DAL.Repositories.Interfaces
 {
     public interface IDifficultyRepository : ICRUDRepository<Difficulty>
     {
-
+        IQueryable<Difficulty> SearchByNameQueryable(string name);
     }
 }

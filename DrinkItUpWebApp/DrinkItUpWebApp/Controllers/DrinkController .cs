@@ -77,10 +77,10 @@ namespace DrinkItUpWebApp.Controllers
             return View(drinkSearch);
         }
 
-        public IActionResult DrinkBrowse()
-        {
 
-            return View();
+        public IActionResult DrinkBrowse(CategoryModel category)
+        {
+            return View(category);
         }
 
 		//Zaskocz mnie

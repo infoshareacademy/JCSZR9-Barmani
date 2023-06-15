@@ -72,7 +72,7 @@ namespace DrinkItUpBusinessLogic
                 drinksToShow.Add(drink);
             }
 
-            return drinksToShow.ToList();
+            return drinksToShow;
         }
 
         
@@ -92,7 +92,7 @@ namespace DrinkItUpBusinessLogic
                 return drinksDto;
             }
 
-            var ingredientName = ingredientMatch.Take(3).ToList();
+            var ingredientName = ingredientMatch.Take(4).ToList();
             var ingredients = new List<Ingredient>();
             foreach (var ing in ingredientName)
             {

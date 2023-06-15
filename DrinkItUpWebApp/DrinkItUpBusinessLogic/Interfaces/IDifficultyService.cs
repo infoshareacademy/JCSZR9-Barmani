@@ -12,5 +12,10 @@ namespace DrinkItUpBusinessLogic.Interfaces
         Task<DifficultyDto> AddDifficulty(DifficultyDto difficulty);
 
         Task<List<DifficultyDto>> GetAll();
+
+        Task<DifficultyDto> GetById(int id);
+
+        Task<DifficultyDto> GetByName(string name);
+
     }
 }

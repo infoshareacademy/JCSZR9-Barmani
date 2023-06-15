@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace DrinkItUpBusinessLogic.Interfaces
 {
-    public interface IDrinkiService
-    {
-        Task<DrinkDto> GetByIdWithCategories(int id);
-    }
+	public interface IByCategoryService
+	{
+		Task<IEnumerable<DrinkDto>> GetDrinksByMainAlcoholId(int mainAlcoholId);
+
+		Task<IEnumerable<DrinkDto>> GetDrinksByDifficultyId(int difficultyId);
+	}
 }

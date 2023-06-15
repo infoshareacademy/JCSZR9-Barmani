@@ -8,13 +8,21 @@ using System.Threading.Tasks;
 
 namespace DrinkItUpWebApp.DAL.Repositories
 {
-    public class MainAlcoholRepository : CRUDRepository<MainAlcohol>, IMainAlcoholRepository
+    public class MainAlcoholRepository : CRUDRepository<MainAlcohol>,
+        IMainAlcoholRepository
     {
         private readonly DrinkContext _context;
 
         public MainAlcoholRepository(DrinkContext context) : base(context)
         {
             _context = context;
+        }
+
+        public IQueryable<MainAlcohol> SearchByNameQueryable(string name)
+        {
+            return _context.MainAlcohols
+                .Where(x => x.Name == name)
+                .AsQueryable();
         }
     }
 }

@@ -9,5 +9,6 @@ namespace DrinkItUpWebApp.DAL.Repositories.Interfaces
 {
     public interface IMainAlcoholRepository : ICRUDRepository<MainAlcohol>
     {
+        IQueryable<MainAlcohol> SearchByNameQueryable(string name);
     }
 }

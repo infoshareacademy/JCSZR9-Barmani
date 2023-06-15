@@ -1,0 +1,55 @@
+﻿@model DrinkItUpWebApp.Models.CategoryModel
+
+
+<script type="text/javascript">
+        //<![CDATA[
+    $(document).ready(function () {
+        $('select').change(function () {
+                $(this).closest('form[name="CategoryName"]').submit();
+        });
+    });//]]>
+</script>
+<div class="col-12 d-flex lead fw-bold stopka text-center align-items-center my-2 border-bottom border-warning" style="height:90px">
+    <form name="CategoryName" asp-action="DrinkBrowse">
+    <div class="form-group mx-1 my-1">
+        <label for="CategoryName" class="control-label">Sortuj po:</label>
+        <select asp-for="CategoryName" class="form-select" aria-label="Select Category">
+            <option value="Alkohol dominujący">Alkohol dominujący</option>
+            <option value="Poziom trudności">Poziom trudności</option>
+            <option selected value="Wszystkie drinki">Wszystkie drinki</option>
+        
+        </select>
+ 
+    </div>
+    </form>
+    <div class="container-fluid text-center">
+    <p class="display-6">Wszystkie drinki</p>
+    </div>
+
+</div>
+@foreach(var drink in Model.Results)
+{
+<a class="text-decoration-none lead " asp-action="DrinkDetails" asp-route-id="@drink.DrinkId">
+    <div class="my-2 mx-2 pinkborda cardSearch d-flex justify-content-center align-items-center" style="height: 160px;">
+        <div class="row d-flex justify-content-center align-items-center" style="width: inherit;height:inherit;">
+            <div class="col-2">
+                <img src="~/img/sampledrink.png" class="" style="max-height: 150px;" alt="...">
+            </div>
+
+            <p class="col-2 fs-4 fw-bold">@drink.Name</p>
+
+
+
+            <div class="d-inline-block col-3">
+                <p>Alkohol Główny: @drink.MainAlcohol.Name</p>
+                <p>Poziom trudności: @drink.Difficulty.Name</p>
+            </div>
+
+            <div class="col-5">
+                <span class="fw-bold">Opis przygotowania:</span>
+                <p>@drink.Description.Substring(0,100) ...</p>
+            </div>
+        </div>
+    </div>
+</a>
+}

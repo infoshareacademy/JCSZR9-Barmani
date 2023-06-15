@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DrinkItUpBusinessLogic
 {
-    public class DrinkService : IDrinkiService
+    public class DrinkService : IDrinkService
     {
         private readonly IDrinkRepository _repository;
         private readonly IMapper _mapper;
@@ -27,5 +27,18 @@ namespace DrinkItUpBusinessLogic
 
             return drinkDto;
         }
-    }
+
+		public async Task<IEnumerable<DrinkDto>> GetAll()
+		{
+            var drinks = await _repository.GetAll()
+                            .Include(d => d.MainAlcohol)
+                            .Include(d => d.Difficulty)
+                            .ToListAsync();
+
+
+            var drinksDto = drinks.Select(d => _mapper.Map<DrinkDto>(d));
+
+			return drinksDto;
+		}
+	}
 }
