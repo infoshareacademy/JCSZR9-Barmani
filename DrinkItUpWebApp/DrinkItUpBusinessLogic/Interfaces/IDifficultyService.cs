@@ -23,6 +23,9 @@ namespace DrinkItUpBusinessLogic.Interfaces
 
         Task<bool> Remove(int id);
 
+        Task<DifficultyDto> Update(DifficultyDto difficultyDto);
+
+
 
 
 

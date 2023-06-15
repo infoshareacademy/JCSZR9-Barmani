@@ -139,6 +139,20 @@ namespace DrinkItUpWebApp.Controllers
 
 
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(DifficultyModel model)
+        {
+            var difficultyDto = _mapper.Map<DifficultyDto>(model);
+            if (!await _difficultyService.IsDifficultyUnique(difficultyDto.Name))
+            {
+                return RedirectToAction(nameof(Edit), new { id = difficultyDto.DifficultyId });
+            }
+            await _difficultyService.Update(difficultyDto);
+            return RedirectToAction(nameof(Edit), new { id = difficultyDto.DifficultyId });
+
+        }
     }
 
 }

@@ -80,6 +80,15 @@ namespace DrinkItUpBusinessLogic
 
             return true;
         }
+
+        public async Task<DifficultyDto> Update(DifficultyDto difficultyDto)
+        {
+            var difficulty = _mapper.Map<Difficulty>(difficultyDto);
+            _repository.Update(difficulty);
+            await _repository.Save();
+
+            return difficultyDto;
+        }
     }
 
 }
