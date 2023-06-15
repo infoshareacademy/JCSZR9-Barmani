@@ -68,6 +68,18 @@ namespace DrinkItUpBusinessLogic
             var isUnique = !await _repository.GetAll().Where(u => u.Name == name).AnyAsync();
             return isUnique;
         }
+
+        public async Task<bool> Remove(int id)
+        {
+            var difficulty = await _repository.GetById(id);
+            if (difficulty == null)
+                return false;
+
+            _repository.Delete(difficulty);
+            await _repository.Save();
+
+            return true;
+        }
     }
 
 }

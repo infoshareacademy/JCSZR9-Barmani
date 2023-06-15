@@ -121,6 +121,24 @@ namespace DrinkItUpWebApp.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Delete(int id, DifficultyModel model)
+        {
+            if (await _difficultyService.IsDifficultyUsed(id))
+            {
+                return RedirectToAction(nameof(Delete), new { id = id });
+            }
+
+
+            if (await _difficultyService.Remove(id))
+                return RedirectToAction(nameof(Index));
+            else
+                return RedirectToAction(nameof(Delete), new { id = id });
+
+
+        }
     }
 
 }
