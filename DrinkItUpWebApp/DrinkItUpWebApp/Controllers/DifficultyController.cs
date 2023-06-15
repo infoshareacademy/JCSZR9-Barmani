@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DrinkItUpBusinessLogic.DTOs;
 using DrinkItUpBusinessLogic.Interfaces;
 using DrinkItUpWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +30,7 @@ namespace DrinkItUpWebApp.Controllers
             foreach (var difficulty in difficultiesDto)
             { 
                 var difficultyModel = _mapper.Map<DifficultyModel>(difficulty);
+                difficultyModel.IsUsed = await _difficultyService.IsDifficultyUsed(difficultyModel.DifficultyId);
                 difficultiesModel.Add(difficultyModel);
             }
             var model = new DifficultyModel();
@@ -106,6 +108,18 @@ namespace DrinkItUpWebApp.Controllers
             difficulty.Difficulties = difficultyModels;
 
             return View(difficulty);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(DifficultyModel model)
+        {
+            if (!await _difficultyService.IsDifficultyUnique(model.Name))
+                return RedirectToAction(nameof(Index));
+
+            var difficultyDto = _mapper.Map<DifficultyDto>(model);
+            await _difficultyService.AddDifficulty(difficultyDto);
+
+            return RedirectToAction(nameof(Index));
         }
     }
 

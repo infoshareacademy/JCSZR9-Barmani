@@ -62,6 +62,12 @@ namespace DrinkItUpBusinessLogic
         {
             return await _drinkRepository.GetAll().Select(i => i.DifficultyId).ContainsAsync(id);
         }
+
+        public async Task<bool> IsDifficultyUnique(string name)
+        {
+            var isUnique = !await _repository.GetAll().Where(u => u.Name == name).AnyAsync();
+            return isUnique;
+        }
     }
 
 }

@@ -19,6 +19,9 @@ namespace DrinkItUpBusinessLogic.Interfaces
 
         Task<bool> IsDifficultyUsed(int id);
 
+        Task<bool> IsDifficultyUnique(string name);
+
+
 
     }
 }
