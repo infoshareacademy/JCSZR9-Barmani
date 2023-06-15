@@ -17,11 +17,13 @@ namespace DrinkItUpBusinessLogic
     {
         private readonly IMainAlcoholRepository _repository;
         private readonly IMapper _mapper;
+        private readonly IDrinkRepository _drinkRepository;
 
-        public MainAlcoholService(IMainAlcoholRepository repository, IMapper mapper)
+        public MainAlcoholService(IMainAlcoholRepository repository, IMapper mapper, IDrinkRepository drinkRepository)
         {
             _repository = repository;
             _mapper = mapper;
+            _drinkRepository = drinkRepository;
         }
 
         public async Task<MainAlcoholDto> AddMainAlcohol(MainAlcoholDto mainAlcoholDto)
@@ -57,6 +59,38 @@ namespace DrinkItUpBusinessLogic
         {
             var mainAlcohol = await _repository.SearchByNameQueryable(name).FirstOrDefaultAsync();
             var mainAlcoholDto = _mapper.Map<MainAlcoholDto>(mainAlcohol);
+            return mainAlcoholDto;
+        }
+
+        public async Task<bool> IsMainAlcoholUsed(int id)
+        {
+            return await _drinkRepository.GetAll().Select(i => i.MainAlcoholId).ContainsAsync(id);
+        }
+
+        public async Task<bool> IsMainAlcoholUnique(string name)
+        {
+            var isUnique = !await _repository.GetAll().Where(u => u.Name == name).AnyAsync();
+            return isUnique;
+        }
+
+        public async Task<bool> Remove(int id)
+        {
+            var mainAlcohol = await _repository.GetById(id);
+            if (mainAlcohol == null)
+                return false;
+
+            _repository.Delete(mainAlcohol);
+            await _repository.Save();
+
+            return true;
+        }
+
+        public async Task<MainAlcoholDto> Update(MainAlcoholDto mainAlcoholDto)
+        {
+            var mainAlcohol = _mapper.Map<MainAlcohol>(mainAlcoholDto);
+            _repository.Update(mainAlcohol);
+            await _repository.Save();
+
             return mainAlcoholDto;
         }
     }
