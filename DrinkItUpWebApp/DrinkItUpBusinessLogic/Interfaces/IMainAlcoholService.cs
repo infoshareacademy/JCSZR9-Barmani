@@ -19,5 +19,7 @@ namespace DrinkItUpBusinessLogic.Interfaces
 
         Task<bool>IsMainAlcoholUsed(int id);
 
-	}
+        Task<bool> IsMainAlcoholUnique(string name);
+
+    }
 }
