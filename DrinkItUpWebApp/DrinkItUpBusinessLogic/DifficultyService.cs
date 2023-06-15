@@ -2,6 +2,7 @@
 using DrinkItUpBusinessLogic.DTOs;
 using DrinkItUpBusinessLogic.Interfaces;
 using DrinkItUpWebApp.DAL.Entities;
+using DrinkItUpWebApp.DAL.Repositories;
 using DrinkItUpWebApp.DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,11 +13,13 @@ namespace DrinkItUpBusinessLogic
     {
         private readonly IDifficultyRepository _repository;
         private readonly IMapper _mapper;
+        private readonly IDrinkRepository _drinkRepository;
 
-        public DifficultyService(IDifficultyRepository repository, IMapper mapper)
+        public DifficultyService(IDifficultyRepository repository, IMapper mapper, IDrinkRepository drinkRepository)
         {
             _repository = repository;
             _mapper = mapper;
+            _drinkRepository = drinkRepository;
         }
 
         public async Task<DifficultyDto> AddDifficulty(DifficultyDto difficultyDto)
@@ -53,6 +56,11 @@ namespace DrinkItUpBusinessLogic
             var difficulty = await _repository.SearchByNameQueryable(name).FirstOrDefaultAsync();
             var difficultyDto = _mapper.Map<DifficultyDto>(difficulty);
             return difficultyDto;
+        }
+
+        public async Task<bool> IsDifficultyUsed(int id)
+        {
+            return await _drinkRepository.GetAll().Select(i => i.DifficultyId).ContainsAsync(id);
         }
     }
 
