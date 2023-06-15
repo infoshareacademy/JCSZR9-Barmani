@@ -144,8 +144,12 @@ namespace DrinkItUpWebApp.Controllers
             else
                 return RedirectToAction(nameof(Delete), new { id = id });
 
-
         }
 
+
+        public ActionResult Drink()
+        { 
+            return View();
+        }
     }
 }
