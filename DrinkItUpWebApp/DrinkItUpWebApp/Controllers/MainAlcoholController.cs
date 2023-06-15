@@ -46,24 +46,24 @@ namespace DrinkItUpWebApp.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-            var mainAlcohol = _mapper.Map<UnitModel>(mainAlcoholDtoFromSubmit);
+            var mainAlcohol = _mapper.Map<MainAlcoholModel>(mainAlcoholDtoFromSubmit);
 
 
-            var unitModels = new List<UnitModel>();
-            var unitDtos = await _unitService.GetAll();
-            foreach (var unitDto in unitDtos)
+            var mainAlcoholModels = new List<MainAlcoholModel>();
+            var mainAlcoholDtos = await _mainAlcoholService.GetAll();
+            foreach (var mainAlcoholDto in mainAlcoholDtos)
             {
-                var unitModel = _mapper.Map<UnitModel>(unitDto);
-                unitModel.IsUsed = await _unitService.IsUnitUsed(unitModel.UnitId);
-                if (unitModel.UnitId == id)
-                    mainAlcohol.IsUsed = unitModel.IsUsed;
+                var mainAlcoholModel = _mapper.Map<MainAlcoholModel>(mainAlcoholDto);
+                mainAlcoholModel.IsUsed = await _mainAlcoholService.IsMainAlcoholUsed(mainAlcoholModel.MainAlcoholId);
+                if (mainAlcoholModel.MainAlcoholId == id)
+                    mainAlcohol.IsUsed = mainAlcoholModel.IsUsed;
 
-                unitModels.Add(unitModel);
+                mainAlcoholModels.Add(mainAlcoholModel);
             }
 
 
 
-            mainAlcohol.Units = unitModels;
+            mainAlcohol.MainAlcohols = mainAlcoholModels;
 
             return View(mainAlcohol);
         }
