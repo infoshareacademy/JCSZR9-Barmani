@@ -72,5 +72,26 @@ namespace DrinkItUpBusinessLogic
             var isUnique = !await _repository.GetAll().Where(u => u.Name == name).AnyAsync();
             return isUnique;
         }
+
+        public async Task<bool> Remove(int id)
+        {
+            var mainAlcohol = await _repository.GetById(id);
+            if (mainAlcohol == null)
+                return false;
+
+            _repository.Delete(mainAlcohol);
+            await _repository.Save();
+
+            return true;
+        }
+
+        public async Task<MainAlcoholDto> Update(MainAlcoholDto mainAlcoholDto)
+        {
+            var mainAlcohol = _mapper.Map<MainAlcohol>(mainAlcoholDto);
+            _repository.Update(mainAlcohol);
+            await _repository.Save();
+
+            return mainAlcoholDto;
+        }
     }
 }

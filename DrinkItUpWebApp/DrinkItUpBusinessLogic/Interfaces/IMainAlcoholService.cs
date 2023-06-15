@@ -21,5 +21,9 @@ namespace DrinkItUpBusinessLogic.Interfaces
 
         Task<bool> IsMainAlcoholUnique(string name);
 
+        Task<bool> Remove(int id);
+
+        Task<MainAlcoholDto> Update(MainAlcoholDto mainAlcoholDto);
+
     }
 }

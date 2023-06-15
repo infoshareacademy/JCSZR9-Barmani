@@ -116,5 +116,35 @@ namespace DrinkItUpWebApp.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Delete(int id, MainAlcoholModel model)
+        {
+            if (await _mainAlcoholService.IsMainAlcoholUsed(id))
+            {
+                return RedirectToAction(nameof(Delete), new { id = id });
+            }
+
+
+            if (await _mainAlcoholService.Remove(id))
+                return RedirectToAction(nameof(Index));
+            else
+                return RedirectToAction(nameof(Delete), new { id = id });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(MainAlcoholModel model)
+        {
+            var mainAlcoholDto = _mapper.Map<MainAlcoholDto>(model);
+            if (!await _mainAlcoholService.IsMainAlcoholUnique(mainAlcoholDto.Name))
+            {
+                return RedirectToAction(nameof(Edit), new { id = mainAlcoholDto.MainAlcoholId });
+            }
+            await _mainAlcoholService.Update(mainAlcoholDto);
+            return RedirectToAction(nameof(Edit), new { id = mainAlcoholDto.MainAlcoholId });
+
+        }
     }
 }
