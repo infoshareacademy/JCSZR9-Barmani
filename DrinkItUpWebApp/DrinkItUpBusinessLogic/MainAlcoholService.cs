@@ -17,11 +17,13 @@ namespace DrinkItUpBusinessLogic
     {
         private readonly IMainAlcoholRepository _repository;
         private readonly IMapper _mapper;
+        private readonly IDrinkRepository _drinkRepository;
 
-        public MainAlcoholService(IMainAlcoholRepository repository, IMapper mapper)
+        public MainAlcoholService(IMainAlcoholRepository repository, IMapper mapper, IDrinkRepository drinkRepository)
         {
             _repository = repository;
             _mapper = mapper;
+            _drinkRepository = drinkRepository;
         }
 
         public async Task<MainAlcoholDto> AddMainAlcohol(MainAlcoholDto mainAlcoholDto)
@@ -58,6 +60,11 @@ namespace DrinkItUpBusinessLogic
             var mainAlcohol = await _repository.SearchByNameQueryable(name).FirstOrDefaultAsync();
             var mainAlcoholDto = _mapper.Map<MainAlcoholDto>(mainAlcohol);
             return mainAlcoholDto;
+        }
+
+        public async Task<bool> IsMainAlcoholUsed(int id)
+        {
+            return await _drinkRepository.GetAll().Select(i => i.MainAlcoholId).ContainsAsync(id);
         }
     }
 }
