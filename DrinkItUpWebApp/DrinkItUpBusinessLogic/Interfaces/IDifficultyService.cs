@@ -17,5 +17,17 @@ namespace DrinkItUpBusinessLogic.Interfaces
 
         Task<DifficultyDto> GetByName(string name);
 
+        Task<bool> IsDifficultyUsed(int id);
+
+        Task<bool> IsDifficultyUnique(string name);
+
+        Task<bool> Remove(int id);
+
+        Task<DifficultyDto> Update(DifficultyDto difficultyDto);
+
+
+
+
+
     }
 }
