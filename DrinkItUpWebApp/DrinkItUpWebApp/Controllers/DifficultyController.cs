@@ -59,7 +59,42 @@ namespace DrinkItUpWebApp.Controllers
             foreach (var difficultyDto in difficultyDtos)
             {
                 var difficultyModel = _mapper.Map<DifficultyModel>(difficultyDto);
-                difficultyModel.IsUsed = await _difficultyService.IsUnitUsed(difficultyModel.DifficultyId);
+                difficultyModel.IsUsed = await _difficultyService.IsDifficultyUsed(difficultyModel.DifficultyId);
+                if (difficultyModel.DifficultyId == id)
+                    difficulty.IsUsed = difficultyModel.IsUsed;
+
+                difficultyModels.Add(difficultyModel);
+            }
+
+
+
+            difficulty.Difficulties = difficultyModels;
+
+            return View(difficulty);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (id == 0)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            var difficultyDtoFromSubmit = await _difficultyService.GetById(id);
+            if (difficultyDtoFromSubmit == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            var difficulty = _mapper.Map<DifficultyModel>(difficultyDtoFromSubmit);
+
+
+            var difficultyModels = new List<DifficultyModel>();
+            var difficultyDtos = await _difficultyService.GetAll();
+            foreach (var difficultyDto in difficultyDtos)
+            {
+                var difficultyModel = _mapper.Map<DifficultyModel>(difficultyDto);
+                difficultyModel.IsUsed = await _difficultyService.IsDifficultyUsed(difficultyModel.DifficultyId);
                 if (difficultyModel.DifficultyId == id)
                     difficulty.IsUsed = difficultyModel.IsUsed;
 

@@ -17,5 +17,8 @@ namespace DrinkItUpBusinessLogic.Interfaces
 
         Task<DifficultyDto> GetByName(string name);
 
+        Task<bool> IsDifficultyUsed(int id);
+
+
     }
 }
