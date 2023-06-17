@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drink It Up!</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <style>
+        .icon {
+            height: 60px;
+            width: 60px;
+            background: #ddd;
+        }
+
+        .main-bg {
+            min-height: 100vh;
+            max-width: device-width;
+            background: #6c1048;
+        }
+
+        .main-view-sm {
+            min-height: 3vh;
+        }
+
+        .main-view-md {
+            min-height: 20vh;
+            background: #d89999;
+            border: 2px solid #999;
+        }
+
+        .main-view-lg {
+            min-height: 70vh;
+            background: #d89999;
+            border: 2px solid #999;
+        }
+
+        .foto {
+            max-width: 150px;
+        }
+
+        body {
+            color: white
+        }
+
+        .btn1 {
+            background-color: #e9bb31;
+        }
+
+            .btn1:hover {
+                background-color: #e93c30;
+            }
+
+        .btn2 {
+            background-color: #e9bb31;
+        }
+
+            .btn2:hover {
+                background-color: #da0b85;
+                font-weight: bolder;
+            }
+    </style>
+
+</head>
+<body>
+    <div class="container-fluid lead d-flex main-bg justify-content-center align-items-center">
+        <div>
+            <img src="img/itLogo.png" class="">
+        </div>
+        <div>
+            <h1>Witaj na DrinkItUp.pl</h1>
+            <h4>Serwisie z największym wyborem przepisów na drinki!</h4>
+            <h4>Od użytkowników, dla użytkowników!</h4>
+            <h5>Zanim przejdziemy dalej, <span class="text-warning font-weight-bold">musimy wiedzieć!!</span></h5>
+
+            <div class="p-4 text-center">
+                <h4>Masz już ukończone 18 lat?</h4>
+                <div class="p-3">
+                    <a href="https://www.przedszkole-junior.pl/" class="btn btn1 btn-lg mx-1 " role="button">Niestety, nie</a>
+                    <a asp-controller="Home" asp-action="AboutUs" class="btn btn2 btn-lg mx-1 " role="button">Let's Party!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    @RenderBody()
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+</body>
+</html>
