@@ -23,9 +23,9 @@ namespace DrinkItUpWebApp.Controllers
         }
 		// Dla wyszukiwania po składnikach wyszukiwarka, podpowiedzi.
         [HttpPost]
-        public async Task<JsonResult> AutoCompleteIngredients(string Prefix)
+        public async Task<JsonResult> AutoCompleteIngredients(string Prefix, string Idefix)
         {
-            var words = await _searchByIngredients.GetAllIngredientsMatchingNames(Prefix);
+            var words = await _searchByIngredients.GetAllIngredientsMatchingNames(Prefix, Idefix);
             return Json(words);
         }
 
@@ -117,16 +117,18 @@ namespace DrinkItUpWebApp.Controllers
 
 
 		
-		public IActionResult DrinkMixerAdd(string allnames, string searchnames, string name)
+		public async Task<IActionResult> DrinkMixerAdd(string searchnames, string name)
 		{
 			var searchNamesList = new List<string>();
 
-			var allNamesList = _searchByIngredients.GetAllNamesFromSumbit(allnames);
+			
 			if (searchnames != null)
 			{
 				searchNamesList = _searchByIngredients.GetAllNamesFromSumbit(searchnames);
 			}
 
+			var allNamesList = await _searchByIngredients.GetAllNamesDistinct();
+			allNamesList = allNamesList.Except(searchNamesList).ToList();
 
 
 			searchNamesList.Add(name);
@@ -190,7 +192,6 @@ namespace DrinkItUpWebApp.Controllers
 
 
 		[HttpGet]
-        [Route("mixer")]
 		public IActionResult DrinkMixer(IngredientsSearchModel model)
         {
 

@@ -86,7 +86,7 @@ namespace DrinkItUpBusinessLogic
                 return drinksDto;
             }
 
-            var ingredientMatch = await _searchByIngredients.GetAllIngredientsMatchingNames(input);
+            var ingredientMatch = await _searchByIngredients.GetAllIngredientsMatchingNames(input,"");
             if(ingredientMatch == null )
             {
                 return drinksDto;

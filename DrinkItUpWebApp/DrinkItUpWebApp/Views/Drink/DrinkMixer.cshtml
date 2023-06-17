@@ -15,21 +15,35 @@
 			$.ajax({
 				type: "POST",
 				url: '@Url.Action("AutoCompleteIngredients", "Drink")',
-				data: { Prefix: $(this).val() },
+				data: { Prefix: $(this).val(), Idefix: $("#ByIngredients").val() },
 				dataType: "json",
 				success: function (data) {
 					$("#autoCompleteAnswers").html('');
 					$("#autoCompleteAnswers").show();
 					$(data).toArray().forEach((element) => {
-						var inner_html = '<div class="btn btn-warning mx-1 my-1">+' + element + '</div>';
+						var inner_html = '<div class="btn btn-warning mx-1 my-1 addIngredient">+' + element + '</div>';
 						$("#autoCompleteAnswers").append(inner_html);
-
 					});
-					
 				}
 			});
 		});
-	});
+
+		$(document).on("click", ".addIngredient", function () {
+			var ingredientName = $(this).text().replace("+","");
+			 var searchNames = $("#ByIngredients").val();
+			var url = '/Drink/DrinkMixerAdd?searchnames=' + searchNames + '&name=' + ingredientName;
+			 $.ajax({
+				 type: "POST",
+				 url: '@Url.Action("DrinkMixerAdd", "Drink")',
+				data: { searchnames: searchNames , name: ingredientName },
+				 success: function () {
+                // Przekierowanie do nowego widoku
+					window.location.href = url
+            }
+				 
+    });
+});
+});
 </script>
 <div class="row h-100 p-2" style="width: inherit;">
 	<div class="d-block col-md-6 col-lg-6 pinkborda-r">
@@ -50,6 +64,9 @@
 			@await Component.InvokeAsync("ListOfIngredients", new {ingredientsNames = Model.IngredientsNames, ingredientsToSearch = Model.IngredientsToSearch })
 
 		</div>
+		<div class="pinkborda my-2">
+			<input id="ByIngredients" hidden value="@searchNames" type="text" class="form-control">
+		</div>
 	</div>
 	<div class="d-block col-md-6 col-lg-6 p-2 pinkborda-l">
 
@@ -67,4 +84,5 @@
 
 
 	</div>
+
 </div>

@@ -23,7 +23,7 @@ namespace DrinkItUpBusinessLogic
 			_mapper = mapper;
 		}
 
-		public async Task<List<string>> GetAllIngredientsMatchingNames(string input)
+		public async Task<List<string>> GetAllIngredientsMatchingNames(string input, string chosen)
 		{
 			var matchingNames = new List<string>();
 			if(input == string.Empty || input == null)
@@ -32,11 +32,17 @@ namespace DrinkItUpBusinessLogic
 			}
 			var allIngredientsNames = await GetAllNamesDistinct();
 
+			var allReadyChosenIngredients = new List<string>();
+			if (chosen != null)
+			{
+				allReadyChosenIngredients = GetAllNamesFromSumbit(chosen);
+			}
 			string pattern = $"([^a-z]|^){input}([A-Z]|[a-z])*";
 			var regex = new Regex(pattern, RegexOptions.IgnoreCase);
 
 			matchingNames = allIngredientsNames
 				.Where(s => regex.IsMatch(s))
+				.Except(allReadyChosenIngredients)
 				.Take(5)
 				.ToList();
 
