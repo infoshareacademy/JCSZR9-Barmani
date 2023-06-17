@@ -14,5 +14,7 @@ namespace DrinkItUpBusinessLogic.DTOs
         public string Description { get; set; }
 
         public List<IngredientDto> Ingredients { get; set; } = new();
+
+        public string DrinkPhotoId { get; set; }
     }
 }

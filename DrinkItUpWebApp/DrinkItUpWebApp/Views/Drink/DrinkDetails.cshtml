@@ -3,12 +3,14 @@
 
 @{
     int quantity = 0;
-
 }
 <div class="d-flex h-100 justify-content-center align-items-center stopka">
-    <div>
-        <img src="~/img/sampledrink.png" class="foto pinkborda mx-1" />
+    <div class="d-flex h-100 justify-content-center align-items-center stopka">
+        <div>
+            <img src="~/img/@Model.DrinkPhotoId" class="" style="max-height: 420px;" alt="...">
+        </div>
     </div>
+
 
     <div class="d-inline-block mx-1">
         <p class="display-5 fw-bolder">@Model.Name</p>
@@ -16,26 +18,26 @@
         <p class="lead fw-bolder">Poziom trudności: @Model.Difficulty.Name</p>
         <p class="lead fw-bolder">Składniki:</p>
         <ul>
-        @foreach(var ingredient in Model.Ingredients)
-        {
-            @if(ingredient.Quantity != 0)
+            @foreach (var ingredient in Model.Ingredients)
             {
-            @if(ingredient.Quantity % 1 == 0)
+                @if (ingredient.Quantity != 0)
                 {
-                    quantity = (int)ingredient.Quantity;
-                    <li class="lead fw-bold">@ingredient.Name: @quantity @ingredient.Unit.Name</li>
+                    @if (ingredient.Quantity % 1 == 0)
+                    {
+                        quantity = (int)ingredient.Quantity;
+                        <li class="lead fw-bold">@ingredient.Name: @quantity @ingredient.Unit.Name</li>
+                    }
+                    else
+                    {
+                        <li class="lead fw-bold">@ingredient.Name: @ingredient.Quantity @ingredient.Unit.Name</li>
+
+                    }
                 }
                 else
                 {
-                    <li class="lead fw-bold">@ingredient.Name: @ingredient.Quantity @ingredient.Unit.Name</li>
-        
+                    <li class="lead fw-bold">@ingredient.Name: @ingredient.Unit.Name</li>
                 }
             }
-            else
-            {
-            <li class="lead fw-bold">@ingredient.Name: @ingredient.Unit.Name</li>
-            }
-        }
         </ul>
         <p class="lead fw-bolder">Opis przygotowania: </p>
         <p class="lead fw-bolder">@Model.Description</p>

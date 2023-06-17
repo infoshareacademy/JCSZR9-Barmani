@@ -15,5 +15,7 @@ namespace DrinkItUpWebApp.Models
 		public string Description { get; set; }
 
 		public Dictionary<string, List<DrinkSearchModel>> Results { get; set; }
-	}
+
+        public string DrinkPhotoId { get; set; }
+    }
 }

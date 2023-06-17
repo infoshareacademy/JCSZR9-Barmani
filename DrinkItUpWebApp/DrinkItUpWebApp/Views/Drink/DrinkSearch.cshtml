@@ -5,37 +5,35 @@
     {
         <div class="d-flex my-1 border-bottom-4 border-warning ">
             <p class="display-6 fw-bolder ">Niestety, nie znaleziono żadnego pasującego drinka.</p>
-        </div>    
+        </div>
     }
     else
     {
         foreach (var key in Model.Results.Keys)
         {
-             <div class="d-flex my-2 border-bottom border-warning ">
+            <div class="d-flex my-2 border-bottom border-warning ">
                 <p class="display-6 fw-bolder">@key</p>
-             </div>
+            </div>
             foreach (var drink in Model.Results[key])
             {
                 <a class="text-decoration-none lead " asp-action="DrinkDetails" asp-route-id="@drink.DrinkId">
                     <div class="my-2 pinkborda cardSearch d-flex justify-content-center align-items-center" style="height: 160px;">
                         <div class="row d-flex justify-content-center align-items-center" style="width: inherit;height:inherit;">
-                                <div class="col-2">
-                                <img src="~/img/sampledrink.png" class="" style="max-height: 150px;" alt="...">
-                                </div>
+                            <div class="col-2">
+                                <img src="~/img/@drink.DrinkPhotoId" class="" style="max-height: 150px;" alt="...">
+                            </div>
 
-                                <p class="col-2 fs-4 fw-bold">@drink.Name</p>
+                            <p class="col-2 fs-4 fw-bold">@drink.Name</p>
 
+                            <div class="d-inline-block col-3">
+                                <p>Alkohol dominujący: @drink.MainAlcohol.Name</p>
+                                <p>Poziom trudności: @drink.Difficulty.Name</p>
+                            </div>
 
-
-                                <div class="d-inline-block col-3">
-                                    <p>Alkohol dominujący: @drink.MainAlcohol.Name</p>
-                                    <p>Poziom trudności: @drink.Difficulty.Name</p>
-                                </div>
-
-                                <div class="col-5">
-                                    <span class="fw-bold" >Opis przygotowania:</span>
-                                    <p >@drink.Description.Substring(0,100) ...</p>
-                                </div>
+                            <div class="col-5">
+                                <span class="fw-bold">Opis przygotowania:</span>
+                                <p>@drink.Description.Substring(0,100) ...</p>
+                            </div>
                         </div>
                     </div>
                 </a>

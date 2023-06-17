@@ -73,7 +73,6 @@ namespace DrinkItUpWebApp.Controllers
 		[HttpGet]
 		public IActionResult DrinkSearch(DrinkSearchModel drinkSearch)
         {
-
             return View(drinkSearch);
         }
 
@@ -99,6 +98,7 @@ namespace DrinkItUpWebApp.Controllers
 			var drinkWithDetails = await _getDrinkDetails.GetDrinkToDetailView(id);
 
 			var drinkWithDetailsModel = _mapper.Map<DrinkWithDetailsModel>(drinkWithDetails);
+
             return View(drinkWithDetailsModel);
         }
 
