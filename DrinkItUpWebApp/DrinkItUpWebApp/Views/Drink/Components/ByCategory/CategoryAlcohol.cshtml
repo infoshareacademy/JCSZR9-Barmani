@@ -1,32 +1,32 @@
 ﻿@model DrinkItUpWebApp.Models.CategoryModel
 <script type="text/javascript">
-        //<![CDATA[
+    //<![CDATA[
     $(document).ready(function () {
         $('select').change(function () {
-                $(this).closest('form[name="CategoryName"]').submit();
+            $(this).closest('form[name="CategoryName"]').submit();
         });
     });//]]>
 </script>
 <div class="col-12 d-flex lead fw-bold stopka text-center align-items-center my-2 border-bottom border-warning" style="height:90px">
     <form name="CategoryName" asp-action="DrinkBrowse">
-    <div class="form-group mx-1 my-1">
-        <label for="CategoryName" class="control-label">Sortuj po:</label>
-        <select asp-for="CategoryName" class="form-select" aria-label="Select Category">
-            <option selected value="Alkohol dominujący">Alkohol dominujący</option>
-            <option value="Poziom trudności">Poziom trudności</option>
-            <option value="Wszystkie drinki">Wszystkie drinki</option>
-        
-        </select>
- 
-    </div>
+        <div class="form-group mx-1 my-1">
+            <label for="CategoryName" class="control-label">Sortuj po:</label>
+            <select asp-for="CategoryName" class="form-select" aria-label="Select Category">
+                <option selected value="Alkohol dominujący">Alkohol dominujący</option>
+                <option value="Poziom trudności">Poziom trudności</option>
+                <option value="Wszystkie drinki">Wszystkie drinki</option>
+
+            </select>
+
+        </div>
     </form>
     <div class="d-flex fs-3">
-        @foreach(var item in Model.Values)
+        @foreach (var item in Model.Values)
         {
-            if(item == Model.Value)
+            if (item == Model.Value)
             {
-               <a asp-for="CategoryName" class="panel-header-active mx-2 form-group">@item</a> 
-               continue;
+                <a asp-for="CategoryName" class="panel-header-active mx-2 form-group">@item</a>
+                continue;
             }
             <a asp-for="CategoryName" class="panel-header mx-2 form-group" asp-route-categoryname="Alkohol dominujący" asp-route-value="@item" type="submit">@item</a>
         }
@@ -39,7 +39,7 @@
         <div class="my-2 mx-2 pinkborda cardSearch d-flex justify-content-center align-items-center" style="height: 160px;">
             <div class="row d-flex justify-content-center align-items-center" style="width: inherit;height:inherit;">
                 <div class="col-2">
-                    <img src="~/img/sampledrink.png" class="" style="max-height: 150px;" alt="...">
+                    <img src="~/img/@drink.DrinkPhotoId" class="" style="max-height: 150px;" alt="...">
                 </div>
 
                 <p class="col-2 fs-4 fw-bold">@drink.Name</p>

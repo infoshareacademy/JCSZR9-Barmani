@@ -7,6 +7,9 @@
 		public string Value { get; set; }
 
 		public IEnumerable<string> Values { get; set; }
+
 		public IEnumerable<DrinkSearchModel> Results { get; set; }
-	}
+
+        public string DrinkPhotoId { get; set; }
+    }
 }

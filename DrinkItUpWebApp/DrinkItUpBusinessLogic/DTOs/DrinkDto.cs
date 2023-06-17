@@ -24,6 +24,9 @@ namespace DrinkItUpBusinessLogic.DTOs
 
 		public string Description { get; set; }
 
-        
+        public string DrinkPhotoId { get; set; }
+
+
+
     }
 }
