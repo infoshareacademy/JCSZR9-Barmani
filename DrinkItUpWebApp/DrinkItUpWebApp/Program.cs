@@ -60,7 +60,7 @@ namespace DrinkItUpWebApp
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=AboutUs}/{id?}");
+                pattern: "{controller=Home}/{action=AgeVerification}/{id?}");
 
             app.Run();
         }

@@ -26,7 +26,7 @@
                         $("#autoCompleteMain").show();
                         $(data).toArray().forEach((element) => {
 
-                            var inner_html = '<a class="d-flex p-1 searchResult" href="/Drink/DrinkDetails/' + element.drinkId + '"><div><img class="p-1" src="/img/sampledrink.png" style="max-height: 85px;" /></div><div class="d-block p-1" ><div class="display-7 fw-bold">' + element.name + '</div><div class="d-inline-block text-truncate" style="max-width: 230px">' + element.description + '</div></div></a>';
+                            var inner_html = '<a class="d-flex p-1 searchResult" href="/Drink/DrinkDetails/' + element.drinkId + '"><div><img class="p-1" src="/img/'+ element.drinkPhotoId +'" style="max-height: 85px;" /></div><div class="d-block p-1" ><div class="display-7 fw-bold">' + element.name + '</div><div class="d-inline-block text-truncate" style="max-width: 230px">' + element.description + '</div></div></a>';
                                $("#autoCompleteMain").append(inner_html);
 
                         
