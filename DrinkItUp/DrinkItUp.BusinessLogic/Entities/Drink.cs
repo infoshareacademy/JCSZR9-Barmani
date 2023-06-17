@@ -22,5 +22,7 @@ namespace DrinkItUp.BusinessLogic.Entities
 
         public string Description { get; set; }
 
+        public string DrinkPhotoId { get; set; }
+
     }
 }

@@ -95,11 +95,14 @@ namespace DrinkItUp.BusinessLogic.Logic
 
         private void DrinksToSQL()
         {
+            int i = 1;
             var list = DataMenager.Drinks;
             foreach (var drink in list)
             {
-                var drinkToSQL = new Drink { Name = drink.Name, MainAlcoholId = drink.mainAlcohol.Id, DifficultyId = drink.difficulty.Id, Description = drink.Description };
+                
+                var drinkToSQL = new Drink { Name = drink.Name, MainAlcoholId = drink.mainAlcohol.Id, DifficultyId = drink.difficulty.Id, Description = drink.Description, DrinkPhotoId =$"{i}.png" };
                 drinkContext.Drinks.Add(drinkToSQL);
+                i++;
             }
 
             drinkContext.SaveChanges();
