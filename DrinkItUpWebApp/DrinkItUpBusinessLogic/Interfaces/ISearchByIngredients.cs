@@ -4,7 +4,7 @@ namespace DrinkItUpBusinessLogic.Interfaces
 {
     public interface ISearchByIngredients
     {
-        Task<List<string>> GetAllIngredientsMatchingNames(string input);
+        Task<List<string>> GetAllIngredientsMatchingNames(string input, string chosen);
 
         Task<List<string>> GetAllNamesDistinct();
 
