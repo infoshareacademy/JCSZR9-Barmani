@@ -1,0 +1,33 @@
+﻿@model IEnumerable<DrinkItUpWebApp.Models.User>
+
+@{
+    ViewData["Title"] = "Zaloguj się!";
+}
+<div class="d-flex h-100 justify-content-center align-items-center stopka">
+
+
+            <div class="ms-2">
+                <img class="foto" src="~/img/doge-meme_.jpg" />
+            </div>
+            <div class="container-fluid mx-1 align-items-center justify-content-center">
+                <div class="pinkborda">
+                    <p class="display-6">Uszanowanko Pan Administrator!</p>
+                    <form class="p-2">
+                        <div class="form-group lead">
+                            <label for="InputEmail" class="p-1">Adres e-mail</label>
+                            <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Wpisz swój adres e-mail">
+                        </div>
+                        <div class="form-group lead">
+                            <label for="InputPass" class="p-1">Hasło</label>
+                            <input type="password" class="form-control" id="InputPass" placeholder="Wpisz hasło, min. 8 znaków">
+                        </div>
+                        <div class="d-grid p-5">
+                            <button type="submit" asp-controller="Ingredient" asp-action="Index" class="btn btn-warning btn-lg"><strong>Zaloguj się</strong></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+</div>
+

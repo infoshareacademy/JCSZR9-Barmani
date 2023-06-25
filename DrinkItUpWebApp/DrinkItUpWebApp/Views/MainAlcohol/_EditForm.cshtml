@@ -1,0 +1,105 @@
+﻿@model DrinkItUpWebApp.Models.MainAlcoholModel
+
+
+
+<div class="accordion container-fluid" id="accordionCRD">
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button bg-warning fw-bold text-black" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Dodaj Nowy Alkohol Dominujący
+            </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse bg-dark text-white" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <div class="row">
+                    <div class="col-12">
+                        <form asp-action="Create">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label for="Name" class="control-label">Nazwa Alkoholu Dominującego:</label>
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group my-3">
+                                <input type="submit" value="Dodaj Nowy Alkohol Dominujący" class="btn btn-warning" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed bg-warning fw-bold text-black" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Edytuj Alkohol Dominujący
+            </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse show bg-dark text-white" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <div class="row">
+                    <div class="col-12">
+                        <form asp-action="Edit" asp-route-mainalcoholid="@Model.MainAlcoholId">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label for="UnitId" class="control-label">Id</label>
+                                <input asp-for="MainAlcoholId" class="form-control" disabled />
+                                <span asp-validation-for="MainAlcoholId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="Name" class="control-label">Nazwa Alkoholu Dominującego:</label>
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group my-3">
+                                <input type="submit" value="Edytuj Alkohol Dominujący" class="btn btn-warning" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed bg-warning fw-bold text-black" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Usuń Alkohol Dominujący
+            </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse bg-dark text-white" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <div class="row">
+                    <div class="col-12">
+                        <form asp-action="Delete" asp-route-id="@Model.MainAlcoholId">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label for="MainAlcoholId" class="control-label">Id</label>
+                                <input asp-for="MainAlcoholId" class="form-control" disabled />
+                                <span asp-validation-for="MainAlcoholId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="Name" class="control-label">Nazwa Alkoholu Dominującego:</label>
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            @if (Model.IsUsed)
+                            {
+                                <p class="text-warning">Usuń Alkohol Dominujący ze wszystkich składników, żeby odblokować możliwość jego usunięcia z bazy!</p>
+
+                                <div class="form-group my-3">
+                                    <input type="submit" value="Usuń Alkohol Dominujący" disabled class="btn btn-warning" />
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="form-group my-3">
+                                    <input type="submit" value="Usuń Alkohol Dominujący" class="btn btn-warning" />
+                                </div>
+                            }
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

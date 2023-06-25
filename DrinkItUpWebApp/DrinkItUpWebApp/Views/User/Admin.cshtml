@@ -1,0 +1,62 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="row">
+    <div class="d-inline-block">
+
+        <div class="col-12 d-flex lead fw-bold stopka text-center align-items-center my-2 " style="height:60px">
+            
+                <a class="col-2 panel-header">Drinki</a>
+                <a class="col-3 panel-header">Główne Alkohole</a>
+                <a class="col-3 panel-header">Poziomy Trudności</a>
+                <a class="col-2 panel-header">Składniki</a>
+                <a class="col-2 panel-header">Jednostki</a>
+            
+        </div>
+        <div class="col-12">
+            @*<p>
+                <a asp-action="Create">Create New</a>
+            </p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            <label asp-for="First().Name"></label>
+                        </th>
+                        <th>
+                            <label asp-for="First().StartTime"></label>
+                        </th>
+                        <th>
+                            <label asp-for="First().NumberOfParticipants"></label>
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <partial name="_MeetingRow" , model="item" />
+                    }
+                </tbody>
+            </table>*@
+
+
+        </div>
+
+        <div class="d-inline-block col-12">
+            <p class="lead fw-bolder">Główne Alkohole</p>
+            <a asp-action="AddMainAlcohol" class="btn btn-warning"> Dodaj Główny Alkohol!</a>
+
+            <p class="lead fw-bolder">Poziom Trudności</p>
+            <a asp-action="AddDifficulty" class="btn btn-warning"> Dodaj Poziom Trudności!</a>
+
+            <p class="lead fw-bolder">Składniki</p>
+
+
+            <p class="lead fw-bolder">Jednostki</p>
+        <a asp-action="AddUnit" class="btn btn-warning"> Dodaj Jednostkę!</a>
+        </div>
+    </div>
+</div>

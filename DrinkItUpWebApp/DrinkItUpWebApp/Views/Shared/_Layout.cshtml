@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Drink It Up!</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/DrinkItUpWebApp.styles.css" asp-append-version="true" />
+    <script src="https://kit.fontawesome.com/a307082f4d.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet" /> <!-- https://fonts.google.com/ -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $("#searchBar").keyup(function () {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("AutoCompleteMain", "Drink")',
+                    data: { Prefix: $(this).val() },
+                    dataType: "json",
+                    success: function (data) {
+                        $("#autoCompleteMain").html('');
+                        $("#autoCompleteMain").show();
+                        $(data).toArray().forEach((element) => {
+
+                            var inner_html = '<a class="d-flex p-1 searchResult" href="/Drink/DrinkDetails/' + element.drinkId + '"><div><img class="p-1" src="/img/'+ element.drinkPhotoId +'" style="max-height: 85px;" /></div><div class="d-block p-1" ><div class="display-7 fw-bold">' + element.name + '</div><div class="d-inline-block text-truncate" style="max-width: 230px">' + element.description + '</div></div></a>';
+                               $("#autoCompleteMain").append(inner_html);
+
+                        
+                            
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body class="w-100">
+    <div class="container-fluid main-bg p-0 mx-0 ">
+        <div class="row" style="width: inherit;">
+            <div class="col-lg-12 col-xl-4 my-2 h-100">
+                <header class="container-fluid p-2"> 
+
+                    <div class="d-block">
+                        <div class="foto mx-auto">
+                            <img src="~/img/itLogo.png" class="img-fluid">
+                        </div>
+                    </div>
+
+                    <div class="nav d-grid gap-2">
+
+                      
+                        <div class="" style="position: relative; width: 100%;">
+                            <form class="input-group pinkborda" asp-controller="Drink" asp-action="DrinkSearchBar">
+                                <input id="searchBar" type="text" name="input" class="form-control" placeholder="Wpisz nazwę lub składnik!">
+                                <input class="btn btn-outline-secondary search-button" type="submit" value="Szukaj" id="button-addon2"  />
+                            </form>
+
+                            <div id="autoCompleteMain" hidden class="d-block bg-white rounded pinkborda text-dark lead" style="width: inherit ;position: absolute;top: 65px;max-height: 300px;">
+                                
+                            </div>
+                        </div>
+
+                        <div id="autoCompleteMain" class="d-inline-block">
+                            <div class="lead" hidden style="max-height: 300px; position: absolute;">
+                            </div>
+                        </div>
+
+                        <div class="pinkborda">
+                            <a class="nav-button fw-bolder" asp-controller="Drink" asp-action="DrinkBrowse" asp-route-categoryname="Wszystkie drinki" asp-route-value="">
+                                <i class="fa-solid fa-glass-martini nav-icon"></i>
+                                <span>Przeglądaj drinki</span>
+                            </a>
+                        </div>
+
+                        <div class="pinkborda">
+                            <a class="nav-button fw-bolder" asp-controller="Drink" asp-action="DrinkMixerPrep">
+                                <i class="fa-solid fa-blender nav-icon"></i>
+                                <span>Co masz w barku?</span>
+                            </a>
+                        </div>
+
+                        <div class="pinkborda">
+                            <a class="nav-button fw-bolder" asp-controller="Drink" asp-action="DrinkSuprise">
+                                <i class="fa-solid fa-gift nav-icon"></i>
+                                <span>Zaskocz mnie</span>
+                            </a>
+                        </div>
+
+                        <div class="pinkborda">
+                            <a class="nav-button fw-bolder" asp-controller="User" asp-action="Index">
+                                <i class="fa-solid fa-right-to-bracket nav-icon"></i>
+                                <span>Zaloguj się</span>
+                            </a>
+                        </div>
+
+                        <div class="pinkborda">
+                            <a class="nav-button fw-bolder" asp-controller="Home" asp-action="AboutUs">
+                                <i class="fa-solid fa-address-card nav-icon"></i>
+                                <span>Twórcy</span>
+                            </a>
+                        </div>
+                        
+                    </div>
+
+                </header>
+            </div>
+
+            <div class="container col-lg-12 col-xl-8 my-2 pinkborda p-0">
+                <main class=" h-100 stopka">
+                   @RenderBody()
+                </main>
+            </div>
+            
+
+            <footer class="col-12 pt-3 mt-4 pinkborda stopka">
+                <p class="ms-1"> © 2023 BARMANI INC!</p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
