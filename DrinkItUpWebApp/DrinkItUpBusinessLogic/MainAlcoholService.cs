@@ -52,7 +52,7 @@ namespace DrinkItUpBusinessLogic
 
         public async Task<MainAlcoholDto> GetById(int id)
         {
-            return _mapper.Map<MainAlcoholDto>(await _repository.GetById(id)); 
+            return _mapper.Map<MainAlcoholDto>(await _repository.GetById(id) ?? new MainAlcohol()); 
         }
 
         public async Task<MainAlcoholDto> GetByName(string name)

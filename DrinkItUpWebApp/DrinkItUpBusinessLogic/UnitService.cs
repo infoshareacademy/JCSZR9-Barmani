@@ -39,7 +39,7 @@ namespace DrinkItUpBusinessLogic
 
         public async Task<UnitDto> GetById(int id)
         {
-            var unit = _mapper.Map<UnitDto>( await _repository.GetById(id));
+            var unit = _mapper.Map<UnitDto>( await _repository.GetById(id) ?? new Unit());
 
             return unit;
         }

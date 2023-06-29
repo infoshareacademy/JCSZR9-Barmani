@@ -1,12 +1,8 @@
-using DrinkItUpWebApp.DAL.Entities;
-using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
 using FluentAssertions;
 using System.Net.Http.Json;
 using System.Net;
+using DrinkItUpWebApp.Models;
+
 namespace DrinkItUpTests
 {
     public class SeperatedUnitRepositoryTest
@@ -15,11 +11,28 @@ namespace DrinkItUpTests
 
 
         [Fact]
-        public async Task GetAllUnits_ViewUnits_ShouldReturnView()
+        public async Task Index_ViewUnits_ShouldReturnView()
         {
             var response = await _client.GetAsync("Unit/Index");
 
             Assert.NotNull(response);
+        }
+
+        [Fact]
+        public async Task CreateUnit_ReturnsCreatedResult()
+        {
+            // Arrange
+
+            var unit = new UnitModel { Name = "jednostka"};
+
+            // Act
+            var response = await _client.PostAsJsonAsync<UnitModel>("Unit/Create", unit);
+            response.EnsureSuccessStatusCode();
+            var createdUnit = response.Content;
+
+            // Assert
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+            createdUnit.Should().NotBeNull();
         }
     }
 }
