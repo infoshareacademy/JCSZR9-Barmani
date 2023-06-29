@@ -66,3 +66,4 @@ namespace DrinkItUpWebApp
         }
     }
 }
+public partial class Program { }
