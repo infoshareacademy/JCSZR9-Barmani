@@ -87,7 +87,7 @@ namespace DrinkItUpTests
             result.Should().NotBeNull();
             result.Should().HaveCount(2);
             result.Count().Should().Be(2);
-            //do wyboru jedna z dwoch powyzchych metod budowania result
+            //do wyboru jedna z dwoch powyzszych metod budowania result
         }
 
 
