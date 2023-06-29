@@ -92,16 +92,28 @@ namespace DrinkItUpTests
 
 
 
-        /*public async Task<List<UnitDto>> GetAll()
+        [Fact]
+        public async Task UnitService_IsUnitUsed_ReturnsFalse()
         {
-            var units = await _repository.GetAll().ToListAsync();
-            var unitsDto = new List<UnitDto>();
-            foreach(var unit in units) 
-            {
-                var unitDto = _mapper.Map<UnitDto>(unit);
-                unitsDto.Add(unitDto);
-            }
-            return unitsDto.OrderBy(u => u.Name).ToList();
-        }*/
+            //Assign
+            var unitService = new UnitService(_unitRepository, mapper, _ingredientRepository);
+            var unitDto1 = new UnitDto { Name = "Kopa" };
+            await unitService.AddUnit(unitDto1);
+
+            //Act
+            var result = await unitService.IsUnitUsed(1);
+
+            //Assert
+            result.Should().BeFalse();
+
+        }
+
+
+
+
+        //public async Task<bool> IsUnitUsed(int id)
+        //{
+        //    return await _ingredientRepository.GetAll().Select(i => i.UnitId).ContainsAsync(id);
+        //}
     }
 }
