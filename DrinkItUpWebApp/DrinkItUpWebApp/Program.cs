@@ -38,6 +38,7 @@ namespace DrinkItUpWebApp
             builder.Services.AddScoped<IUnitRepository, UnitRepository>();
             builder.Services.AddScoped<IMainAlcoholRepository, MainAlcoholRepository>();
             builder.Services.AddScoped<IDifficultyRepository, DifficultyRepository>();
+
             //AutoMapper
             builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
