@@ -6,6 +6,7 @@ using DrinkItUpWebApp.MapperProfile;
 using DrinkItUpBusinessLogic;
 using DrinkItUpBusinessLogic.DTOs;
 using FluentAssertions;
+using DrinkItUpBusinessLogic.Interfaces;
 
 namespace DrinkItUpTests
 {
@@ -97,8 +98,8 @@ namespace DrinkItUpTests
         {
             //Assign
             var unitService = new UnitService(_unitRepository, mapper, _ingredientRepository);
-            var unitDto1 = new UnitDto { Name = "Kopa" };
-            await unitService.AddUnit(unitDto1);
+            var unitDto = new UnitDto { Name = "Kopa" };
+            await unitService.AddUnit(unitDto);
 
             //Act
             var result = await unitService.IsUnitUsed(1);
@@ -108,6 +109,39 @@ namespace DrinkItUpTests
 
         }
 
+        [Fact]
+        public async Task UnitService_IsUnitUnique_ReturnsFalse()
+        {
+            //Assing
+            var unitService = new UnitService(_unitRepository, mapper, _ingredientRepository);
+            var unitDto = new UnitDto { Name = "Mendel" };
+            await unitService.AddUnit(unitDto);
+
+            //Act
+            var result = await unitService.IsUnitUnique(unitDto.Name);
+
+            //Assert
+            result.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task UnitService_Update_ReturnsUpdatedDto()
+        {
+            //Assign
+            var unitService = new UnitService(_unitRepository, mapper, _ingredientRepository);
+            var unitDto = new UnitDto { Name = "jednostka" };
+            await unitService.AddUnit(unitDto);
+            var unitDtoUpdated = new UnitDto { UnitId = 1, Name = "Tuzin" };
+
+            //Act
+            var tescik = await unitService.GetAll();
+
+            await unitService.Update(unitDtoUpdated);
+            var unitFromDatabase = await unitService.GetById(1);
+
+            //Assert
+            unitDtoUpdated.Name.Should().Be(unitFromDatabase.Name);
+        }
 
 
 
