@@ -126,6 +126,7 @@ namespace DrinkItUpTests
 
         [Fact]
         public async Task UnitService_Update_ReturnsUpdatedDto()
+        //test nie przechodzi!!
         {
             //Assign
             var unitService = new UnitService(_unitRepository, mapper, _ingredientRepository);
@@ -142,12 +143,5 @@ namespace DrinkItUpTests
             //Assert
             unitDtoUpdated.Name.Should().Be(unitFromDatabase.Name);
         }
-
-
-
-        //public async Task<bool> IsUnitUsed(int id)
-        //{
-        //    return await _ingredientRepository.GetAll().Select(i => i.UnitId).ContainsAsync(id);
-        //}
     }
 }
