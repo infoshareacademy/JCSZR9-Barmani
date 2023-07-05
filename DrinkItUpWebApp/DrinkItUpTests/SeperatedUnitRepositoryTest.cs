@@ -2,6 +2,8 @@ using FluentAssertions;
 using System.Net.Http.Json;
 using System.Net;
 using DrinkItUpWebApp.Models;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace DrinkItUpTests
 {
@@ -24,9 +26,16 @@ namespace DrinkItUpTests
             // Arrange
 
             var unit = new UnitModel { Name = "jednostka"};
+            var unitSerialize = JsonConvert.SerializeObject(unit);
+
+            var stringContent = new StringContent(unitSerialize,System.Text.Encoding.UTF8,"application/json");
+            //HttpContent content = new JsonContent { Value = unit };
 
             // Act
-            var response = await _client.PostAsJsonAsync<UnitModel>("Unit/Create", unit);
+            var response = 
+            await _client.PostAsync("Unit/Create",stringContent);
+
+
             response.EnsureSuccessStatusCode();
             var createdUnit = response.Content;
 
