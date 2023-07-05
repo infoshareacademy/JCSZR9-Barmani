@@ -29,8 +29,52 @@ namespace DrinkItUpTests
             //Clearing Context
 
             serviceContainer.EndOfTest();
+        }
 
+        //GetAll
+
+        //GetById
+
+        //GetByName
+        [Fact]
+        public async Task MAService_GetByName_ReturnsMAByName()
+        {
+            //Assing
+            var serviceContainer = new Container();
+            var mainAlcoholService = serviceContainer.GetMainAlcoholService();
+
+            var mainAlcoholDtos = new List<MainAlcoholDto>
+            {
+                new MainAlcoholDto { Name = "Wódka" },
+                new MainAlcoholDto { Name = "Gin" },
+                new MainAlcoholDto { Name = "Rum" },
+                new MainAlcoholDto { Name = "Likier" },
+                new MainAlcoholDto { Name = "Spirytus" },
+            };
+
+            foreach (var item in mainAlcoholDtos)
+            {
+                await mainAlcoholService.AddMainAlcohol(item);
+            }
+
+            //Act
+            var searchedMAName = "Gin";
+            var testedMAName = await mainAlcoholService.GetByName(searchedMAName);
+
+            //Assert
+            testedMAName.Name.Should().Be(searchedMAName);
+
+            //Clearing Context
+
+            serviceContainer.EndOfTest();
         }
     }
+
+    //IsMainAlcoholUsed
+
+    //IsMainAlcoholUnique
+
+    //Remove
+
+    //Update
 }
-    
