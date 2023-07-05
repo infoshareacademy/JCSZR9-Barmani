@@ -139,7 +139,6 @@ namespace DrinkItUpTests
 
         [Fact]
         public async Task UnitService_Update_ReturnsUpdatedDto()
-        //test nie przechodzi!!
         {
             //Assign
             var serviceContainer = new Container();
@@ -160,5 +159,27 @@ namespace DrinkItUpTests
 
             serviceContainer.EndOfTest();
         }
+
+
+
+        [Fact]
+        public async Task UnitServices_Remove_CheckingDeletingOfUnit()
+        {
+            //Asign
+            var serviceContainer = new Container();
+            var unitService = serviceContainer.GetUnitService();
+            var unitDto = new UnitDto { Name = "łokieć" };
+            await unitService.AddUnit(unitDto);
+
+            //Act
+            await unitService.Remove(1);
+            var units = await unitService.GetAll();
+
+            //Assert
+            units.Should().HaveCount(0);
+            serviceContainer.EndOfTest();
+        }
+
+
     }
 }
