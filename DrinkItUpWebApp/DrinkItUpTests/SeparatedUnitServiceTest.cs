@@ -7,27 +7,20 @@ using DrinkItUpBusinessLogic;
 using DrinkItUpBusinessLogic.DTOs;
 using FluentAssertions;
 using DrinkItUpBusinessLogic.Interfaces;
+using System.ComponentModel.Design;
 
 namespace DrinkItUpTests
 {
     public class SeparatedUnitServiceTest
     {
-        private static DbContextOptionsBuilder<DrinkContext> OptionsBuilder()
-        {
-            return new DbContextOptionsBuilder<DrinkContext>().UseInMemoryDatabase("InMemoryDatabase");
-        }
-        private static DrinkContext db = new DrinkContext(SeparatedUnitServiceTest.OptionsBuilder().Options);
-        private static UnitRepository _unitRepository = new UnitRepository(db);
-        private static DrinkIngredientRepository drinkIngredientRepository = new DrinkIngredientRepository(db);
-        private static IngredientRepository _ingredientRepository = new IngredientRepository(db, drinkIngredientRepository);
-        private static MapperConfiguration configuration = new MapperConfiguration(configurationBuilder => configurationBuilder.AddProfile<MapperProfile>());
-        private IMapper mapper = configuration.CreateMapper();
+        
 
         [Fact]
         public async Task UnitService_AddUnit_ReturnAddedUnitName()
         {
             //Assign
-            var unitService = new UnitService(_unitRepository,mapper, _ingredientRepository);
+            var serviceContainer = new Container();
+            var unitService = serviceContainer.GetUnitService();
             var unitDto = new UnitDto { Name = "jednostka" };
 
             //Act
@@ -35,13 +28,18 @@ namespace DrinkItUpTests
 
             //Assert
             testUnit.Name.Should().Be(unitDto.Name);
+
+            //Clearing Context
+
+            serviceContainer.EndOfTest();
         }
 
         [Fact]
         public async Task UnitService_GetById_ReturnUnitByID()
         {
             //Assign
-            var unitService = new UnitService(_unitRepository, mapper, _ingredientRepository);
+            var serviceContainer = new Container();
+            var unitService = serviceContainer.GetUnitService();
             var unitDto = new UnitDto { Name = "jednostka" };
             await unitService.AddUnit(unitDto);
 
@@ -52,6 +50,8 @@ namespace DrinkItUpTests
             result.Should().NotBeNull();
             result.Name.Should().Be(unitDto.Name);
             result.UnitId.Should().Be(1);
+
+            serviceContainer.EndOfTest();
         }
 
         //test na wzor:
@@ -61,7 +61,8 @@ namespace DrinkItUpTests
         public async Task UnitService_GetById_ReturnEmptyUnit()
         {
             //Assign
-            var unitService = new UnitService(_unitRepository, mapper, _ingredientRepository);
+            var serviceContainer = new Container();
+            var unitService = serviceContainer.GetUnitService();
 
             //Act
             var result = await unitService.GetById(1);
@@ -120,8 +121,68 @@ namespace DrinkItUpTests
             //Act
             var result = await unitService.IsUnitUnique(unitDto.Name);
 
+            serviceContainer.EndOfTest();
+        }
+
+        [Fact]
+        public async Task UnitService_GetAll_ReturnAllUnits()
+        {
+            //Assign
+            var serviceContainer = new Container();
+            var unitService = serviceContainer.GetUnitService();
+            var unitDto1 = new UnitDto { Name = "Kopa" };
+            var unitDto2 = new UnitDto { Name = "Mendel" };
+            await unitService.AddUnit(unitDto1);
+            await unitService.AddUnit(unitDto2);
+
+            //Act
+            var result = await unitService.GetAll();
+
+            //Assert
+            result.Should().NotBeNull();
+            result.Should().HaveCount(2);
+            result.Count().Should().Be(2);
+            //do wyboru jedna z dwoch powyzszych metod budowania result
+            serviceContainer.EndOfTest();
+        }
+
+
+
+        [Fact]
+        public async Task UnitService_IsUnitUsed_ReturnsFalse()
+        {
+            //Assign
+            var serviceContainer = new Container();
+            var unitService = serviceContainer.GetUnitService();
+            var unitDto = new UnitDto { Name = "Kopa" };
+            await unitService.AddUnit(unitDto);
+
+            //Act
+            var result = await unitService.IsUnitUsed(1);
+
             //Assert
             result.Should().BeFalse();
+
+            serviceContainer.EndOfTest();
+
+        }
+
+        [Fact]
+        public async Task UnitService_IsUnitUnique_ReturnsFalse()
+        {
+            //Assing
+            var serviceContainer = new Container();
+            var unitService = serviceContainer.GetUnitService();
+            var unitDto = new UnitDto { Name = "Mendel" };
+            await unitService.AddUnit(unitDto);
+
+            //Act
+            var result = await unitService.IsUnitUnique(unitDto.Name);
+
+            //Assert
+            result.Should().BeFalse();
+
+            serviceContainer.EndOfTest();
         }
 
         [Fact]
@@ -129,19 +190,23 @@ namespace DrinkItUpTests
         //test nie przechodzi!!
         {
             //Assign
-            var unitService = new UnitService(_unitRepository, mapper, _ingredientRepository);
+            var serviceContainer = new Container();
+            var unitService = serviceContainer.GetUnitService();
             var unitDto = new UnitDto { Name = "jednostka" };
             await unitService.AddUnit(unitDto);
+            unitDto = await unitService.GetById(1);
             var unitDtoUpdated = new UnitDto { UnitId = 1, Name = "Tuzin" };
 
+            serviceContainer.DetachModel();
             //Act
-            var tescik = await unitService.GetAll();
 
             await unitService.Update(unitDtoUpdated);
             var unitFromDatabase = await unitService.GetById(1);
 
             //Assert
             unitDtoUpdated.Name.Should().Be(unitFromDatabase.Name);
+
+            serviceContainer.EndOfTest();
         }
     }
 }
