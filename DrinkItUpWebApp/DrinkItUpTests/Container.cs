@@ -27,6 +27,17 @@ namespace DrinkItUpTests
                 .AddScoped<IUnitRepository, UnitRepository>()
                 .AddScoped<IIngredientRepository, IngredientRepository>()
                 .AddScoped<IDrinkIngredientRepository, DrinkIngredientRepository>()
+                .AddScoped<IDrinkRepository, DrinkRepository>()
+                .AddScoped<IMainAlcoholRepository, MainAlcoholRepository>()
+                .AddScoped<IDifficultyRepository, DifficultyRepository>()
+                .AddScoped<SearchByIngredients>()
+                .AddScoped<SearchByNameOrOneIngredient>()
+                .AddScoped<GetDrinkDetails>()
+                .AddScoped<MainAlcoholService>()
+                .AddScoped<DifficultyService>()
+                .AddScoped<IngredientService>()
+                .AddScoped<DrinkService>()
+                .AddScoped<ByCategoryService>()
                 .AddScoped<UnitService>()
                 .AddAutoMapper(typeof(Program).Assembly);
 
