@@ -28,13 +28,11 @@ namespace DrinkItUpBusinessLogic
 
         public async Task<UnitDto> AddUnit(UnitDto unitDto)
         {
-
             var unitEntity = _mapper.Map<Unit>(unitDto);
             await _repository.Add(unitEntity);
             await _repository.Save();
 
             return unitDto;
-            
         }
 
         public async Task<UnitDto> GetById(int id)

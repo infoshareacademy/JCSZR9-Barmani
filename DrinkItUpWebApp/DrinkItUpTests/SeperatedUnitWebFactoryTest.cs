@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace DrinkItUpTests
 {
-    public class SeperatedUnitRepositoryTest
+    public class SeperatedUnitWebFactoryTest
     {
         private readonly HttpClient _client = new DrinktItUpWebFactory().GetClient();
 
