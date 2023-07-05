@@ -49,6 +49,11 @@ namespace DrinkItUpTests
             return _container.GetRequiredService<UnitService>();
         }
 
+        public MainAlcoholService GetMainAlcoholService()
+        {
+            return _container.GetRequiredService<MainAlcoholService>();
+        }
+
         public void EndOfTest()
         {
             var db = _container.GetRequiredService<DrinkContext>();
