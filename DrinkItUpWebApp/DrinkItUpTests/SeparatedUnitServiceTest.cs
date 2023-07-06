@@ -54,9 +54,6 @@ namespace DrinkItUpTests
             serviceContainer.EndOfTest();
         }
 
-        //test na wzor:
-        //wszystko co moze zwrocic null powinno byc otestowane na dwa sposoby
-        //do otestowania wszystkie serwisy
         [Fact]
         public async Task UnitService_GetById_ReturnEmptyUnit()
         {
@@ -71,10 +68,6 @@ namespace DrinkItUpTests
             result.Should().NotBeNull();
             result.Name.Should().BeNull();
         }
-
-
-       
-
 
         [Fact]
         public async Task UnitService_GetAll_ReturnAllUnits()
@@ -98,8 +91,6 @@ namespace DrinkItUpTests
             serviceContainer.EndOfTest();
         }
 
-
-
         [Fact]
         public async Task UnitService_IsUnitUsed_ReturnsFalse()
         {
@@ -116,7 +107,6 @@ namespace DrinkItUpTests
             result.Should().BeFalse();
 
             serviceContainer.EndOfTest();
-
         }
 
         [Fact]
@@ -160,8 +150,6 @@ namespace DrinkItUpTests
             serviceContainer.EndOfTest();
         }
 
-
-
         [Fact]
         public async Task UnitServices_Remove_CheckingDeletingOfUnit()
         {
@@ -179,7 +167,5 @@ namespace DrinkItUpTests
             units.Should().HaveCount(0);
             serviceContainer.EndOfTest();
         }
-
-
     }
 }

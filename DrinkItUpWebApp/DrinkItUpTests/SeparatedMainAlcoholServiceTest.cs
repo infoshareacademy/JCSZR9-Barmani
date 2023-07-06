@@ -30,9 +30,37 @@ namespace DrinkItUpTests
             serviceContainer.EndOfTest();
         }
 
-        //GetAll
+        [Fact]
+        public async Task MainAlcoholService_GetAll_ReturnsAllMA()
+        {
+            //Assign
+            var serviceContainer = new Container();
+            var mainAlcoholService = serviceContainer.GetMainAlcoholService();
+            var mainAlcoholDtos = new List<MainAlcoholDto>
+            {
+                new MainAlcoholDto { Name = "Wódka" },
+                new MainAlcoholDto { Name = "Gin" },
+                new MainAlcoholDto { Name = "Rum" },
+                new MainAlcoholDto { Name = "Likier" },
+                new MainAlcoholDto { Name = "Spirytus" },
+            };
 
-        //GetById
+            foreach (var item in mainAlcoholDtos)
+            {
+                await mainAlcoholService.AddMainAlcohol(item);
+            }
+
+            //Act
+            var result = await mainAlcoholService.GetAll();
+            
+            //Assert
+            result.Should().NotBeNullOrEmpty();
+            result.Count.Should().Be(5);
+
+            serviceContainer.EndOfTest();
+
+        }
+
         [Fact]
         public async Task MAService_GetById_ReturnsMAById()
         {
@@ -58,14 +86,13 @@ namespace DrinkItUpTests
             var testedMAId = await mainAlcoholService.GetById(5);
 
             //Assert
-            //testedMAName.Name.Should().Be(searchedMAName);
             testedMAId.MainAlcoholId.Should().Be(searchedMANameId);
+            testedMAId.Name.Should().NotBeNullOrEmpty();
 
             //Clearing Context
             serviceContainer.EndOfTest();
         }
 
-        //GetByName
         [Fact]
         public async Task MAService_GetByName_ReturnsMAByName()
         {
@@ -92,6 +119,7 @@ namespace DrinkItUpTests
 
             //Assert
             testedMAName.Name.Should().Be(searchedMAName);
+            testedMAName.Name.Should().NotBeNullOrEmpty();
 
             //Clearing Context
             serviceContainer.EndOfTest();
