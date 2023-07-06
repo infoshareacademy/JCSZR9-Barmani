@@ -57,6 +57,7 @@ namespace DrinkItUpTests
             result.Should().NotBeNullOrEmpty();
             result.Count.Should().Be(5);
 
+            //Clearing Context
             serviceContainer.EndOfTest();
 
         }
@@ -124,13 +125,29 @@ namespace DrinkItUpTests
             //Clearing Context
             serviceContainer.EndOfTest();
         }
+
+        //IsMainAlcoholUsed
+        [Fact]
+        public async Task MAServices_IsMAUsed_ReturnsFalse()
+        {
+            //Assign
+            var serviceContainer = new Container();
+            var mainAlcoholService = serviceContainer.GetMainAlcoholService();
+            var mainAlcoholDto = new MainAlcoholDto { Name = "Spirytus" };
+
+            //Act
+            var result = await mainAlcoholService.IsMainAlcoholUsed(1);
+
+            //Assert
+            result.Should().BeFalse();
+
+            serviceContainer.EndOfTest();
+        }
+
+        //IsMainAlcoholUnique
+
+        //Remove
+
+        //Update
     }
-
-    //IsMainAlcoholUsed
-
-    //IsMainAlcoholUnique
-
-    //Remove
-
-    //Update
 }
