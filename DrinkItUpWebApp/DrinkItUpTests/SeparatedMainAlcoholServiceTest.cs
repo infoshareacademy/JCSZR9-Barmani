@@ -27,13 +27,43 @@ namespace DrinkItUpTests
             testMainAlcohol.Name.Should().Be(mainAlcoholDto.Name);
 
             //Clearing Context
-
             serviceContainer.EndOfTest();
         }
 
         //GetAll
 
         //GetById
+        [Fact]
+        public async Task MAService_GetById_ReturnsMAById()
+        {
+            //Assign
+            var serviceContainer = new Container();
+            var mainAlcoholService = serviceContainer.GetMainAlcoholService();
+            var mainAlcoholDtos = new List<MainAlcoholDto>
+            {
+                new MainAlcoholDto { Name = "Wódka" },
+                new MainAlcoholDto { Name = "Gin" },
+                new MainAlcoholDto { Name = "Rum" },
+                new MainAlcoholDto { Name = "Likier" },
+                new MainAlcoholDto { Name = "Spirytus" },
+            };
+
+            foreach (var item in mainAlcoholDtos)
+            {
+                await mainAlcoholService.AddMainAlcohol(item);
+            }
+
+            //Act
+            var searchedMANameId = 5;
+            var testedMAId = await mainAlcoholService.GetById(5);
+
+            //Assert
+            //testedMAName.Name.Should().Be(searchedMAName);
+            testedMAId.MainAlcoholId.Should().Be(searchedMANameId);
+
+            //Clearing Context
+            serviceContainer.EndOfTest();
+        }
 
         //GetByName
         [Fact]
@@ -42,7 +72,6 @@ namespace DrinkItUpTests
             //Assing
             var serviceContainer = new Container();
             var mainAlcoholService = serviceContainer.GetMainAlcoholService();
-
             var mainAlcoholDtos = new List<MainAlcoholDto>
             {
                 new MainAlcoholDto { Name = "Wódka" },
@@ -65,7 +94,6 @@ namespace DrinkItUpTests
             testedMAName.Name.Should().Be(searchedMAName);
 
             //Clearing Context
-
             serviceContainer.EndOfTest();
         }
     }
