@@ -1,5 +1,6 @@
 ﻿using DrinkItUpBusinessLogic;
 using DrinkItUpBusinessLogic.DTOs;
+using DrinkItUpBusinessLogic.Interfaces;
 using DrinkItUpWebApp.DAL.Entities;
 using FluentAssertions;
 using System;
@@ -126,8 +127,7 @@ namespace DrinkItUpTests
             serviceContainer.EndOfTest();
         }
 
-        //IsMainAlcoholUsed
-        [Fact]
+        [Fact]        
         public async Task MAServices_IsMAUsed_ReturnsFalse()
         {
             //Assign
@@ -141,10 +141,40 @@ namespace DrinkItUpTests
             //Assert
             result.Should().BeFalse();
 
+            //Clearing Context
             serviceContainer.EndOfTest();
         }
 
-        //IsMainAlcoholUnique
+        [Fact]
+        public async Task MAServices_IsMAUnique_ReturnsFalse()
+        {
+            //Assing
+            var serviceContainer = new Container();
+            var mainAlcoholService = serviceContainer.GetMainAlcoholService();
+            var mainAlcoholDtos = new List<MainAlcoholDto>
+            {
+                new MainAlcoholDto { Name = "Wódka" },
+                new MainAlcoholDto { Name = "Gin" },
+                new MainAlcoholDto { Name = "Rum" },
+                new MainAlcoholDto { Name = "Likier" },
+                new MainAlcoholDto { Name = "Spirytus" },
+            };
+
+            foreach (var item in mainAlcoholDtos)
+            {
+                await mainAlcoholService.AddMainAlcohol(item);
+            }
+
+            //Act
+            var result = await mainAlcoholService.IsMainAlcoholUnique("Gin");
+
+            //Assert
+            result.Should().BeFalse();
+
+            //Clearing Context
+            serviceContainer.EndOfTest();
+
+        }
 
         //Remove
 
