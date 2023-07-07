@@ -223,7 +223,9 @@ namespace DrinkItUpTests
             {
                 await mainAlcoholService.AddMainAlcohol(item);
             }
-            mainAlcoholDto = await mainAlcoholService.GetById(1);
+            //w linijce ponizej jest jakis blad
+            //rozumiem, ze musze nawiazac do dodanej chwile wczesniej listy
+            var mainAlcoholDto = await mainAlcoholService.GetById(1);
             var mainAlcoholToUpdate = new MainAlcoholDto { MainAlcoholId = 1, Name = "Wódka" };
 
 
@@ -234,6 +236,8 @@ namespace DrinkItUpTests
             //Assert
             mainAlcoholToUpdate.Name.Should().Be(updatedMA.Name);
             serviceContainer.EndOfTest();
+
+
 
         }
     }
