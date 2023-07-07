@@ -53,7 +53,7 @@ namespace DrinkItUpTests
 
             //Act
             var result = await mainAlcoholService.GetAll();
-            
+
             //Assert
             result.Should().NotBeNullOrEmpty();
             result.Count.Should().Be(5);
@@ -127,7 +127,7 @@ namespace DrinkItUpTests
             serviceContainer.EndOfTest();
         }
 
-        [Fact]        
+        [Fact]
         public async Task MAServices_IsMAUsed_ReturnsFalse()
         {
             //Assign
@@ -173,11 +173,68 @@ namespace DrinkItUpTests
 
             //Clearing Context
             serviceContainer.EndOfTest();
-
         }
 
-        //Remove
+        [Fact]
+        public async Task MAServices_Remove_ReturnsCorrectMAAmount()
+        {
+            //Assing
+            var serviceContainer = new Container();
+            var mainAlcoholService = serviceContainer.GetMainAlcoholService();
+            var mainAlcoholDtos = new List<MainAlcoholDto>
+            {
+                new MainAlcoholDto { Name = "Wódka" },
+                new MainAlcoholDto { Name = "Gin" },
+                new MainAlcoholDto { Name = "Rum" },
+                new MainAlcoholDto { Name = "Likier" },
+                new MainAlcoholDto { Name = "Spirytus" },
+            };
 
-        //Update
+            foreach (var item in mainAlcoholDtos)
+            {
+                await mainAlcoholService.AddMainAlcohol(item);
+            }
+
+            //Act
+            await mainAlcoholService.Remove(3);
+            var mainAlcohols = await mainAlcoholService.GetAll();
+
+            //Assert
+            mainAlcohols.Should().HaveCount(4);
+            serviceContainer.EndOfTest();
+        }
+
+        [Fact]
+        public async Task MAServices_Update_ReturnsUpdatedMAName()
+        {
+            //Assing
+            var serviceContainer = new Container();
+            var mainAlcoholService = serviceContainer.GetMainAlcoholService();
+            var mainAlcoholDtos = new List<MainAlcoholDto>
+            {
+                new MainAlcoholDto { Name = "Wodka" },
+                new MainAlcoholDto { Name = "Gin" },
+                new MainAlcoholDto { Name = "Rum" },
+                new MainAlcoholDto { Name = "Likier" },
+                new MainAlcoholDto { Name = "Spirytus" },
+            };
+
+            foreach (var item in mainAlcoholDtos)
+            {
+                await mainAlcoholService.AddMainAlcohol(item);
+            }
+            mainAlcoholDto = await mainAlcoholService.GetById(1);
+            var mainAlcoholToUpdate = new MainAlcoholDto { MainAlcoholId = 1, Name = "Wódka" };
+
+
+            //Act
+            await mainAlcoholService.Update(mainAlcoholToUpdate);
+            var updatedMA = await mainAlcoholService.GetById(1);
+
+            //Assert
+            mainAlcoholToUpdate.Name.Should().Be(updatedMA.Name);
+            serviceContainer.EndOfTest();
+
+        }
     }
 }
