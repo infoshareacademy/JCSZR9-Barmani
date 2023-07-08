@@ -13,23 +13,30 @@ namespace DrinkItUpTests
     public class SeparatedIngredientServiceTest
     {
 
-        ////////////////////do dokończenia
+        //GetAllIngredientsWithUnits nie działa
+        //GetById nie działa
+        //IsIngredientUnique nie działa
+
         [Fact]
         public async Task IngredientService_GetAllIngredientsWithUnits_ReturnAllUnits()
         {
             //Assign
             var serviceContainer = new Container();
-            var ingredientsWithUnitsService = serviceContainer.GetIngredientService();
-            var unitDto = new UnitDto { Name = "jednostka" };
+            var ingredientService = serviceContainer.GetIngredientService();
+            var ingredientDto1 = new IngredientDto { Name = "chili" };
+            var ingredientDto2 = new IngredientDto { Name = "mięta" };
+            await ingredientService.Add(ingredientDto1);
+            await ingredientService.Add(ingredientDto2);
 
             //Act
-            var testIngredient = await ingredientsWithUnitsService.AddUnit(unitDto);
+            var result = await ingredientService.GetAllIngredientsWithUnits();
+
 
             //Assert
-            testUnit.Name.Should().Be(unitDto.Name);
+            result.Should().NotBeNull();
+            result.Should().HaveCount(2);
 
             //Clearing Context
-
             serviceContainer.EndOfTest();
         }
 
@@ -90,24 +97,24 @@ namespace DrinkItUpTests
             serviceContainer.EndOfTest();
         }
 
-        //[Fact]
-        //public async Task IngredientService_IsIngredientUnique_ReturnsFalse()
-        //{
-        //    //Assing
-        //    var serviceContainer = new Container();
-        //    var ingredientService = serviceContainer.GetIngredientService();
-        //    var ingredientDto = new IngredientDto { Name = "chili" };
-        //    await ingredientService.Add(ingredientDto);
+        [Fact]
+        public async Task IngredientService_IsIngredientUnique_ReturnsFalse()
+        {
+            //Assing
+            var serviceContainer = new Container();
+            var ingredientService = serviceContainer.GetIngredientService();
+            var ingredientDto = new IngredientDto { Name = "chili" };
+            await ingredientService.Add(ingredientDto);
 
-        //    //Act
-        //    var result = await ingredientService.IsIngredientUnique(ingredientDto.Name);
+            //Act
+            var result = await ingredientService.IsIngredientUnique(ingredientDto.Name);
 
-        //    //Assert
-        //    result.Should().BeFalse();
+            //Assert
+            result.Should().BeFalse();
 
-        //    //Clearing Context
-        //    serviceContainer.EndOfTest();
-        //}
+            //Clearing Context
+            serviceContainer.EndOfTest();
+        }
 
 
         [Fact]
@@ -152,13 +159,7 @@ namespace DrinkItUpTests
             serviceContainer.EndOfTest();
         }
 
-        //Medody do otestowania
-        //GetAllIngredientsWithUnits
-        //GetById
-        //Add v
-        //IngredientIsUsed v
-        //IsIngredientUnique
-        //Update v
-        //Remove v
+
+
     }
 }
