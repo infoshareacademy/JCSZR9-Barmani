@@ -1,5 +1,6 @@
 ﻿using DrinkItUpBusinessLogic;
 using DrinkItUpBusinessLogic.DTOs;
+using DrinkItUpBusinessLogic.Interfaces;
 using FluentAssertions;
 using System;
 using System.Collections.Generic;
@@ -13,25 +14,24 @@ namespace DrinkItUpTests
     {
 
         ////////////////////do dokończenia
-        /////[Fact]
+        [Fact]
+        public async Task IngredientService_GetAllIngredientsWithUnits_ReturnAllUnits()
+        {
+            //Assign
+            var serviceContainer = new Container();
+            var ingredientsWithUnitsService = serviceContainer.GetIngredientService();
+            var unitDto = new UnitDto { Name = "jednostka" };
 
-        //public async Task IngredientService_GetAllIngredientsWithUnits_()
-        //{
-        //    //Assign
-        //    var serviceContainer = new Container();
-        //    var ingredientsWithUnitsService = serviceContainer.GetIngredientService();
-        //    var unitDto = new UnitDto { Name = "jednostka" };
+            //Act
+            var testIngredient = await ingredientsWithUnitsService.AddUnit(unitDto);
 
-        //    //Act
-        //    var testUnit = await unitService.AddUnit(unitDto);
+            //Assert
+            testUnit.Name.Should().Be(unitDto.Name);
 
-        //    //Assert
-        //    testUnit.Name.Should().Be(unitDto.Name);
+            //Clearing Context
 
-        //    //Clearing Context
-
-        //    serviceContainer.EndOfTest();
-        //}
+            serviceContainer.EndOfTest();
+        }
 
         [Fact]
         public async Task IngredientService_GetById_ReturnIngredientsById()
@@ -133,13 +133,32 @@ namespace DrinkItUpTests
             serviceContainer.EndOfTest();
         }
 
+
+        [Fact]
+        public async Task UnitServices_Remove_CheckingDeletingOfUnit()
+        {
+            //Asign
+            var serviceContainer = new Container();
+            var ingredientService = serviceContainer.GetIngredientService();
+            var ingredientDto = new IngredientDto { Name = "mięta" };
+            await ingredientService.Add(ingredientDto);
+
+            //Act
+            await ingredientService.Remove(1);
+            //var ingredients = await ingredientService.GetAll();
+            var ingredients = await ingredientService.GetAllIngredientsWithUnits();
+            //Assert
+            ingredients.Should().HaveCount(0);
+            serviceContainer.EndOfTest();
+        }
+
         //Medody do otestowania
         //GetAllIngredientsWithUnits
         //GetById
-        //Add
-        //IngredientIsUsed
+        //Add v
+        //IngredientIsUsed v
         //IsIngredientUnique
-        //Update
-        //Remove
+        //Update v
+        //Remove v
     }
 }
