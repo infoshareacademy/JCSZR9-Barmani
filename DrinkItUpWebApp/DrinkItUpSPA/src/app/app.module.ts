@@ -9,6 +9,7 @@ import { MixerComponent } from './mainbody/mixer/mixer.component';
 import { SearchComponent } from './search/search.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { FooterbarComponent } from './footerbar/footerbar.component';
+import { DropdownDirective } from './shared/dropdown.directive';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FooterbarComponent } from './footerbar/footerbar.component';
     MixerComponent,
     SearchComponent,
     NavigationComponent,
-    FooterbarComponent
+    FooterbarComponent,
+    DropdownDirective
   ],
   imports: [
     BrowserModule, HttpClientModule

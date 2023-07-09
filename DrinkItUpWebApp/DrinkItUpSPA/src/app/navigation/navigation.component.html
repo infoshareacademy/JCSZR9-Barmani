@@ -1,30 +1,25 @@
-<nav class="navbar navbar-expand-lg bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
+<nav class="navbar navbar-expand-lg border-bottom border-bottom-dark" data-bs-theme="dark" style="background-color: #6c1048;">
   <div class="container-fluid">
-    <a href="#" class="navbar-brand h1">Recipe Book</a>
+    <a href="#" class="navbar-brand h1"><img src="../../assets/logoAngular.png" style="max-width: 125px;"></a>
+    
+    <form class="d-flex" role="search">
+      <div class="input-group">
+        <input class="form-control rounded" type="search" style="min-width: 350px;" placeholder="Wpisz nazwę lub któryś ze składników" aria-label="Search" aria-describedby="search-addon">
+        <button class="btn btn-outline-warning" type="submit">Szukaj</button>
+      </div>
+    </form>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a href="#" class="nav-link">Recipes</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Shopping List</a></li>
-        <li class="dropdown navbar-item">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Menage
-          </a>
-          <ul class="dropdown-menu">
-            <li><a href="#" class="dropdown-item">Save Data</a></li>
-            <li><a href="#" class="dropdown-item">Fetch Data</a></li>
-          </ul>
-        </li>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 fs-4 fw-bold">
+        <li class="nav-item"><a href="#" class="nav-link">Przeglądaj drinki</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Co masz w barku?</a></li>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-      <ul class="dropdown navbar-nav">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Menage
+      
+      <ul class="dropdown navbar-nav" >
+        <a class="nav-link dropdown-toggle toggle fs-4 fw-bold" appDropdown role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Zaloguj się
         </a>
         <ul class="dropdown-menu">
           <li><a href="#" class="dropdown-item">Save Data</a></li>
