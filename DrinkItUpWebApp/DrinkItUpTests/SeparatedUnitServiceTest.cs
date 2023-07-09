@@ -13,13 +13,14 @@ namespace DrinkItUpTests
 {
     public class SeparatedUnitServiceTest
     {
+        private static readonly Container _container = new Container();
         
 
         [Fact]
         public async Task UnitService_AddUnit_ReturnAddedUnitName()
         {
             //Assign
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var unitService = serviceContainer.GetUnitService();
             var unitDto = new UnitDto { Name = "jednostka" };
 
@@ -38,7 +39,7 @@ namespace DrinkItUpTests
         public async Task UnitService_GetById_ReturnUnitByID()
         {
             //Assign
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var unitService = serviceContainer.GetUnitService();
             var unitDto = new UnitDto { Name = "jednostka" };
             await unitService.AddUnit(unitDto);
@@ -58,7 +59,7 @@ namespace DrinkItUpTests
         public async Task UnitService_GetById_ReturnEmptyUnit()
         {
             //Assign
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var unitService = serviceContainer.GetUnitService();
 
             //Act
@@ -73,7 +74,7 @@ namespace DrinkItUpTests
         public async Task UnitService_GetAll_ReturnAllUnits()
         {
             //Assign
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var unitService = serviceContainer.GetUnitService();
             var unitDto1 = new UnitDto { Name = "Kopa" };
             var unitDto2 = new UnitDto { Name = "Mendel" };
@@ -95,7 +96,7 @@ namespace DrinkItUpTests
         public async Task UnitService_IsUnitUsed_ReturnsFalse()
         {
             //Assign
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var unitService = serviceContainer.GetUnitService();
             var unitDto = new UnitDto { Name = "Kopa" };
             await unitService.AddUnit(unitDto);
@@ -113,7 +114,7 @@ namespace DrinkItUpTests
         public async Task UnitService_IsUnitUnique_ReturnsFalse()
         {
             //Assing
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var unitService = serviceContainer.GetUnitService();
             var unitDto = new UnitDto { Name = "Mendel" };
             await unitService.AddUnit(unitDto);
@@ -131,7 +132,7 @@ namespace DrinkItUpTests
         public async Task UnitService_Update_ReturnsUpdatedDto()
         {
             //Assign
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var unitService = serviceContainer.GetUnitService();
             var unitDto = new UnitDto { Name = "jednostka" };
             await unitService.AddUnit(unitDto);
@@ -153,7 +154,7 @@ namespace DrinkItUpTests
         public async Task UnitServices_Remove_CheckingDeletingOfUnit()
         {
             //Asign
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var unitService = serviceContainer.GetUnitService();
             var unitDto = new UnitDto { Name = "łokieć" };
             await unitService.AddUnit(unitDto);

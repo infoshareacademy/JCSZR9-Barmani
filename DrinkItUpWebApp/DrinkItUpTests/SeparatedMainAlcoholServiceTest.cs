@@ -13,11 +13,13 @@ namespace DrinkItUpTests
 {
     public class SeparatedMainAlcoholServiceTest
     {
+        private static readonly Container _container = new Container();
+
         [Fact]
         public async Task MainAlcoholService_AddMainAlcohol_ReturnAddedMainAlcohol()
         {
             //Assing
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var mainAlcoholService = serviceContainer.GetMainAlcoholService();
             var mainAlcoholDto = new MainAlcoholDto { Name = "Spirytus" };
 
@@ -35,7 +37,7 @@ namespace DrinkItUpTests
         public async Task MainAlcoholService_GetAll_ReturnsAllMA()
         {
             //Assign
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var mainAlcoholService = serviceContainer.GetMainAlcoholService();
             var mainAlcoholDtos = new List<MainAlcoholDto>
             {
@@ -67,7 +69,7 @@ namespace DrinkItUpTests
         public async Task MAService_GetById_ReturnsMAById()
         {
             //Assign
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var mainAlcoholService = serviceContainer.GetMainAlcoholService();
             var mainAlcoholDtos = new List<MainAlcoholDto>
             {
@@ -99,7 +101,7 @@ namespace DrinkItUpTests
         public async Task MAService_GetByName_ReturnsMAByName()
         {
             //Assing
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var mainAlcoholService = serviceContainer.GetMainAlcoholService();
             var mainAlcoholDtos = new List<MainAlcoholDto>
             {
@@ -131,7 +133,7 @@ namespace DrinkItUpTests
         public async Task MAServices_IsMAUsed_ReturnsFalse()
         {
             //Assign
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var mainAlcoholService = serviceContainer.GetMainAlcoholService();
             var mainAlcoholDto = new MainAlcoholDto { Name = "Spirytus" };
 
@@ -149,7 +151,7 @@ namespace DrinkItUpTests
         public async Task MAServices_IsMAUnique_ReturnsFalse()
         {
             //Assing
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var mainAlcoholService = serviceContainer.GetMainAlcoholService();
             var mainAlcoholDtos = new List<MainAlcoholDto>
             {
@@ -179,7 +181,7 @@ namespace DrinkItUpTests
         public async Task MAServices_Remove_ReturnsCorrectMAAmount()
         {
             //Assing
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var mainAlcoholService = serviceContainer.GetMainAlcoholService();
             var mainAlcoholDtos = new List<MainAlcoholDto>
             {
@@ -208,7 +210,7 @@ namespace DrinkItUpTests
         public async Task MAServices_Update_ReturnsUpdatedMAName()
         {
             //Assing
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var mainAlcoholService = serviceContainer.GetMainAlcoholService();
             var mainAlcoholDtos = new List<MainAlcoholDto>
             {
