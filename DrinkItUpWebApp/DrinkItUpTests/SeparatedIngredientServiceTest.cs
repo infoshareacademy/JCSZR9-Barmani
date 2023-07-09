@@ -1,6 +1,7 @@
 ﻿using DrinkItUpBusinessLogic;
 using DrinkItUpBusinessLogic.DTOs;
 using DrinkItUpBusinessLogic.Interfaces;
+using DrinkItUpWebApp.DAL.Entities;
 using FluentAssertions;
 using System;
 using System.Collections.Generic;
@@ -18,13 +19,55 @@ namespace DrinkItUpTests
         //IsIngredientUnique nie działa
 
         [Fact]
-        public async Task IngredientService_GetAllIngredientsWithUnits_ReturnAllUnits()
+        public async Task IngredientService_Add_ReturnAddedIngredientName()
         {
             //Assign
             var serviceContainer = new Container();
             var ingredientService = serviceContainer.GetIngredientService();
-            var ingredientDto1 = new IngredientDto { Name = "chili" };
-            var ingredientDto2 = new IngredientDto { Name = "mięta" };
+            var ingredientDto = new IngredientDto { Name = "chili", UnitId = 1 };
+
+            //Act
+            var testUnit = await ingredientService.Add(ingredientDto);
+
+            //Assert
+            testUnit.Name.Should().Be(ingredientDto.Name);
+            testUnit.UnitId.Should().Be(ingredientDto.UnitId);
+
+            //Clearing Context
+            serviceContainer.EndOfTest();
+        }
+
+
+        [Fact]
+        public async Task IngredientService_IngredientIsUsed_ReturnsFalse()
+        {
+            //Assign
+            var serviceContainer = new Container();
+            var ingredientService = serviceContainer.GetIngredientService();
+            var ingredientDto = new IngredientDto { Name = "chili", UnitId = 1 };
+            await ingredientService.Add(ingredientDto);
+
+            //Act
+            var result = await ingredientService.IngredientIsUsed(1);
+
+            //Assert
+            result.Should().BeFalse();
+
+            //Clearing Context
+            serviceContainer.EndOfTest();
+        }
+
+
+        [Fact]
+        public async Task IngredientService_GetAllIngredientsWithUnits_ReturnAllIngrediets()
+        {
+            //Assign
+            var serviceContainer = new Container();
+            var ingredientService = serviceContainer.GetIngredientService();
+            var unitService = serviceContainer.GetUnitService();
+            await unitService.AddUnit(new UnitDto { Name = "trochę" });
+            var ingredientDto1 = new IngredientDto { Name = "chili", UnitId = 1 };
+            var ingredientDto2 = new IngredientDto { Name = "mięta", UnitId = 1 };
             await ingredientService.Add(ingredientDto1);
             await ingredientService.Add(ingredientDto2);
 
@@ -46,56 +89,24 @@ namespace DrinkItUpTests
             //Assign
             var serviceContainer = new Container();
             var ingredientService = serviceContainer.GetIngredientService();
-            var ingredientDto = new IngredientDto { IngredientId = 1 };
+            var ingredientDto = new IngredientDto { Name = "chili", UnitId = 1 };
+            await ingredientService.Add(ingredientDto);
+
 
             //Act
             var testGetById = await ingredientService.GetById(1);
 
             //Assert
             testGetById.IngredientId.Should().Be(1);
-            //testGetById.Id.Should().Be(ingredientDto.IngredientId);
-
-            //Clearing Context
-            serviceContainer.EndOfTest();
-        }
-
-        [Fact]
-        public async Task IngredientService_Add_ReturnAddedIngredientName()
-        {
-            //Assign
-            var serviceContainer = new Container();
-            var ingredientService = serviceContainer.GetIngredientService();
-            var ingredientDto = new IngredientDto { Name = "chili" };
-
-            //Act
-            var testUnit = await ingredientService.Add(ingredientDto);
-
-            //Assert
-            testUnit.Name.Should().Be(ingredientDto.Name);
+            testGetById.Name.Should().Be(ingredientDto.Name);
 
             //Clearing Context
             serviceContainer.EndOfTest();
         }
 
 
-        [Fact]
-        public async Task IngredientService_IngredientIsUsed_ReturnsFalse()
-        {
-            //Assign
-            var serviceContainer = new Container();
-            var ingredientService = serviceContainer.GetIngredientService();
-            var ingredientDto = new IngredientDto { Name = "chili" };
-            await ingredientService.Add(ingredientDto);
 
-            //Act
-            var result = await ingredientService.IngredientIsUsed(1);
 
-            //Assert
-            result.Should().BeFalse();
-
-            //Clearing Context
-            serviceContainer.EndOfTest();
-        }
 
         [Fact]
         public async Task IngredientService_IsIngredientUnique_ReturnsFalse()
@@ -103,11 +114,11 @@ namespace DrinkItUpTests
             //Assing
             var serviceContainer = new Container();
             var ingredientService = serviceContainer.GetIngredientService();
-            var ingredientDto = new IngredientDto { Name = "chili" };
+            var ingredientDto = new IngredientDto { Name = "chili", UnitId = 1 };
             await ingredientService.Add(ingredientDto);
 
             //Act
-            var result = await ingredientService.IsIngredientUnique(ingredientDto.Name);
+            var result = await ingredientService.IsIngredientUnique(ingredientDto);
 
             //Assert
             result.Should().BeFalse();
@@ -123,10 +134,10 @@ namespace DrinkItUpTests
             //Assign
             var serviceContainer = new Container();
             var ingredientService = serviceContainer.GetIngredientService();
-            var ingredientDto = new IngredientDto { Name = "chili" };
+            var ingredientDto = new IngredientDto { Name = "chili" , UnitId = 1 };
             await ingredientService.Add(ingredientDto);
             ingredientDto = await ingredientService.GetById(1);
-            var ingredientDtoUpdated = new IngredientDto { IngredientId = 1, Name = "mięta" };
+            var ingredientDtoUpdated = new IngredientDto { IngredientId = 1, Name = "mięta", UnitId = 1 };
 
             serviceContainer.DetachModel();
             //Act
@@ -147,7 +158,7 @@ namespace DrinkItUpTests
             //Asign
             var serviceContainer = new Container();
             var ingredientService = serviceContainer.GetIngredientService();
-            var ingredientDto = new IngredientDto { Name = "mięta" };
+            var ingredientDto = new IngredientDto { Name = "mięta", UnitId = 1 };
             await ingredientService.Add(ingredientDto);
 
             //Act
