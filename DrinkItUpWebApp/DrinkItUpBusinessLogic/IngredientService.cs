@@ -46,8 +46,11 @@ namespace DrinkItUpBusinessLogic
 
         public async Task<IngredientDto> GetById(int id)
         {
-            var ingredient = _mapper.Map<IngredientDto>(await _repository.GetById(id));
+            var ingredient = _mapper.Map<IngredientDto>(await _repository.GetById(id) ?? new Ingredient());
+            if (ingredient.Name != null)
+            {
             ingredient.IsUsed = await IngredientIsUsed(id);
+            }
             return ingredient;
         }
 
