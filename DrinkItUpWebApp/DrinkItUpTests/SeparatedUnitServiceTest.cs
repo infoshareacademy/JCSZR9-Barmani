@@ -135,7 +135,6 @@ namespace DrinkItUpTests
             var unitService = serviceContainer.GetUnitService();
             var unitDto = new UnitDto { Name = "jednostka" };
             await unitService.AddUnit(unitDto);
-            unitDto = await unitService.GetById(1);
             var unitDtoUpdated = new UnitDto { UnitId = 1, Name = "Tuzin" };
 
             serviceContainer.DetachModel();

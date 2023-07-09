@@ -164,7 +164,6 @@ namespace DrinkItUpTests
             var difficultyService = serviceContainer.GetDifficultyService();
             var difficultyDto = new DifficultyDto { Name = "Trudny" };
             await difficultyService.AddDifficulty(difficultyDto);
-            difficultyDto = await difficultyService.GetById(1);
             var difficultyDtoUpdated = new DifficultyDto { DifficultyId = 1, Name = "Łatwy" };
 
             serviceContainer.DetachModel();
