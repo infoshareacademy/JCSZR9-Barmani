@@ -10,14 +10,14 @@ namespace DrinkItUpTests
 {
     public class SeparatedDifficultyServiceTest
     {
+        private static readonly Container _container = new Container();
 
         [Fact]
-
         public async Task DifficultyService_AddDifficulty_ReturnAddedDifficultyName()
         {
             //Assign
 
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var difficultyService = serviceContainer.GetDifficultyService();
             var difficultyDto = new DifficultyDto { Name = "Trudny" };
 
@@ -38,7 +38,7 @@ namespace DrinkItUpTests
         public async Task DifficultyService_GetById_ReturnDifficultyByID()
         {
             //Assign
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var difficultyService = serviceContainer.GetDifficultyService();
             var difficultyDto = new DifficultyDto { Name = "Trudny" };
             await difficultyService.AddDifficulty(difficultyDto);
@@ -61,7 +61,7 @@ namespace DrinkItUpTests
         public async Task DifficultyService_GetById_ReturnEmptyDifficulty()
         {
             //Assign
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var difficultyService = serviceContainer.GetDifficultyService();
 
             //Act
@@ -78,7 +78,7 @@ namespace DrinkItUpTests
         public async Task DifficultyService_GetByName_ReturnDifficulty()
         {
             //Assign
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var difficultyService = serviceContainer.GetDifficultyService();
             var difficultyDto = new DifficultyDto { Name = "Trudny" };
             await difficultyService.AddDifficulty(difficultyDto);
@@ -97,7 +97,7 @@ namespace DrinkItUpTests
         public async Task DifficultyService_GetAll_ReturnAllDifficulty()
         {
             //Assign
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var difficultyService = serviceContainer.GetDifficultyService();
             var difficultyDto1 = new DifficultyDto { Name = "Trudny" };
             var difficultyDto2 = new DifficultyDto { Name = "Średni" };
@@ -120,7 +120,7 @@ namespace DrinkItUpTests
         public async Task DifficultyService_IsDifficultyUsed_ReturnsFalse()
         {
             //Assign
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var difficultyService = serviceContainer.GetDifficultyService();
             var difficultyDto = new DifficultyDto { Name = "Trudny" };
             await difficultyService.AddDifficulty(difficultyDto);
@@ -140,7 +140,7 @@ namespace DrinkItUpTests
         public async Task DifficultyService_IsUnitUnique_ReturnsFalse()
         {
             //Assing
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var difficultyService = serviceContainer.GetDifficultyService();
             var difficultyDto = new DifficultyDto { Name = "Trudny" };
             await difficultyService.AddDifficulty(difficultyDto);
@@ -160,11 +160,10 @@ namespace DrinkItUpTests
         public async Task DifficultyService_Update_ReturnsUpdatedDto()
         {
             //Assign
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var difficultyService = serviceContainer.GetDifficultyService();
             var difficultyDto = new DifficultyDto { Name = "Trudny" };
             await difficultyService.AddDifficulty(difficultyDto);
-            difficultyDto = await difficultyService.GetById(1);
             var difficultyDtoUpdated = new DifficultyDto { DifficultyId = 1, Name = "Łatwy" };
 
             serviceContainer.DetachModel();
@@ -185,7 +184,7 @@ namespace DrinkItUpTests
         public async Task DifficultyServices_Remove_CheckingDeletingOfDifficulty()
         {
             //Asign
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var difficultyService = serviceContainer.GetDifficultyService();
             var difficultyDto = new DifficultyDto { Name = "Trudny" };
             await difficultyService.AddDifficulty(difficultyDto);

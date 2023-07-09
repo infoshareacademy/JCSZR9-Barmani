@@ -13,13 +13,14 @@ namespace DrinkItUpTests
 {
     public class SeparatedUnitServiceTest
     {
+        private static readonly Container _container = new Container();
         
 
         [Fact]
         public async Task UnitService_AddUnit_ReturnAddedUnitName()
         {
             //Assign
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var unitService = serviceContainer.GetUnitService();
             var unitDto = new UnitDto { Name = "jednostka" };
 
@@ -38,7 +39,7 @@ namespace DrinkItUpTests
         public async Task UnitService_GetById_ReturnUnitByID()
         {
             //Assign
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var unitService = serviceContainer.GetUnitService();
             var unitDto = new UnitDto { Name = "jednostka" };
             await unitService.AddUnit(unitDto);
@@ -54,14 +55,11 @@ namespace DrinkItUpTests
             serviceContainer.EndOfTest();
         }
 
-        //test na wzor:
-        //wszystko co moze zwrocic null powinno byc otestowane na dwa sposoby
-        //do otestowania wszystkie serwisy
         [Fact]
         public async Task UnitService_GetById_ReturnEmptyUnit()
         {
             //Assign
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var unitService = serviceContainer.GetUnitService();
 
             //Act
@@ -72,15 +70,11 @@ namespace DrinkItUpTests
             result.Name.Should().BeNull();
         }
 
-
-       
-
-
         [Fact]
         public async Task UnitService_GetAll_ReturnAllUnits()
         {
             //Assign
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var unitService = serviceContainer.GetUnitService();
             var unitDto1 = new UnitDto { Name = "Kopa" };
             var unitDto2 = new UnitDto { Name = "Mendel" };
@@ -98,13 +92,11 @@ namespace DrinkItUpTests
             serviceContainer.EndOfTest();
         }
 
-
-
         [Fact]
         public async Task UnitService_IsUnitUsed_ReturnsFalse()
         {
             //Assign
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var unitService = serviceContainer.GetUnitService();
             var unitDto = new UnitDto { Name = "Kopa" };
             await unitService.AddUnit(unitDto);
@@ -116,14 +108,13 @@ namespace DrinkItUpTests
             result.Should().BeFalse();
 
             serviceContainer.EndOfTest();
-
         }
 
         [Fact]
         public async Task UnitService_IsUnitUnique_ReturnsFalse()
         {
             //Assing
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var unitService = serviceContainer.GetUnitService();
             var unitDto = new UnitDto { Name = "Mendel" };
             await unitService.AddUnit(unitDto);
@@ -141,11 +132,10 @@ namespace DrinkItUpTests
         public async Task UnitService_Update_ReturnsUpdatedDto()
         {
             //Assign
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var unitService = serviceContainer.GetUnitService();
             var unitDto = new UnitDto { Name = "jednostka" };
             await unitService.AddUnit(unitDto);
-            unitDto = await unitService.GetById(1);
             var unitDtoUpdated = new UnitDto { UnitId = 1, Name = "Tuzin" };
 
             serviceContainer.DetachModel();
@@ -160,13 +150,11 @@ namespace DrinkItUpTests
             serviceContainer.EndOfTest();
         }
 
-
-
         [Fact]
         public async Task UnitServices_Remove_CheckingDeletingOfUnit()
         {
             //Asign
-            var serviceContainer = new Container();
+            var serviceContainer = _container;
             var unitService = serviceContainer.GetUnitService();
             var unitDto = new UnitDto { Name = "łokieć" };
             await unitService.AddUnit(unitDto);
@@ -179,7 +167,5 @@ namespace DrinkItUpTests
             units.Should().HaveCount(0);
             serviceContainer.EndOfTest();
         }
-
-
     }
 }

@@ -20,7 +20,7 @@ namespace DrinkItUpTests
         public Container()
         {
              _services = new ServiceCollection()
-                .AddDbContext<DrinkContext>(options =>
+                .AddDbContextFactory<DrinkContext>(options =>
                 {
                     options.UseInMemoryDatabase("_", new InMemoryDatabaseRoot());
                 })
@@ -67,7 +67,8 @@ namespace DrinkItUpTests
         public void EndOfTest()
         {
             var db = _container.GetRequiredService<DrinkContext>();
-            db.Dispose();
+            db.Database.EnsureDeleted();
+            db.ChangeTracker.Clear();
         }
 
         public void DetachModel()

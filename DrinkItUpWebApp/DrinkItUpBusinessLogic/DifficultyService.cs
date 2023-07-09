@@ -48,7 +48,7 @@ namespace DrinkItUpBusinessLogic
 
 		public async Task<DifficultyDto> GetById(int id)
 		{
-			return _mapper.Map<DifficultyDto>(await _repository.GetById(id));
+			return _mapper.Map<DifficultyDto>(await _repository.GetById(id) ?? new Difficulty());
 		}
 
         public async Task<DifficultyDto> GetByName(string name)
