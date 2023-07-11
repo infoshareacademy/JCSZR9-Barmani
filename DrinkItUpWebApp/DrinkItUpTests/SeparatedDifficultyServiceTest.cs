@@ -16,22 +16,16 @@ namespace DrinkItUpTests
         public async Task DifficultyService_AddDifficulty_ReturnAddedDifficultyName()
         {
             //Assign
-
             var serviceContainer = _container;
             var difficultyService = serviceContainer.GetDifficultyService();
             var difficultyDto = new DifficultyDto { Name = "Trudny" };
 
-
             //Act
-
             var testDifficulty = await difficultyService.AddDifficulty(difficultyDto);
 
             //Assert 
-
             testDifficulty.Name.Should().Be(difficultyDto.Name);
-
             serviceContainer.EndOfTest();
-
         }
 
         [Fact]
@@ -50,12 +44,8 @@ namespace DrinkItUpTests
             result.Should().NotBeNull();
             result.Name.Should().Be(difficultyDto.Name);
             result.DifficultyId.Should().Be(1);
-
             serviceContainer.EndOfTest();
         }
-
-
-
 
         [Fact]
         public async Task DifficultyService_GetById_ReturnEmptyDifficulty()
@@ -70,9 +60,8 @@ namespace DrinkItUpTests
             //Assert
             result.Should().NotBeNull();
             result.Name.Should().BeNull();
+            serviceContainer.EndOfTest();
         }
-
-
 
         [Fact]
         public async Task DifficultyService_GetByName_ReturnDifficulty()
@@ -90,6 +79,7 @@ namespace DrinkItUpTests
             result.Should().NotBeNull();
             result.Name.Should().Be(difficultyDto.Name);
             result.DifficultyId.Should().Be(1);
+            serviceContainer.EndOfTest();
         }
 
 
@@ -115,7 +105,6 @@ namespace DrinkItUpTests
             serviceContainer.EndOfTest();
         }
 
-
         [Fact]
         public async Task DifficultyService_IsDifficultyUsed_ReturnsFalse()
         {
@@ -130,11 +119,8 @@ namespace DrinkItUpTests
 
             //Assert
             result.Should().BeFalse();
-
             serviceContainer.EndOfTest();
-
         }
-
 
         [Fact]
         public async Task DifficultyService_IsUnitUnique_ReturnsFalse()
@@ -150,11 +136,8 @@ namespace DrinkItUpTests
 
             //Assert
             result.Should().BeFalse();
-
             serviceContainer.EndOfTest();
         }
-
-
 
         [Fact]
         public async Task DifficultyService_Update_ReturnsUpdatedDto()
@@ -174,11 +157,8 @@ namespace DrinkItUpTests
 
             //Assert
             difficultyDtoUpdated.Name.Should().Be(difficultyFromDatabase.Name);
-
             serviceContainer.EndOfTest();
         }
-
-
 
         [Fact]
         public async Task DifficultyServices_Remove_CheckingDeletingOfDifficulty()
@@ -197,8 +177,5 @@ namespace DrinkItUpTests
             difficulties.Should().HaveCount(0);
             serviceContainer.EndOfTest();
         }
-
-
-
     }
 }
