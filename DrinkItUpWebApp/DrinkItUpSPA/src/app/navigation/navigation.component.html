@@ -16,15 +16,21 @@
         <li class="nav-item"><a href="#" class="nav-link">Przeglądaj drinki</a></li>
         <li class="nav-item"><a href="#" class="nav-link">Co masz w barku?</a></li>
       </ul>
+
       
-      <ul class="dropdown navbar-nav" >
-        <a class="nav-link dropdown-toggle toggle fs-4 fw-bold" appDropdown role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      
+      <ul class="navbar-nav fs-4 fw-bold" >
+        <li class="nav-item"><a href="#" class="nav-link" appAddonWeather><i class="fa-solid fa-cloud-sun"></i></a></li>
+        <li class="nav-item"><a href="#" class="nav-link" appAddonShopping><i class="fa-solid fa-cart-shopping"></i></a></li>
+        <a class="nav-link dropdown-toggle fs-4 fw-bold" role="button" data-bs-toggle="dropdown" aria-expanded="true">
           Zaloguj się
         </a>
-        <ul class="dropdown-menu">
-          <li><a href="#" class="dropdown-item">Save Data</a></li>
-          <li><a href="#" class="dropdown-item">Fetch Data</a></li>
-        </ul>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><app-authorization></app-authorization></li>
+          <div class="dropdown-divider"></div>
+          <li><a class="dropdown-item" href="#">Nowy? Zarejestruj się!</a></li>
+          <li><a class="dropdown-item" href="#">Zapomniałeś hasła?</a></li>
+      </ul>
       </ul>
     </div>
   </div>

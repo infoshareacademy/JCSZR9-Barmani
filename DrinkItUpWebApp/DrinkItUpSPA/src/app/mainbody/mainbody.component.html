@@ -1,1 +1,11 @@
-<p>mainbody works!</p>
+<div class="container-fluid " [ngSwitch]="body">
+    <div class="row">
+        <div class="col my-1 mainBody rounded">
+            <router-outlet></router-outlet>
+        </div>
+        <div class="col-md-12 col-lg-2" *ngIf="isWeatherOpen || isShoppingOpen">
+            <app-weather *ngIf="isWeatherOpen"></app-weather>
+            <app-shoppinglist *ngIf="isShoppingOpen"></app-shoppinglist>
+        </div>
+    </div>
+</div>
