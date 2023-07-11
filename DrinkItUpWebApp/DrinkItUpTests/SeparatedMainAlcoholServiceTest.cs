@@ -28,8 +28,6 @@ namespace DrinkItUpTests
 
             //Assert
             testMainAlcohol.Name.Should().Be(mainAlcoholDto.Name);
-
-            //Clearing Context
             serviceContainer.EndOfTest();
         }
 
@@ -59,10 +57,7 @@ namespace DrinkItUpTests
             //Assert
             result.Should().NotBeNullOrEmpty();
             result.Count.Should().Be(5);
-
-            //Clearing Context
             serviceContainer.EndOfTest();
-
         }
 
         [Fact]
@@ -92,8 +87,22 @@ namespace DrinkItUpTests
             //Assert
             testedMAId.MainAlcoholId.Should().Be(searchedMANameId);
             testedMAId.Name.Should().NotBeNullOrEmpty();
+            serviceContainer.EndOfTest();
+        }
 
-            //Clearing Context
+        [Fact]
+        public async Task MaService_GetById_ReturnEmptyMa()
+        {
+            //Assign
+            var serviceContainer = _container;
+            var mainAlcoholService = serviceContainer.GetMainAlcoholService();
+
+            //Act
+            var result = await mainAlcoholService.GetById(1);
+
+            //Assert
+            result.Should().NotBeNull();
+            result.Name.Should().BeNull();
             serviceContainer.EndOfTest();
         }
 
@@ -124,8 +133,6 @@ namespace DrinkItUpTests
             //Assert
             testedMAName.Name.Should().Be(searchedMAName);
             testedMAName.Name.Should().NotBeNullOrEmpty();
-
-            //Clearing Context
             serviceContainer.EndOfTest();
         }
 
@@ -142,8 +149,6 @@ namespace DrinkItUpTests
 
             //Assert
             result.Should().BeFalse();
-
-            //Clearing Context
             serviceContainer.EndOfTest();
         }
 
@@ -172,8 +177,6 @@ namespace DrinkItUpTests
 
             //Assert
             result.Should().BeFalse();
-
-            //Clearing Context
             serviceContainer.EndOfTest();
         }
 

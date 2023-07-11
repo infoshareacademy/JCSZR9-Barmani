@@ -13,7 +13,6 @@ namespace DrinkItUpTests
 {
     public class SeparatedIngredientServiceTest
     {
-
         private static readonly Container _container = new Container();
 
         [Fact]
@@ -30,11 +29,8 @@ namespace DrinkItUpTests
             //Assert
             testUnit.Name.Should().Be(ingredientDto.Name);
             testUnit.UnitId.Should().Be(ingredientDto.UnitId);
-
-            //Clearing Context
             serviceContainer.EndOfTest();
         }
-
 
         [Fact]
         public async Task IngredientService_IngredientIsUsed_ReturnsFalse()
@@ -50,11 +46,8 @@ namespace DrinkItUpTests
 
             //Assert
             result.Should().BeFalse();
-
-            //Clearing Context
             serviceContainer.EndOfTest();
         }
-
 
         [Fact]
         public async Task IngredientService_GetAllIngredientsWithUnits_ReturnAllIngrediets()
@@ -72,12 +65,9 @@ namespace DrinkItUpTests
             //Act
             var result = await ingredientService.GetAllIngredientsWithUnits();
 
-
             //Assert
             result.Should().NotBeNull();
             result.Should().HaveCount(2);
-
-            //Clearing Context
             serviceContainer.EndOfTest();
         }
 
@@ -90,18 +80,14 @@ namespace DrinkItUpTests
             var ingredientDto = new IngredientDto { Name = "chili", UnitId = 1 };
             await ingredientService.Add(ingredientDto);
 
-
             //Act
             var testGetById = await ingredientService.GetById(1);
 
             //Assert
             testGetById.IngredientId.Should().Be(1);
             testGetById.Name.Should().Be(ingredientDto.Name);
-
-            //Clearing Context
             serviceContainer.EndOfTest();
         }
-
 
         [Fact]
         public async Task IngredientService_GetById_ReturnEmptyIngredient()
@@ -115,10 +101,8 @@ namespace DrinkItUpTests
 
             //Assert
             testGetById.Name.Should().BeNull();
-
+            serviceContainer.EndOfTest();
         }
-
-
 
         [Fact]
         public async Task IngredientService_IsIngredientUnique_ReturnsFalse()
@@ -134,11 +118,8 @@ namespace DrinkItUpTests
 
             //Assert
             result.Should().BeFalse();
-
-            //Clearing Context
             serviceContainer.EndOfTest();
         }
-
 
         [Fact]
         public async Task IngredientService_Update_ReturnsUpdatedDto()
@@ -150,19 +131,16 @@ namespace DrinkItUpTests
             await ingredientService.Add(ingredientDto);
             ingredientDto = await ingredientService.GetById(1);
             var ingredientDtoUpdated = new IngredientDto { IngredientId = 1, Name = "mięta", UnitId = 1 };
-
             serviceContainer.DetachModel();
-            //Act
 
+            //Act
             await ingredientService.Update(ingredientDtoUpdated);
             var ingredientFromDatabase = await ingredientService.GetById(1);
 
             //Assert
             ingredientDtoUpdated.Name.Should().Be(ingredientFromDatabase.Name);
-
             serviceContainer.EndOfTest();
         }
-
 
         [Fact]
         public async Task UnitServices_Remove_CheckingDeletingOfUnit()
@@ -175,14 +153,13 @@ namespace DrinkItUpTests
 
             //Act
             await ingredientService.Remove(1);
+
             //var ingredients = await ingredientService.GetAll();
             var ingredients = await ingredientService.GetAllIngredientsWithUnits();
+
             //Assert
             ingredients.Should().HaveCount(0);
             serviceContainer.EndOfTest();
         }
-
-
-
     }
 }
