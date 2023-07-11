@@ -1,0 +1,26 @@
+.pinkborda {
+    border: 4px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #da0b85;
+}
+.tlo {
+    background-color: rgba(0,0,0,0.6);
+}
+.about{
+    background-color: #6c1048;
+    border: 1px;
+    border-color: darkmagenta;
+    border-style:double;
+    min-height: 700px;
+}
+.cardSearch {
+    text-decoration: none;
+    color: white;
+    background-color: black;
+}
+
+    .cardSearch:hover {
+        background-color: darkkhaki;
+        color: black;
+    }
