@@ -20,6 +20,7 @@ import { StatisticsComponent } from './mainbody/statistics/statistics.component'
 
 import { NavigationComponent } from './navigation/navigation.component';
 import { AuthorizationComponent } from './navigation/authorization/authorization.component';
+import { ForgotPasswordComponent } from './navigation/forgot-password/forgot-password.component';
 
 import { AddonWeatherDirective } from './shared/addonWeather.directive';
 import { AddonShoppingDirective } from './shared/addonShopping.directive';
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
 {path: '', component: LandingComponent},
 {path: 'mixer', component: MixerComponent},
 {path: 'registration', component: RegistrationComponent},
+{path: 'forgotPassword', component: ForgotPasswordComponent},
 {path: 'bycategory', component: ByCategoryComponent},
 {path: 'search', component: SearchComponent},
 {path: 'aboutus', component: AboutusComponent}
@@ -51,7 +53,8 @@ const appRoutes: Routes = [
     AddonsComponent,
     LandingComponent,
     ByCategoryComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, RouterModule.forRoot(appRoutes)

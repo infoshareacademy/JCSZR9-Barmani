@@ -1,1 +1,69 @@
-<p>mixer works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 mainBody rounded">
+            <div class="d-block ">
+                <div class="d-flex justify-content-center p-2">
+                    <p class="display-6 fw-bold">Co masz w barku!?</p>
+                </div>
+                <div class="pinkborda my-2">
+                    <input id="searchByIngredients" type="text" class="form-control" placeholder="Wpisuj składniki i dodawaj podpowiedzi...">
+                </div>
+                <div id="autoCompleteAnswers" class="ingredientListSearch">
+         
+        
+                </div>
+                <div>
+                    <p class="lead">...lub wybierz z listy!</p>
+                </div>
+                <div class="bg-white rounded-2 ingredientList">
+                    <table class="table table-sm table-striped">
+                        <thead>
+                            <tr class="justify-content-center">
+                                <th class="" >
+                                    <label>Nazwa składnika</label>
+                                </th>
+                                <th class="ingredients-th">
+                                    <label>Masz w barku?</label>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="">
+                                    <p class="lead">@ingredient</p>
+                                </td>
+                                <td class="ingredients-td">
+                                    <a class="btn btn-warning"
+                                    >+ Dodaj</a>
+                                </td>
+                            </tr>
+                        
+                    </tbody>
+                </table>
+        
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div class="secondBody rounded my-1">
+                <div class="d-block p-2 pinkborda-l text-center">
+
+                    <div class="">
+                        <p class="display-6 fw-bolder p-2">Z tego miksujemy:</p>
+                    </div>
+                    <div class="my-2  container-fluid justify-content-center pinkborda ingredientList">
+                        
+                    </div>
+        
+                        <a class=" btn btn-lg btn-warning fw-bold"
+                                
+                        >Szukaj po tym co masz w barku!</a>
+            </div>
+            </div>
+            <div class="d-block text-center secondBody rounded my-1">
+                <p class="lead fs-3 fw-bold">Wyniki:</p>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>
