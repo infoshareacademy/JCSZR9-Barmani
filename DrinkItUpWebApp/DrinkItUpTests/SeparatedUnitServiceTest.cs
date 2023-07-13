@@ -246,7 +246,6 @@ namespace DrinkItUpTests
             var unitService = serviceContainer.GetUnitService();
             
             var testSize = 2000;
-            var notUnique = 0;
             var unitNameMaxLength = 24;
 
             var unitDtos = GetListofRandomUnits(testSize, unitNameMaxLength);
@@ -324,8 +323,6 @@ namespace DrinkItUpTests
             for (int i = 0; i < testSize; i++)
             {
                 var unitDto = new UnitDto { Name = RandomValues.RandomNameGenerator(unitNameMaxLength) };
-
-
                 unitDtos.Add(unitDto);
             }
             return unitDtos;
