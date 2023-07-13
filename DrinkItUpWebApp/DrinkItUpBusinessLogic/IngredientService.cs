@@ -56,6 +56,10 @@ namespace DrinkItUpBusinessLogic
 
         public async Task<IngredientDto> Add(IngredientDto ingredientDto)
         {
+            if (string.IsNullOrWhiteSpace(ingredientDto.Name)|| ingredientDto.UnitId == 0)
+            {
+                return ingredientDto;
+            }
             var ingredient = _mapper.Map<Ingredient>(ingredientDto);
             await _repository.Add(ingredient);
             await _repository.Save();
@@ -72,6 +76,10 @@ namespace DrinkItUpBusinessLogic
 
         public async Task<bool> IsIngredientUnique(IngredientDto ingredientToCheck)
         {
+            if (string.IsNullOrWhiteSpace(ingredientToCheck.Name) || ingredientToCheck.UnitId == 0)
+            {
+                return false;
+            }
             var ingredients = await _repository.GetAll()
                 .Where(i => i.Name== ingredientToCheck.Name && i.UnitId == ingredientToCheck.UnitId)
                 .ToListAsync();   
@@ -82,6 +90,10 @@ namespace DrinkItUpBusinessLogic
 
         public async Task<IngredientDto> Update(IngredientDto ingredient)
         {
+            if (string.IsNullOrWhiteSpace(ingredient.Name) || ingredient.UnitId == 0)
+            {
+                return ingredient;
+            }
             var ingredientToUpdate = _mapper.Map<Ingredient>(ingredient);
             _repository.Update(ingredientToUpdate);
             await _repository.Save();
