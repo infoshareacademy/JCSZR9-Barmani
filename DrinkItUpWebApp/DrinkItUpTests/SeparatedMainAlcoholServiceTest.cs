@@ -285,15 +285,62 @@ namespace DrinkItUpTests
             result.Should().BeNullOrEmpty();
             result.Count.Should().Be(0);
             serviceContainer.EndOfTest();
+        }
+
+        [Fact]
+        public async Task MAServices_IsMAUnique_EmptyStringReturnsFalse()
+        {
+            //Assing
+            var serviceContainer = _container;
+            var mainAlcoholService = serviceContainer.GetMainAlcoholService();
+
+            //Act
+            var result = await mainAlcoholService.IsMainAlcoholUnique(string.Empty);
+
+            //Assert
+            result.Should().BeFalse();
+            serviceContainer.EndOfTest();
 
         }
 
         [Fact]
-        public async Task new_test3()
+        public async Task MAServices_Update_EmptyMANameShoudNotUpdateBasicMAName()
         {
+            //Assing
             var serviceContainer = _container;
             var mainAlcoholService = serviceContainer.GetMainAlcoholService();
+            var item = new MainAlcoholDto { Name = "Wodka" };
+            await mainAlcoholService.AddMainAlcohol(item);
 
+            var mainAlcoholToUpdate = new MainAlcoholDto { MainAlcoholId = 1, Name = "" };
+            serviceContainer.DetachModel();
+
+            //Act
+            await mainAlcoholService.Update(mainAlcoholToUpdate);
+            var updatedMA = await mainAlcoholService.GetById(1);
+
+            //Assert
+            updatedMA.Name.Should().Be(item.Name);
+            serviceContainer.EndOfTest();
+        }
+
+        [Fact]
+        public async Task MAServices_Remove_IdIsNotInDBReturnsFalse()
+        {
+            //Assing
+            var serviceContainer = _container;
+            var mainAlcoholService = serviceContainer.GetMainAlcoholService();
+            var item = new MainAlcoholDto { Name = "Wódka" };
+            await mainAlcoholService.AddMainAlcohol(item);
+
+            //Act
+            var result = await mainAlcoholService.Remove(8);
+            var mainAlcohols = await mainAlcoholService.GetAll();
+
+            //Assert
+            mainAlcohols.Should().HaveCount(1);
+            result.Should().BeFalse();
+            serviceContainer.EndOfTest();
         }
     }
 }

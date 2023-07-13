@@ -28,7 +28,7 @@ namespace DrinkItUpBusinessLogic
 
         public async Task<MainAlcoholDto> AddMainAlcohol(MainAlcoholDto mainAlcoholDto)
         {
-            if (string.IsNullOrWhiteSpace(mainAlcoholDto.Name) || mainAlcoholDto.MainAlcoholId == 0)
+            if (string.IsNullOrWhiteSpace(mainAlcoholDto.Name))
             {
                 return mainAlcoholDto;
             }
@@ -72,6 +72,10 @@ namespace DrinkItUpBusinessLogic
 
         public async Task<bool> IsMainAlcoholUnique(string name)
         {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return false;
+            }
             var isUnique = !await _repository.GetAll().Where(u => u.Name == name).AnyAsync();
             return isUnique;
         }
@@ -90,6 +94,10 @@ namespace DrinkItUpBusinessLogic
 
         public async Task<MainAlcoholDto> Update(MainAlcoholDto mainAlcoholDto)
         {
+            if (string.IsNullOrWhiteSpace(mainAlcoholDto.Name))
+            {
+                return mainAlcoholDto;
+            }
             var mainAlcohol = _mapper.Map<MainAlcohol>(mainAlcoholDto);
             _repository.Update(mainAlcohol);
             await _repository.Save();
