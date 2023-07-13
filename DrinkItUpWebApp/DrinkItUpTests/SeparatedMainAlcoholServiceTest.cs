@@ -6,6 +6,7 @@ using FluentAssertions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,6 +29,30 @@ namespace DrinkItUpTests
 
             //Assert
             testMainAlcohol.Name.Should().Be(mainAlcoholDto.Name);
+            serviceContainer.EndOfTest();
+        }
+
+        [Fact]
+        public async Task MainAlcoholService_AddMainAlcohol_ReturnMultipleAddedMA()
+        {
+            //Assing
+            var serviceContainer = _container;
+            var mainAlcoholService = serviceContainer.GetMainAlcoholService();
+            int expectedMANamesAmout = 500;
+            int maxMANameCharactersLenght = 25;
+            for (int i = 0;  i < expectedMANamesAmout; i++) 
+            {
+                var itemsToAdd = RandomValues.RandomNameGenerator(maxMANameCharactersLenght);
+                var mainAlcoholDto = new MainAlcoholDto { Name = itemsToAdd };
+
+                //Act
+                var testMainAlcohols = await mainAlcoholService.AddMainAlcohol(mainAlcoholDto);
+            }
+
+            var result = await mainAlcoholService.GetAll();
+
+            //Assert
+            result.Should().HaveCount(expectedMANamesAmout);
             serviceContainer.EndOfTest();
         }
 
