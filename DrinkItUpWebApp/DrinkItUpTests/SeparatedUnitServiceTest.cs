@@ -227,6 +227,52 @@ namespace DrinkItUpTests
         }
 
         [Fact]
+        public async Task UnitService_Update_ReturnsMultipleUpdatedDtos()
+        {
+            //Assign
+            var serviceContainer = _container;
+            var unitService = serviceContainer.GetUnitService();
+            var unitDtos = new List<UnitDto>();
+            var testSize = 2000;
+            var notUnique = 0;
+            var unitNameMaxLength = 24;
+
+            for (int i = 0; i < testSize; i++)
+            {
+                var unitDto = new UnitDto { Name = RandomValues.RandomNameGenerator(unitNameMaxLength) };
+
+                if (unitDtos.Select(u => u.Name).Contains(unitDto.Name))
+                    notUnique++;
+                unitDtos.Add(unitDto);
+            }
+            foreach (var unitDto in unitDtos)
+            {
+                await unitService.AddUnit(unitDto);
+            }
+            serviceContainer.DetachModel();
+            //Act
+            unitDtos = await unitService.GetAll();
+            foreach (var unitDto in unitDtos)
+            {
+                var unitDtoToUpdate = new UnitDto { UnitId = unitDto.UnitId, Name = RandomValues.RandomNameGenerator(unitNameMaxLength) };
+                serviceContainer.DetachModel();
+                await unitService.Update(unitDtoToUpdate);
+                
+            }
+
+            //Assert
+            for (int i = 1; i <= testSize; i++)
+            {
+
+                var unitFromDatabase = await unitService.GetById(i);
+                var unitToCheck = unitDtos.FirstOrDefault(u => u.UnitId == i);
+                unitToCheck.Name.Should().NotBe(unitFromDatabase.Name);
+            }
+
+            serviceContainer.EndOfTest();
+        }
+
+        [Fact]
         public async Task UnitServices_Remove_CheckingDeletingOfUnit()
         {
             //Asign
