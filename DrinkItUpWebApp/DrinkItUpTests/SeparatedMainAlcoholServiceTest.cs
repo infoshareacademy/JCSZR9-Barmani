@@ -240,5 +240,60 @@ namespace DrinkItUpTests
             updatedMA.Name.Should().Be(mainAlcoholToUpdate.Name);
             serviceContainer.EndOfTest();
         }
+
+        [Fact]
+        public async Task MAServices_Add_MAWithoutNameNotAddedToDB()
+        {
+            //Assing
+            var serviceContainer = _container;
+            var mainAlcoholService = serviceContainer.GetMainAlcoholService();
+            var mainAlcoholDto = new MainAlcoholDto { Name = "" };
+
+            //Act
+            await mainAlcoholService.AddMainAlcohol(mainAlcoholDto);
+            var result = await mainAlcoholService.GetAll();
+
+            //Assert
+            result.Count.Should().Be(0);
+            serviceContainer.EndOfTest();
+        }
+
+        [Fact]
+        public async Task MAServices_GetAll_ReturnsEmptyList()
+        {
+            //Assign
+            var serviceContainer = _container;
+            var mainAlcoholService = serviceContainer.GetMainAlcoholService();
+            var mainAlcoholDtos = new List<MainAlcoholDto>
+            {
+                new MainAlcoholDto { Name = "" },
+                new MainAlcoholDto { Name = "" },
+                new MainAlcoholDto { Name = "" },
+                new MainAlcoholDto { Name = "" },
+                new MainAlcoholDto { Name = "" },
+            };
+
+            foreach (var item in mainAlcoholDtos)
+            {
+                await mainAlcoholService.AddMainAlcohol(item);
+            }
+
+            //Act
+            var result = await mainAlcoholService.GetAll();
+
+            //Assert
+            result.Should().BeNullOrEmpty();
+            result.Count.Should().Be(0);
+            serviceContainer.EndOfTest();
+
+        }
+
+        [Fact]
+        public async Task new_test3()
+        {
+            var serviceContainer = _container;
+            var mainAlcoholService = serviceContainer.GetMainAlcoholService();
+
+        }
     }
 }

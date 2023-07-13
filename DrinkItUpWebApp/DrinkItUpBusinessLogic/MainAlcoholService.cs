@@ -28,7 +28,10 @@ namespace DrinkItUpBusinessLogic
 
         public async Task<MainAlcoholDto> AddMainAlcohol(MainAlcoholDto mainAlcoholDto)
         {
-
+            if (string.IsNullOrWhiteSpace(mainAlcoholDto.Name) || mainAlcoholDto.MainAlcoholId == 0)
+            {
+                return mainAlcoholDto;
+            }
             var mainAlcoholEntity = _mapper.Map<MainAlcohol>(mainAlcoholDto);
             await _repository.Add(mainAlcoholEntity);
             await _repository.Save();
