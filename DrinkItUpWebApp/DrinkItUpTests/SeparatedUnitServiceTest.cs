@@ -32,6 +32,56 @@ namespace DrinkItUpTests
         }
 
         [Fact]
+        public async Task UnitService_AddUnit_EmptyUnitDtoNotAddedToDatabase()
+        {
+            //Assign
+            var serviceContainer = _container;
+            var unitService = serviceContainer.GetUnitService();
+            var unitDto = new UnitDto();
+
+            //Act
+            var testUnit = await unitService.AddUnit(unitDto);
+            var results = await unitService.GetAll();
+            //Assert
+            results.Should().HaveCount(0);
+            serviceContainer.EndOfTest();
+        }
+
+        [Fact]
+        public async Task UnitService_AddUnit_ReturnAddedMultipleUnitNames()
+        {
+            //Assign
+            var serviceContainer = _container;
+            var unitService = serviceContainer.GetUnitService();
+            var unitDtos = new List<UnitDto>();
+            var testSize = 2000;
+            var notUnique = 0;
+            var unitNameMaxLength = 24;
+
+            for(int i = 0; i < testSize;  i++)
+            {
+                var unitDto = new UnitDto { Name = RandomValues.RandomNameGenerator(unitNameMaxLength) };
+
+                if (unitDtos.Select(u => u.Name).Contains(unitDto.Name))
+                    notUnique++;
+                unitDtos.Add(unitDto);
+            }
+
+            //Act
+            foreach(var unitDto in unitDtos)
+            {
+                await unitService.AddUnit(unitDto);
+            }
+            var result = await unitService.GetAll();
+
+            //Assert
+            result.Should().HaveCount(testSize);
+
+            serviceContainer.EndOfTest();
+        }
+
+
+        [Fact]
         public async Task UnitService_GetById_ReturnUnitByID()
         {
             //Assign
@@ -89,6 +139,22 @@ namespace DrinkItUpTests
         }
 
         [Fact]
+        public async Task UnitService_GetAll_ReturnEmptyList()
+        {
+            //Assign
+            var serviceContainer = _container;
+            var unitService = serviceContainer.GetUnitService();
+
+            //Act
+            var result = await unitService.GetAll();
+
+            //Assert
+            result.Should().HaveCount(0);
+            //do wyboru jedna z dwoch powyzszych metod budowania result
+            serviceContainer.EndOfTest();
+        }
+
+        [Fact]
         public async Task UnitService_IsUnitUsed_ReturnsFalse()
         {
             //Assign
@@ -116,6 +182,23 @@ namespace DrinkItUpTests
 
             //Act
             var result = await unitService.IsUnitUnique(unitDto.Name);
+
+            //Assert
+            result.Should().BeFalse();
+            serviceContainer.EndOfTest();
+        }
+
+        [Fact]
+        public async Task UnitService_IsUnitUnique_EmptyStringNameReturnsFalse()
+        {
+            //Assing
+            var serviceContainer = _container;
+            var unitService = serviceContainer.GetUnitService();
+            var unitDto = new UnitDto { Name = "Mendel" };
+            await unitService.AddUnit(unitDto);
+
+            //Act
+            var result = await unitService.IsUnitUnique("");
 
             //Assert
             result.Should().BeFalse();
