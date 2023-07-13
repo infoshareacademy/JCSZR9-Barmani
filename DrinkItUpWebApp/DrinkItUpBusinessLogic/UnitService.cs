@@ -73,6 +73,9 @@ namespace DrinkItUpBusinessLogic
 
         public async Task<UnitDto> Update(UnitDto unitDto)
         {
+            if (String.IsNullOrWhiteSpace(unitDto.Name))
+                return unitDto;
+
             var unit = _mapper.Map<Unit>(unitDto);
             _repository.Update(unit);
             await _repository.Save();

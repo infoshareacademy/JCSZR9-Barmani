@@ -218,6 +218,27 @@ namespace DrinkItUpTests
         }
 
         [Fact]
+        public async Task UnitService_Update_EmptyNameNotUpdatedInDataBase()
+        {
+            //Assign
+            var serviceContainer = _container;
+            var unitService = serviceContainer.GetUnitService();
+            var unitDto = new UnitDto { Name = "jednostka" };
+            await unitService.AddUnit(unitDto);
+            var unitDtoUpdated = new UnitDto { UnitId = 1, Name = "" };
+
+            serviceContainer.DetachModel();
+
+            //Act
+            await unitService.Update(unitDtoUpdated);
+            var unitFromDatabase = await unitService.GetById(1);
+
+            //Assert
+            unitDtoUpdated.Name.Should().NotBe(unitFromDatabase.Name);
+            serviceContainer.EndOfTest();
+        }
+
+        [Fact]
         public async Task UnitService_Update_ReturnsMultipleUpdatedDtos()
         {
             //Assign

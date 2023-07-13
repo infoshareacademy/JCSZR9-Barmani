@@ -78,9 +78,9 @@ namespace DrinkItUpBusinessLogic
 
 				var ingredientsEntities = await _ingredientRepository.SearchByNameQueryable(ingredient).ToListAsync();
 
-				foreach(var entities in ingredientsEntities)
+				foreach(var entity in ingredientsEntities)
 				{
-					var drinksId = await _drinkRepository.GetDrinksIdByIngredientId(entities.IngredientId);
+					var drinksId = await _drinkRepository.GetDrinksIdByIngredientId(entity.IngredientId);
 					matchingIngredientsToDrinks[ingredient].AddRange(drinksId);
 				}
 			}
