@@ -32,6 +32,47 @@ namespace DrinkItUpTests
         }
 
         [Fact]
+        public async Task UnitService_AddUnit_EmptyUnitDtoNotAddedToDatabase()
+        {
+            //Assign
+            var serviceContainer = _container;
+            var unitService = serviceContainer.GetUnitService();
+            var unitDto = new UnitDto();
+
+            //Act
+            var testUnit = await unitService.AddUnit(unitDto);
+            var results = await unitService.GetAll();
+            //Assert
+            results.Should().HaveCount(0);
+            serviceContainer.EndOfTest();
+        }
+
+        [Fact]
+        public async Task UnitService_AddUnit_ReturnAddedMultipleUnitNames()
+        {
+            //Assign
+            var serviceContainer = _container;
+            var unitService = serviceContainer.GetUnitService();
+            var testSize = 2000;
+            var unitNameMaxLength = 24;
+
+            var unitDtos = GetListofRandomUnits(testSize, unitNameMaxLength);
+
+            //Act
+            foreach (var unitDto in unitDtos)
+            {
+                await unitService.AddUnit(unitDto);
+            }
+            var result = await unitService.GetAll();
+
+            //Assert
+            result.Should().HaveCount(testSize);
+
+            serviceContainer.EndOfTest();
+        }
+
+
+        [Fact]
         public async Task UnitService_GetById_ReturnUnitByID()
         {
             //Assign
@@ -89,6 +130,22 @@ namespace DrinkItUpTests
         }
 
         [Fact]
+        public async Task UnitService_GetAll_ReturnEmptyList()
+        {
+            //Assign
+            var serviceContainer = _container;
+            var unitService = serviceContainer.GetUnitService();
+
+            //Act
+            var result = await unitService.GetAll();
+
+            //Assert
+            result.Should().HaveCount(0);
+            //do wyboru jedna z dwoch powyzszych metod budowania result
+            serviceContainer.EndOfTest();
+        }
+
+        [Fact]
         public async Task UnitService_IsUnitUsed_ReturnsFalse()
         {
             //Assign
@@ -123,6 +180,23 @@ namespace DrinkItUpTests
         }
 
         [Fact]
+        public async Task UnitService_IsUnitUnique_EmptyStringNameReturnsFalse()
+        {
+            //Assing
+            var serviceContainer = _container;
+            var unitService = serviceContainer.GetUnitService();
+            var unitDto = new UnitDto { Name = "Mendel" };
+            await unitService.AddUnit(unitDto);
+
+            //Act
+            var result = await unitService.IsUnitUnique("");
+
+            //Assert
+            result.Should().BeFalse();
+            serviceContainer.EndOfTest();
+        }
+
+        [Fact]
         public async Task UnitService_Update_ReturnsUpdatedDto()
         {
             //Assign
@@ -144,6 +218,68 @@ namespace DrinkItUpTests
         }
 
         [Fact]
+        public async Task UnitService_Update_EmptyNameNotUpdatedInDataBase()
+        {
+            //Assign
+            var serviceContainer = _container;
+            var unitService = serviceContainer.GetUnitService();
+            var unitDto = new UnitDto { Name = "jednostka" };
+            await unitService.AddUnit(unitDto);
+            var unitDtoUpdated = new UnitDto { UnitId = 1, Name = "" };
+
+            serviceContainer.DetachModel();
+
+            //Act
+            await unitService.Update(unitDtoUpdated);
+            var unitFromDatabase = await unitService.GetById(1);
+
+            //Assert
+            unitDtoUpdated.Name.Should().NotBe(unitFromDatabase.Name);
+            serviceContainer.EndOfTest();
+        }
+
+        [Fact]
+        public async Task UnitService_Update_ReturnsMultipleUpdatedDtos()
+        {
+            //Assign
+            var serviceContainer = _container;
+            var unitService = serviceContainer.GetUnitService();
+            
+            var testSize = 2000;
+            var notUnique = 0;
+            var unitNameMaxLength = 24;
+
+            var unitDtos = GetListofRandomUnits(testSize, unitNameMaxLength);
+            
+            foreach (var unitDto in unitDtos)
+            {
+                await unitService.AddUnit(unitDto);
+            }
+            serviceContainer.DetachModel();
+
+            //Act
+            unitDtos = await unitService.GetAll();
+            foreach (var unitDto in unitDtos)
+            {
+                var unitDtoToUpdate = new UnitDto { UnitId = unitDto.UnitId, Name = RandomValues.RandomNameGenerator(unitNameMaxLength) };
+                serviceContainer.DetachModel();
+                await unitService.Update(unitDtoToUpdate);
+                
+            }
+
+            //Assert
+            for (int i = 1; i <= testSize; i++)
+            {
+
+                var unitFromDatabase = await unitService.GetById(i);
+                var unitToCheck = unitDtos.FirstOrDefault(u => u.UnitId == i);
+                unitToCheck.Name.Should().NotBe(unitFromDatabase.Name);
+            }
+
+            serviceContainer.EndOfTest();
+        }
+
+        [Fact]
         public async Task UnitServices_Remove_CheckingDeletingOfUnit()
         {
             //Asign
@@ -159,6 +295,40 @@ namespace DrinkItUpTests
             //Assert
             units.Should().HaveCount(0);
             serviceContainer.EndOfTest();
+        }
+
+        [Fact]
+        public async Task UnitServices_Remove_IdIsNotInDatabase()
+        {
+            //Asign
+            var serviceContainer = _container;
+            var unitService = serviceContainer.GetUnitService();
+            var unitDto = new UnitDto { Name = "łokieć" };
+            await unitService.AddUnit(unitDto);
+
+            //Act
+            var IsRemoved = await unitService.Remove(2);
+            var units = await unitService.GetAll();
+
+            //Assert
+            units.Should().HaveCount(1);
+            IsRemoved.Should().BeFalse();
+
+            serviceContainer.EndOfTest();
+        }
+
+
+        private List<UnitDto> GetListofRandomUnits(int testSize, int unitNameMaxLength)
+        {
+            var unitDtos = new List<UnitDto>();
+            for (int i = 0; i < testSize; i++)
+            {
+                var unitDto = new UnitDto { Name = RandomValues.RandomNameGenerator(unitNameMaxLength) };
+
+
+                unitDtos.Add(unitDto);
+            }
+            return unitDtos;
         }
     }
 }

@@ -28,6 +28,9 @@ namespace DrinkItUpBusinessLogic
 
         public async Task<UnitDto> AddUnit(UnitDto unitDto)
         {
+            if (unitDto.Name == null)
+                return unitDto;
+
             var unitEntity = _mapper.Map<Unit>(unitDto);
             await _repository.Add(unitEntity);
             await _repository.Save();
@@ -61,12 +64,18 @@ namespace DrinkItUpBusinessLogic
 
         public async Task<bool> IsUnitUnique(string name)
         {
+            if (String.IsNullOrWhiteSpace(name))
+                return false;
+
             var isUnique = !await _repository.GetAll().Where(u => u.Name == name).AnyAsync();
             return isUnique;
         }
 
         public async Task<UnitDto> Update(UnitDto unitDto)
         {
+            if (String.IsNullOrWhiteSpace(unitDto.Name))
+                return unitDto;
+
             var unit = _mapper.Map<Unit>(unitDto);
             _repository.Update(unit);
             await _repository.Save();

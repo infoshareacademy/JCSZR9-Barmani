@@ -63,7 +63,6 @@ namespace DrinkItUpBusinessLogic
 		{
 			var names = input.Split(',').ToList();
 			return names;
-
 		}
 
 		public async Task<Dictionary<string,List<DrinkDto>>> GetMatchingDrinksToIngredients(string input)
@@ -78,9 +77,9 @@ namespace DrinkItUpBusinessLogic
 
 				var ingredientsEntities = await _ingredientRepository.SearchByNameQueryable(ingredient).ToListAsync();
 
-				foreach(var entities in ingredientsEntities)
+				foreach(var entity in ingredientsEntities)
 				{
-					var drinksId = await _drinkRepository.GetDrinksIdByIngredientId(entities.IngredientId);
+					var drinksId = await _drinkRepository.GetDrinksIdByIngredientId(entity.IngredientId);
 					matchingIngredientsToDrinks[ingredient].AddRange(drinksId);
 				}
 			}
@@ -90,10 +89,6 @@ namespace DrinkItUpBusinessLogic
 				.GroupBy(l => l)
 				.OrderByDescending(l => l.Count())
 				.ToList();
-				
-
-				
-
 
 			var drinks = new Dictionary<string, List<DrinkDto>>();
 
@@ -109,8 +104,6 @@ namespace DrinkItUpBusinessLogic
 					drinks.Add(msg, new List<DrinkDto> { drink });
 
 			}
-
-
 
 			return drinks;
 		}
