@@ -297,6 +297,26 @@ namespace DrinkItUpTests
             serviceContainer.EndOfTest();
         }
 
+        [Fact]
+        public async Task UnitServices_Remove_IdIsNotInDatabase()
+        {
+            //Asign
+            var serviceContainer = _container;
+            var unitService = serviceContainer.GetUnitService();
+            var unitDto = new UnitDto { Name = "łokieć" };
+            await unitService.AddUnit(unitDto);
+
+            //Act
+            var IsRemoved = await unitService.Remove(2);
+            var units = await unitService.GetAll();
+
+            //Assert
+            units.Should().HaveCount(1);
+            IsRemoved.Should().BeFalse();
+
+            serviceContainer.EndOfTest();
+        }
+
 
         private List<UnitDto> GetListofRandomUnits(int testSize, int unitNameMaxLength)
         {
