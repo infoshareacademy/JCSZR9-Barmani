@@ -53,22 +53,13 @@ namespace DrinkItUpTests
             //Assign
             var serviceContainer = _container;
             var unitService = serviceContainer.GetUnitService();
-            var unitDtos = new List<UnitDto>();
             var testSize = 2000;
-            var notUnique = 0;
             var unitNameMaxLength = 24;
 
-            for(int i = 0; i < testSize;  i++)
-            {
-                var unitDto = new UnitDto { Name = RandomValues.RandomNameGenerator(unitNameMaxLength) };
-
-                if (unitDtos.Select(u => u.Name).Contains(unitDto.Name))
-                    notUnique++;
-                unitDtos.Add(unitDto);
-            }
+            var unitDtos = GetListofRandomUnits(testSize, unitNameMaxLength);
 
             //Act
-            foreach(var unitDto in unitDtos)
+            foreach (var unitDto in unitDtos)
             {
                 await unitService.AddUnit(unitDto);
             }
@@ -232,24 +223,19 @@ namespace DrinkItUpTests
             //Assign
             var serviceContainer = _container;
             var unitService = serviceContainer.GetUnitService();
-            var unitDtos = new List<UnitDto>();
+            
             var testSize = 2000;
             var notUnique = 0;
             var unitNameMaxLength = 24;
 
-            for (int i = 0; i < testSize; i++)
-            {
-                var unitDto = new UnitDto { Name = RandomValues.RandomNameGenerator(unitNameMaxLength) };
-
-                if (unitDtos.Select(u => u.Name).Contains(unitDto.Name))
-                    notUnique++;
-                unitDtos.Add(unitDto);
-            }
+            var unitDtos = GetListofRandomUnits(testSize, unitNameMaxLength);
+            
             foreach (var unitDto in unitDtos)
             {
                 await unitService.AddUnit(unitDto);
             }
             serviceContainer.DetachModel();
+
             //Act
             unitDtos = await unitService.GetAll();
             foreach (var unitDto in unitDtos)
@@ -288,6 +274,20 @@ namespace DrinkItUpTests
             //Assert
             units.Should().HaveCount(0);
             serviceContainer.EndOfTest();
+        }
+
+
+        private List<UnitDto> GetListofRandomUnits(int testSize, int unitNameMaxLength)
+        {
+            var unitDtos = new List<UnitDto>();
+            for (int i = 0; i < testSize; i++)
+            {
+                var unitDto = new UnitDto { Name = RandomValues.RandomNameGenerator(unitNameMaxLength) };
+
+
+                unitDtos.Add(unitDto);
+            }
+            return unitDtos;
         }
     }
 }
