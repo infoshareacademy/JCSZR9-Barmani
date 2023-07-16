@@ -38,9 +38,9 @@ namespace DrinkItUpTests
             //Assing
             var serviceContainer = _container;
             var mainAlcoholService = serviceContainer.GetMainAlcoholService();
-            int expectedMANamesAmout = 500;
+            int expectedMANamesAmount = 500;
             int maxMANameCharactersLenght = 25;
-            for (int i = 0;  i < expectedMANamesAmout; i++) 
+            for (int i = 0;  i < expectedMANamesAmount; i++) 
             {
                 var itemsToAdd = RandomValues.RandomNameGenerator(maxMANameCharactersLenght);
                 var mainAlcoholDto = new MainAlcoholDto { Name = itemsToAdd };
@@ -52,7 +52,7 @@ namespace DrinkItUpTests
             var result = await mainAlcoholService.GetAll();
 
             //Assert
-            result.Should().HaveCount(expectedMANamesAmout);
+            result.Should().HaveCount(expectedMANamesAmount);
             serviceContainer.EndOfTest();
         }
 
@@ -365,6 +365,48 @@ namespace DrinkItUpTests
             //Assert
             mainAlcohols.Should().HaveCount(1);
             result.Should().BeFalse();
+            serviceContainer.EndOfTest();
+        }
+
+
+        [Fact]
+        public async Task MAServices_Update_ReturnsMultipleUpdatedMANames()
+        {
+
+            //Assing
+            var serviceContainer = _container;
+            var mainAlcoholService = serviceContainer.GetMainAlcoholService();
+            int expectedMANamesAmount = 500;
+            int maxMANameCharactersLenght = 25;
+
+            for (int i = 0; i < expectedMANamesAmount; i++)
+            {
+                var itemsToAdd = RandomValues.RandomNameGenerator(maxMANameCharactersLenght);
+                var mainAlcoholDto = new MainAlcoholDto { Name = itemsToAdd };
+                await mainAlcoholService.AddMainAlcohol(mainAlcoholDto);
+            }
+
+            //Act
+            var mainAlcoholDtos = await mainAlcoholService.GetAll();
+
+            for (int i = 1; i <= expectedMANamesAmount; i++)
+            {
+                var mainAlcoholsToUpdate = new MainAlcoholDto
+                {
+                    MainAlcoholId = i,
+                    Name = RandomValues.RandomNameGenerator(maxMANameCharactersLenght),
+                };
+                serviceContainer.DetachModel();
+                await mainAlcoholService.Update(mainAlcoholsToUpdate);
+            }
+
+            //Assert
+            for (int i = 1; i <= expectedMANamesAmount; i++)
+            {
+                var updatedMA = await mainAlcoholService.GetById(i);
+                var notUpdatedMA = mainAlcoholDtos.FirstOrDefault(id => id.MainAlcoholId == i);
+                updatedMA.Name.Should().NotBe(notUpdatedMA.Name);
+            }
             serviceContainer.EndOfTest();
         }
     }
