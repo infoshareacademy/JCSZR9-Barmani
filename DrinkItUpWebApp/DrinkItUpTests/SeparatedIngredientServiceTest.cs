@@ -57,7 +57,7 @@ namespace DrinkItUpTests
             //Assign
             var serviceContainer = _container;
             var ingredientService = serviceContainer.GetIngredientService();
-            var ingredientDto = new IngredientDto { Name = "chili"};
+            var ingredientDto = new IngredientDto { Name = "chili" };
             var unitService = serviceContainer.GetUnitService();
             await unitService.AddUnit(new UnitDto { Name = "trochę" });
 
@@ -67,6 +67,42 @@ namespace DrinkItUpTests
 
             //Assert
             result.Should().HaveCount(0);
+            serviceContainer.EndOfTest();
+        }
+
+        [Fact]
+        public async Task IngredientService_Add_ReturnsMultipleIngredients()
+        {
+            //Assign
+            var serviceContainer = _container;
+            var ingredientService = serviceContainer.GetIngredientService();
+            var unitService = serviceContainer.GetUnitService();
+            var unitHighestId = 10;
+
+            for (int i = 0; i < unitHighestId; i++)
+            {
+                var unitDto = new UnitDto { Name = RandomValues.RandomNameGenerator(24) };
+                unitService.AddUnit(unitDto);
+            }
+
+            var testSize = 1000;
+            var ingredientNameMaxLenght = 50;
+            for (int i = 0; i < testSize; i++)
+            {
+                var ingredientDto = new IngredientDto
+                {
+                    Name = RandomValues.RandomNameGenerator(ingredientNameMaxLenght),
+                    UnitId = RandomValues.RandomIdGenerator(unitHighestId)
+                };
+
+                //Act
+                await ingredientService.Add(ingredientDto);
+            }
+
+            var result = await ingredientService.GetAllIngredientsWithUnits();
+            
+            //Assert
+            result.Should().HaveCount(testSize);
             serviceContainer.EndOfTest();
         }
 
@@ -125,6 +161,7 @@ namespace DrinkItUpTests
             serviceContainer.EndOfTest();
         }
 
+
         [Fact]
         public async Task IngredientService_GetById_ReturnIngredientsById()
         {
@@ -182,7 +219,7 @@ namespace DrinkItUpTests
             var serviceContainer = _container;
             var ingredientService = serviceContainer.GetIngredientService();
             var ingredientDto = new IngredientDto { Name = "", UnitId = 1 };
-            
+
             //Act
             var result = await ingredientService.IsIngredientUnique(ingredientDto);
 
@@ -197,7 +234,7 @@ namespace DrinkItUpTests
             //Assing
             var serviceContainer = _container;
             var ingredientService = serviceContainer.GetIngredientService();
-            var ingredientDto = new IngredientDto { Name = "Chili"};
+            var ingredientDto = new IngredientDto { Name = "Chili" };
 
             //Act
             var result = await ingredientService.IsIngredientUnique(ingredientDto);
@@ -213,7 +250,7 @@ namespace DrinkItUpTests
             //Assign
             var serviceContainer = _container;
             var ingredientService = serviceContainer.GetIngredientService();
-            var ingredientDto = new IngredientDto { Name = "chili" , UnitId = 1 };
+            var ingredientDto = new IngredientDto { Name = "chili", UnitId = 1 };
             await ingredientService.Add(ingredientDto);
             ingredientDto = await ingredientService.GetById(1);
             var ingredientDtoUpdated = new IngredientDto { IngredientId = 1, Name = "mięta", UnitId = 1 };
@@ -227,6 +264,60 @@ namespace DrinkItUpTests
             ingredientDtoUpdated.Name.Should().Be(ingredientFromDatabase.Name);
             serviceContainer.EndOfTest();
         }
+
+
+        [Fact]
+        public async Task IngredientService_Update_ReturnsMultipleUpdatedIngredients()
+        {
+            //Assign
+            var serviceContainer = _container;
+            var ingredientService = serviceContainer.GetIngredientService();
+            var unitService = serviceContainer.GetUnitService();
+            var unitHighestId = 10;
+
+            for (int i = 0; i < unitHighestId; i++)
+            {
+                var unitDto = new UnitDto { Name = RandomValues.RandomNameGenerator(24) };
+                unitService.AddUnit(unitDto);
+            }
+
+            var testSize = 1000;
+            var ingredientNameMaxLenght = 50;
+            for (int i = 0; i < testSize; i++)
+            {
+                var ingredientDto = new IngredientDto
+                {
+                    Name = RandomValues.RandomNameGenerator(ingredientNameMaxLenght),
+                    UnitId = RandomValues.RandomIdGenerator(unitHighestId)
+                };
+
+                await ingredientService.Add(ingredientDto);
+            }
+
+            //Act
+            var ingredientDtos = await ingredientService.GetAllIngredientsWithUnits();
+            for (int i = 1;i <= testSize; i++)
+            {
+                var ingredientToUpdate = new IngredientDto
+                {
+                    IngredientId = i,
+                    Name = RandomValues.RandomNameGenerator(ingredientNameMaxLenght),
+                    UnitId = RandomValues.RandomIdGenerator(unitHighestId) 
+                };
+                serviceContainer.DetachModel();
+                await ingredientService.Update(ingredientToUpdate);
+            }
+
+            //Assert
+            for (int i = 1; i <= testSize; i++)
+            { 
+                var updatedIngredient = await ingredientService.GetById(i);
+                var notUpdatedIngredient = ingredientDtos.FirstOrDefault(id => id.IngredientId == i);
+                updatedIngredient.Name.Should().NotBe(notUpdatedIngredient.Name);
+            }
+            serviceContainer.EndOfTest();
+        }
+
 
         [Fact]
         public async Task IngredientService_Update_EmptyIngredientNameNotUpdatedInDatabase()
@@ -258,7 +349,7 @@ namespace DrinkItUpTests
             var ingredientDto = new IngredientDto { Name = "chili", UnitId = 1 };
             await ingredientService.Add(ingredientDto);
             ingredientDto = await ingredientService.GetById(1);
-            var ingredientDtoUpdated = new IngredientDto { IngredientId = 1, Name = "mięta"};
+            var ingredientDtoUpdated = new IngredientDto { IngredientId = 1, Name = "mięta" };
             serviceContainer.DetachModel();
 
             //Act
