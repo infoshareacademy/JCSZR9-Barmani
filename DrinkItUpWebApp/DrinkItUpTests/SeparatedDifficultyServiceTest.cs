@@ -29,6 +29,48 @@ namespace DrinkItUpTests
         }
 
         [Fact]
+        public async Task DifficultyService_AddDifficulty_EmptyDifficultyDtoNotAddedToDatabase()
+        {
+            //Assign
+            var serviceContainer = _container;
+            var difficultyService = serviceContainer.GetDifficultyService();
+            var difficultyDto = new DifficultyDto { Name = "" };
+
+
+            //Act
+            var testDifficulty = await difficultyService.AddDifficulty(difficultyDto);
+            var results = await difficultyService.GetAll();
+
+            //Assert 
+            results.Should().HaveCount(0);
+            serviceContainer.EndOfTest();
+        }
+
+        [Fact]
+        public async Task DifficultyService_AddDifficulty_ReturnMultipleAddedDifficulty()
+        {
+            //Assing
+            var serviceContainer = _container;
+            var difficultyService = serviceContainer.GetDifficultyService();
+            int expectedDifficultyNamesAmount = 500;
+            int maxDifficultyNameCharactersLenght = 7;
+            for (int i = 0; i < expectedDifficultyNamesAmount; i++)
+            {
+                var itemsToAdd = RandomValues.RandomNameGenerator(maxDifficultyNameCharactersLenght);
+                var difficultyDto = new DifficultyDto { Name = itemsToAdd };
+
+                //Act
+                var testDifficulty = await difficultyService.AddDifficulty(difficultyDto);
+            }
+
+            var result = await difficultyService.GetAll();
+
+            //Assert
+            result.Should().HaveCount(expectedDifficultyNamesAmount);
+            serviceContainer.EndOfTest();
+        }
+
+        [Fact]
         public async Task DifficultyService_GetById_ReturnDifficultyByID()
         {
             //Assign
@@ -106,6 +148,25 @@ namespace DrinkItUpTests
         }
 
         [Fact]
+        public async Task DifficultyService_GetAll_ReturnEmptyList()
+        {
+            //Assign
+            var serviceContainer = _container;
+            var difficultyService = serviceContainer.GetDifficultyService();
+         
+
+            //Act
+            var result = await difficultyService.GetAll();
+
+            //Assert
+            result.Should().NotBeNull();
+            result.Should().HaveCount(0);
+            //do wyboru jedna z dwoch powyzszych metod budowania result
+            serviceContainer.EndOfTest();
+        }
+
+
+        [Fact]
         public async Task DifficultyService_IsDifficultyUsed_ReturnsFalse()
         {
             //Assign
@@ -140,6 +201,23 @@ namespace DrinkItUpTests
         }
 
         [Fact]
+        public async Task DifficultyService_IsUnitUnique_EmptyStringNameReturnsFalse()
+        {
+            //Assing
+            var serviceContainer = _container;
+            var difficultyService = serviceContainer.GetDifficultyService();
+            var difficultyDto = new DifficultyDto { Name = "Trudny" };
+            await difficultyService.AddDifficulty(difficultyDto);
+
+            //Act
+            var result = await difficultyService.IsDifficultyUnique("");
+
+            //Assert
+            result.Should().BeFalse();
+            serviceContainer.EndOfTest();
+        }
+
+        [Fact]
         public async Task DifficultyService_Update_ReturnsUpdatedDto()
         {
             //Assign
@@ -158,6 +236,64 @@ namespace DrinkItUpTests
             //Assert
             difficultyDtoUpdated.Name.Should().Be(difficultyFromDatabase.Name);
             serviceContainer.EndOfTest();
+        }
+
+        [Fact]
+        public async Task DifficultyService_Update_EmptyNameNotUpdatedInDataBase()
+        {
+            //Assign
+            var serviceContainer = _container;
+            var difficultyService = serviceContainer.GetDifficultyService();
+            var difficultyDto = new DifficultyDto { Name = "Trudny" };
+            await difficultyService.AddDifficulty(difficultyDto);
+            var difficultyDtoUpdated = new DifficultyDto { DifficultyId = 1, Name = "" };
+
+            serviceContainer.DetachModel();
+            //Act
+
+            await difficultyService.Update(difficultyDtoUpdated);
+            var difficultyFromDatabase = await difficultyService.GetById(1);
+
+            //Assert
+            difficultyDtoUpdated.Name.Should().NotBe(difficultyFromDatabase.Name);
+            serviceContainer.EndOfTest();
+        }
+
+        [Fact]
+        public async Task DifficultyService_UdpateDifficulty_ReturnsMultipleUpdatedDtos()
+        {
+            //Assing
+            var serviceContainer = _container;
+            var difficultyService = serviceContainer.GetDifficultyService();
+
+            int expectedDifficultyNamesAmount = 500;
+            int maxDifficultyNameCharactersLenght = 7;
+            for (int i = 0; i < expectedDifficultyNamesAmount; i++)
+            {
+                var itemsToAdd = RandomValues.RandomNameGenerator(maxDifficultyNameCharactersLenght);
+                var difficultyDto = new DifficultyDto { Name = itemsToAdd };
+
+                
+                var testDifficulty = await difficultyService.AddDifficulty(difficultyDto);
+            }
+            //Act
+            var difficultyDtos = await difficultyService.GetAll();
+            for (int i = 1; i <= expectedDifficultyNamesAmount; i++)
+            {
+                var difficultyToUpdate = new DifficultyDto { DifficultyId = i, Name = RandomValues.RandomNameGenerator(maxDifficultyNameCharactersLenght) };
+                serviceContainer.DetachModel();
+                await difficultyService.Update(difficultyToUpdate);
+            }
+
+            //Assert
+            for (int i = 1; i <= expectedDifficultyNamesAmount; i++)
+            {
+                var difficultyFromDatabase = await difficultyService.GetById(i);
+                var difficultyToCheck = difficultyDtos.FirstOrDefault(d => d.DifficultyId == i);
+                difficultyToCheck.Name.Should().NotBe(difficultyFromDatabase.Name);
+
+            }
+                serviceContainer.EndOfTest();
         }
 
         [Fact]
