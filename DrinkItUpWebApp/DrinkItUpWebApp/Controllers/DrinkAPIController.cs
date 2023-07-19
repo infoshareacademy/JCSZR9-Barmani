@@ -10,16 +10,18 @@ namespace DrinkItUpWebApp.Controllers
     [ApiController]
     public class DrinkAPIController : ControllerBase
     {
+        private readonly IDrinkService _drinkService;
         private readonly IByCategoryService _categoryService;
         private ISearchByIngredients _searchByIngredients;
         private readonly IGetDrinkDetails _getDrinkDetails;
         private readonly ISearchByNameOrOneIngredient _searchByNameOrOneIngredient;
         private readonly IMapper _mapper;
 
-        public DrinkAPIController(IByCategoryService categoryService,ISearchByIngredients searchByIngredients, IGetDrinkDetails getDrinkDetails, ISearchByNameOrOneIngredient searchByNameOrOneIngredient, IMapper mapper)
+        public DrinkAPIController(IDrinkService drinkService, IByCategoryService categoryService,ISearchByIngredients searchByIngredients, IGetDrinkDetails getDrinkDetails, ISearchByNameOrOneIngredient searchByNameOrOneIngredient, IMapper mapper)
         {
 
             _mapper = mapper;
+            _drinkService = drinkService;
             _categoryService = categoryService;
             _searchByIngredients = searchByIngredients;
             _getDrinkDetails = getDrinkDetails;
@@ -84,6 +86,16 @@ namespace DrinkItUpWebApp.Controllers
         public async Task<IActionResult> GetByDifficulty(int id)
         {
             var drinksDtos = await _categoryService.GetDrinksByDifficultyId(id);
+
+            return Ok(drinksDtos);
+
+        }
+
+        [HttpGet]
+        [Route("GetAll")]
+        public async Task<IActionResult> GetAll()
+        {
+            var drinksDtos = await _drinkService.GetAll();
 
             return Ok(drinksDtos);
 

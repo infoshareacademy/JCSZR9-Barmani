@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DrinkModel } from './drink.model';
+import { DrinkSearchModel } from './drinkSearch.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,9 @@ export class DrinkEndpointService {
    autoCompleteMixer(input: string, chosen: string){
     return this.http.get(this.baseURL+'/mixer/autocompleteingredient/'+ input + '/' + chosen);
    };
+   getAll(){
+    return this.http.get<DrinkSearchModel>(this.baseURL+'/GetAll');
+   }
 
 
    
