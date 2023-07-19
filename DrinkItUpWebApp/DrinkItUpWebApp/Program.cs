@@ -41,7 +41,7 @@ namespace DrinkItUpWebApp
             //AutoMapper
             builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
-			var app = builder.Build();
+            var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -61,7 +61,10 @@ namespace DrinkItUpWebApp
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=AgeVerification}/{id?}");
-
+            app.UseCors(x => x
+         .AllowAnyOrigin()
+         .AllowAnyMethod()
+         .AllowAnyHeader());
             app.Run();
         }
     }

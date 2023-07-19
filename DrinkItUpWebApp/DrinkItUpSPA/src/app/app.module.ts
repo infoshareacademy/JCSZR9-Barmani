@@ -24,6 +24,12 @@ import { ForgotPasswordComponent } from './navigation/forgot-password/forgot-pas
 
 import { AddonWeatherDirective } from './shared/addonWeather.directive';
 import { AddonShoppingDirective } from './shared/addonShopping.directive';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { MainSearchbarComponent } from './navigation/main-searchbar/main-searchbar.component';
+import { DrinkDetailsComponent } from './mainbody/drink-details/drink-details.component';
+import { DrinkResolver } from './shared/drinkResolver.service';
+import { ResultsSearchComponent } from './mainbody/results-search/results-search.component';
 
 const appRoutes: Routes = [
 {path: '', component: LandingComponent},
@@ -32,7 +38,8 @@ const appRoutes: Routes = [
 {path: 'forgotPassword', component: ForgotPasswordComponent},
 {path: 'bycategory', component: ByCategoryComponent},
 {path: 'search', component: SearchComponent},
-{path: 'aboutus', component: AboutusComponent}
+{path: 'aboutus', component: AboutusComponent},
+{path: 'detail/:id', component: DrinkDetailsComponent, resolve: {drink: DrinkResolver} },
 ];
 
 @NgModule({
@@ -54,12 +61,15 @@ const appRoutes: Routes = [
     LandingComponent,
     ByCategoryComponent,
     StatisticsComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    MainSearchbarComponent,
+    DrinkDetailsComponent,
+    ResultsSearchComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule, RouterModule.forRoot(appRoutes)
+    BrowserModule, HttpClientModule, RouterModule.forRoot(appRoutes),FormsModule,CommonModule
   ],
-  providers: [],
+  providers: [DrinkResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

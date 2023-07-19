@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DrinkSearchModel } from 'src/app/shared/drinkSearch.model';
 
 @Component({
   selector: 'app-by-category',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./by-category.component.css']
 })
 export class ByCategoryComponent {
-
+results =new Map<string,DrinkSearchModel[]>();
+formValue: string = 'Wszystkie drinki';
 }

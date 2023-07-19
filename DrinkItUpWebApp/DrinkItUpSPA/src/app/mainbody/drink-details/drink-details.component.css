@@ -1,0 +1,13 @@
+.mainBody{
+    background-color: #6c1048;
+    border: 1px;
+    border-color: darkmagenta;
+    border-style:double;
+    min-height: 750px;
+}
+.pinkborda {
+    border: 4px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #da0b85;
+}

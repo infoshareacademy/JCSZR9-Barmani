@@ -23,3 +23,13 @@
     max-height: 300px;
     overflow: hidden auto;
 }
+.cardSearch {
+    text-decoration: none;
+    color: white;
+    background-color: black;
+}
+
+    .cardSearch:hover {
+        background-color: darkkhaki;
+        color: black;
+    }

@@ -1,0 +1,22 @@
+<div class="d-flex h-100 justify-content-center align-items-center mainBody">
+    <div class="d-flex h-100 justify-content-center align-items-center">
+        <div>
+            <img [src]="'./../../assets/'+ drink.drinkPhotoId" class="pinkborda mx-1" style="max-height: 420px;" alt="...">
+        </div>
+    </div>
+
+
+    <div class="d-inline-block mx-1">
+        <p class="display-5 fw-bold">{{drink.name}}</p>
+        <p class="lead fw-bold">Alkohol dominujący: {{drink.mainAlcohol.name}}</p>
+        <p class="lead fw-bold">Poziom trudności: {{drink.difficulty.name}}</p>
+        <p class="lead fw-bold">Składniki:</p>
+        <ul>
+            <li class="lead fw-bold" *ngFor="let ingredient of drink.ingredients">{{ingredient.name}}: <span *ngIf="ingredient.quantity > 0">{{ingredient.quantity}}</span> {{ingredient.unit.name}}</li>
+        </ul>
+        <p class="lead fw-bold">Opis przygotowania: </p>
+        <p class="lead fw-bold">{{drink.description}}</p>
+        <a class="btn btn-lg btn-warning fw-bolder my-2" onclick="history.back()">Powrót</a>
+    </div>
+
+</div>

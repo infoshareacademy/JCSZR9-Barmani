@@ -1,1 +1,71 @@
-<p>by-category works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 col-lg-3 mainBody rounded">
+            <div class="d-block lead fw-bold text-center align-items-center my-2 border-bottom border-warning" style="height:90px">
+                <form name="CategoryName">
+                    <div class="form-group mx-1 my-1">
+                        <label for="CategoryName" class="control-label">Sortuj po:</label>
+                        <select [(ngModel)]="formValue"  name="CategorName" class="form-select" aria-label="Select Category">
+                            <option [ngValue]="'Alkohol dominujący'">Alkohol dominujący</option>
+                            <option [ngValue]="'Poziom trudności'">Poziom trudności</option>
+                            <option selected [ngValue]="'Wszystkie drinki'">Wszystkie drinki</option>
+            
+                        </select>
+            
+                    </div>
+                </form>
+                <div class="text-center my-4 stopka" [ngSwitch]="formValue">
+                    <p class="fs-2 fw-bold" *ngSwitchCase="'Wszystkie drinki'">{{formValue}}</p>
+                    <div class="" *ngSwitchCase="'Alkohol dominujący'">
+
+                    </div>
+                    <div class="" *ngSwitchCase="'Poziom trudności'">
+                        
+                    </div>
+                    <p *ngSwitchDefault></p>
+                </div>
+            
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-9">
+            <div class="d-block text-center secondBody rounded my-1">
+                <p class="lead fs-3 fw-bold">Przeglądaj drinki:</p>
+                <hr>
+                <div class="h-100 d-block mx-1 p-1 text-center">
+                    
+                        <div class="d-flex my-1 border-bottom-4 border-warning justify-content-center" *ngIf="results.size === 0">
+                            <p class="display-7 fw-bold ">Nie rozpocząłeś jeszcze swoich poszukiwań!</p>
+                        </div>
+                    
+                            <div *ngFor="let recipient of results | keyvalue">
+                                <div class="d-flex my-2 border-bottom border-warning " >
+                                    <p class="display-6 fw-bolder">{{recipient.key}}</p>
+                                </div>
+                            
+                                <a class="text-decoration-none lead " [routerLink]="'../detail/'+drink.drinkId" href="#" *ngFor="let drink of recipient.value">
+                                    <div class="my-2 pinkborda cardSearch d-flex justify-content-center align-items-center" style="height: 160px;">
+                                        <div class="row d-flex justify-content-center align-items-center" style="width: inherit;height:inherit;">
+                                            <div class="col-2">
+                                                <img [src]="'../../../assets/'+drink.drinkPhotoId" class="" style="max-height: 150px;" alt="...">
+                                            </div>
+                
+                                            <p class="col-2 fs-4 fw-bold">{{drink.name}}</p>
+                
+                                            <div class="d-inline-block col-3">
+                                                <p>Alkohol dominujący: {{drink.mainAlcohol.name}}</p>
+                                                <p>Poziom trudności: {{drink.difficulty.name}}</p>
+                                            </div>
+                
+                                            <div class="col-5">
+                                                <span class="fw-bold">Opis przygotowania:</span>
+                                                <p>{{drink.description.slice(0,100)}} ...</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

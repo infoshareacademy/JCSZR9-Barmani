@@ -1,0 +1,23 @@
+<div class="" style="position: relative; width: 100%;">
+    <form class="d-flex" role="search">
+        <div class="input-group">
+          <input class="form-control rounded" [(ngModel)]="inputSearch" (ngModelChange)="onKeyUp(inputSearch)" name="searchBar" type="search" style="min-width: 350px;" placeholder="Wpisz nazwę lub któryś ze składników" aria-label="Search" aria-describedby="search-addon">
+          <button class="btn btn-outline-warning" type="submit">Szukaj</button>
+        </div>
+    </form>
+
+    <div id="autoCompleteMain" class="d-block bg-white rounded pinkborda text-white lead" style="width: inherit ;position: absolute;top: 65px;max-height: 300px;" *ngIf="isVisible">
+        <a class="d-flex p-1 searchResult" href="#" [routerLink]="'detail/'+ drink.drinkId" *ngFor="let drink of results">
+                <div>
+                    <img class="p-1" [src]="'../../../assets/'+drink.drinkPhotoId" style="max-height: 85px;" />
+                </div>
+                <div class="d-block p-1" ><div class="display-7 fw-bold">
+                    {{drink.name}}
+                </div>
+                <div class="d-inline-block text-truncate" style="max-width: 230px">
+                    {{drink.description}}
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
