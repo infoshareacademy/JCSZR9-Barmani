@@ -54,7 +54,7 @@ namespace DrinkItUpTests
         }
 
         [Fact]
-        public async Task IngredientService_Add_IngredientWithoutUnitIdNotAddedToDatabase()
+        public async Task IngredientService_Add_IngredientWithoutUnitIdThrowsException()
         {
             //Assign
             var serviceContainer = _container;
@@ -215,7 +215,7 @@ namespace DrinkItUpTests
         }
 
         [Fact]
-        public async Task IngredientService_IsIngredientUnique_EmptyIngredientNameReturnsException()
+        public async Task IngredientService_IsIngredientUnique_EmptyIngredientNameThrowsException()
         {
             //Assing
             var serviceContainer = _container;
@@ -233,7 +233,7 @@ namespace DrinkItUpTests
         }
 
         [Fact]
-        public async Task IngredientService_IsIngredientUnique_EmptyIngredientUnitReturnsFalse()
+        public async Task IngredientService_IsIngredientUnique_EmptyIngredientUnitThrowsException()
         {
             //Assing
             var serviceContainer = _container;
@@ -347,7 +347,7 @@ namespace DrinkItUpTests
         }
 
         [Fact]
-        public async Task IngredientService_Update_EmptyIngredientUnitIdNotUpdatedInDatabase()
+        public async Task IngredientService_Update_EmptyIngredientUnitIdThrowsException()
         {
             //Assign
             var serviceContainer = _container;
