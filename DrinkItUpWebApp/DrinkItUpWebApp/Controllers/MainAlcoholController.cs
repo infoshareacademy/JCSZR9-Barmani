@@ -50,7 +50,6 @@ namespace DrinkItUpWebApp.Controllers
             }
             var mainAlcohol = _mapper.Map<MainAlcoholModel>(mainAlcoholDtoFromSubmit);
 
-
             var mainAlcoholModels = new List<MainAlcoholModel>();
             var mainAlcoholDtos = await _mainAlcoholService.GetAll();
             foreach (var mainAlcoholDto in mainAlcoholDtos)
@@ -62,9 +61,7 @@ namespace DrinkItUpWebApp.Controllers
 
                 mainAlcoholModels.Add(mainAlcoholModel);
             }
-
-
-
+            
             mainAlcohol.MainAlcohols = mainAlcoholModels;
 
             return View(mainAlcohol);
@@ -97,8 +94,6 @@ namespace DrinkItUpWebApp.Controllers
 
                 mainAlcoholModels.Add(mainAlcoholModel);
             }
-
-
 
             mainAlcohol.MainAlcohols = mainAlcoholModels;
 
