@@ -37,7 +37,7 @@ const appRoutes: Routes = [
 {path: 'registration', component: RegistrationComponent},
 {path: 'forgotPassword', component: ForgotPasswordComponent},
 {path: 'bycategory', component: ByCategoryComponent},
-{path: 'search', component: SearchComponent},
+{path: 'search/:input', component: SearchComponent},
 {path: 'aboutus', component: AboutusComponent},
 {path: 'detail/:id', component: DrinkDetailsComponent, resolve: {drink: DrinkResolver} },
 ];

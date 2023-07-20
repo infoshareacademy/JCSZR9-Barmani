@@ -11,6 +11,7 @@ import {FormsModule} from "@angular/forms";
 export class MainSearchbarComponent {
   constructor(private drinkEndpoint: DrinkEndpointService){};
 
+
 isVisible = false;
 inputSearch: string = '';
 results: DrinkSearchModel[] = [];
@@ -24,8 +25,13 @@ onKeyUp(input: string){
       
      this.drinkEndpoint.autoCompleteMain(input).subscribe( data =>{
       this.results = data as DrinkSearchModel[];
-      this.isVisible = true;
-      console.log(data);
+      if(this.results.length > 0)
+      {
+        this.isVisible = true;
+      }
      });
+}
+onClick(){
+  this.isVisible = false;
 }
 }

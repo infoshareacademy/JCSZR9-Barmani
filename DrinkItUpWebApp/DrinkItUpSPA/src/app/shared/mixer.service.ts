@@ -18,7 +18,7 @@ export class MixerService {
   resultsSub= new Subject<Map<string,DrinkSearchModel[]>>();
   autoCompleteIngredientsSub = new Subject<string[]>();
 
-  private chosenIngredientsNames: string[] = [];
+  public chosenIngredientsNames: string[] = [];
   private ingredientNames: string[] = [];
   private results: Map<string,DrinkSearchModel[]> = new Map<string,DrinkSearchModel[]>();
 

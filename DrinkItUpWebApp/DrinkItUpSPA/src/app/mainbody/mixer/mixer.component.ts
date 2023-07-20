@@ -21,9 +21,14 @@ constructor(private mixerService: MixerService){
     this.ingredientNames = data
   });
 
+  if(this.mixerService.chosenIngredientsNames.length ===0){
   this.mixerService.chosenIngredientsNamesSub.subscribe((data: string[]) =>{
     this.chosenIngredientsNames = data
   });
+  }
+  else{
+    this.chosenIngredientsNames = this.mixerService.chosenIngredientsNames;
+  }
 
   this.mixerService.ingredientsNamesSub.subscribe((data: string[]) =>{
     this.allIngredientsNames = data
@@ -34,10 +39,10 @@ constructor(private mixerService: MixerService){
     res = data;
     console.log(res);
     let keys = Object.keys(res).sort().reverse();
-    console.log(keys);
+    
     for(let key of keys)
     {
-      
+
     }
     this.results = res;
   });

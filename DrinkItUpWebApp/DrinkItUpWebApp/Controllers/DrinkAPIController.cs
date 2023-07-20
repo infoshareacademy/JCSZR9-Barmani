@@ -42,6 +42,19 @@ namespace DrinkItUpWebApp.Controllers
         }
 
         [HttpGet]
+        [Route("search/{input}")]
+        public async Task<IActionResult> SearchByNameOrOneIngredient(string input)
+        {
+            var drinks = await _searchByNameOrOneIngredient.SearchByName(input);
+            var drinksModel = new List<DrinkSearchModel>();
+            if (drinks != null)
+            {
+                return Ok(drinks);
+            }
+            return Ok(null);
+        }
+
+        [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> DrinkDetails(int id)
         {

@@ -33,3 +33,9 @@
         background-color: darkkhaki;
         color: black;
     }
+    .pinkborda {
+        border: 4px;
+        border-radius: 10px;
+        border-style: solid;
+        border-color: #da0b85;
+    }

@@ -16,21 +16,34 @@ export class DrinkEndpointService {
     return this.http.get(this.baseURL+'/autocompletemain/'+input);
    };
 
+   searchByNameOrOneIngredient(input: string){
+    return this.http.get(this.baseURL+'/search/'+input);
+   };
+
    autoCompleteMixer(input: string, chosen: string){
     return this.http.get(this.baseURL+'/mixer/autocompleteingredient/'+ input + '/' + chosen);
    };
+
    getAll(){
-    return this.http.get<DrinkSearchModel>(this.baseURL+'/GetAll');
-   }
+    return this.http.get<DrinkSearchModel[]>(this.baseURL+'/GetAll');
+   };
 
 
    
    getById(id: number){
     return this.http.get<DrinkModel>(this.baseURL+'/'+id);
-   }
+   };
 
    searchByIngredients(searchNames: string){
-    return this.http.get(this.baseURL+'/mixer/'+searchNames);
-   }
+    return this.http.get<Map<string,DrinkSearchModel[]>>(this.baseURL+'/mixer/'+searchNames);
+   };
+
+   getByMainAlcoholId(id: number){
+    return this.http.get<DrinkSearchModel[]>(this.baseURL+'/byCategory/alcohol/'+id);
+   };
+
+   getByDifficultyId(id: number){
+    return this.http.get<DrinkSearchModel[]>(this.baseURL+'/byCategory/difficulty/'+id);
+   };
 }
 
