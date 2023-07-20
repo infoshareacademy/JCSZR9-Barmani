@@ -32,7 +32,7 @@ namespace DrinkItUpTests
         }
 
         [Fact]
-        public async Task UnitService_AddUnit_EmptyUnitDtoNotAddedToDatabase()
+        public async Task UnitService_AddUnit_EmptyUnitDtoThrowsException()
         {
             //Assign
             var serviceContainer = _container;
@@ -40,10 +40,10 @@ namespace DrinkItUpTests
             var unitDto = new UnitDto();
 
             //Act
-            var testUnit = await unitService.AddUnit(unitDto);
-            var results = await unitService.GetAll();
+            Func<Task> func = async () => await unitService.AddUnit(unitDto);
+
             //Assert
-            results.Should().HaveCount(0);
+            await func.Should().ThrowAsync<Exception>();
             serviceContainer.EndOfTest();
         }
 
@@ -182,7 +182,7 @@ namespace DrinkItUpTests
         }
 
         [Fact]
-        public async Task UnitService_IsUnitUnique_EmptyStringNameReturnsFalse()
+        public async Task UnitService_IsUnitUnique_EmptyStringThrowsException()
         {
             //Assing
             var serviceContainer = _container;
@@ -191,10 +191,10 @@ namespace DrinkItUpTests
             await unitService.AddUnit(unitDto);
 
             //Act
-            var result = await unitService.IsUnitUnique("");
+            Func<Task> func = async () => await unitService.IsUnitUnique("");
 
             //Assert
-            result.Should().BeFalse();
+            await func.Should().ThrowAsync<Exception>();
             serviceContainer.EndOfTest();
         }
 
@@ -220,7 +220,7 @@ namespace DrinkItUpTests
         }
 
         [Fact]
-        public async Task UnitService_Update_EmptyNameNotUpdatedInDataBase()
+        public async Task UnitService_Update_EmptyNameThrowException()
         {
             //Assign
             var serviceContainer = _container;
@@ -232,11 +232,10 @@ namespace DrinkItUpTests
             serviceContainer.DetachModel();
 
             //Act
-            await unitService.Update(unitDtoUpdated);
-            var unitFromDatabase = await unitService.GetById(1);
+            Func<Task> func = async () => await unitService.Update(unitDtoUpdated);
 
             //Assert
-            unitDtoUpdated.Name.Should().NotBe(unitFromDatabase.Name);
+            await func.Should().ThrowAsync<Exception>();
             serviceContainer.EndOfTest();
         }
 
