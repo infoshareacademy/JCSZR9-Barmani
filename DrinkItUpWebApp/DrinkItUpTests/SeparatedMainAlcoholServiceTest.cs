@@ -267,7 +267,7 @@ namespace DrinkItUpTests
         }
 
         [Fact]
-        public async Task MAServices_Add_MAWithoutNameNotAddedToDB()
+        public async Task MAServices_Add_EmptyMADtoThrowsException()
         {
             //Assing
             var serviceContainer = _container;
@@ -275,11 +275,10 @@ namespace DrinkItUpTests
             var mainAlcoholDto = new MainAlcoholDto { Name = "" };
 
             //Act
-            await mainAlcoholService.AddMainAlcohol(mainAlcoholDto);
-            var result = await mainAlcoholService.GetAll();
+            Func<Task> func = async () => await mainAlcoholService.AddMainAlcohol(mainAlcoholDto);
 
             //Assert
-            result.Count.Should().Be(0);
+            await func.Should().ThrowAsync<Exception>();
             serviceContainer.EndOfTest();
         }
 
@@ -289,19 +288,6 @@ namespace DrinkItUpTests
             //Assign
             var serviceContainer = _container;
             var mainAlcoholService = serviceContainer.GetMainAlcoholService();
-            var mainAlcoholDtos = new List<MainAlcoholDto>
-            {
-                new MainAlcoholDto { Name = "" },
-                new MainAlcoholDto { Name = "" },
-                new MainAlcoholDto { Name = "" },
-                new MainAlcoholDto { Name = "" },
-                new MainAlcoholDto { Name = "" },
-            };
-
-            foreach (var item in mainAlcoholDtos)
-            {
-                await mainAlcoholService.AddMainAlcohol(item);
-            }
 
             //Act
             var result = await mainAlcoholService.GetAll();
@@ -313,23 +299,23 @@ namespace DrinkItUpTests
         }
 
         [Fact]
-        public async Task MAServices_IsMAUnique_EmptyStringReturnsFalse()
+        public async Task MAServices_IsMAUnique_EmptyStringThrowsExeption()
         {
             //Assing
             var serviceContainer = _container;
             var mainAlcoholService = serviceContainer.GetMainAlcoholService();
 
             //Act
-            var result = await mainAlcoholService.IsMainAlcoholUnique(string.Empty);
+            Func<Task> func = async () => await mainAlcoholService.IsMainAlcoholUnique(string.Empty);
 
             //Assert
-            result.Should().BeFalse();
+            await func.Should().ThrowAsync<Exception>();
             serviceContainer.EndOfTest();
 
         }
 
         [Fact]
-        public async Task MAServices_Update_EmptyMANameShoudNotUpdateBasicMAName()
+        public async Task MAServices_Update_EmptyMANameThrowsExeption()
         {
             //Assing
             var serviceContainer = _container;
@@ -341,11 +327,10 @@ namespace DrinkItUpTests
             serviceContainer.DetachModel();
 
             //Act
-            await mainAlcoholService.Update(mainAlcoholToUpdate);
-            var updatedMA = await mainAlcoholService.GetById(1);
+            Func<Task> func = async () => await mainAlcoholService.Update(mainAlcoholToUpdate);
 
             //Assert
-            updatedMA.Name.Should().Be(item.Name);
+            await func.Should().ThrowAsync<Exception>();
             serviceContainer.EndOfTest();
         }
 
