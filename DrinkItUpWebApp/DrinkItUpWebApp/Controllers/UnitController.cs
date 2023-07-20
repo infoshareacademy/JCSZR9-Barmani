@@ -97,8 +97,8 @@ namespace DrinkItUpWebApp.Controllers
             }
             await _unitService.Update(unitDto);
             return RedirectToAction(nameof(Edit), new { id = unitDto.UnitId });
-
         }
+
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
@@ -148,7 +148,6 @@ namespace DrinkItUpWebApp.Controllers
                 return RedirectToAction(nameof(Index));
             else
                 return RedirectToAction(nameof(Delete), new { id = id });
-
         }
 
 
