@@ -1,5 +1,6 @@
 using DrinkItUpBusinessLogic;
 using DrinkItUpBusinessLogic.Interfaces;
+using DrinkItUpWebApp.CustomExceptionMiddleware;
 using DrinkItUpWebApp.DAL.Entities;
 using DrinkItUpWebApp.DAL.Repositories;
 using DrinkItUpWebApp.DAL.Repositories.Interfaces;
@@ -38,6 +39,7 @@ namespace DrinkItUpWebApp
             builder.Services.AddScoped<IUnitRepository, UnitRepository>();
             builder.Services.AddScoped<IMainAlcoholRepository, MainAlcoholRepository>();
             builder.Services.AddScoped<IDifficultyRepository, DifficultyRepository>();
+
             //AutoMapper
             builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
@@ -50,6 +52,8 @@ namespace DrinkItUpWebApp
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -69,3 +73,4 @@ namespace DrinkItUpWebApp
         }
     }
 }
+public partial class Program { }

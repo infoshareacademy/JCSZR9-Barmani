@@ -28,7 +28,10 @@ namespace DrinkItUpBusinessLogic
 
         public async Task<MainAlcoholDto> AddMainAlcohol(MainAlcoholDto mainAlcoholDto)
         {
-
+            if (string.IsNullOrWhiteSpace(mainAlcoholDto.Name))
+            {
+                return mainAlcoholDto;
+            }
             var mainAlcoholEntity = _mapper.Map<MainAlcohol>(mainAlcoholDto);
             await _repository.Add(mainAlcoholEntity);
             await _repository.Save();
@@ -52,7 +55,7 @@ namespace DrinkItUpBusinessLogic
 
         public async Task<MainAlcoholDto> GetById(int id)
         {
-            return _mapper.Map<MainAlcoholDto>(await _repository.GetById(id)); 
+            return _mapper.Map<MainAlcoholDto>(await _repository.GetById(id) ?? new MainAlcohol()); 
         }
 
         public async Task<MainAlcoholDto> GetByName(string name)
@@ -69,6 +72,10 @@ namespace DrinkItUpBusinessLogic
 
         public async Task<bool> IsMainAlcoholUnique(string name)
         {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return false;
+            }
             var isUnique = !await _repository.GetAll().Where(u => u.Name == name).AnyAsync();
             return isUnique;
         }
@@ -87,6 +94,10 @@ namespace DrinkItUpBusinessLogic
 
         public async Task<MainAlcoholDto> Update(MainAlcoholDto mainAlcoholDto)
         {
+            if (string.IsNullOrWhiteSpace(mainAlcoholDto.Name))
+            {
+                return mainAlcoholDto;
+            }
             var mainAlcohol = _mapper.Map<MainAlcohol>(mainAlcoholDto);
             _repository.Update(mainAlcohol);
             await _repository.Save();

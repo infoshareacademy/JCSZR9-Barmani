@@ -37,6 +37,11 @@ namespace DrinkItUpWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(UnitModel model)
         {
+            if(model.Name == null || model.Name == string.Empty)
+            {
+                return BadRequest("Name is Required!");
+            }
+
             if(!await _unitService.IsUnitUnique(model.Name))
                 return RedirectToAction(nameof(Index));
 

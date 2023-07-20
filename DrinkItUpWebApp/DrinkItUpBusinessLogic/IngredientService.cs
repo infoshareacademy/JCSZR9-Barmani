@@ -46,13 +46,20 @@ namespace DrinkItUpBusinessLogic
 
         public async Task<IngredientDto> GetById(int id)
         {
-            var ingredient = _mapper.Map<IngredientDto>(await _repository.GetById(id));
+            var ingredient = _mapper.Map<IngredientDto>(await _repository.GetById(id) ?? new Ingredient());
+            if (ingredient.Name != null)
+            {
             ingredient.IsUsed = await IngredientIsUsed(id);
+            }
             return ingredient;
         }
 
         public async Task<IngredientDto> Add(IngredientDto ingredientDto)
         {
+            if (string.IsNullOrWhiteSpace(ingredientDto.Name)|| ingredientDto.UnitId == 0)
+            {
+                throw new Exception("Trying to add Ingredient without Name or UnitId");
+            }
             var ingredient = _mapper.Map<Ingredient>(ingredientDto);
             await _repository.Add(ingredient);
             await _repository.Save();
@@ -69,6 +76,10 @@ namespace DrinkItUpBusinessLogic
 
         public async Task<bool> IsIngredientUnique(IngredientDto ingredientToCheck)
         {
+            if (string.IsNullOrWhiteSpace(ingredientToCheck.Name) || ingredientToCheck.UnitId == 0)
+            {
+                throw new Exception("Trying to check ingredient without name or UnitId");
+            }
             var ingredients = await _repository.GetAll()
                 .Where(i => i.Name== ingredientToCheck.Name && i.UnitId == ingredientToCheck.UnitId)
                 .ToListAsync();   
@@ -79,6 +90,10 @@ namespace DrinkItUpBusinessLogic
 
         public async Task<IngredientDto> Update(IngredientDto ingredient)
         {
+            if (string.IsNullOrWhiteSpace(ingredient.Name) || ingredient.UnitId == 0)
+            {
+                throw new Exception("Trying to update ingredient without name or UnitId");
+            }
             var ingredientToUpdate = _mapper.Map<Ingredient>(ingredient);
             _repository.Update(ingredientToUpdate);
             await _repository.Save();

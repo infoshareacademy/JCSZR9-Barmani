@@ -47,7 +47,7 @@ namespace DrinkItUpWebApp.Controllers
 			return Json(null);
 		}
 
-		
+		[HttpPost]
 		public async Task<IActionResult> DrinkSearchBar(string input)
 		{
 			string msg = "Wyniki wyszukiwania:";
