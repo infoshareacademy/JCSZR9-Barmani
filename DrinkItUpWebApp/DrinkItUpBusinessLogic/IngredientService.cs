@@ -58,7 +58,7 @@ namespace DrinkItUpBusinessLogic
         {
             if (string.IsNullOrWhiteSpace(ingredientDto.Name)|| ingredientDto.UnitId == 0)
             {
-                return ingredientDto;
+                throw new Exception("Trying to add Ingredient without Name or UnitId");
             }
             var ingredient = _mapper.Map<Ingredient>(ingredientDto);
             await _repository.Add(ingredient);
@@ -78,7 +78,7 @@ namespace DrinkItUpBusinessLogic
         {
             if (string.IsNullOrWhiteSpace(ingredientToCheck.Name) || ingredientToCheck.UnitId == 0)
             {
-                return false;
+                throw new Exception("Trying to check ingredient without name or UnitId");
             }
             var ingredients = await _repository.GetAll()
                 .Where(i => i.Name== ingredientToCheck.Name && i.UnitId == ingredientToCheck.UnitId)
@@ -92,7 +92,7 @@ namespace DrinkItUpBusinessLogic
         {
             if (string.IsNullOrWhiteSpace(ingredient.Name) || ingredient.UnitId == 0)
             {
-                return ingredient;
+                throw new Exception("Trying to update ingredient without name or UnitId");
             }
             var ingredientToUpdate = _mapper.Map<Ingredient>(ingredient);
             _repository.Update(ingredientToUpdate);

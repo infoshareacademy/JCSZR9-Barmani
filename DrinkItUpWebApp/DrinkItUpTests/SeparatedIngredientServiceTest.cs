@@ -33,7 +33,7 @@ namespace DrinkItUpTests
         }
 
         [Fact]
-        public async Task IngredientService_Add_IngredientWithoutNameNotAddedToDatabase()
+        public async Task IngredientService_Add_IngredientWithoutNameThrowsException()
         {
             //Assign
             var serviceContainer = _container;
@@ -43,11 +43,13 @@ namespace DrinkItUpTests
             await unitService.AddUnit(new UnitDto { Name = "trochę" });
 
             //Act
-            await ingredientService.Add(ingredientDto);
-            var result = await ingredientService.GetAllIngredientsWithUnits();
+            Func<Task> act = async () => await ingredientService.Add(ingredientDto);
+
 
             //Assert
-            result.Should().HaveCount(0);
+            await act.Should().ThrowAsync<Exception>();
+
+
             serviceContainer.EndOfTest();
         }
 
@@ -62,11 +64,11 @@ namespace DrinkItUpTests
             await unitService.AddUnit(new UnitDto { Name = "trochę" });
 
             //Act
-            await ingredientService.Add(ingredientDto);
-            var result = await ingredientService.GetAllIngredientsWithUnits();
+            Func<Task> act = async () => await ingredientService.Add(ingredientDto);
+
 
             //Assert
-            result.Should().HaveCount(0);
+            await act.Should().ThrowAsync<Exception>();
             serviceContainer.EndOfTest();
         }
 
@@ -147,7 +149,7 @@ namespace DrinkItUpTests
         }
 
         [Fact]
-        public async Task IngredientService_GetAllIngredientsWithUnits_ReturnException()
+        public async Task IngredientService_GetAllIngredientsWithUnits_ReturnEmptyList()
         {
             //Assign
             var serviceContainer = _container;
@@ -213,18 +215,20 @@ namespace DrinkItUpTests
         }
 
         [Fact]
-        public async Task IngredientService_IsIngredientUnique_EmptyIngredientNameReturnsFalse()
+        public async Task IngredientService_IsIngredientUnique_EmptyIngredientNameReturnsException()
         {
             //Assing
             var serviceContainer = _container;
             var ingredientService = serviceContainer.GetIngredientService();
             var ingredientDto = new IngredientDto { Name = "", UnitId = 1 };
 
+            
             //Act
-            var result = await ingredientService.IsIngredientUnique(ingredientDto);
+            Func<Task> act = async () => await ingredientService.IsIngredientUnique(ingredientDto);
+
 
             //Assert
-            result.Should().BeFalse();
+            await act.Should().ThrowAsync<Exception>();
             serviceContainer.EndOfTest();
         }
 
@@ -237,10 +241,11 @@ namespace DrinkItUpTests
             var ingredientDto = new IngredientDto { Name = "Chili" };
 
             //Act
-            var result = await ingredientService.IsIngredientUnique(ingredientDto);
+            Func<Task> act = async () => await ingredientService.IsIngredientUnique(ingredientDto);
+
 
             //Assert
-            result.Should().BeFalse();
+            await act.Should().ThrowAsync<Exception>();
             serviceContainer.EndOfTest();
         }
 
@@ -320,7 +325,7 @@ namespace DrinkItUpTests
 
 
         [Fact]
-        public async Task IngredientService_Update_EmptyIngredientNameNotUpdatedInDatabase()
+        public async Task IngredientService_Update_EmptyIngredientThrowsException()
         {
             //Assign
             var serviceContainer = _container;
@@ -332,11 +337,12 @@ namespace DrinkItUpTests
             serviceContainer.DetachModel();
 
             //Act
-            await ingredientService.Update(ingredientDtoUpdated);
-            var ingredientFromDatabase = await ingredientService.GetById(1);
+            
+            Func<Task> act = async () => await ingredientService.Update(ingredientDtoUpdated);
+
 
             //Assert
-            ingredientFromDatabase.Name.Should().Be(ingredientDto.Name);
+            await act.Should().ThrowAsync<Exception>();
             serviceContainer.EndOfTest();
         }
 
@@ -353,11 +359,11 @@ namespace DrinkItUpTests
             serviceContainer.DetachModel();
 
             //Act
-            await ingredientService.Update(ingredientDtoUpdated);
-            var ingredientFromDatabase = await ingredientService.GetById(1);
+            Func<Task> act = async () => await ingredientService.Update(ingredientDtoUpdated);
+
 
             //Assert
-            ingredientFromDatabase.Name.Should().Be(ingredientDto.Name);
+            await act.Should().ThrowAsync<Exception>();
             serviceContainer.EndOfTest();
         }
 

@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using DrinkItUpWebApp.Models;
+using System.Net;
 
 
 namespace DrinkItUpWebApp.CustomExceptionMiddleware

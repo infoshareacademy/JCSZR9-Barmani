@@ -1,4 +1,4 @@
-﻿namespace DrinkItUpWebApp.Models
+﻿namespace DrinkItUpWebApp.Models;
 
 using System.Text.Json;
 
