@@ -28,8 +28,8 @@ namespace DrinkItUpBusinessLogic
 
         public async Task<UnitDto> AddUnit(UnitDto unitDto)
         {
-            if (unitDto.Name == null)
-                return unitDto;
+            if (string.IsNullOrWhiteSpace(unitDto.Name))
+                throw new Exception("Trying to add Unit without Name");
 
             var unitEntity = _mapper.Map<Unit>(unitDto);
             await _repository.Add(unitEntity);
@@ -65,8 +65,8 @@ namespace DrinkItUpBusinessLogic
         public async Task<bool> IsUnitUnique(string name)
         {
             if (String.IsNullOrWhiteSpace(name))
-                return false;
-
+                throw new Exception("Trying to check Unit without Name");
+            
             var isUnique = !await _repository.GetAll().Where(u => u.Name == name).AnyAsync();
             return isUnique;
         }
@@ -74,7 +74,7 @@ namespace DrinkItUpBusinessLogic
         public async Task<UnitDto> Update(UnitDto unitDto)
         {
             if (String.IsNullOrWhiteSpace(unitDto.Name))
-                return unitDto;
+                throw new Exception("Trying to update Unit without Name");
 
             var unit = _mapper.Map<Unit>(unitDto);
             _repository.Update(unit);
