@@ -30,7 +30,7 @@ namespace DrinkItUpBusinessLogic
         {
             if (string.IsNullOrWhiteSpace(mainAlcoholDto.Name))
             {
-                return mainAlcoholDto;
+                throw new Exception("Trying to add Main Alcohol without a name");
             }
             var mainAlcoholEntity = _mapper.Map<MainAlcohol>(mainAlcoholDto);
             await _repository.Add(mainAlcoholEntity);
@@ -74,7 +74,8 @@ namespace DrinkItUpBusinessLogic
         {
             if (string.IsNullOrWhiteSpace(name))
             {
-                return false;
+                throw new Exception("Trying to check Main Alcohol without a name");
+
             }
             var isUnique = !await _repository.GetAll().Where(u => u.Name == name).AnyAsync();
             return isUnique;
@@ -96,7 +97,8 @@ namespace DrinkItUpBusinessLogic
         {
             if (string.IsNullOrWhiteSpace(mainAlcoholDto.Name))
             {
-                return mainAlcoholDto;
+                throw new Exception("Trying to update Main Alcohol without a name");
+
             }
             var mainAlcohol = _mapper.Map<MainAlcohol>(mainAlcoholDto);
             _repository.Update(mainAlcohol);
