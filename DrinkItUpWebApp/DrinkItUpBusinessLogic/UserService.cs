@@ -3,9 +3,9 @@ using DrinkItUpBusinessLogic.DTOs;
 using DrinkItUpBusinessLogic.Interfaces;
 using DrinkItUpWebApp.DAL.Entities;
 using DrinkItUpWebApp.DAL.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using System.Data.Entity;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -63,7 +63,7 @@ namespace DrinkItUpBusinessLogic
         {
             var user = _mapper.Map<User>(userDto);
 
-            user.RoleId = 1;
+            user.RoleId = 3;
             user.PasswordHash = _passwordHasher.Hash(user.Email, userDto.Password);
 
             await _userRepository.Add(user);
@@ -73,10 +73,10 @@ namespace DrinkItUpBusinessLogic
 
         }
 
-        public async Task<AuthenticateResponse> Authenticate(AuthenticateRequest model)
+        public async Task<AuthenticateResponse> Authenticate(AuthenticateRequest request)
         {
             var users = await _userRepository.GetAll().ToListAsync();
-            var user = users.SingleOrDefault(x => x.Email == model.Email && _passwordHasher.Verify(x.PasswordHash, model.Email, model.Password));
+            var user = users.FirstOrDefault(x => x.Email == request.Email && _passwordHasher.Verify(x.PasswordHash, request.Email, request.Password));
             // return null if user not found
             if (user == null) return null;
 

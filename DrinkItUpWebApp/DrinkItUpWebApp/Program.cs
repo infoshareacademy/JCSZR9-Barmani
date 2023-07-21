@@ -3,6 +3,7 @@ using DrinkItUpBusinessLogic.Interfaces;
 using DrinkItUpWebApp.DAL.Entities;
 using DrinkItUpWebApp.DAL.Repositories;
 using DrinkItUpWebApp.DAL.Repositories.Interfaces;
+using DrinkItUpWebApp.Middleware.Authorization;
 using DrinkItUpWebApp.Middleware.CustomExceptionMiddleware;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,6 +19,8 @@ namespace DrinkItUpWebApp
             builder.Services.AddControllersWithViews()
                 .AddRazorRuntimeCompilation(); // Wprowadzanie zmian w HTMLu przy zbudowanej solucji!
 
+            builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+
             // DbContext
             builder.Services.AddDbContext<DrinkContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DrinkContextCS")));
 
@@ -31,6 +34,8 @@ namespace DrinkItUpWebApp
             builder.Services.AddScoped<IIngredientService, IngredientService>();
             builder.Services.AddScoped<IDrinkService, DrinkService>();
             builder.Services.AddScoped<IByCategoryService, ByCategoryService>();
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 
             // Repositories
             builder.Services.AddScoped<IIngredientRepository, IngredientRepository>();
@@ -39,6 +44,8 @@ namespace DrinkItUpWebApp
             builder.Services.AddScoped<IUnitRepository, UnitRepository>();
             builder.Services.AddScoped<IMainAlcoholRepository, MainAlcoholRepository>();
             builder.Services.AddScoped<IDifficultyRepository, DifficultyRepository>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+
 
             //AutoMapper
             builder.Services.AddAutoMapper(typeof(Program).Assembly);
@@ -53,7 +60,7 @@ namespace DrinkItUpWebApp
                 app.UseHsts();
             }
 
-            app.UseMiddleware<ExceptionMiddleware>();
+            
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -62,13 +69,18 @@ namespace DrinkItUpWebApp
 
             app.UseAuthorization();
 
+            app.UseMiddleware<ExceptionMiddleware>();
+            app.UseMiddleware<JwtMiddleware>();
+
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=AgeVerification}/{id?}");
+
             app.UseCors(x => x
-         .AllowAnyOrigin()
-         .AllowAnyMethod()
-         .AllowAnyHeader());
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+
             app.Run();
         }
     }

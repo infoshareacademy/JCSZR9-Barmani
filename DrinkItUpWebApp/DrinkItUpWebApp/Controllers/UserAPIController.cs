@@ -21,9 +21,9 @@ namespace DrinkItUpWebApp.Controllers
         }
 
         [HttpPost("authenticate")]
-        public IActionResult Authenticate(AuthenticateRequest model)
+        public async Task<IActionResult> Authenticate([FromBody]AuthenticateRequest model)
         {
-            var response = _userService.Authenticate(model);
+            var response = await _userService.Authenticate(model);
 
             if (response == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
@@ -33,6 +33,7 @@ namespace DrinkItUpWebApp.Controllers
 
         [Authorize]
         [HttpGet]
+        [Route("GetAll")]
         public async Task<IActionResult> GetAll()
         {
             var usersDtos = await _userService.GetAll();

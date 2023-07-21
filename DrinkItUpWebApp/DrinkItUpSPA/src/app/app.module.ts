@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
@@ -30,6 +30,10 @@ import { MainSearchbarComponent } from './navigation/main-searchbar/main-searchb
 import { DrinkDetailsComponent } from './mainbody/drink-details/drink-details.component';
 import { DrinkResolver } from './shared/drinkResolver.service';
 import { ResultsSearchComponent } from './mainbody/results-search/results-search.component';
+import { JwtInterceptor } from './shared/jwtInterceptor';
+import { ErrorInterceptor } from './shared/errorInterceptor';
+import { AuthGuardService } from './shared/auth-guard.service';
+import { LoginComponent } from './mainbody/login/login.component';
 
 const appRoutes: Routes = [
 {path: '', component: LandingComponent},
@@ -37,9 +41,10 @@ const appRoutes: Routes = [
 {path: 'registration', component: RegistrationComponent},
 {path: 'forgotPassword', component: ForgotPasswordComponent},
 {path: 'bycategory', component: ByCategoryComponent},
-{path: 'search/:input', component: SearchComponent},
+{path: 'search/:input', component: SearchComponent, canActivate: [AuthGuardService]},
 {path: 'aboutus', component: AboutusComponent},
 {path: 'detail/:id', component: DrinkDetailsComponent, resolve: {drink: DrinkResolver} },
+{path: 'login', component: LoginComponent },
 ];
 
 @NgModule({
@@ -64,12 +69,16 @@ const appRoutes: Routes = [
     ForgotPasswordComponent,
     MainSearchbarComponent,
     DrinkDetailsComponent,
-    ResultsSearchComponent
+    ResultsSearchComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, RouterModule.forRoot(appRoutes),FormsModule,CommonModule
   ],
-  providers: [DrinkResolver],
+  providers: [DrinkResolver,
+  {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi:true},
+  {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi:true}
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

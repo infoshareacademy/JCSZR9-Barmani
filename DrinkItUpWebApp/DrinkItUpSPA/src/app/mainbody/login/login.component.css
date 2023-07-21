@@ -1,0 +1,44 @@
+.foto {
+    max-width: 300px;
+}
+.mainBody{
+    background-color: #6c1048;
+    border: 1px;
+    border-color: darkmagenta;
+    border-style:double;
+    min-height: 750px;
+}
+
+.secondBody{
+    background-color: #6c1048;
+    border: 1px;
+    border-color: darkmagenta;
+    border-style:double;
+    min-height: 100px;
+}
+.ingredientListSearch {
+    min-height: 100px;
+    max-height: 300px;
+    overflow: hidden auto;
+}
+.ingredientList {
+    min-height: 100px;
+    max-height: 300px;
+    overflow: hidden auto;
+}
+.cardSearch {
+    text-decoration: none;
+    color: white;
+    background-color: black;
+}
+
+    .cardSearch:hover {
+        background-color: darkkhaki;
+        color: black;
+    }
+    .pinkborda {
+        border: 4px;
+        border-radius: 10px;
+        border-style: solid;
+        border-color: #da0b85;
+    }
