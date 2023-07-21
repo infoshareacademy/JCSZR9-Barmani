@@ -9,6 +9,6 @@ namespace DrinkItUpBusinessLogic.Interfaces
 {
     public interface IUserService
     {
-        Task Register(UserDto userDto);
+        Task<UserDto> Register(UserDto userDto);
     }
 }
