@@ -134,6 +134,41 @@ namespace DrinkItUpWebApp.DAL.Migrations
                     b.ToTable("MainAlcohols");
                 });
 
+            modelBuilder.Entity("DrinkItUpWebApp.DAL.Entities.Role", b =>
+                {
+                    b.Property<int>("RoleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleId"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.HasKey("RoleId");
+
+                    b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            RoleId = 1,
+                            Name = "Administrator"
+                        },
+                        new
+                        {
+                            RoleId = 2,
+                            Name = "Użytkownik Premium"
+                        },
+                        new
+                        {
+                            RoleId = 3,
+                            Name = "Użytkownik"
+                        });
+                });
+
             modelBuilder.Entity("DrinkItUpWebApp.DAL.Entities.Unit", b =>
                 {
                     b.Property<int>("UnitId")
@@ -150,6 +185,41 @@ namespace DrinkItUpWebApp.DAL.Migrations
                     b.HasKey("UnitId");
 
                     b.ToTable("Units");
+                });
+
+            modelBuilder.Entity("DrinkItUpWebApp.DAL.Entities.User", b =>
+                {
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserNameToShow")
+                        .IsRequired()
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
+
+                    b.HasKey("UserId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("DrinkItUpWebApp.DAL.Entities.Drink", b =>
@@ -199,6 +269,17 @@ namespace DrinkItUpWebApp.DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("Unit");
+                });
+
+            modelBuilder.Entity("DrinkItUpWebApp.DAL.Entities.User", b =>
+                {
+                    b.HasOne("DrinkItUpWebApp.DAL.Entities.Role", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("DrinkItUpWebApp.DAL.Entities.Drink", b =>

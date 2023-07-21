@@ -21,6 +21,21 @@ namespace DrinkItUpWebApp.DAL.Entities
         public DbSet<DrinkIngredient> DrinkIngredients  { get;set; }
         public DbSet<Unit> Units { get;set; }
         public DbSet<Ingredient> Ingredients { get;set; }
-        
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Role>()
+                .HasData(new Role[]
+                {
+                    new Role {RoleId = 1, Name = "Administrator"},
+                    new Role {RoleId = 2, Name = "Użytkownik Premium"},
+                    new Role {RoleId = 3, Name = "Użytkownik"}
+
+                });
+
+        }
+
     }
 }

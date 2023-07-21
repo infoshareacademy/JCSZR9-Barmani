@@ -15,27 +15,28 @@
                     <p class="fw-bold text-white">Nie masz konta? Na co jeszcze czekasz?</p>
                     <div class="mb-3">
                       <label for="email" class="form-label">Adres e-mail:</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      <input type="email" [(ngModel)]="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Hasło:</label>
-                        <input type="password" class="form-control" id="password">
+                        <input type="password" [(ngModel)]="password" class="form-control" name="password" id="password">
                       </div>
                       <div class="mb-3">
                         <label for="passwordConfirm" class="form-label">Powtórz hasło:</label>
-                        <input type="password" class="form-control" id="passwordConfirm">
+                        <input type="password" [(ngModel)]="confirmPassword" class="form-control" name="passwordConfirm" id="passwordConfirm">
                       </div>
                       <div class="mb-3">
                         <label for="username" class="form-label">Nazwa użytkownika</label>
-                        <input type="text" class="form-control" id="username" aria-describedby="usernameHelp">
+                        <input type="text" [(ngModel)]="userNameToShow" class="form-control" name="username" id="username" aria-describedby="usernameHelp">
                         <div id="usernameHelp" class="form-text fs-6 text-white">Nazwa ta będzie pokazywana np. przy dodanych drinkach.</div>
                       </div>
                       <div class="mb-3">
                         <label for="dateOfBirth" class="form-label">Data urodzenia:</label>
-                        <input type="date" class="form-control" id="dateOfBirth">
+                        <input type="date" [(ngModel)]="dateOfBirth" name="dateOfBirth" class="form-control" id="dateOfBirth">
                       </div>
                     <div class="text-center">
-                    <button type="submit" class="btn btn-warning btn-lg">Zarejestruj się</button>
+                    <button type="submit" (click)="onSubmit()" class="btn btn-warning btn-lg">Zarejestruj się</button>
+                    <button type="submit" (click)="onLogOut()" class="btn btn-warning btn-lg">Wyloguj!!!</button>
                     </div>
                   </form>
             </div>
