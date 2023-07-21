@@ -10,6 +10,6 @@ namespace DrinkItUpBusinessLogic.Interfaces
     {
         string Hash(string email, string password);
 
-        Task<bool> Verify(string email, string password);
+        bool Verify(string passwordHash, string email, string password);
     }
 }

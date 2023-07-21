@@ -1,9 +1,9 @@
 using DrinkItUpBusinessLogic;
 using DrinkItUpBusinessLogic.Interfaces;
-using DrinkItUpWebApp.CustomExceptionMiddleware;
 using DrinkItUpWebApp.DAL.Entities;
 using DrinkItUpWebApp.DAL.Repositories;
 using DrinkItUpWebApp.DAL.Repositories.Interfaces;
+using DrinkItUpWebApp.Middleware.CustomExceptionMiddleware;
 using Microsoft.EntityFrameworkCore;
 
 namespace DrinkItUpWebApp

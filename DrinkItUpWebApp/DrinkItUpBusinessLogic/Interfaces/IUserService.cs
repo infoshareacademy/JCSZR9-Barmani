@@ -10,5 +10,11 @@ namespace DrinkItUpBusinessLogic.Interfaces
     public interface IUserService
     {
         Task<UserDto> Register(UserDto userDto);
+
+        Task<IEnumerable<UserDto>> GetAll();
+
+        Task<UserDto> GetById(int id);
+
+        Task<AuthenticateResponse> Authenticate(AuthenticateRequest request);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DrinkItUpBusinessLogic.DTOs;
 using DrinkItUpBusinessLogic.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,6 +18,25 @@ namespace DrinkItUpWebApp.Controllers
         {
             _userService = userService;
             _mapper = mapper;
+        }
+
+        [HttpPost("authenticate")]
+        public IActionResult Authenticate(AuthenticateRequest model)
+        {
+            var response = _userService.Authenticate(model);
+
+            if (response == null)
+                return BadRequest(new { message = "Username or password is incorrect" });
+
+            return Ok(response);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var usersDtos = await _userService.GetAll();
+            return Ok(usersDtos);
         }
 
         [HttpPost]

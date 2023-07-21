@@ -2,7 +2,7 @@
 using System.Net;
 
 
-namespace DrinkItUpWebApp.CustomExceptionMiddleware
+namespace DrinkItUpWebApp.Middleware.CustomExceptionMiddleware
 {
     public class ExceptionMiddleware
     {

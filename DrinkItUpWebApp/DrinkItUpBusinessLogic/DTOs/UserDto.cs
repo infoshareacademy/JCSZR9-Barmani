@@ -5,7 +5,7 @@ namespace DrinkItUpBusinessLogic.DTOs
 {
     public class UserDto
     {
-        public int? UserId { get; set; }
+        public int UserId { get; set; }
         [MaxLength(70)]
         public string Email { get; set; } = null!;
         [MinLength(6)]

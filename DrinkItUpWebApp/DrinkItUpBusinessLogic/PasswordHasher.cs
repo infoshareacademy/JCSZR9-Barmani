@@ -6,11 +6,11 @@ namespace DrinkItUpBusinessLogic
 {
     public class PasswordHasher : IPasswordHasher
     {
-        private readonly IUserRepository _userRepository;
 
-        public PasswordHasher(IUserRepository userRepository)
+
+        public PasswordHasher()
         {
-            _userRepository = userRepository;
+            
         }
 
         public string Hash(string email, string password)
@@ -22,22 +22,15 @@ namespace DrinkItUpBusinessLogic
             return hash;
         }
 
-        public async Task<bool> Verify(string email, string password)
+        public bool Verify(string passwordHash, string email, string password)
         {
-            var user = await _userRepository.GetByEmail(email);
-            if (user == null)
-            {
-                return false;
-            }
-
             var hash = Hash(email, password);
-            if (hash == user.PasswordHash)
+            if (hash == passwordHash)
             {
                 return true;
             }
 
             return false;
-
         }
     }
 }
