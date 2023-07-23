@@ -53,21 +53,21 @@ namespace DrinkItUpWebApp.Controllers
         [ValidateAntiForgeryToken]
         [Route("update")]
 
-        public async Task<ActionResult> Update([FromBody] MainAlcoholDto mainAlcoholDto)
+        public async Task<ActionResult> Update([FromBody] DifficultyDto difficultyDto)
         {
-            if (!await _mainAlcoholService.IsMainAlcoholUnique(mainAlcoholDto.Name))
+            if (!await _difficultyService.IsDifficultyUnique(difficultyDto.Name))
             {
                 return BadRequest("Name is already used");
             }
 
-            return Ok(await _mainAlcoholService.GetById(mainAlcoholDto.MainAlcoholId));
+            return Ok(await _difficultyService.GetById(difficultyDto.DifficultyId));
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("delete/{id}")]
-        public async Task<ActionResult> Delete(int id, [FromBody] MainAlcoholDto mainAlcoholDto)
+        public async Task<ActionResult> Delete(int id, [FromBody] DifficultyDto difficultyDto)
         {
             if (await _mainAlcoholService.IsMainAlcoholUsed(id))
             {
