@@ -29,7 +29,7 @@ namespace DrinkItUpTests
         }
 
         [Fact]
-        public async Task DifficultyService_AddDifficulty_EmptyDifficultyDtoNotAddedToDatabase()
+        public async Task DifficultyService_AddDifficulty_EmptyDifficultyDtoThrowsException()
         {
             //Assign
             var serviceContainer = _container;
@@ -38,11 +38,10 @@ namespace DrinkItUpTests
 
 
             //Act
-            var testDifficulty = await difficultyService.AddDifficulty(difficultyDto);
-            var results = await difficultyService.GetAll();
+            Func<Task> func = async() => await difficultyService.AddDifficulty(difficultyDto);
 
             //Assert 
-            results.Should().HaveCount(0);
+            await func.Should().ThrowAsync<Exception>();
             serviceContainer.EndOfTest();
         }
 
@@ -201,7 +200,7 @@ namespace DrinkItUpTests
         }
 
         [Fact]
-        public async Task DifficultyService_IsUnitUnique_EmptyStringNameReturnsFalse()
+        public async Task DifficultyService_IsUnitUnique_EmptyStringNameThrowsException()
         {
             //Assing
             var serviceContainer = _container;
@@ -210,11 +209,15 @@ namespace DrinkItUpTests
             await difficultyService.AddDifficulty(difficultyDto);
 
             //Act
-            var result = await difficultyService.IsDifficultyUnique("");
+            Func<Task> func = async () => await difficultyService.IsDifficultyUnique("");
 
-            //Assert
-            result.Should().BeFalse();
+            //Assert 
+            await func.Should().ThrowAsync<Exception>();
             serviceContainer.EndOfTest();
+
+             
+
+
         }
 
         [Fact]
@@ -239,7 +242,7 @@ namespace DrinkItUpTests
         }
 
         [Fact]
-        public async Task DifficultyService_Update_EmptyNameNotUpdatedInDataBase()
+        public async Task DifficultyService_Update_EmptyNameThrowsException()
         {
             //Assign
             var serviceContainer = _container;
@@ -250,13 +253,13 @@ namespace DrinkItUpTests
 
             serviceContainer.DetachModel();
             //Act
-
-            await difficultyService.Update(difficultyDtoUpdated);
-            var difficultyFromDatabase = await difficultyService.GetById(1);
+            Func<Task> func = async () => await difficultyService.Update(difficultyDtoUpdated);
 
             //Assert
-            difficultyDtoUpdated.Name.Should().NotBe(difficultyFromDatabase.Name);
+            await func.Should().ThrowAsync<Exception>();
             serviceContainer.EndOfTest();
+
+
         }
 
         [Fact]
