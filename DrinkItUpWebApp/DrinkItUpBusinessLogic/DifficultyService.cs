@@ -25,7 +25,7 @@ namespace DrinkItUpBusinessLogic
         public async Task<DifficultyDto> AddDifficulty(DifficultyDto difficultyDto)
         {
             if (string.IsNullOrWhiteSpace(difficultyDto.Name))
-                return difficultyDto;
+                throw new Exception("Trying to add difficulty without a name");
 
             var difficultyEntity = _mapper.Map<Difficulty>(difficultyDto);
             await _repository.Add(difficultyEntity);
@@ -68,7 +68,8 @@ namespace DrinkItUpBusinessLogic
         public async Task<bool> IsDifficultyUnique(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
-                return false;
+                throw new Exception("Trying to check difficulty without a name");
+
             var isUnique = !await _repository.GetAll().Where(u => u.Name == name).AnyAsync();
             return isUnique;
         }
@@ -88,7 +89,8 @@ namespace DrinkItUpBusinessLogic
         public async Task<DifficultyDto> Update(DifficultyDto difficultyDto)
         {
             if (string.IsNullOrWhiteSpace(difficultyDto.Name))
-                return difficultyDto;
+                throw new Exception("Trying to update difficulty without a name");
+
             var difficulty = _mapper.Map<Difficulty>(difficultyDto);
             _repository.Update(difficulty);
             await _repository.Save();
