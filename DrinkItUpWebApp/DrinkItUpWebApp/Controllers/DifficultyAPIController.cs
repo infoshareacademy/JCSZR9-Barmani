@@ -69,13 +69,13 @@ namespace DrinkItUpWebApp.Controllers
         [Route("delete/{id}")]
         public async Task<ActionResult> Delete(int id, [FromBody] DifficultyDto difficultyDto)
         {
-            if (await _mainAlcoholService.IsMainAlcoholUsed(id))
+            if (await _difficultyService.IsDifficultyUsed(id))
             {
-                return BadRequest("Main Alcohol is in use, cannot delete");
+                return BadRequest("Difficulty is in use, cannot delete");
             }
 
 
-            if (await _mainAlcoholService.Remove(id))
+            if (await _difficultyService.Remove(id))
                 return Ok("Deleted");
             else
                 return StatusCode(500);
