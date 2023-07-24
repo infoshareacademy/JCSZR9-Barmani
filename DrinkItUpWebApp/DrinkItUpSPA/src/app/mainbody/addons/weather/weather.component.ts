@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { map, tap } from 'rxjs';
+import { WeatherEndpointService } from 'src/app/shared/weather-endpoint.service';
+import { Forecast, WeatherModel } from 'src/app/shared/weather.model';
 
 @Component({
   selector: 'app-weather',
@@ -6,5 +9,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./weather.component.css']
 })
 export class WeatherComponent {
-
+  weatherLoaded = false;
+  city:string = '';
+  forecast: any = {};
+  constructor(private weatherEndpoint: WeatherEndpointService){}
+onClick(){
+  this.weatherEndpoint.getWeather(this.city).pipe(
+    map((data: WeatherModel) => {
+      this.forecast = data;
+    }),
+    tap(_ => this.weatherLoaded = true)
+  )
+  .subscribe(_ => {
+    console.log('helllo' + this.forecast)
+  });
+}
 }

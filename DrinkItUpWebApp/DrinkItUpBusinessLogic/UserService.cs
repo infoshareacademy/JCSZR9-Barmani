@@ -75,7 +75,7 @@ namespace DrinkItUpBusinessLogic
 
         public async Task<AuthenticateResponse> Authenticate(AuthenticateRequest request)
         {
-            var users = await _userRepository.GetAll().ToListAsync();
+            var users = await _userRepository.GetAllWithRoles();
             var user = users.FirstOrDefault(x => x.Email == request.Email && _passwordHasher.Verify(x.PasswordHash, request.Email, request.Password));
             // return null if user not found
             if (user == null) return null;

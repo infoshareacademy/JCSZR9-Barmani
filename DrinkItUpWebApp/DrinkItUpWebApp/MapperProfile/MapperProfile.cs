@@ -39,6 +39,9 @@ namespace DrinkItUpWebApp.MapperProfile
             CreateMap<User, UserDto>();
             CreateMap<UserDto, User>();
 
+            CreateMap<Role, RoleDto>();
+            CreateMap<RoleDto, Role>();
+
 
         }
 	}

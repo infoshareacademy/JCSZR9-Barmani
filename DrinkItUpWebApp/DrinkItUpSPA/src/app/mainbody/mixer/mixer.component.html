@@ -68,16 +68,16 @@
                 <hr>
                 <div class="h-100 d-block mx-1 p-1 text-center">
                     
-                        <div class="d-flex my-1 border-bottom-4 border-warning justify-content-center" *ngIf="results.size === 0">
+                        <div class="d-flex my-1 border-bottom-4 border-warning justify-content-center" *ngIf="!results">
                             <p class="display-7 fw-bold ">Nie rozpocząłeś jeszcze swoich poszukiwań!</p>
                         </div>
-                    
-                            <div *ngFor="let recipient of results | keyvalue">
+                        
+                            <div *ngFor="let key of resultKeys">
                                 <div class="d-flex my-2 border-bottom border-warning " >
-                                    <p class="display-6 fw-bolder">{{recipient.key}}</p>
+                                    <p class="display-6 fw-bolder">{{key}}</p>
                                 </div>
                             
-                                <a class="text-decoration-none lead " [routerLink]="'../detail/'+drink.drinkId" href="#" *ngFor="let drink of recipient.value">
+                                <a class="text-decoration-none lead " [routerLink]="'../detail/'+drink.drinkId" href="#" *ngFor="let drink of results[key]">
                                     <div class="my-2 pinkborda cardSearch d-flex justify-content-center align-items-center" style="height: 160px;">
                                         <div class="row d-flex justify-content-center align-items-center" style="width: inherit;height:inherit;">
                                             <div class="col-2">
@@ -99,6 +99,7 @@
                                     </div>
                                 </a>
                             </div>
+                        
                 </div>
             </div>
         </div>

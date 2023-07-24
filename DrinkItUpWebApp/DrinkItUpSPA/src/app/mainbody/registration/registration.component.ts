@@ -22,7 +22,5 @@ let user: UserRegisterModel = new UserRegisterModel(this.userNameToShow,this.ema
 this.userService.register(user);
 }
 
-onLogOut(){
-  this.auth.logout();
-}
+
 }

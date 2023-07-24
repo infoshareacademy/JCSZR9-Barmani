@@ -1,8 +1,17 @@
-<form class="text-white my-2 p-3 rounded mainBody fw-bold">
+<form class="text-white my-2 p-3 rounded mainBody fw-bold" *ngIf="!weatherLoaded">
     <div class="mb-3">
         <label for="city" class="form-label">Podaj miasto:</label>
-        <input type="text" class="form-control" id="city" aria-describedby="cityHelp">
+        <input type="text" class="form-control" id="city" aria-describedby="cityHelp" name="city" [(ngModel)]="city">
         <div id="cityHelp" class="form-text text-white">Sprawdzimy czy można pić pod chmurką!</div>
     </div>
-    <button type="submit" class="btn btn-warning btn-lg">Sprawdź pogodę!</button>
+    <button type="submit" class="btn btn-warning btn-lg" (click)="onClick()">Sprawdź pogodę!</button>
 </form>
+<div *ngIf="weatherLoaded" class="mainBody text-white rounded fw-bold my-2 p-3">
+    <p class="fs-3">Prognoza dla: {{city}}</p>
+    <div *ngFor="let weather of forecast.forecast.forecastday">
+        <p>{{weather.date}}</p>
+        <img [src]="weather.day.condition.icon"/>
+        <span class="fs-3"> {{weather.day.maxtemp_c}} ℃</span>
+        
+    </div>
+</div>

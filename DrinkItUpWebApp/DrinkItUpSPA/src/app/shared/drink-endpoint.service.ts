@@ -35,7 +35,7 @@ export class DrinkEndpointService {
    };
 
    searchByIngredients(searchNames: string){
-    return this.http.get<Map<string,DrinkSearchModel[]>>(this.baseURL+'/mixer/'+searchNames);
+    return this.http.get<{[key: string]:DrinkSearchModel[]}>(this.baseURL+'/mixer/'+searchNames);
    };
 
    getByMainAlcoholId(id: number){

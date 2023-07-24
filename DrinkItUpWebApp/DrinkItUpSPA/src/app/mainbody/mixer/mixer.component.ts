@@ -1,5 +1,6 @@
 import { KeyValuePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { Subject, take, takeUntil, tap } from 'rxjs';
 import { DrinkSearchModel } from 'src/app/shared/drinkSearch.model';
 import { MixerService } from 'src/app/shared/mixer.service';
 
@@ -8,12 +9,14 @@ import { MixerService } from 'src/app/shared/mixer.service';
   templateUrl: './mixer.component.html',
   styleUrls: ['./mixer.component.css']
 })
-export class MixerComponent {
+export class MixerComponent implements OnDestroy {
 allIngredientsNames: string[] = [];
 ingredientNames: string[] = [];
 chosenIngredientsNames: string[] = [];
-
-results = new Map<string,DrinkSearchModel[]>();
+destroyed$ = new Subject();
+//results = new Map<string,DrinkSearchModel[]>();
+results: {[key: string]:DrinkSearchModel[]} = {};
+resultKeys = Object.keys(this.results);
 input:string = '';
 
 constructor(private mixerService: MixerService){
@@ -34,21 +37,19 @@ constructor(private mixerService: MixerService){
     this.allIngredientsNames = data
   });
 
-  this.mixerService.resultsSub.subscribe(data =>{
-    let res = new Map<string,DrinkSearchModel[]>();
-    res = data;
-    console.log(res);
-    let keys = Object.keys(res).sort().reverse();
-    
-    for(let key of keys)
-    {
-
-    }
-    this.results = res;
-  });
+  this.mixerService.resultsSub.pipe( 
+    tap( data => this.results = data),
+    tap( _=> this.resultKeys = Object.keys(this.results)),
+    takeUntil(this.destroyed$)
+  ).subscribe();
 
   this.mixerService.getAllNames();
-};
+
+}
+ngOnDestroy(): void {
+    this.destroyed$.complete();
+  }
+;
 
 onKeyUp(input: string){
 
@@ -77,5 +78,7 @@ removeIngredient(ingredientName: string){
 searchByIngredients(){
   this.mixerService.searchByIngredients();
 }
+
+
 
 }

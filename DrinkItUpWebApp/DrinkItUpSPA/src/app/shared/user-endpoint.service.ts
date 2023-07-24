@@ -16,6 +16,10 @@ export class UserEndpointService {
     return this.http.get<UserModel[]>(`${this.baseURL}/GetAll`);
    }
 
+   getAllCount(){
+    return this.http.get<number>(`${this.baseURL}/GetAllCount`);
+   }
+
    register(user: UserRegisterModel){
     return this.http.post(this.baseURL + '/register', user)
    }
