@@ -15,12 +15,12 @@ export class MixerService {
 
   ingredientsNamesSub = new Subject<string[]>();
   chosenIngredientsNamesSub = new Subject<string[]>();
-  resultsSub= new Subject<Map<string,DrinkSearchModel[]>>();
+  resultsSub= new Subject<{[key:string]:DrinkSearchModel[]}>();
   autoCompleteIngredientsSub = new Subject<string[]>();
 
   public chosenIngredientsNames: string[] = [];
   private ingredientNames: string[] = [];
-  private results: Map<string,DrinkSearchModel[]> = new Map<string,DrinkSearchModel[]>();
+  private results: {[key:string]:DrinkSearchModel[]} = {};
 
 
 getAutoComplete(input:string){
@@ -59,7 +59,7 @@ removeIngredient(ingredientName: string)
 
 searchByIngredients(){
   this.drinkEnpoint.searchByIngredients(this.chosenIngredientsNames.join()).subscribe(data =>{
-    this.results = data as Map<string,DrinkSearchModel[]>; 
+    this.results = data; 
     console.log(this.results);
     this.resultsSub.next(this.results);
     });

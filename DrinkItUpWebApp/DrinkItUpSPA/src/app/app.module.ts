@@ -34,6 +34,7 @@ import { JwtInterceptor } from './shared/jwtInterceptor';
 import { ErrorInterceptor } from './shared/errorInterceptor';
 import { AuthGuardService } from './shared/auth-guard.service';
 import { LoginComponent } from './mainbody/login/login.component';
+import { UserDropdownComponent } from './navigation/user-dropdown/user-dropdown.component';
 
 const appRoutes: Routes = [
 {path: '', component: LandingComponent},
@@ -41,7 +42,7 @@ const appRoutes: Routes = [
 {path: 'registration', component: RegistrationComponent},
 {path: 'forgotPassword', component: ForgotPasswordComponent},
 {path: 'bycategory', component: ByCategoryComponent},
-{path: 'search/:input', component: SearchComponent, canActivate: [AuthGuardService]},
+{path: 'search/:input', component: SearchComponent, },// canActivate: [AuthGuardService]
 {path: 'aboutus', component: AboutusComponent},
 {path: 'detail/:id', component: DrinkDetailsComponent, resolve: {drink: DrinkResolver} },
 {path: 'login', component: LoginComponent },
@@ -70,7 +71,8 @@ const appRoutes: Routes = [
     MainSearchbarComponent,
     DrinkDetailsComponent,
     ResultsSearchComponent,
-    LoginComponent
+    LoginComponent,
+    UserDropdownComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, RouterModule.forRoot(appRoutes),FormsModule,CommonModule

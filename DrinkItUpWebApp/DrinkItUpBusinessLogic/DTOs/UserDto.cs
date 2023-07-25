@@ -15,6 +15,6 @@ namespace DrinkItUpBusinessLogic.DTOs
         [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
 
-        public int? RoleId { get; set; }
+        public RoleDto Role { get; set; }
     }
 }

@@ -10,5 +10,7 @@ namespace DrinkItUpWebApp.DAL.Repositories.Interfaces
     public interface IUserRepository : ICRUDRepository<User>
     {
         Task<User> GetByEmail(string email);
+
+        Task<IEnumerable<User>> GetAllWithRoles();
     }
 }

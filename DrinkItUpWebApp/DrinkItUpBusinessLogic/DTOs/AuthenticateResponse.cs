@@ -8,6 +8,8 @@
 
         public string UserNameToShow { get; set; }
 
+        public RoleDto Role { get; set; }
+
         public string Token { get; set; }
 
 
@@ -16,6 +18,7 @@
             UserId = userDto.UserId;
             Email = userDto.Email;
             UserNameToShow = userDto.UserNameToShow;
+            Role = userDto.Role;
             Token = token;
         }
     }

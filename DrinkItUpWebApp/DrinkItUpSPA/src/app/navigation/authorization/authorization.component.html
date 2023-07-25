@@ -1,11 +1,11 @@
 <form class="p-4">
     <div class="mb-3">
       <label for="authEmail" class="form-label">Adres E-mail</label>
-      <input type="email" class="form-control" id="authEmail" placeholder="email@example.com" style="min-width: 250px">
+      <input type="email" class="form-control" [(ngModel)]="email" name="email" id="authEmail" placeholder="email@example.com" style="min-width: 250px">
     </div>
     <div class="mb-3">
       <label for="authPassword" class="form-label">Hasło</label>
-      <input type="password" class="form-control" id="authPassword" placeholder="Password">
+      <input type="password" [(ngModel)]="password" name="pass" class="form-control" id="authPassword" placeholder="Password">
     </div>
     <div class="mb-3">
       <div class="form-check">
@@ -15,5 +15,5 @@
         </label>
       </div>
     </div>
-    <button type="submit" class="btn btn-warning">Zaloguj się</button>
-  </form>
+    <button type="submit" class="btn btn-warning"(click)="onSubmit()">Zaloguj się</button>
+</form>

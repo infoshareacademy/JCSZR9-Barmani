@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from 'src/app/shared/authentication.service';
 
 @Component({
   selector: 'app-authorization',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./authorization.component.css']
 })
 export class AuthorizationComponent {
-
+email: string = '';
+password: string = '';
+constructor(private authService: AuthenticationService){}
+onSubmit(){
+  this.authService.login(this.email, this.password).subscribe(data =>{});
+}
 }
