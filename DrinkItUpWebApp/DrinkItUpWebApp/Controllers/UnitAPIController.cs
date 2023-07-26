@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
-using DrinkItUpBusinessLogic;
+
 using DrinkItUpBusinessLogic.DTOs;
 using DrinkItUpBusinessLogic.Interfaces;
-using DrinkItUpWebApp.Models;
-using Microsoft.AspNetCore.Http;
+using DrinkItUpWebApp.Middleware.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DrinkItUpWebApp.Controllers
@@ -22,23 +21,29 @@ namespace DrinkItUpWebApp.Controllers
         }
 
         [HttpGet]
-        [Route("getAll")]
+        [Route("GetAll")]
         public async Task<IActionResult> GetAll()
         {
             var unitDtos = await _unitService.GetAll();
+            foreach (var unitDto in unitDtos)
+            {
+                unitDto.IsUsed = await _unitService.IsUnitUsed(unitDto.UnitId);
+            }
             return Ok(unitDtos);
         }
 
         [HttpGet]
-        [Route("getById/{id}")]
+        [Route("GetById/{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             var unitDto = await _unitService.GetById(id);
             return Ok(unitDto);
         }
 
+
         [HttpPost]
-        [Route("add")]
+        [Authorize]
+        [Route("Add")]
         public async Task<IActionResult> Add([FromBody] UnitDto unitDto)
         {
 
@@ -51,9 +56,10 @@ namespace DrinkItUpWebApp.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
-        [Route("update")]
-        public async Task<ActionResult> Update ([FromBody]UnitDto unitDto)
+        [Route("Update")]
+        public async Task<ActionResult> Update([FromBody] UnitDto unitDto)
         {
             if (!await _unitService.IsUnitUnique(unitDto.Name))
             {
@@ -65,8 +71,9 @@ namespace DrinkItUpWebApp.Controllers
 
 
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
-        [Route("delete/{id}")]
+        [Route("Delete/{id}")]
         public async Task<ActionResult> Delete(int id, [FromBody] UnitDto unitDto)
         {
             if (await _unitService.IsUnitUsed(id))

@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using DrinkItUpBusinessLogic.DTOs;
 using DrinkItUpBusinessLogic.Interfaces;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+using DrinkItUpWebApp.Middleware.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DrinkItUpWebApp.Controllers

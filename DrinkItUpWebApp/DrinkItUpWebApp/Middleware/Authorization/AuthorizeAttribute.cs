@@ -1,6 +1,7 @@
 ﻿using DrinkItUpWebApp.DAL.Entities;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
+using DrinkItUpBusinessLogic.DTOs;
 
 namespace DrinkItUpWebApp.Middleware.Authorization
 {
@@ -9,7 +10,7 @@ namespace DrinkItUpWebApp.Middleware.Authorization
     {
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            var user = (User)context.HttpContext.Items["User"];
+            var user = (UserDto)context.HttpContext.Items["User"];
             if (user == null)
             {
                 // not logged in

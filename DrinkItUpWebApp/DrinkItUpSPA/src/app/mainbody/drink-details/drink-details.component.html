@@ -12,7 +12,7 @@
         <p class="lead fw-bold">Poziom trudności: {{drink.difficulty.name}}</p>
         <p class="lead fw-bold">Składniki:</p>
         <ul>
-            <li class="lead fw-bold" *ngFor="let ingredient of drink.ingredients">{{ingredient.name}}: <span *ngIf="ingredient.quantity > 0">{{ingredient.quantity}}</span> {{ingredient.unit.name}}</li>
+            <li class="lead fw-bold" *ngFor="let ingredient of drink.ingredients">{{ingredient.name}}: <span *ngIf?="ingredient.quantity > 0 ">{{ingredient.quantity}}</span> {{ingredient.unit.name}}</li>
         </ul>
         <p class="lead fw-bold">Opis przygotowania: </p>
         <p class="lead fw-bold">{{drink.description}}</p>

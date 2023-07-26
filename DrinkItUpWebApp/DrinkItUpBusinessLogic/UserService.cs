@@ -54,9 +54,10 @@ namespace DrinkItUpBusinessLogic
             return usersDtos;
         }
 
-        public Task<UserDto> GetById(int id)
+        public async Task<UserDto> GetById(int id)
         {
-            throw new NotImplementedException();
+            var userDto = _mapper.Map<UserDto>( await _userRepository.GetById(id) ?? new User());
+            return userDto;
         }
 
         public async Task<UserDto> Register(UserDto userDto)
