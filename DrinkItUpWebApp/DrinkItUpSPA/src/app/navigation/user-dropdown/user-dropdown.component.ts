@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { tap } from 'rxjs';
 import { AuthenticationService } from 'src/app/shared/authentication.service';
 
 @Component({
@@ -9,7 +10,12 @@ import { AuthenticationService } from 'src/app/shared/authentication.service';
 export class UserDropdownComponent {
 isLogged = false;
 constructor(private authService: AuthenticationService){
-  this.userValue;
+
+  this.authService.user.pipe(
+    tap(_ => this.userValue),
+    tap(_ => this.isLogged= true)
+  )
+  .subscribe();
 }
 
 
