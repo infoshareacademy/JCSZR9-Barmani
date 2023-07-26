@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AdminPanelService } from 'src/app/shared/admin-panel.service';
+import { AdminPanelService } from 'src/app/shared/Services/admin-panel.service';
 
 @Component({
   selector: 'app-unit-panel',

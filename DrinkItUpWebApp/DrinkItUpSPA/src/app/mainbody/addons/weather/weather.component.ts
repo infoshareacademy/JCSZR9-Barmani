@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { map, tap } from 'rxjs';
-import { WeatherEndpointService } from 'src/app/shared/weather-endpoint.service';
-import { Forecast, WeatherModel } from 'src/app/shared/weather.model';
+import { WeatherEndpointService } from 'src/app/shared/Endpoints/weather-endpoint.service';
+import { Forecast, WeatherModel } from 'src/app/shared/Models/weather.model';
 
 @Component({
   selector: 'app-weather',

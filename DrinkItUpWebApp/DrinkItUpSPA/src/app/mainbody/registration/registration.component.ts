@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { AuthenticationService } from 'src/app/shared/authentication.service';
-import { UserEndpointService } from 'src/app/shared/user-endpoint.service';
-import { UserModel, UserRegisterModel } from 'src/app/shared/user.model';
-import { UserService } from 'src/app/shared/user.service';
+import { AuthenticationService } from 'src/app/shared/Services/authentication.service';
+import { UserEndpointService } from 'src/app/shared/Endpoints/user-endpoint.service';
+import { UserModel, UserRegisterModel } from 'src/app/shared/Models/user.model';
+import { UserService } from 'src/app/shared/Services/user.service';
 
 @Component({
   selector: 'app-registration',

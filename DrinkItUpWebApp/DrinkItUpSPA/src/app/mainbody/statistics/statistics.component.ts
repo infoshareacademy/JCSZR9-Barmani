@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { tap } from 'rxjs';
-import { DrinkEndpointService } from 'src/app/shared/drink-endpoint.service';
-import { IngredientEndpointService } from 'src/app/shared/ingredient-endpoint.service';
-import { UserEndpointService } from 'src/app/shared/user-endpoint.service';
+import { DrinkEndpointService } from 'src/app/shared/Endpoints/drink-endpoint.service';
+import { IngredientEndpointService } from 'src/app/shared/Endpoints/ingredient-endpoint.service';
+import { UserEndpointService } from 'src/app/shared/Endpoints/user-endpoint.service';
 
 @Component({
   selector: 'app-statistics',

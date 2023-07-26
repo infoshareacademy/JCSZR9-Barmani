@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { DrinkEndpointService } from 'src/app/shared/drink-endpoint.service';
-import { DrinkSearchModel } from 'src/app/shared/drinkSearch.model';
+import { DrinkEndpointService } from 'src/app/shared/Endpoints/drink-endpoint.service';
+import { DrinkSearchModel } from 'src/app/shared/Models/drinkSearch.model';
 import {FormsModule} from "@angular/forms";
 
 @Component({

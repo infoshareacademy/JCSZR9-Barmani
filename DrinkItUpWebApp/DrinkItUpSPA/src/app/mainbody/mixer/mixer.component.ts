@@ -1,8 +1,8 @@
 import { KeyValuePipe } from '@angular/common';
 import { Component, OnDestroy } from '@angular/core';
 import { Subject, take, takeUntil, tap } from 'rxjs';
-import { DrinkSearchModel } from 'src/app/shared/drinkSearch.model';
-import { MixerService } from 'src/app/shared/mixer.service';
+import { DrinkSearchModel } from 'src/app/shared/Models/drinkSearch.model';
+import { MixerService } from 'src/app/shared/Services/mixer.service';
 
 @Component({
   selector: 'app-mixer',
