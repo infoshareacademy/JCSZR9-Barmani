@@ -11,5 +11,7 @@ namespace DrinkItUpBusinessLogic.DTOs
 		public int UnitId { get; set; }
 
 		public string Name { get; set; }
+
+		public bool? IsUsed { get; set; }
 	}
 }
