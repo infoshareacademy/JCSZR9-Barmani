@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AddonsService } from '../shared/addons.service';
+import { AddonsService } from '../shared/Services/addons.service';
 import { Subscription } from 'rxjs';
 
 @Component({

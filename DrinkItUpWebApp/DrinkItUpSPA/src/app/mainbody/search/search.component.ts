@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DrinkEndpointService } from 'src/app/shared/drink-endpoint.service';
-import { DrinkSearchModel } from 'src/app/shared/drinkSearch.model';
+import { DrinkEndpointService } from 'src/app/shared/Endpoints/drink-endpoint.service';
+import { DrinkSearchModel } from 'src/app/shared/Models/drinkSearch.model';
 
 @Component({
   selector: 'app-search',

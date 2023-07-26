@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { tap } from 'rxjs';
-import { AuthenticationService } from 'src/app/shared/authentication.service';
+import { AuthenticationService } from 'src/app/shared/Services/authentication.service';
 
 @Component({
   selector: 'app-user-dropdown',

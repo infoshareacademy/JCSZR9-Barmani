@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Subject } from 'rxjs';
-import { AuthenticationService } from 'src/app/shared/authentication.service';
+import { AuthenticationService } from 'src/app/shared/Services/authentication.service';
 
 @Component({
   selector: 'app-authorization',

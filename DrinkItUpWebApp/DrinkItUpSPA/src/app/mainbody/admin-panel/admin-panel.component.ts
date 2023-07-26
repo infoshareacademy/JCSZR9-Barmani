@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Subject, takeUntil, tap } from 'rxjs';
-import { AdminPanelService } from 'src/app/shared/admin-panel.service';
+import { AdminPanelService } from 'src/app/shared/Services/admin-panel.service';
 
 @Component({
   selector: 'app-admin-panel',

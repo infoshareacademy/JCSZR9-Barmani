@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { AuthenticationService } from 'src/app/shared/authentication.service';
+import { AuthenticationService } from 'src/app/shared/Services/authentication.service';
 
 @Component({
   selector: 'app-login',

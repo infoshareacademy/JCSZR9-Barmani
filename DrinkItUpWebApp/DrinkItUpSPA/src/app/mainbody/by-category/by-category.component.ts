@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { DifficultyEndpointService } from 'src/app/shared/difficulty-endpoint.service';
-import { DifficultyModel } from 'src/app/shared/difficulty.model';
-import { DrinkEndpointService } from 'src/app/shared/drink-endpoint.service';
-import { DrinkSearchModel } from 'src/app/shared/drinkSearch.model';
-import { MainAlcoholEndpointService } from 'src/app/shared/main-alcohol-endpoint.service';
-import { MainAlcoholModel } from 'src/app/shared/mainAlcohol.model';
+import { DifficultyEndpointService } from 'src/app/shared/Endpoints/difficulty-endpoint.service';
+import { DifficultyModel } from 'src/app/shared/Models/difficulty.model';
+import { DrinkEndpointService } from 'src/app/shared/Endpoints/drink-endpoint.service';
+import { DrinkSearchModel } from 'src/app/shared/Models/drinkSearch.model';
+import { MainAlcoholEndpointService } from 'src/app/shared/Endpoints/main-alcohol-endpoint.service';
+import { MainAlcoholModel } from 'src/app/shared/Models/mainAlcohol.model';
 
 @Component({
   selector: 'app-by-category',
