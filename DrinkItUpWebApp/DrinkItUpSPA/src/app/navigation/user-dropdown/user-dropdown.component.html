@@ -14,7 +14,7 @@
         {{userValue?.userNameToShow}}
       </a>
       <ul class="dropdown-menu dropdown-menu-end">
-        <li *ngIf="userValue?.role?.roleId === 1"><a routerLink="registration" class="dropdown-item">Panel administracyjny</a></li>
-        <li><a (click)="onClickLogout()" class="dropdown-item">Wyloguj się</a></li>
+        <li *ngIf="userValue?.role?.roleId === 1"><a routerLink="admin" class="dropdown-item">Panel administracyjny</a></li>
+        <li><a (click)="onClickLogout()" routerLink="/" class="dropdown-item">Wyloguj się</a></li>
       </ul>
 </div>

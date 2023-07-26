@@ -35,10 +35,19 @@ import { ErrorInterceptor } from './shared/errorInterceptor';
 import { AuthGuardService } from './shared/auth-guard.service';
 import { LoginComponent } from './mainbody/login/login.component';
 import { UserDropdownComponent } from './navigation/user-dropdown/user-dropdown.component';
+import { AdminPanelComponent } from './mainbody/admin-panel/admin-panel.component';
+import { DrinkPanelComponent } from './mainbody/admin-panel/drink-panel/drink-panel.component';
+import { UnitPanelComponent } from './mainbody/admin-panel/unit-panel/unit-panel.component';
+import { IngredientPanelComponent } from './mainbody/admin-panel/ingredient-panel/ingredient-panel.component';
+import { MainAlcoholPanelComponent } from './mainbody/admin-panel/main-alcohol-panel/main-alcohol-panel.component';
+import { DifficultyPanelComponent } from './mainbody/admin-panel/difficulty-panel/difficulty-panel.component';
+import { UserPanelComponent } from './mainbody/admin-panel/user-panel/user-panel.component';
+import { RolePanelComponent } from './mainbody/admin-panel/role-panel/role-panel.component';
 
 const appRoutes: Routes = [
 {path: '', component: LandingComponent},
 {path: 'mixer', component: MixerComponent},
+{path: 'admin', component: AdminPanelComponent, canActivate: [AuthGuardService]},
 {path: 'registration', component: RegistrationComponent},
 {path: 'forgotPassword', component: ForgotPasswordComponent},
 {path: 'bycategory', component: ByCategoryComponent},
@@ -72,7 +81,15 @@ const appRoutes: Routes = [
     DrinkDetailsComponent,
     ResultsSearchComponent,
     LoginComponent,
-    UserDropdownComponent
+    UserDropdownComponent,
+    AdminPanelComponent,
+    DrinkPanelComponent,
+    UnitPanelComponent,
+    IngredientPanelComponent,
+    MainAlcoholPanelComponent,
+    DifficultyPanelComponent,
+    UserPanelComponent,
+    RolePanelComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, RouterModule.forRoot(appRoutes),FormsModule,CommonModule
