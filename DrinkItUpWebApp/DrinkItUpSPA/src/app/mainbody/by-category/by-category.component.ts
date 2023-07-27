@@ -70,9 +70,9 @@ onMainAlcoholChoose(mainAlcohol: MainAlcoholModel){
 }
 
 onDifficultyChoose(difficulty: DifficultyModel){
-  this.drinkEndpoint.getByDifficultyId(difficulty.difficultyId).subscribe(data =>{
+  this.drinkEndpoint.getByDifficultyId(difficulty.difficultyId!).subscribe(data =>{
     this.results = data;
-    this.chosen = difficulty.name;
+    this.chosen = difficulty.name!;
   })
 }
 }

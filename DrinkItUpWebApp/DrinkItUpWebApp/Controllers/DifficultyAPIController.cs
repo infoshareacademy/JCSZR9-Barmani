@@ -2,6 +2,8 @@
 using DrinkItUpBusinessLogic;
 using DrinkItUpBusinessLogic.DTOs;
 using DrinkItUpBusinessLogic.Interfaces;
+using DrinkItUpWebApp.DAL.Entities;
+using DrinkItUpWebApp.Middleware.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,20 +27,25 @@ namespace DrinkItUpWebApp.Controllers
         public async Task<IActionResult> GetAll()
         {
             var difficultiesDtos = await _difficultyService.GetAll();
+            foreach(var difficulty in difficultiesDtos)
+            {
+                difficulty.IsUsed = await _difficultyService.IsDifficultyUsed(difficulty.DifficultyId);
+            }
             return Ok(difficultiesDtos);
         }
 
         [HttpGet]
-        [Route("getById/{id}")]
+        [Route("GetById/{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             var difficultyDto = await _difficultyService.GetById(id);
+            difficultyDto.IsUsed = await _difficultyService.IsDifficultyUsed(difficultyDto.DifficultyId);
             return Ok(difficultyDto);
         }
 
-
+        [Authorize]
         [HttpPost]
-        [Route("add")]
+        [Route("Add")]
         public async Task<IActionResult> Add([FromBody] DifficultyDto difficultyDto)
         {
             if (!await _difficultyService.IsDifficultyUnique(difficultyDto.Name))
@@ -48,26 +55,26 @@ namespace DrinkItUpWebApp.Controllers
             return Ok(addedDififcultyDto);
         }
 
-
+        [Authorize]
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Route("update")]
+        [Route("Update")]
 
-        public async Task<ActionResult> Update([FromBody] DifficultyDto difficultyDto)
+        public async Task<IActionResult> Update([FromBody] DifficultyDto difficultyDto)
         {
             if (!await _difficultyService.IsDifficultyUnique(difficultyDto.Name))
             {
                 return BadRequest("Name is already used");
             }
 
+            await _difficultyService.Update(difficultyDto);
             return Ok(await _difficultyService.GetById(difficultyDto.DifficultyId));
         }
 
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Route("delete/{id}")]
-        public async Task<ActionResult> Delete(int id, [FromBody] DifficultyDto difficultyDto)
+        [HttpDelete]
+        [Authorize]
+        [Route("Delete/{id}")]
+        public async Task<IActionResult> Delete(int id)
         {
             if (await _difficultyService.IsDifficultyUsed(id))
             {
@@ -76,7 +83,7 @@ namespace DrinkItUpWebApp.Controllers
 
 
             if (await _difficultyService.Remove(id))
-                return Ok("Deleted");
+                return AcceptedAtAction("Deleted");
             else
                 return StatusCode(500);
         }
