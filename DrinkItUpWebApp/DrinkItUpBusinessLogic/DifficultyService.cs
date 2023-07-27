@@ -5,6 +5,7 @@ using DrinkItUpWebApp.DAL.Entities;
 using DrinkItUpWebApp.DAL.Repositories;
 using DrinkItUpWebApp.DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace DrinkItUpBusinessLogic
 {
@@ -14,12 +15,14 @@ namespace DrinkItUpBusinessLogic
         private readonly IDifficultyRepository _repository;
         private readonly IMapper _mapper;
         private readonly IDrinkRepository _drinkRepository;
+        private readonly ILogger<DifficultyService> _logger;
 
-        public DifficultyService(IDifficultyRepository repository, IMapper mapper, IDrinkRepository drinkRepository)
+        public DifficultyService(IDifficultyRepository repository, IMapper mapper, IDrinkRepository drinkRepository, ILogger<DifficultyService> logger)
         {
             _repository = repository;
             _mapper = mapper;
             _drinkRepository = drinkRepository;
+            _logger = logger;
         }
 
         public async Task<DifficultyDto> AddDifficulty(DifficultyDto difficultyDto)
@@ -31,8 +34,8 @@ namespace DrinkItUpBusinessLogic
             await _repository.Add(difficultyEntity);
             await _repository.Save();
 
+            _logger.LogInformation($"{DateTime.Now}: New Difficulty {difficultyEntity.Name} has been added.");
             return difficultyDto;
-
         }
 
         public async Task<List<DifficultyDto>> GetAll()
@@ -83,6 +86,7 @@ namespace DrinkItUpBusinessLogic
             _repository.Delete(difficulty);
             await _repository.Save();
 
+            _logger.LogInformation($"{DateTime.Now}: Difficulty {difficulty.Name} has been removed.");
             return true;
         }
 
@@ -95,9 +99,9 @@ namespace DrinkItUpBusinessLogic
             _repository.Update(difficulty);
             await _repository.Save();
 
+            _logger.LogInformation($"{DateTime.Now}: Difficulty {difficulty.Name} has been updated.");
             return difficultyDto;
         }
     }
-
 }
 
