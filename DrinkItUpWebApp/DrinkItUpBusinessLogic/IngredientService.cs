@@ -61,7 +61,7 @@ namespace DrinkItUpBusinessLogic
                 throw new Exception("Trying to add Ingredient without Name or UnitId");
             }
             var ingredient = _mapper.Map<Ingredient>(ingredientDto);
-            await _repository.Add(ingredient);
+            ingredient = await _repository.Add(ingredient);
             await _repository.Save();
 
             ingredientDto = _mapper.Map<IngredientDto>(ingredient);
