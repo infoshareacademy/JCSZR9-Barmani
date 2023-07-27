@@ -87,7 +87,10 @@ namespace DrinkItUpWebApp.Controllers
 
 
             if (await _difficultyService.Remove(id))
-                return AcceptedAtAction("Deleted");
+            {
+                _logger.LogInformation($"{DateTime.Now}: Difficulty id:{id} has been removed.");
+                return AcceptedAtAction("Deleted"); 
+            }
             else
                 return StatusCode(500);
         }

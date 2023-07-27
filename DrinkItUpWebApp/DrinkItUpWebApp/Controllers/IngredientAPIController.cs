@@ -16,12 +16,14 @@ namespace DrinkItUpWebApp.Controllers
         private readonly IIngredientService _ingredientService;
         private readonly IMapper _mapper;
         private readonly ISearchByIngredients _searchByIngredients;
+        private readonly ILogger<IngredientAPIController> _logger;
         private readonly IUnitService _unitService;
 
-        public IngredientAPIController(IIngredientService ingredientService, IUnitService unit, IMapper mapper, ISearchByIngredients searchByIngredients)
+        public IngredientAPIController(IIngredientService ingredientService, IUnitService unit, IMapper mapper, ISearchByIngredients searchByIngredients, ILogger<IngredientAPIController> logger)
         {
             _mapper = mapper;
             _searchByIngredients = searchByIngredients;
+            _logger = logger;
             _ingredientService = ingredientService;
             _unitService = unit;
         }
@@ -66,10 +68,11 @@ namespace DrinkItUpWebApp.Controllers
             }
             var ingredientAdded = await _ingredientService.Add(ingredientToAdd);
 
-
+            _logger.LogInformation($"{DateTime.Now}: New Ingredient {ingredientAdded.Name} has been added.");
             return Ok(ingredientAdded);
-
         }
+
+
 
         [Authorize]
         [HttpPost]
@@ -83,8 +86,8 @@ namespace DrinkItUpWebApp.Controllers
             }
             ingredientDto = await _ingredientService.Update(ingredientDto);
 
+            _logger.LogInformation($"{DateTime.Now}: New Ingredient {ingredientDto.Name} has been updated.");
             return Ok(await _ingredientService.GetById(ingredientDto.IngredientId));
-
         }
 
 
@@ -101,11 +104,12 @@ namespace DrinkItUpWebApp.Controllers
             }
 
             if (await _ingredientService.Remove(id))
+            {
+                _logger.LogInformation($"{DateTime.Now}: Ingredient id:{id} has been removed.");
                 return AcceptedAtAction("Deleted");
+            }
             else
                 return StatusCode(500);
-
         }
-
     }
 }
