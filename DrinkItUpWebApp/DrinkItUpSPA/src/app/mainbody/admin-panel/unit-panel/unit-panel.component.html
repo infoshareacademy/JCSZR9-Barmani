@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="accordion-item">
+                        <div class="accordion-item" *ngIf="!isEdited">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed bg-warning fw-bold text-black" type="button" data-bs-toggle="collapse" data-bs-target="" aria-expanded="false" aria-controls="collapseTwo">
                                     Użyj akcji w tabeli, żeby otrzymać
@@ -55,7 +55,38 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="accordion-item">
+                        <div class="accordion-item" *ngIf="isEdited && unit.unitId != 0">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed bg-warning fw-bold text-black" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Edytuj Jednostkę
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse show bg-dark text-white" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <form>
+                                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                                <div class="form-group">
+                                                    <label for="UnitId" class="control-label">Id</label>
+                                                    <input asp-for="UnitId" [(ngModel)]="unit.unitId" name="idEdit"  class="form-control" disabled />
+                                                    <span asp-validation-for="UnitId" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="Name" class="control-label">Nazwa Jednostki:</label>
+                                                    <input asp-for="Name" [(ngModel)]="unit.name" name="nameEdit"  class="form-control" />
+                                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group my-3">
+                                                    <input type="submit" value="Edytuj Jednostkę" (click)="onUpdate()" class="btn btn-warning" />
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item" *ngIf="!isEdited">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed bg-warning fw-bold text-black" type="button" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false" aria-controls="collapseThree">
                                     dostęp do większej ilości opcji.
@@ -64,6 +95,46 @@
                             <div id="collapseThree" class="accordion-collapse collapse bg-dark text-white" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item" *ngIf="isEdited && unit.unitId != 0">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed  bg-warning fw-bold text-black" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Usuń Jednostkę
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse show bg-dark text-white" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <form>
+                                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                                <div class="form-group">
+                                                    <label for="UnitId" class="control-label">Id</label>
+                                                    <input asp-for="UnitId" name="idDel" [(ngModel)]="unit.unitId" class="form-control" disabled />
+                                                    <span asp-validation-for="UnitId" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="Name" class="control-label">Nazwa Składnika:</label>
+                                                    <input asp-for="Name" [(ngModel)]="unit.name" name="nameDel"  class="form-control" disabled/>
+                                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                                </div>
+                                                <div *ngIf="unit.isUsed">
+                                                    <p class="text-warning">Usuń jednostkę ze wszystkich składników, żeby odblokować możliwość jej usunięcia z bazy!</p>
+                    
+                                                    <div class="form-group my-3">
+                                                        <input type="submit" value="Usuń jednostkę" disabled class="btn btn-warning" />
+                                                    </div>
+                                                </div>
+                                                <div *ngIf="!unit.isUsed">
+                                                    <div class="form-group my-3">
+                                                        <input type="submit" value="Usuń jednostkę" (click)="onDelete()" class="btn btn-warning" />
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -94,8 +165,8 @@
 
                                     </td>
                                     <td>
-                                        <a class="btn btn-sm btn-warning lead" >Edytuj</a> |
-                                        <a class="btn btn-sm btn-warning lead" >Usuń</a>
+                                        <a class="btn btn-sm btn-warning lead" (click)="onEditClick(unitModel.unitId!)" >Edytuj</a> |
+                                        <a class="btn btn-sm btn-warning lead" (click)="onDeleteClick(unitModel.unitId!)">Usuń</a>
                                     </td>
                                 </tr>
 

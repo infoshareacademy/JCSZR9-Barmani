@@ -16,4 +16,17 @@ export class UnitEndpointService {
    add(unit: UnitModel){
     return this.http.post(this.baseURL+'/Add', unit)
    }
+
+   getById(id:number){
+    return this.http.get<UnitModel>(this.baseURL+'/GetById/'+id);
+   };
+
+   update(upadatedUnit: UnitModel){
+    return this.http.post<UnitModel>(this.baseURL+'/Update',upadatedUnit);
+   };
+
+   delete(id: number){
+    return this.http.delete<any>(this.baseURL+'/Delete/'+ id);
+   }
 }
+

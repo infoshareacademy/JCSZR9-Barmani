@@ -37,6 +37,7 @@ namespace DrinkItUpWebApp.Controllers
         public async Task<IActionResult> GetById(int id)
         {
             var unitDto = await _unitService.GetById(id);
+            unitDto.IsUsed = await _unitService.IsUnitUsed(id);
             return Ok(unitDto);
         }
 
@@ -57,9 +58,8 @@ namespace DrinkItUpWebApp.Controllers
 
         [HttpPost]
         [Authorize]
-        [ValidateAntiForgeryToken]
         [Route("Update")]
-        public async Task<ActionResult> Update([FromBody] UnitDto unitDto)
+        public async Task<IActionResult> Update([FromBody] UnitDto unitDto)
         {
             if (!await _unitService.IsUnitUnique(unitDto.Name))
             {
@@ -70,11 +70,10 @@ namespace DrinkItUpWebApp.Controllers
         }
 
 
-        [HttpPost]
+        [HttpDelete]
         [Authorize]
-        [ValidateAntiForgeryToken]
         [Route("Delete/{id}")]
-        public async Task<ActionResult> Delete(int id, [FromBody] UnitDto unitDto)
+        public async Task<IActionResult> Delete(int id)
         {
             if (await _unitService.IsUnitUsed(id))
             {
@@ -82,7 +81,7 @@ namespace DrinkItUpWebApp.Controllers
             }
 
             if (await _unitService.Remove(id))
-                return Ok("Deleted");
+                return AcceptedAtAction("Deleted");
             else
                 return StatusCode(500);
         }
