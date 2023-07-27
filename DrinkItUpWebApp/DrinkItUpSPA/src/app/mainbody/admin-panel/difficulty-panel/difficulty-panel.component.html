@@ -21,7 +21,7 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button bg-warning fw-bold text-black" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    Dodaj Jednostkę
+                                    Dodaj poziom trudności
                                 </button>
                             </h2>
                             <div id="collapseOne" class="accordion-collapse collapse show bg-dark text-white" data-bs-parent="#accordionExample">
@@ -31,12 +31,12 @@
                                             <form >
                                                 <div class="text-danger"></div>
                                                 <div class="form-group">
-                                                    <label for="Name" class="control-label">Nazwa jednostki:</label>
+                                                    <label for="Name" class="control-label">Nazwa poziomu trudności:</label>
                                                     <input for="Name" name="Name" [(ngModel)]="difficulty.name" class="form-control" />
                                                     <span  class="text-danger"></span>
                                                 </div>
                                                 <div class="form-group my-3">
-                                                    <input type="submit" (click)="onAddClick()" value="Dodaj jednostkę" class="btn btn-warning" />
+                                                    <input type="submit" (click)="onAddClick()" value="Dodaj poziom trudności" class="btn btn-warning" />
                                                 </div>
                                             </form>
                                         </div>
@@ -58,7 +58,7 @@
                         <div class="accordion-item" *ngIf="isEdited && difficulty.difficultyId != 0">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed bg-warning fw-bold text-black" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    Edytuj Jednostkę
+                                    Edytuj poziom trudności
                                 </button>
                             </h2>
                             <div id="collapseTwo" class="accordion-collapse collapse show bg-dark text-white" data-bs-parent="#accordionExample">
@@ -73,12 +73,12 @@
                                                     <span asp-validation-for="UnitId" class="text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="Name" class="control-label">Nazwa Jednostki:</label>
+                                                    <label for="Name" class="control-label">Nazwa poziomu trudności:</label>
                                                     <input asp-for="Name" [(ngModel)]="difficulty.name" name="nameEdit"  class="form-control" />
                                                     <span asp-validation-for="Name" class="text-danger"></span>
                                                 </div>
                                                 <div class="form-group my-3">
-                                                    <input type="submit" value="Edytuj Jednostkę" (click)="onUpdate()" class="btn btn-warning" />
+                                                    <input type="submit" value="Edytuj poziom trudności" (click)="onUpdate()" class="btn btn-warning" />
                                                 </div>
                                             </form>
                                         </div>
@@ -101,7 +101,7 @@
                         <div class="accordion-item" *ngIf="isEdited && difficulty.difficultyId != 0">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed  bg-warning fw-bold text-black" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    Usuń Jednostkę
+                                    Usuń poziom trudności
                                 </button>
                             </h2>
                             <div id="collapseThree" class="accordion-collapse collapse show bg-dark text-white" data-bs-parent="#accordionExample">
@@ -116,20 +116,20 @@
                                                     <span asp-validation-for="UnitId" class="text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="Name" class="control-label">Nazwa Składnika:</label>
+                                                    <label for="Name" class="control-label">Nazwa poziomu trudności:</label>
                                                     <input asp-for="Name" [(ngModel)]="difficulty.name" name="nameDel"  class="form-control" disabled/>
                                                     <span asp-validation-for="Name" class="text-danger"></span>
                                                 </div>
                                                 <div *ngIf="difficulty.isUsed">
-                                                    <p class="text-warning">Usuń jednostkę ze wszystkich składników, żeby odblokować możliwość jej usunięcia z bazy!</p>
+                                                    <p class="text-warning">Usuń poziom trudności ze wszystkich składników, żeby odblokować możliwość usunięcia z bazy!</p>
                     
                                                     <div class="form-group my-3">
-                                                        <input type="submit" value="Usuń jednostkę" disabled class="btn btn-warning" />
+                                                        <input type="submit" value="Usuń poziom trudności" disabled class="btn btn-warning" />
                                                     </div>
                                                 </div>
                                                 <div *ngIf="!difficulty.isUsed">
                                                     <div class="form-group my-3">
-                                                        <input type="submit" value="Usuń jednostkę" (click)="onDelete()" class="btn btn-warning" />
+                                                        <input type="submit" value="Usuń poziom trudności" (click)="onDelete()" class="btn btn-warning" />
                                                     </div>
                                                 </div>
                                             </form>
