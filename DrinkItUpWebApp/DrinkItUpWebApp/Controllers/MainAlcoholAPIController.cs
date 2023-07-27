@@ -40,7 +40,7 @@ namespace DrinkItUpWebApp.Controllers
         public async Task<IActionResult> GetById(int id)
         {
             var mainAlcoholDto = await _mainAlcoholService.GetById(id);
-            m
+            mainAlcoholDto.IsUsed = await _mainAlcoholService.IsMainAlcoholUsed(mainAlcoholDto.MainAlcoholId);
             return Ok(mainAlcoholDto);
         }
 
@@ -67,13 +67,14 @@ namespace DrinkItUpWebApp.Controllers
                 return BadRequest("Name is already used");
             }
 
+            await _mainAlcoholService.Update(mainAlcoholDto);
             return Ok(await _mainAlcoholService.GetById(mainAlcoholDto.MainAlcoholId));
         }
 
         [Authorize]
-        [HttpPost]
+        [HttpDelete]
         [Route("Delete/{id}")]
-        public async Task<IActionResult> Delete(int id, [FromBody] MainAlcoholDto mainAlcoholDto)
+        public async Task<IActionResult> Delete(int id)
         {
             if (await _mainAlcoholService.IsMainAlcoholUsed(id))
             {

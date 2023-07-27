@@ -15,4 +15,20 @@ export class MainAlcoholEndpointService {
    getAll(){
     return this.http.get<MainAlcoholModel[]>(this.baseURL + '/GetAll');
    }
+
+   add(mainAlcohol: MainAlcoholModel){
+    return this.http.post<MainAlcoholModel>(this.baseURL+'/Add', mainAlcohol)
+   }
+
+   getById(id:number){
+    return this.http.get<MainAlcoholModel>(this.baseURL+'/GetById/'+id);
+   };
+
+   update(mainAlcoholToUpdate: MainAlcoholModel){
+    return this.http.post<MainAlcoholModel>(this.baseURL+'/Update',mainAlcoholToUpdate);
+   };
+
+   delete(id: number){
+    return this.http.delete<any>(this.baseURL+'/Delete/'+ id);
+   }
 }

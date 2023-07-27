@@ -71,9 +71,7 @@ onDelete(){
     tap(_ => this.isEdited = false),
     tap(_ => this.unit = new UnitModel())
   )
-  .subscribe( data => {
-    console.log(data);
-  });
+  .subscribe();
 }
 
 }
