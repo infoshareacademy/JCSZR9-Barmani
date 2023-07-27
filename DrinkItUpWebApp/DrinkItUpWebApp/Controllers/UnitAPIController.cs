@@ -13,11 +13,13 @@ namespace DrinkItUpWebApp.Controllers
     {
         private readonly IUnitService _unitService;
         private readonly IMapper _mapper;
+        private readonly ILogger<UnitAPIController> _logger;
 
-        public UnitAPIController(IUnitService unitService, IMapper mapper)
+        public UnitAPIController(IUnitService unitService, IMapper mapper, ILogger<UnitAPIController> logger)
         {
             _unitService = unitService;
             _mapper = mapper;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -53,6 +55,7 @@ namespace DrinkItUpWebApp.Controllers
 
             var addedUnitDto = await _unitService.AddUnit(unitDto);
 
+            _logger.LogInformation($"{DateTime.Now}: New Unit {addedUnitDto.Name} has been added.");
             return Ok(addedUnitDto);
         }
 
@@ -66,6 +69,8 @@ namespace DrinkItUpWebApp.Controllers
                 return BadRequest("Name is already used");
             }
             await _unitService.Update(unitDto);
+
+            _logger.LogInformation($"{DateTime.Now}: Unit {unitDto.Name} has been updated.");
             return Ok(await _unitService.GetById(unitDto.UnitId));
         }
 
@@ -81,7 +86,10 @@ namespace DrinkItUpWebApp.Controllers
             }
 
             if (await _unitService.Remove(id))
+            {
+                _logger.LogInformation($"{DateTime.Now}: Unit id: {id} has been removed.");
                 return AcceptedAtAction("Deleted");
+            }
             else
                 return StatusCode(500);
         }
