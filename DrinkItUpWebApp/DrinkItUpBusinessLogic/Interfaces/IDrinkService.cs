@@ -13,5 +13,16 @@ namespace DrinkItUpBusinessLogic.Interfaces
 
         Task<IEnumerable<DrinkDto>> GetAll();
 
-	}
+        bool VerifyDrink(DrinkWithDetailsDto drink);
+
+        Task<bool> IsDrinkUnique(DrinkWithDetailsDto drink);
+
+        Task<DrinkDto> AddDrink(DrinkWithDetailsDto drink);
+
+        Task<DrinkDto> UpdateDrink(DrinkWithDetailsDto drink);
+
+        Task<bool> RemoveDrink(int id);
+
+
+    }
 }

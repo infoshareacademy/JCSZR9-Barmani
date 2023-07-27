@@ -7,8 +7,10 @@ namespace DrinkItUpBusinessLogic.DTOs
         public int DrinkId { get; set; }
         public string Name { get; set; }
 
+        public int MainAlcoholId { get; set; }
         public MainAlcoholDto MainAlcohol { get; set; }
 
+        public int DifficultyId { get; set; }
         public DifficultyDto Difficulty { get; set; }
 
         public string Description { get; set; }

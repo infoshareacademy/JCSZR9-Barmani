@@ -86,6 +86,6 @@ namespace DrinkItUpWebApp.Controllers
                 return AcceptedAtAction("Deleted");
             else
                 return StatusCode(500);
-        }
+            }
     }
 }

@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
+using DrinkItUpBusinessLogic.DTOs;
+using DrinkItUpBusinessLogic;
 using DrinkItUpBusinessLogic.Interfaces;
 using DrinkItUpWebApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using DrinkItUpWebApp.Middleware.Authorization;
 
 namespace DrinkItUpWebApp.Controllers
 {
@@ -16,11 +19,19 @@ namespace DrinkItUpWebApp.Controllers
         private readonly IGetDrinkDetails _getDrinkDetails;
         private readonly ISearchByNameOrOneIngredient _searchByNameOrOneIngredient;
         private readonly IMapper _mapper;
+        private readonly ILogger<DrinkAPIController> _logger;
 
-        public DrinkAPIController(IDrinkService drinkService, IByCategoryService categoryService,ISearchByIngredients searchByIngredients, IGetDrinkDetails getDrinkDetails, ISearchByNameOrOneIngredient searchByNameOrOneIngredient, IMapper mapper)
+        public DrinkAPIController(IDrinkService drinkService, 
+            IByCategoryService categoryService,
+            ISearchByIngredients searchByIngredients, 
+            IGetDrinkDetails getDrinkDetails, 
+            ISearchByNameOrOneIngredient searchByNameOrOneIngredient, 
+            IMapper mapper,
+            ILogger<DrinkAPIController> logger)
         {
 
             _mapper = mapper;
+            _logger = logger;
             _drinkService = drinkService;
             _categoryService = categoryService;
             _searchByIngredients = searchByIngredients;
@@ -113,5 +124,57 @@ namespace DrinkItUpWebApp.Controllers
             return Ok(drinksDtos);
 
         }
+
+        [Authorize]
+        [HttpPost]
+        [Route("Add")]
+        public async Task<IActionResult> Add([FromBody] DrinkWithDetailsDto drinkWithDetailsDto)
+        {
+            if (!await _drinkService.IsDrinkUnique(drinkWithDetailsDto))
+                return BadRequest("The same drink is added in database");
+
+            var addedDrink = await _drinkService.AddDrink(drinkWithDetailsDto);
+            _logger.LogInformation($"{DateTime.Now}: New Drink {addedDrink.Name} has been added.");
+            return Ok(addedDrink);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("Update")]
+
+        public async Task<IActionResult> Update([FromBody] DifficultyDto difficultyDto)
+        {
+            if (!await _difficultyService.IsDifficultyUnique(difficultyDto.Name))
+            {
+                return BadRequest("Name is already used");
+            }
+
+            await _difficultyService.Update(difficultyDto);
+            _logger.LogInformation($"{DateTime.Now}: Difficulty {difficultyDto.Name} has been updated.");
+            return Ok(await _difficultyService.GetById(difficultyDto.DifficultyId));
+        }
+
+
+        [HttpDelete]
+        [Authorize]
+        [Route("Delete/{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (await _difficultyService.IsDifficultyUsed(id))
+            {
+                return BadRequest("Difficulty is in use, cannot delete");
+            }
+
+
+            if (await _difficultyService.Remove(id))
+            {
+                _logger.LogInformation($"{DateTime.Now}: Difficulty id:{id} has been removed.");
+                return AcceptedAtAction("Deleted");
+            }
+            else
+                return StatusCode(500);
+        }
+
+
     }
 }
