@@ -14,10 +14,12 @@ namespace DrinkItUpWebApp.Controllers
     {
         private readonly IMainAlcoholService _mainAlcoholService;
         private readonly IMapper _mapper;
+        private readonly ILogger<MainAlcoholAPIController> _logger;
 
-        public MainAlcoholAPIController(IMainAlcoholService mainAlcoholService, IMapper mapper)
+        public MainAlcoholAPIController(IMainAlcoholService mainAlcoholService, IMapper mapper, ILogger<MainAlcoholAPIController> logger)
         {
             _mapper = mapper;
+            _logger = logger;
             _mainAlcoholService = mainAlcoholService;
         }
 
@@ -53,6 +55,7 @@ namespace DrinkItUpWebApp.Controllers
                 return BadRequest("Name is already used");
 
             var addedMainAlcoholDto = await _mainAlcoholService.AddMainAlcohol(mainAlcoholDto);
+            _logger.LogInformation($"{DateTime.Now}: New Main Alcohol {addedMainAlcoholDto.Name} has been added.");
             return Ok(addedMainAlcoholDto);
         }
 
@@ -68,6 +71,7 @@ namespace DrinkItUpWebApp.Controllers
             }
 
             await _mainAlcoholService.Update(mainAlcoholDto);
+            _logger.LogInformation($"{DateTime.Now}: Main Alcohol {mainAlcoholDto.Name} has been updated.");
             return Ok(await _mainAlcoholService.GetById(mainAlcoholDto.MainAlcoholId));
         }
 
@@ -81,9 +85,11 @@ namespace DrinkItUpWebApp.Controllers
                 return BadRequest("Main Alcohol is in use, cannot delete");
             }
 
-
             if (await _mainAlcoholService.Remove(id))
+            {
+                _logger.LogInformation($"{DateTime.Now}: Main Alcohol id: {id} has been removed.");
                 return AcceptedAtAction("Deleted");
+            }
             else
                 return StatusCode(500);
         }
