@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Azure;
 using DrinkItUpBusinessLogic.DTOs;
 using DrinkItUpBusinessLogic.Interfaces;
 using DrinkItUpWebApp.Middleware.Authorization;
@@ -12,11 +13,13 @@ namespace DrinkItUpWebApp.Controllers
     {
         private readonly IUserService _userService;
         private readonly IMapper _mapper;
+        private readonly ILogger<UserAPIController> _logger;
 
-        public UserAPIController(IUserService userService, IMapper mapper)
+        public UserAPIController(IUserService userService, IMapper mapper, ILogger<UserAPIController> logger)
         {
             _userService = userService;
             _mapper = mapper;
+            _logger = logger;
         }
 
         [HttpPost("authenticate")]
@@ -27,6 +30,7 @@ namespace DrinkItUpWebApp.Controllers
             if (response == null)
                 return Unauthorized(new { message = "Username or password is incorrect" });
 
+            _logger.LogInformation($"{DateTime.Now}: User id: {response.UserId} has been authenticated.");
             return Ok(response);
         }
 
@@ -54,6 +58,7 @@ namespace DrinkItUpWebApp.Controllers
         {
             var addedUserDto = await _userService.Register(userDto);
 
+            _logger.LogInformation($"{DateTime.Now}: User {addedUserDto.Email} has been registered.");
             return Ok(addedUserDto);
         }
     }

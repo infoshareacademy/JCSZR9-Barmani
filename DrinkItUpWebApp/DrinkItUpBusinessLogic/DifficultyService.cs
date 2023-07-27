@@ -5,6 +5,7 @@ using DrinkItUpWebApp.DAL.Entities;
 using DrinkItUpWebApp.DAL.Repositories;
 using DrinkItUpWebApp.DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace DrinkItUpBusinessLogic
 {
@@ -32,7 +33,6 @@ namespace DrinkItUpBusinessLogic
             await _repository.Save();
 
             return difficultyDto;
-
         }
 
         public async Task<List<DifficultyDto>> GetAll()
@@ -98,6 +98,5 @@ namespace DrinkItUpBusinessLogic
             return difficultyDto;
         }
     }
-
 }
 

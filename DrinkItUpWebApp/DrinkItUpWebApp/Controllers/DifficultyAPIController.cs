@@ -15,10 +15,12 @@ namespace DrinkItUpWebApp.Controllers
     {
         private readonly IDifficultyService _difficultyService;
         private readonly IMapper _mapper;
+        private readonly ILogger<DifficultyAPIController> _logger;
 
-        public DifficultyAPIController(IDifficultyService difficultyService, IMapper mapper)
+        public DifficultyAPIController(IDifficultyService difficultyService, IMapper mapper, ILogger<DifficultyAPIController> logger)
         {
             _mapper = mapper;
+            _logger = logger;
             _difficultyService = difficultyService;
         }
 
@@ -52,6 +54,7 @@ namespace DrinkItUpWebApp.Controllers
                 return BadRequest("Name is already used");
 
             var addedDififcultyDto = await _difficultyService.AddDifficulty(difficultyDto);
+            _logger.LogInformation($"{DateTime.Now}: New Difficulty {addedDififcultyDto.Name} has been added.");
             return Ok(addedDififcultyDto);
         }
 
@@ -67,6 +70,7 @@ namespace DrinkItUpWebApp.Controllers
             }
 
             await _difficultyService.Update(difficultyDto);
+            _logger.LogInformation($"{DateTime.Now}: Difficulty {difficultyDto.Name} has been updated.");
             return Ok(await _difficultyService.GetById(difficultyDto.DifficultyId));
         }
 
@@ -83,7 +87,10 @@ namespace DrinkItUpWebApp.Controllers
 
 
             if (await _difficultyService.Remove(id))
-                return AcceptedAtAction("Deleted");
+            {
+                _logger.LogInformation($"{DateTime.Now}: Difficulty id:{id} has been removed.");
+                return AcceptedAtAction("Deleted"); 
+            }
             else
                 return StatusCode(500);
         }
