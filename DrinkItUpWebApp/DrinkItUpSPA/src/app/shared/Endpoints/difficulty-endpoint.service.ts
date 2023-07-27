@@ -15,4 +15,20 @@ export class DifficultyEndpointService {
    getAll(){
     return this.http.get<DifficultyModel[]>(this.baseURL + '/GetAll');
    }
+
+   add(difficulty: DifficultyModel){
+    return this.http.post<DifficultyModel>(this.baseURL+'/Add', difficulty)
+   }
+
+   getById(id:number){
+    return this.http.get<DifficultyModel>(this.baseURL+'/GetById/'+id);
+   };
+
+   update(difficultyToUpdate: DifficultyModel){
+    return this.http.post<DifficultyModel>(this.baseURL+'/Update',difficultyToUpdate);
+   };
+
+   delete(id: number){
+    return this.http.delete<any>(this.baseURL+'/Delete/'+ id);
+   }
 }

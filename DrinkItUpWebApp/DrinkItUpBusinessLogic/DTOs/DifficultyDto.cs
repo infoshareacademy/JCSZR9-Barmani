@@ -4,5 +4,7 @@
     {
         public int DifficultyId { get; set; }
         public string Name { get; set; }
+
+        public bool IsUsed { get; set; }
     }
 }
