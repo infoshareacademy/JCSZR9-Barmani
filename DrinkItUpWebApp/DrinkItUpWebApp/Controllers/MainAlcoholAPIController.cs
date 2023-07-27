@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DrinkItUpBusinessLogic.DTOs;
 using DrinkItUpBusinessLogic.Interfaces;
+using DrinkItUpWebApp.Middleware.Authorization;
 using DrinkItUpWebApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -26,21 +27,26 @@ namespace DrinkItUpWebApp.Controllers
         public async Task<IActionResult> GetAll()
         {
             var mainAlcoholsDtos = await _mainAlcoholService.GetAll();
+            foreach(var main in mainAlcoholsDtos)
+            {
+                main.IsUsed = await _mainAlcoholService.IsMainAlcoholUsed(main.MainAlcoholId);
+            }
             return Ok(mainAlcoholsDtos);
         }
 
 
         [HttpGet]
-        [Route("getById/{id}")]
+        [Route("GetById/{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var mainAlcoholDtos = await _mainAlcoholService.GetById(id);
-            return Ok(mainAlcoholDtos);
+            var mainAlcoholDto = await _mainAlcoholService.GetById(id);
+            mainAlcoholDto.IsUsed = await _mainAlcoholService.IsMainAlcoholUsed(mainAlcoholDto.MainAlcoholId);
+            return Ok(mainAlcoholDto);
         }
 
-
+        [Authorize]
         [HttpPost]
-        [Route("add")]
+        [Route("Add")]
         public async Task<IActionResult> Add([FromBody] MainAlcoholDto mainAlcoholDto)
         {
             if (!await _mainAlcoholService.IsMainAlcoholUnique(mainAlcoholDto.Name))
@@ -50,26 +56,25 @@ namespace DrinkItUpWebApp.Controllers
             return Ok(addedMainAlcoholDto);
         }
 
-
+        [Authorize]
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Route("update")]
+        [Route("Update")]
 
-        public async Task<ActionResult> Update([FromBody] MainAlcoholDto mainAlcoholDto)
+        public async Task<IActionResult> Update([FromBody] MainAlcoholDto mainAlcoholDto)
         {
             if (!await _mainAlcoholService.IsMainAlcoholUnique(mainAlcoholDto.Name))
             {
                 return BadRequest("Name is already used");
             }
 
+            await _mainAlcoholService.Update(mainAlcoholDto);
             return Ok(await _mainAlcoholService.GetById(mainAlcoholDto.MainAlcoholId));
         }
 
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Route("delete/{id}")]
-        public async Task<ActionResult> Delete(int id, [FromBody] MainAlcoholDto mainAlcoholDto)
+        [Authorize]
+        [HttpDelete]
+        [Route("Delete/{id}")]
+        public async Task<IActionResult> Delete(int id)
         {
             if (await _mainAlcoholService.IsMainAlcoholUsed(id))
             {
@@ -78,7 +83,7 @@ namespace DrinkItUpWebApp.Controllers
 
 
             if (await _mainAlcoholService.Remove(id))
-                return Ok("Deleted");
+                return AcceptedAtAction("Deleted");
             else
                 return StatusCode(500);
         }

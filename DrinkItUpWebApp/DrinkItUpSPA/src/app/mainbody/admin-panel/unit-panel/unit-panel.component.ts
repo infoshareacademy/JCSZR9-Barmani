@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { tap } from 'rxjs';
+import { first, subscribeOn, tap } from 'rxjs';
 import { UnitEndpointService } from 'src/app/shared/Endpoints/unit-endpoint.service';
 import { UnitModel } from 'src/app/shared/Models/unit.model';
 import { AdminPanelService } from 'src/app/shared/Services/admin-panel.service';
@@ -11,6 +11,7 @@ import { AdminPanelService } from 'src/app/shared/Services/admin-panel.service';
 })
 export class UnitPanelComponent {
   loaded = false;
+  isEdited = false;
   units: UnitModel[] = [];
   unit: UnitModel = new UnitModel();
 
@@ -28,9 +29,47 @@ getAll(){
 }
 
 onAddClick(){
-  this.unitEndpoint.add(this.unit).pipe(
+  let unitToAdd = new UnitModel();
+  unitToAdd.name = this.unit.name;
+  this.unitEndpoint.add(unitToAdd).pipe(
     tap(data => this.unit = data),
     tap(_ => this.getAll())
+  )
+  .subscribe();
+}
+
+onEditClick(id: number){
+ this.unitEndpoint.getById(id).pipe(
+  tap(data => this.unit = data),
+  tap(_ => this.isEdited = true)
+ )
+ .subscribe();
+}
+
+onDeleteClick(id: number){
+  this.unitEndpoint.getById(id).pipe(
+    tap(data => this.unit = data),
+    tap(_ => this.isEdited = true)
+   )
+   .subscribe();
+}
+
+onUpdate(){
+  this.unitEndpoint.update(this.unit).pipe(
+    tap(data => this.unit = data),
+    tap(_ => this.getAll())
+  )
+  .subscribe();
+}
+
+onDelete(){
+  
+  let id = this.unit.unitId!;
+  this.unitEndpoint.delete(id).pipe(
+    tap(_ => first()),
+    tap(_ => this.getAll()),
+    tap(_ => this.isEdited = false),
+    tap(_ => this.unit = new UnitModel())
   )
   .subscribe();
 }

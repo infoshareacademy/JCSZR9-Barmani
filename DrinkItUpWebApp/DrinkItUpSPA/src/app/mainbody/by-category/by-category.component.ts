@@ -63,9 +63,9 @@ onCategoryChoose(){
 }
 
 onMainAlcoholChoose(mainAlcohol: MainAlcoholModel){
-  this.drinkEndpoint.getByMainAlcoholId(mainAlcohol.mainAlcoholId).subscribe(data =>{
+  this.drinkEndpoint.getByMainAlcoholId(mainAlcohol.mainAlcoholId!).subscribe(data =>{
     this.results = data;
-    this.chosen = mainAlcohol.name;
+    this.chosen = mainAlcohol.name!;
   })
 }
 
