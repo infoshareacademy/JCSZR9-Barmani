@@ -65,3 +65,9 @@
         border-style: solid;
         border-color: #da0b85;
     }
+
+    .ingredientList {
+        min-height: 100px;
+        max-height: 300px;
+        overflow: hidden auto;
+    }

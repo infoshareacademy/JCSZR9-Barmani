@@ -60,7 +60,6 @@ removeIngredient(ingredientName: string)
 searchByIngredients(){
   this.drinkEnpoint.searchByIngredients(this.chosenIngredientsNames.join()).subscribe(data =>{
     this.results = data; 
-    console.log(this.results);
     this.resultsSub.next(this.results);
     });
     

@@ -141,17 +141,14 @@ namespace DrinkItUpWebApp.Controllers
         [Authorize]
         [HttpPost]
         [Route("Update")]
-
-        public async Task<IActionResult> Update([FromBody] DifficultyDto difficultyDto)
+        public async Task<IActionResult> Update([FromBody] DrinkWithDetailsDto drinkWithDetailsDto)
         {
-            if (!await _difficultyService.IsDifficultyUnique(difficultyDto.Name))
-            {
-                return BadRequest("Name is already used");
-            }
+            if (!await _drinkService.IsDrinkUnique(drinkWithDetailsDto))
+                return BadRequest("The same drink is added in database");
 
-            await _difficultyService.Update(difficultyDto);
-            _logger.LogInformation($"{DateTime.Now}: Difficulty {difficultyDto.Name} has been updated.");
-            return Ok(await _difficultyService.GetById(difficultyDto.DifficultyId));
+            var updatedDrink = await _drinkService.UpdateDrink(drinkWithDetailsDto);
+            _logger.LogInformation($"{DateTime.Now}: Drink {updatedDrink.Name} has been updated.");
+            return Ok(updatedDrink);
         }
 
 
@@ -160,15 +157,10 @@ namespace DrinkItUpWebApp.Controllers
         [Route("Delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            if (await _difficultyService.IsDifficultyUsed(id))
-            {
-                return BadRequest("Difficulty is in use, cannot delete");
-            }
 
-
-            if (await _difficultyService.Remove(id))
+            if (await _drinkService.RemoveDrink(id))
             {
-                _logger.LogInformation($"{DateTime.Now}: Difficulty id:{id} has been removed.");
+                _logger.LogInformation($"{DateTime.Now}: Drink id:{id} has been removed.");
                 return AcceptedAtAction("Deleted");
             }
             else

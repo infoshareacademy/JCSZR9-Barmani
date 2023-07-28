@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DrinkModel } from '../Models/drink.model';
 import { DrinkSearchModel } from '../Models/drinkSearch.model';
+import { IngredientModel } from '../Models/ingredient.model';
 
 @Injectable({
   providedIn: 'root'
