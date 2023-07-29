@@ -2,7 +2,6 @@
 using DrinkItUpBusinessLogic.DTOs;
 using DrinkItUpBusinessLogic.Interfaces;
 using DrinkItUpWebApp.DAL.Entities;
-using DrinkItUpWebApp.DAL.Repositories;
 using DrinkItUpWebApp.DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -72,15 +71,23 @@ namespace DrinkItUpBusinessLogic
             if (!VerifyDrink(drink))
                 throw new Exception("Lack of Data in Drink");
 
-            foreach(var ingredient in drink.Ingredients)
-            {
-                var drinkIngredient = new DrinkIngredient { DrinkId = drink.DrinkId, Quantity = ingredient.Quantity, IngredientId = ingredient.IngredientId };
-                await _drinkIngredientRepository.Add(drinkIngredient);
-            }
+            drink.MainAlcohol = null;
+            drink.Difficulty = null;
 
             var drinkEntity = await _repository.Add(_mapper.Map<Drink>(drink));
             await _repository.Save();
+            drinkEntity.DrinkPhotoId = $"{drinkEntity.DrinkId}.png";
+            
+            _repository.Update(drinkEntity);
+            await _repository.Save();
 
+
+            foreach (var ingredient in drink.Ingredients)
+            {
+                var drinkIngredient = new DrinkIngredient { DrinkId = drinkEntity.DrinkId, Quantity = ingredient.Quantity, IngredientId = ingredient.IngredientId };
+                await _drinkIngredientRepository.Add(drinkIngredient);
+            }
+            await _repository.Save();
             var drinkDto = _mapper.Map<DrinkDto>(drinkEntity);
 
             return drinkDto;
@@ -91,10 +98,13 @@ namespace DrinkItUpBusinessLogic
             if (!VerifyDrink(drink))
                 throw new Exception("Lack of Data in Drink");
 
-            await RemoveDrink(drink.DrinkId);
-            var updateddrink = await AddDrink(drink);
+            drink.MainAlcohol = null;
+            drink.Difficulty = null;
 
-            return updateddrink;
+            var updatedDrink = _repository.Update(_mapper.Map<Drink>(drink));
+            await _repository.Save();
+
+            return _mapper.Map<DrinkDto>(updatedDrink);
 
         }
 
@@ -114,6 +124,46 @@ namespace DrinkItUpBusinessLogic
             await _repository.Save();
 
             return true;
+        }
+
+        public async Task<bool> CheckIngredients(DrinkWithDetailsDto drink)
+        {
+            var ingredientInDataBase = await _drinkIngredientRepository.GetAll().
+                Where(dI => dI.DrinkId == drink.DrinkId).ToListAsync();
+            if (ingredientInDataBase.Count() != drink.Ingredients.Count())
+            {
+                return true;
+            }
+            else
+            {
+                foreach(var ingredient in drink.Ingredients)
+                {
+                    if (ingredientInDataBase.FirstOrDefault(di => di.IngredientId == ingredient.IngredientId && di.Quantity == ingredient.Quantity) != null)
+                        continue;
+                    else
+                        return true;
+                }
+            }
+
+            return false;
+
+            
+        }
+
+        public async Task UpdateDrinkIngredients(DrinkWithDetailsDto drink)
+        {
+            var ingredientInDataBase = await _drinkIngredientRepository.GetAll().
+                Where(dI => dI.DrinkId == drink.DrinkId).ToListAsync();
+
+            ingredientInDataBase.ForEach(dI => _drinkIngredientRepository.Delete(dI));
+
+            foreach (var ingredient in drink.Ingredients)
+            {
+                var drinkIngredient = new DrinkIngredient { DrinkId = drink.DrinkId, Quantity = ingredient.Quantity, IngredientId = ingredient.IngredientId };
+                await _drinkIngredientRepository.Add(drinkIngredient);
+            }
+
+            await _drinkIngredientRepository.Save();
         }
     }
 }

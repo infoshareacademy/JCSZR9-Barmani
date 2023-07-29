@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { tap } from 'rxjs';
+import { first, tap } from 'rxjs';
 import { DifficultyEndpointService } from 'src/app/shared/Endpoints/difficulty-endpoint.service';
 import { DrinkEndpointService } from 'src/app/shared/Endpoints/drink-endpoint.service';
 import { IngredientEndpointService } from 'src/app/shared/Endpoints/ingredient-endpoint.service';
@@ -25,6 +25,8 @@ export class DrinkPanelComponent implements OnDestroy {
   drinks: DrinkModel[] = [];
   drink: DrinkModel = this.adminService.drink;
   
+  private file!: File;
+
   units: UnitModel[] = [];
   mainAlcohols: MainAlcoholModel[] = [];
   difficulties: DifficultyModel[] = [];
@@ -98,6 +100,22 @@ onAddIngredientClick(){
   .subscribe();
 
 }
+
+onFileChoose(event: any){
+  if (event.length === 0) {
+    return;
+  }
+  
+  this.file = event.target.files[0];
+}
+uploadFoto(fileName: string){
+  
+  const formData = new FormData();
+  formData.append('file', this.file, fileName)
+
+  this.drinkEndpoint.upload(formData).pipe(tap(_=>{})).subscribe()
+}
+
 removeIngredient(index: number){
   let name = this.drink!.ingredients!.at(index)!.name;
   this.ingredients.push(name!);
@@ -114,58 +132,69 @@ onIngredientChoose(){
   .subscribe();
 }
 onAddClick(){
-//   console.log(this.drink);
-//   let ingredientToAdd = new IngredientModel(new UnitModel());
-//   ingredientToAdd.name = this.drink.name;
-//   ingredientToAdd.unit = this.drink.unit ;
-//   ingredientToAdd.unitId = this.drink.unit.unitId;
+  let drink = this.adminService.drink;
+  drink.mainAlcohol = this.mainAlcohols.find(mA => mA.mainAlcoholId === drink.mainAlcoholId);
+  drink.difficulty = this.difficulties.find(d => d.difficultyId === drink.difficultyId);
 
-//   this.ingredientEndpoint.add(ingredientToAdd).pipe(
-//     tap(data => this.drink = data),
-//     tap(_ => this.getAll())
-//   )
-//   .subscribe();
+  this.drinkEndpoint.add(drink).pipe(
+    tap(data => drink = data),
+    tap(_ => console.log(drink)), 
+    tap(_ =>{
+          this.uploadFoto(drink.drinkPhotoId!);
+        }),
+    tap(_ => this.getAll()),
+    tap(_ => this.file!)
+    )
+    .subscribe()
+
 }
 
-// onEditClick(id: number){
-//  this.ingredientEndpoint.getById(id).pipe(
-//   tap(data => this.drink = data),
-//   tap(_ => this.isEdited = true)
-//  )
-//  .subscribe();
-// }
+onEditClick(id: number){
+ this.drinkEndpoint.getById(id).pipe(
+  tap(data => this.adminService.drink = data),
+  tap(_ => this.drink = this.adminService.drink),
+  tap(_ => this.isEdited = true)
+ )
+ .subscribe();
+}
 
-// onDeleteClick(id: number){
-//   this.ingredientEndpoint.getById(id).pipe(
-//     tap(data => this.drink= data),
-//     tap(_ => this.isEdited = true)
-//    )
-//    .subscribe();
-// }
+onDeleteClick(id: number){
+  this.drinkEndpoint.getById(id).pipe(
+    tap(data => this.adminService.drink = data),
+    tap(_ => this.drink = this.adminService.drink),
+    tap(_ => this.isEdited = true)
+   )
+   .subscribe();
+}
 
-// onUpdate(){
-//   let ingredientToUpdate = new IngredientModel(new UnitModel());
-//   ingredientToUpdate.ingredientId = this.drink.ingredientId;
-//   ingredientToUpdate.name = this.drink.name;
-//   ingredientToUpdate.unitId = this.drink.unitId;
-//   ingredientToUpdate.unit = this.units.find(u => u.unitId === this.drink.unitId)!;
-//   console.log(this.units.find(u => u.unitId === this.drink.unitId))
-//   this.ingredientEndpoint.update(ingredientToUpdate).pipe(
-//     tap(data => this.drink = data),
-//     tap(_ => this.getAll())
-//   )
-//   .subscribe();
-// }
+onUpdate(){
+  let drink = this.adminService.drink;
+  drink.mainAlcohol = this.mainAlcohols.find(mA => mA.mainAlcoholId === drink.mainAlcoholId);
+  drink.difficulty = this.difficulties.find(d => d.difficultyId === drink.difficultyId);
 
-// onDelete(){
+  this.drinkEndpoint.update(drink).pipe(
+    tap(_ => {
+      if(this.file)
+      {
+        this.uploadFoto(drink.drinkPhotoId!);
+      }
+    }),
+    tap(data => this.drink = data),
+    tap(_ => this.getAll())
+  )
+  .subscribe();
+}
+
+onDelete(){
   
-//   let id = this.drink.ingredientId!;
-//   this.ingredientEndpoint.delete(id).pipe(
-//     tap(_ => first()),
-//     tap(_ => this.getAll()),
-//     tap(_ => this.isEdited = false),
-//     tap(_ => this.drink = new IngredientModel(new UnitModel()))
-//   )
-//   .subscribe();
-// }
+  let id = this.drink.drinkId!;
+  this.drinkEndpoint.delete(id).pipe(
+    tap(_ => first()),
+    tap(_ => this.getAll()),
+    tap(_ => this.isEdited = false),
+    tap(_ => this.adminService.drink = {drinkId: 0, name: '', mainAlcoholId: 0, difficultyId: 0, description: '', drinkPhotoId: '', ingredients: []}),
+    tap(_ => this.drink = this.adminService.drink),
+  )
+  .subscribe();
+}
 }

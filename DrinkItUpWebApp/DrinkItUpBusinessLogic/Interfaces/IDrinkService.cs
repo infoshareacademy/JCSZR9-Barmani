@@ -1,5 +1,6 @@
 ﻿using DrinkItUpBusinessLogic.DTOs;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,10 @@ namespace DrinkItUpBusinessLogic.Interfaces
         Task<DrinkDto> UpdateDrink(DrinkWithDetailsDto drink);
 
         Task<bool> RemoveDrink(int id);
+
+        Task<bool> CheckIngredients(DrinkWithDetailsDto drink);
+
+        Task UpdateDrinkIngredients(DrinkWithDetailsDto drink);
 
 
     }

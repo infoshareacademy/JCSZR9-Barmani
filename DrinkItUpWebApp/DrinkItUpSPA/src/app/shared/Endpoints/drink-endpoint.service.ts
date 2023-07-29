@@ -46,5 +46,22 @@ export class DrinkEndpointService {
    getByDifficultyId(id: number){
     return this.http.get<DrinkSearchModel[]>(this.baseURL+'/byCategory/difficulty/'+id);
    };
+
+   upload(form: FormData){
+    return this.http.post(this.baseURL+'/Upload',form);
+   }
+
+   add(drink: DrinkModel){
+    return this.http.post<DrinkModel>(this.baseURL+'/Add', drink)
+   }
+
+
+   update(drinkToUpdate: DrinkModel){
+    return this.http.post<DrinkModel>(this.baseURL+'/Update',drinkToUpdate);
+   };
+
+   delete(id: number){
+    return this.http.delete<any>(this.baseURL+'/Delete/'+ id);
+   }
 }
 
