@@ -69,7 +69,7 @@ namespace DrinkItUpWebApp.Controllers
         {
             var role = _mapper.Map<Role>(roleDto);
 
-            var updatedRoleDto = _mapper.Map<RoleDto>(await _roleRepository.Add(role));
+            var updatedRoleDto = _mapper.Map<RoleDto>(_roleRepository.Update(role));
             await _roleRepository.Save();
             return Ok(updatedRoleDto);
         }

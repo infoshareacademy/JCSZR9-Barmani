@@ -17,85 +17,43 @@
         <div class="col-12">
             <div class="d-flex stopka my-2 p-2 mx-1">
                 <div class="col-4 d-flex stopka p-1">
-                    <div class="accordion container-fluid" id="accordionCRD">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button bg-warning fw-bold text-black" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    Dodaj Jednostkę
-                                </button>
-                            </h2>
-                            <div id="collapseOne" class="accordion-collapse collapse show bg-dark text-white" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <form asp-action="Create">
-                                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                                <div class="form-group">
-                                                    <label for="Name" class="control-label">Nazwa jednostki:</label>
-                                                    <input asp-for="Name" class="form-control" />
-                                                    <span asp-validation-for="Name" class="text-danger"></span>
-                                                </div>
-                                                <div class="form-group my-3">
-                                                    <input type="submit" value="Dodaj jednostkę" class="btn btn-warning" />
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed bg-warning fw-bold text-black" type="button" data-bs-toggle="collapse" data-bs-target="" aria-expanded="false" aria-controls="collapseTwo">
-                                    Użyj akcji w tabeli, żeby otrzymać
-                                </button>
-                            </h2>
-                            <div id="collapseTwo" class="accordion-collapse collapse bg-dark text-white" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed bg-warning fw-bold text-black" type="button" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false" aria-controls="collapseThree">
-                                    dostęp do większej ilości opcji.
-                                </button>
-                            </h2>
-                            <div id="collapseThree" class="accordion-collapse collapse bg-dark text-white" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="d-block col-8">
+                <div class="d-block col-10">
                     <table class="table table-dark table-md table-striped pinkborda lead">
                         <thead class="lead">
                             <tr>
                                 <th scope="col">
+                                    Id
+                                </th>
+                                <th scope="col">
                                     Nazwa
                                 </th>
                                 <th scope="col">
-                                    Czy używany?
+                                    Email
                                 </th>
-                                <th scope="col">Akcje</th>
+                                <th scope="col">
+                                    Data urodzenia
+                                </th>
+                                <th scope="col">
+                                    Flaga
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
-                                <tr>
+                                <tr *ngFor="let user of users">
                                     <th scope="row" class="lead">
-                                        @item.Name
+                                        {{user.userId}}
                                     </th>
                                     <td>
-                                            <span>Tak</span>
-
-                                            <span>Nie</span>
-
+                                        {{user.userNameToShow}}
                                     </td>
                                     <td>
-                                        <a class="btn btn-sm btn-warning lead" asp-action="Edit" asp-route-id="@item.UnitId">Edytuj</a> |
-                                        <a class="btn btn-sm btn-warning lead" asp-action="Delete" asp-route-id="@item.UnitId">Usuń</a>
+                                        {{user.email}}
+                                    </td>
+                                    <td>
+                                        {{user.dateOfBirth}}
+                                    </td>
+                                    <td>
+                                        {{user.role!.name}}
                                     </td>
                                 </tr>
 
