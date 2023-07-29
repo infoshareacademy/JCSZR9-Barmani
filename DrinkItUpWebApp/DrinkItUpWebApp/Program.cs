@@ -45,6 +45,7 @@ namespace DrinkItUpWebApp
             builder.Services.AddScoped<IMainAlcoholRepository, MainAlcoholRepository>();
             builder.Services.AddScoped<IDifficultyRepository, DifficultyRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 
 
             //AutoMapper
