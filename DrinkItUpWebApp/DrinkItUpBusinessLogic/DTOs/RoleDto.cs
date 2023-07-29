@@ -12,5 +12,7 @@ namespace DrinkItUpBusinessLogic.DTOs
         public int RoleId { get; set; }
         [MaxLength(25)]
         public string Name { get; set; } = null!;
+
+        public bool? IsUsed { get; set; }
     }
 }

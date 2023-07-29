@@ -3,6 +3,7 @@ export class UserModel{
     userNameToShow?: string;
     email?: string;
     dateOfBirth?: Date;
+    roleId?: number;
     role?: RoleModel;
     token?: string;
 }
@@ -10,6 +11,7 @@ export class UserModel{
 export class RoleModel{
     roleId?: number;
     name?: string;
+    isUsed?: boolean;
 }
 
 export class UserRegisterModel{
