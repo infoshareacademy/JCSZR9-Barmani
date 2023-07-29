@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IngredientModel } from '../Models/ingredient.model';
+import { UnitModel } from '../Models/unit.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,15 @@ export class IngredientEndpointService {
    getAllNames(){
     return this.http.get<string[]>(this.baseURL+'/GetAllNames');
    }
+
+   getAllUnitsForIngredient(ingredientName: string){
+    return this.http.get<UnitModel[]>(this.baseURL+'/GetAllUnits/'+ ingredientName)
+   }
+
+   getByNameAndUnit(ingredientName: string, unitId: number){
+    return this.http.get<IngredientModel>(this.baseURL+'/GetByNameAndUnit/'+ ingredientName + '/'+ unitId)
+   }
+
 
    getAll(){
     return this.http.get<IngredientModel[]>(this.baseURL+'/GetAll');
@@ -35,4 +45,5 @@ export class IngredientEndpointService {
    delete(id: number){
     return this.http.delete<any>(this.baseURL+'/Delete/'+ id);
    }
+
 }

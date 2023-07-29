@@ -5,7 +5,6 @@ using DrinkItUpWebApp.DAL.Entities;
 using DrinkItUpWebApp.DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace DrinkItUpBusinessLogic
 {
     public class IngredientService : IIngredientService
@@ -114,6 +113,20 @@ namespace DrinkItUpBusinessLogic
 
             return false;
             
+        }
+
+        public async Task<IEnumerable<UnitDto>> GetAllUnitsForIngredient(string ingredient)
+        {
+            var ingredients = await GetAllIngredientsWithUnits();
+
+            return ingredients.Where(i => i.Name == ingredient).Select(i => i.Unit);    
+
+        }
+
+        public async Task<IngredientDto> GetByNameAndUnit(string ingredient, int unitId)
+        {
+            return _mapper.Map<IngredientDto>(await _repository.GetAll().
+                FirstOrDefaultAsync(i => i.Name == ingredient && i.UnitId == unitId) ?? throw new Exception("Ingredient not found"));
         }
     }
 }

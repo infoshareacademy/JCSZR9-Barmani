@@ -11,6 +11,9 @@ namespace DrinkItUpBusinessLogic.Interfaces
     {
         Task<List<IngredientDto>> GetAllIngredientsWithUnits();
 
+        Task<IEnumerable<UnitDto>> GetAllUnitsForIngredient(string ingredient);
+        Task<IngredientDto> GetByNameAndUnit(string ingredient, int unitId);
+
         Task<IngredientDto> GetById(int id);
 
         Task<IngredientDto> Add(IngredientDto ingredient);

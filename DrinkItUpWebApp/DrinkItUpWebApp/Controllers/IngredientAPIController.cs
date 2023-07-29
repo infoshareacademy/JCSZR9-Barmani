@@ -36,6 +36,22 @@ namespace DrinkItUpWebApp.Controllers
 
             return Ok(ingredientsDtosNames);
         }
+        [HttpGet]
+        [Route("GetAllUnits/{ingredient}")]
+        public async Task<ActionResult> GetAllUnits(string ingredient)
+        {
+            var unitDtos = await _ingredientService.GetAllUnitsForIngredient(ingredient);
+
+            return Ok(unitDtos);
+        }
+        [HttpGet]
+        [Route("GetByNameAndUnit/{ingredient}/{unitId}")]
+        public async Task<ActionResult> GetByNameAndUnit(string ingredient, int unitId)
+        {
+            var ingredientDto = await _ingredientService.GetByNameAndUnit(ingredient,unitId);
+
+            return Ok(ingredientDto);
+        }
 
         [HttpGet]
         [Route("GetAll")]

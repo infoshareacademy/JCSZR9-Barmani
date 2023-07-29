@@ -1,8 +1,12 @@
 ﻿using AutoMapper;
+using DrinkItUpBusinessLogic.DTOs;
+using DrinkItUpBusinessLogic;
 using DrinkItUpBusinessLogic.Interfaces;
 using DrinkItUpWebApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using DrinkItUpWebApp.Middleware.Authorization;
+using System.Net.Http.Headers;
 
 namespace DrinkItUpWebApp.Controllers
 {
@@ -16,11 +20,19 @@ namespace DrinkItUpWebApp.Controllers
         private readonly IGetDrinkDetails _getDrinkDetails;
         private readonly ISearchByNameOrOneIngredient _searchByNameOrOneIngredient;
         private readonly IMapper _mapper;
+        private readonly ILogger<DrinkAPIController> _logger;
 
-        public DrinkAPIController(IDrinkService drinkService, IByCategoryService categoryService,ISearchByIngredients searchByIngredients, IGetDrinkDetails getDrinkDetails, ISearchByNameOrOneIngredient searchByNameOrOneIngredient, IMapper mapper)
+        public DrinkAPIController(IDrinkService drinkService, 
+            IByCategoryService categoryService,
+            ISearchByIngredients searchByIngredients, 
+            IGetDrinkDetails getDrinkDetails, 
+            ISearchByNameOrOneIngredient searchByNameOrOneIngredient, 
+            IMapper mapper,
+            ILogger<DrinkAPIController> logger)
         {
 
             _mapper = mapper;
+            _logger = logger;
             _drinkService = drinkService;
             _categoryService = categoryService;
             _searchByIngredients = searchByIngredients;
@@ -112,6 +124,93 @@ namespace DrinkItUpWebApp.Controllers
 
             return Ok(drinksDtos);
 
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("Add")]
+        public async Task<IActionResult> Add([FromBody] DrinkWithDetailsDto drinkWithDetailsDto)
+        {
+            if (!await _drinkService.IsDrinkUnique(drinkWithDetailsDto))
+                return BadRequest("The same drink is added in database");
+
+            var addedDrink = await _drinkService.AddDrink(drinkWithDetailsDto);
+            _logger.LogInformation($"{DateTime.Now}: New Drink {addedDrink.Name} has been added.");
+            return Ok(addedDrink);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("Update")]
+        public async Task<IActionResult> Update([FromBody] DrinkWithDetailsDto drinkWithDetailsDto)
+        {
+            if (await _drinkService.IsDrinkUnique(drinkWithDetailsDto))
+            {
+                var updatedDrink = await _drinkService.UpdateDrink(drinkWithDetailsDto);
+
+                if(await _drinkService.CheckIngredients(drinkWithDetailsDto))
+                {
+                    await _drinkService.UpdateDrinkIngredients(drinkWithDetailsDto);
+                }
+
+                _logger.LogInformation($"{DateTime.Now}: Drink {updatedDrink.Name} has been updated.");
+                return Ok(updatedDrink);
+            }
+            else if(await _drinkService.CheckIngredients(drinkWithDetailsDto))
+            {
+                await _drinkService.UpdateDrinkIngredients(drinkWithDetailsDto);
+                _logger.LogInformation($"{DateTime.Now}: Drink {drinkWithDetailsDto.Name} has been updated.");
+                return Ok(drinkWithDetailsDto);
+            }
+
+            return BadRequest("Drink already in database!");
+        }
+
+
+        [HttpDelete]
+        [Authorize]
+        [Route("Delete/{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+
+            if (await _drinkService.RemoveDrink(id))
+            {
+                _logger.LogInformation($"{DateTime.Now}: Drink id:{id} has been removed.");
+                return AcceptedAtAction("Deleted");
+            }
+            else
+                return StatusCode(500);
+        }
+
+        [HttpPost, DisableRequestSizeLimit]
+        [Route("Upload")]
+        public async Task<IActionResult> Upload()
+        {
+            try
+            {
+                var formCollection = await Request.ReadFormAsync();
+                var file = formCollection.Files.First();
+                var pathToSave = "C:\\Users\\ulisu\\Desktop\\Projects\\InfoShare\\Projekt\\JCSZR9-Barmani\\DrinkItUpWebApp\\DrinkItUpSPA\\src\\assets";
+                if (file.Length > 0)
+                {
+                    var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                    var fullPath = Path.Combine(pathToSave, fileName);
+                    var dbPath = Path.Combine(fileName);
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        file.CopyTo(stream);
+                    }
+                    return Ok(new { dbPath });
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex}");
+            }
         }
     }
 }

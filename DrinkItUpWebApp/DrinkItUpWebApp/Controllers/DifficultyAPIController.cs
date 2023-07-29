@@ -93,6 +93,6 @@ namespace DrinkItUpWebApp.Controllers
             }
             else
                 return StatusCode(500);
-        }
+            }
     }
 }

@@ -21,22 +21,111 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button bg-warning fw-bold text-black" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    Dodaj Jednostkę
+                                    Dodaj drink:
                                 </button>
                             </h2>
-                            <div id="collapseOne" class="accordion-collapse collapse show bg-dark text-white" data-bs-parent="#accordionExample">
+                            <div id="collapseOne" class="accordion-collapse collapse show bg-dark text-white" [ngClass]="{show: !isEdited}" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     <div class="row">
                                         <div class="col-12">
-                                            <form asp-action="Create">
-                                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                            <form >
+                                                <div class="text-danger"></div>
                                                 <div class="form-group">
-                                                    <label for="Name" class="control-label">Nazwa jednostki:</label>
-                                                    <input asp-for="Name" class="form-control" />
-                                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                                    <label for="Name" class="control-label">Nazwa drinka:</label>
+                                                    <input for="Name" name="Name" [(ngModel)]="drink.name" class="form-control" />
+                                                    <span  class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group my-2">
+                                                    <label for="alcohol" class="control-label">Alkohol dominujący:</label>
+                                                    <select for="alcohol" name="mainAlcoholId" [(ngModel)]="drink.mainAlcoholId" class="form-select" aria-label="Select Unit">
+                                                        <option selected>Wybierz alkohol z listy</option>
+                                                        <option [ngValue]="mainAlcohol.mainAlcoholId" *ngFor="let mainAlcohol of mainAlcohols">{{mainAlcohol.name}}</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group my-2">
+                                                    <label for="level" class="control-label">Poziom trudności:</label>
+                                                    <select for="level" name="difficultyId" [(ngModel)]="drink.difficultyId" class="form-select" aria-label="Select Unit">
+                                                        <option selected>Wybierz poziom z listy</option>
+                                                        <option [ngValue]="difficulty.difficultyId" *ngFor="let difficulty of difficulties">{{difficulty.name}}</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group row align-items-center border">
+                                                    <p class="fw-bold">Składniki:</p>
+                                                    <div class="form-group col-5 my-2">
+                                                        <label for="ingredienttoAdd" class="control-label">Nazwa składnika:</label>
+                                                        <select for="ingredientToAdd" name="ingredientId" [(ngModel)]="ingredient.name" (ngModelChange)="onIngredientChoose()" class="form-select" aria-label="Select Ingredient">
+                                                            <option>Wybierz składnik z listy</option>
+                                                            <option [ngValue]="ingredientName" *ngFor="let ingredientName of ingredients">{{ingredientName}}</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-2 my-2">
+                                                        <label for="quantity" class="control-label">Ilość:</label>
+                                                        <input for="quantity" name="quantity" [(ngModel)]="ingredient.quantity" class="form-control" />
+                                                        <span  class="text-danger"></span>
+                                                    </div>
+                                                    <div class="form-group my-2 col-3">
+                                                        <label for="unittoAdd" class="control-label">jednostka:</label>
+                                                        <select for="unitToAdd" name="ingredientId" [(ngModel)]="ingredient.unitId"  class="form-select" aria-label="Select Unit">
+                                                            <option>Wybierz jednostkę z listy</option>
+                                                            <option [ngValue]="unit.unitId" *ngFor="let unit of units">{{unit.name}}</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <label></label>
+                                                        <input type="submit" (click)="onAddIngredientClick()" [disabled]="!isLoadedIngredient" value="Dodaj" class="btn btn-warning" />
+                                                    </div>
+                                                    <div class="rounded-2 ingredientList">
+                                                        <table class="table table-sm table-dark table-striped">
+                                                            <thead>
+                                                                <tr class="justify-content-center">
+                                                                    <th class="" >
+                                                                        <label>Nazwa składnika</label>
+                                                                    </th>
+                                                                    <th class="ingredients-th">
+                                                                        <label>Ilość?</label>
+                                                                    </th>
+                                                                    <th class="ingredients-th">
+                                                                        <label>Jednostka</label>
+                                                                    </th>
+                                                                    <th class="ingredients-th">
+                                                                        <label>Akcje</label>
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let ingredientToAdd of drink.ingredients; index as i">
+                                                                    <td class="">
+                                                                        <p class="lead">{{ingredientToAdd.name!}}</p>
+                                                                    </td>
+                                                                    <td class="">
+                                                                        <p class="lead">{{ingredientToAdd.quantity}}</p>
+                                                                    </td>
+                                                                    <td class="">
+                                                                        <p class="lead">{{ingredientToAdd.unit.name}}</p>
+                                                                    </td>
+                                                                    <td class="ingredients-td">
+                                                                        <a class="btn btn-warning" (click)="removeIngredient(i)"
+                                                                        ><span class="fw-bold">Usuń</span></a>
+                                                                    </td>
+                                                                </tr>
+                                                            
+                                                        </tbody>
+                                                    </table>
+                                            
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="description" class="control-label">Opis przygotowania:</label>
+                                                    <textarea for="description" name="description" [(ngModel)]="drink.description" row="4" class="form-control"></textarea>
+                                                    <span  class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="file" class="control-label">Zdjęcie drinka:</label>
+                                                    <input for="file" name="file" accept="image/png" [(ngModel)]="drink.drinkPhotoId" type="file" (change)="onFileChoose($event)" class="form-control form-control-sm"/>
+                                                    <span  class="text-danger"></span>
                                                 </div>
                                                 <div class="form-group my-3">
-                                                    <input type="submit" value="Dodaj jednostkę" class="btn btn-warning" />
+                                                    <input type="submit" (click)="onAddClick()" value="Dodaj składnik" class="btn btn-warning" />
                                                 </div>
                                             </form>
                                         </div>
@@ -44,7 +133,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="accordion-item">
+                        <div class="accordion-item" *ngIf="!isEdited">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed bg-warning fw-bold text-black" type="button" data-bs-toggle="collapse" data-bs-target="" aria-expanded="false" aria-controls="collapseTwo">
                                     Użyj akcji w tabeli, żeby otrzymać
@@ -55,7 +144,122 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="accordion-item">
+                        <div class="accordion-item" *ngIf="isEdited && drink.drinkId != 0">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed bg-warning fw-bold text-black" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Edytuj składnik
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse show bg-dark text-white" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <form >
+                                                <div class="text-danger"></div>
+                                                <div class="form-group">
+                                                    <label for="Name" class="control-label">Nazwa drinka:</label>
+                                                    <input for="Name" name="Name" [(ngModel)]="drink.name" class="form-control" />
+                                                    <span  class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group my-2">
+                                                    <label for="alcohol" class="control-label">Alkohol dominujący:</label>
+                                                    <select for="alcohol" name="mainAlcoholId" [(ngModel)]="drink.mainAlcoholId" class="form-select" aria-label="Select Unit">
+                                                        <option selected>Wybierz alkohol z listy</option>
+                                                        <option [ngValue]="mainAlcohol.mainAlcoholId" *ngFor="let mainAlcohol of mainAlcohols">{{mainAlcohol.name}}</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group my-2">
+                                                    <label for="level" class="control-label">Poziom trudności:</label>
+                                                    <select for="level" name="difficultyId" [(ngModel)]="drink.difficultyId" class="form-select" aria-label="Select Unit">
+                                                        <option selected>Wybierz poziom z listy</option>
+                                                        <option [ngValue]="difficulty.difficultyId" *ngFor="let difficulty of difficulties">{{difficulty.name}}</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group row align-items-center border">
+                                                    <p class="fw-bold">Składniki:</p>
+                                                    <div class="form-group col-5 my-2">
+                                                        <label for="ingredienttoAdd" class="control-label">Nazwa składnika:</label>
+                                                        <select for="ingredientToAdd" name="ingredientId" [(ngModel)]="ingredient.name" (ngModelChange)="onIngredientChoose()" class="form-select" aria-label="Select Ingredient">
+                                                            <option>Wybierz składnik z listy</option>
+                                                            <option [ngValue]="ingredientName" *ngFor="let ingredientName of ingredients">{{ingredientName}}</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-2 my-2">
+                                                        <label for="quantity" class="control-label">Ilość:</label>
+                                                        <input for="quantity" name="quantity" [(ngModel)]="ingredient.quantity" class="form-control" />
+                                                        <span  class="text-danger"></span>
+                                                    </div>
+                                                    <div class="form-group my-2 col-3">
+                                                        <label for="unittoAdd" class="control-label">jednostka:</label>
+                                                        <select for="unitToAdd" name="ingredientId" [(ngModel)]="ingredient.unitId"  class="form-select" aria-label="Select Unit">
+                                                            <option>Wybierz jednostkę z listy</option>
+                                                            <option [ngValue]="unit.unitId" *ngFor="let unit of units">{{unit.name}}</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <label></label>
+                                                        <input type="submit" (click)="onAddIngredientClick()" [disabled]="!isLoadedIngredient" value="Dodaj" class="btn btn-warning" />
+                                                    </div>
+                                                    <div class="rounded-2 ingredientList">
+                                                        <table class="table table-sm table-dark table-striped">
+                                                            <thead>
+                                                                <tr class="justify-content-center">
+                                                                    <th class="" >
+                                                                        <label>Nazwa składnika</label>
+                                                                    </th>
+                                                                    <th class="ingredients-th">
+                                                                        <label>Ilość?</label>
+                                                                    </th>
+                                                                    <th class="ingredients-th">
+                                                                        <label>Jednostka</label>
+                                                                    </th>
+                                                                    <th class="ingredients-th">
+                                                                        <label>Akcje</label>
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let ingredientToAdd of drink.ingredients; index as i">
+                                                                    <td class="">
+                                                                        <p class="lead">{{ingredientToAdd.name!}}</p>
+                                                                    </td>
+                                                                    <td class="">
+                                                                        <p class="lead">{{ingredientToAdd.quantity}}</p>
+                                                                    </td>
+                                                                    <td class="">
+                                                                        <p class="lead">{{ingredientToAdd.unit.name}}</p>
+                                                                    </td>
+                                                                    <td class="ingredients-td">
+                                                                        <a class="btn btn-warning" (click)="removeIngredient(i)"
+                                                                        ><span class="fw-bold">Usuń</span></a>
+                                                                    </td>
+                                                                </tr>
+                                                            
+                                                        </tbody>
+                                                    </table>
+                                            
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="description" class="control-label">Opis przygotowania:</label>
+                                                    <textarea for="description" name="description" [(ngModel)]="drink.description" row="4" class="form-control"></textarea>
+                                                    <span  class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="file" class="control-label">Zdjęcie drinka:</label>
+                                                    <input for="file" name="file" accept="image/png" [(ngModel)]="drink.drinkPhotoId" type="file" (change)="onFileChoose($event)" class="form-control form-control-sm"/>
+                                                    <span  class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group my-3">
+                                                    <input type="submit" (click)="onUpdate()" value="Edytuj drink" class="btn btn-warning" />
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item" *ngIf="!isEdited">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed bg-warning fw-bold text-black" type="button" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false" aria-controls="collapseThree">
                                     dostęp do większej ilości opcji.
@@ -63,13 +267,44 @@
                             </h2>
                             <div id="collapseThree" class="accordion-collapse collapse bg-dark text-white" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item" *ngIf="isEdited && drink.drinkId != 0">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed  bg-warning fw-bold text-black" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Usuń składnik
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse show bg-dark text-white" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <form >
+                                                <div class="text-danger"></div>
+                                                <div class="form-group">
+                                                    <label for="id" class="control-label">Id:</label>
+                                                    <input for="id" name="id" [(ngModel)]="drink.drinkId" class="form-control" disabled/>
+                                                    <span  class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group my-2">
+                                                    <label for="Name" class="control-label">Nazwa drinka:</label>
+                                                    <input for="Name" name="Name" [(ngModel)]="drink.name" class="form-control" disabled/>
+                                                    <span  class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group my-3">
+                                                    <input type="submit" (click)="onDelete()" value="Usun drink" class="btn btn-warning" />
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="d-block col-8">
+                <div class="d-block col-8" *ngIf="loaded">
                     <table class="table table-dark table-md table-striped pinkborda lead">
                         <thead class="lead">
                             <tr>
@@ -77,25 +312,40 @@
                                     Nazwa
                                 </th>
                                 <th scope="col">
-                                    Czy używany?
+                                    Alkohol dominujący
+                                </th>
+                                <th scope="col">
+                                    Poziom Trudności
+                                </th>
+                                <th scope="col">
+                                    Opis Przygotowania
+                                </th>
+                                <th scope="col">
+                                    Ścieżka zdjęcia
                                 </th>
                                 <th scope="col">Akcje</th>
                             </tr>
                         </thead>
                         <tbody>
-                                <tr>
+                                <tr *ngFor="let drinkModel of drinks">
                                     <th scope="row" class="lead">
-                                        @item.Name
+                                        {{drinkModel.name}}
                                     </th>
                                     <td>
-                                            <span>Tak</span>
-
-                                            <span>Nie</span>
-
+                                       {{drinkModel.mainAlcohol!.name!}}
                                     </td>
                                     <td>
-                                        <a class="btn btn-sm btn-warning lead" asp-action="Edit" asp-route-id="@item.UnitId">Edytuj</a> |
-                                        <a class="btn btn-sm btn-warning lead" asp-action="Delete" asp-route-id="@item.UnitId">Usuń</a>
+                                        {{drinkModel.difficulty!.name!}}
+                                    </td>
+                                    <td>
+                                        {{drinkModel.description!.slice(0,30)}}...
+                                    </td>
+                                    <td>
+                                        {{drinkModel.drinkPhotoId}}
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-sm btn-warning lead" (click)="onEditClick(drinkModel.drinkId!)">Edytuj</a> |
+                                        <a class="btn btn-sm btn-warning lead" (click)="onDeleteClick(drinkModel.drinkId!)">Usuń</a>
                                     </td>
                                 </tr>
 
