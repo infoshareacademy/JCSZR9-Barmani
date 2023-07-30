@@ -17,7 +17,7 @@
       
       <ul class="navbar-nav fs-4 fw-bold" >
         <li class="nav-item"><a  class="nav-link" appAddonWeather><i class="fa-solid fa-cloud-sun"></i></a></li>
-        <li class="nav-item"><a  class="nav-link" appAddonShopping><i class="fa-solid fa-cart-shopping"></i></a></li>
+        <li class="nav-item" *ngIf="addonService.userValue"><a  class="nav-link"  appAddonShopping><i class="fa-solid fa-cart-shopping"></i></a></li>
         <app-user-dropdown></app-user-dropdown>
       </ul>
     </div>

@@ -1,5 +1,11 @@
-<div class="mainBody my-1 p-3 rounded text-white fw-bold lead">
+<div class="mainBody my-1 p-3 rounded text-white fw-bold lead" *ngIf="addonService.shopingList.length === 0">
     <p>Twoja lista zakupów!</p> 
     <p class="fs-6">Dodawaj składniki z drinków, a później prześlij ją sobie na maila!</p> 
-
+</div>
+<div class="mainBody my-1 p-3 rounded text-white fw-bold lead" *ngIf="addonService.shopingList.length > 0">
+    <p>List zakupów</p>
+    <p *ngFor="let item of addonService.shopingList; index as i">
+        {{item.ingredient}}: {{item.quantity}}{{item.unit}}<button class="btn btn-warning fw-bold mx-1" (click)="addonService.removeItem(i)">Usuń</button>
+    </p>
+    <button class="btn btn-warning" (click)="addonService.sendList()">Wyślij na maila</button>
 </div>

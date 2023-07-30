@@ -12,7 +12,23 @@
         <p class="lead fw-bold">Poziom trudności: {{drink.difficulty!.name}}</p>
         <p class="lead fw-bold">Składniki:</p>
         <ul>
-            <li class="lead fw-bold" *ngFor="let ingredient of drink.ingredients">{{ingredient.name}}: <span *ngIf="ingredient.quantity! > 0">{{ingredient.quantity}}</span> {{ingredient!.unit!.name}}</li>
+            <li class="lead fw-bold" *ngFor="let ingredient of drink.ingredients">
+                {{ingredient.name}}: <span *ngIf="ingredient.quantity! > 0">{{ingredient.quantity}}</span> {{ingredient!.unit!.name}}
+                <button class="btn btn-sm btn-warning fw-bold" *ngIf="addonService.userValue" (click)="addonService.onAddItem(ingredient.name!,ingredient.quantity!,ingredient.unit.name!)">+</button>
+                
+            </li>
+            <div *ngIf="addonService.isShown" class="pinkborda row" style="width: 600px;">
+                <div class="col-12 fw-bold">Dodaj do listy zakupów</div>
+                <div class="col-4">{{addonService.shopingItem.ingredient}}</div>
+                
+                <div class="col-2"><input for="quantity" name="quantity" [(ngModel)]="addonService.shopingItem.quantity" class="form-control" style="width: 70px;" /> </div>
+                <div class="col-2">{{addonService.shopingItem.unit}}</div>
+                <div class="col-4">
+                <button class="btn btn-sm btn-warning mx-2" (click)="addonService.addItem()">Dodaj</button>
+                <button class="btn btn-sm btn-warning" (click)="addonService.onClose()">Zamknij</button>
+                </div>
+
+            </div>
         </ul>
         <p class="lead fw-bold">Opis przygotowania: </p>
         <p class="lead fw-bold">{{drink.description}}</p>
