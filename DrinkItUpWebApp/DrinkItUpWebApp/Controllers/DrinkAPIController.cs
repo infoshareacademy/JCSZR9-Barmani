@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using DrinkItUpWebApp.Middleware.Authorization;
 using System.Net.Http.Headers;
+using DrinkItUpBusinessLogic.MailKitSender;
 
 namespace DrinkItUpWebApp.Controllers
 {
@@ -21,6 +22,7 @@ namespace DrinkItUpWebApp.Controllers
         private readonly ISearchByNameOrOneIngredient _searchByNameOrOneIngredient;
         private readonly IMapper _mapper;
         private readonly ILogger<DrinkAPIController> _logger;
+        private readonly IEmailService _emailService;
 
         public DrinkAPIController(IDrinkService drinkService, 
             IByCategoryService categoryService,
@@ -28,11 +30,13 @@ namespace DrinkItUpWebApp.Controllers
             IGetDrinkDetails getDrinkDetails, 
             ISearchByNameOrOneIngredient searchByNameOrOneIngredient, 
             IMapper mapper,
-            ILogger<DrinkAPIController> logger)
+            ILogger<DrinkAPIController> logger,
+            IEmailService emailService)
         {
 
             _mapper = mapper;
             _logger = logger;
+            _emailService = emailService;
             _drinkService = drinkService;
             _categoryService = categoryService;
             _searchByIngredients = searchByIngredients;
@@ -211,6 +215,16 @@ namespace DrinkItUpWebApp.Controllers
             {
                 return StatusCode(500, $"Internal server error: {ex}");
             }
+        }
+
+        [HttpPost]
+        [Authorize]
+        [Route("SendList")]
+        public IActionResult SendEmail([FromBody] ShopingListToSendModel model)
+        {
+            _emailService.SendEmail(new Message(model.Email, "Your shoping list from DrinkItUp!", model.Message));
+
+            return AcceptedAtAction("Sended");
         }
     }
 }

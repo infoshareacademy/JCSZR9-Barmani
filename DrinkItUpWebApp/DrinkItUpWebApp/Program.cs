@@ -1,5 +1,6 @@
 using DrinkItUpBusinessLogic;
 using DrinkItUpBusinessLogic.Interfaces;
+using DrinkItUpBusinessLogic.MailKitSender;
 using DrinkItUpWebApp.DAL.Entities;
 using DrinkItUpWebApp.DAL.Repositories;
 using DrinkItUpWebApp.DAL.Repositories.Interfaces;
@@ -47,7 +48,10 @@ namespace DrinkItUpWebApp
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 
-
+            //MailSender
+            var emailConfig = builder.Configuration.GetSection("MailSettings").Get<MailSettings>();
+            builder.Services.AddSingleton(emailConfig);
+            builder.Services.AddSingleton<IEmailService, EmailService>();
             //AutoMapper
             builder.Services.AddAutoMapper(typeof(Program).Assembly);
 

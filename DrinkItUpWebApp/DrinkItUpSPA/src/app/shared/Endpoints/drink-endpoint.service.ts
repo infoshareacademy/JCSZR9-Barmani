@@ -63,5 +63,9 @@ export class DrinkEndpointService {
    delete(id: number){
     return this.http.delete<any>(this.baseURL+'/Delete/'+ id);
    }
+
+   sendEmail(email:string,message:string){
+    return this.http.post<any>(this.baseURL + '/SendList',{email: email, message: message});
+   }
 }
 

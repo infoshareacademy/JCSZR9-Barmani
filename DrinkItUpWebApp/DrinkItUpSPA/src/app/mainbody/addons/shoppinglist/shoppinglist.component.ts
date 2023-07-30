@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AddonsService } from 'src/app/shared/Services/addons.service';
 
 @Component({
   selector: 'app-shoppinglist',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./shoppinglist.component.css']
 })
 export class ShoppinglistComponent {
-
+constructor(public addonService: AddonsService){}
 }
