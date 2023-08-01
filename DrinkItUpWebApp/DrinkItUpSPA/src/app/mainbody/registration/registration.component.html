@@ -1,0 +1,44 @@
+<div class="d-block mainBody my-1 rounded">
+    <div class="row">
+        <div class="col-lg-7 col-md-12 lead text-white fs-3 fw-bold text-center align-items-center" style="height: 500px;">
+            <div>
+            <p class="fs-1">Witaj na</p>
+            <img src="../../assets/logoAngular.png" class="image-fluid">
+            <p>Najlepszej stronie z przepisami na drinki,</p>
+            <span>Od użytkowników, dla użytkowników!</span>
+            <p>Jeśli nie masz jeszcze konta, zarejestruj się!</p>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-12">
+            <div class="d-block text-white lead  my-4 p-4 registration rounded">
+                <form>
+                    <p class="fw-bold text-white">Nie masz konta? Na co jeszcze czekasz?</p>
+                    <div class="mb-3">
+                      <label for="email" class="form-label">Adres e-mail:</label>
+                      <input type="email" [(ngModel)]="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Hasło:</label>
+                        <input type="password" [(ngModel)]="password" class="form-control" name="password" id="password">
+                      </div>
+                      <div class="mb-3">
+                        <label for="passwordConfirm" class="form-label">Powtórz hasło:</label>
+                        <input type="password" [(ngModel)]="confirmPassword" class="form-control" name="passwordConfirm" id="passwordConfirm">
+                      </div>
+                      <div class="mb-3">
+                        <label for="username" class="form-label">Nazwa użytkownika</label>
+                        <input type="text" [(ngModel)]="userNameToShow" class="form-control" name="username" id="username" aria-describedby="usernameHelp">
+                        <div id="usernameHelp" class="form-text fs-6 text-white">Nazwa ta będzie pokazywana np. przy dodanych drinkach.</div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="dateOfBirth" class="form-label">Data urodzenia:</label>
+                        <input type="date" [(ngModel)]="dateOfBirth" name="dateOfBirth" class="form-control" id="dateOfBirth">
+                      </div>
+                    <div class="text-center">
+                    <button type="submit" (click)="onSubmit()" class="btn btn-warning btn-lg">Zarejestruj się</button>
+                    </div>
+                  </form>
+            </div>
+        </div>
+    </div>
+</div>

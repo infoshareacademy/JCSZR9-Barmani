@@ -1,0 +1,12 @@
+.mainBody{
+    background-color: #6c1048;
+    border: 1px;
+    border-color: darkmagenta;
+    border-style:double;
+
+}
+.pinkborda-r {
+    border-right: 4px;
+    border-right-style: solid;
+    border-right-color: #da0b85;
+}

@@ -1,0 +1,10 @@
+<div [ngSwitch]="activePanel">
+    <app-drink-panel *ngSwitchCase="'drink'"></app-drink-panel>
+    <app-unit-panel *ngSwitchCase="'unit'"></app-unit-panel>
+    <app-ingredient-panel *ngSwitchCase="'ingredient'"></app-ingredient-panel>
+    <app-main-alcohol-panel *ngSwitchCase="'mainalcohol'"></app-main-alcohol-panel>
+    <app-difficulty-panel *ngSwitchCase="'difficulty'"></app-difficulty-panel>
+    <app-user-panel *ngSwitchCase="'user'"></app-user-panel>
+    <app-role-panel *ngSwitchCase="'role'"></app-role-panel>
+    <p *ngSwitchDefault=""></p>
+</div>

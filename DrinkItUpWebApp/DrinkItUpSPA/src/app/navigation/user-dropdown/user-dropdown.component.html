@@ -1,0 +1,20 @@
+<div *ngIf="!isLogged">
+<a class="nav-link dropdown-toggle fs-4 fw-bold" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+    Zaloguj się
+  </a>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><app-authorization></app-authorization></li>
+    <div class="dropdown-divider"></div>
+    <li><a routerLink="registration" class="dropdown-item">Nowy? Zarejestruj się!</a></li>
+    <li><a routerLink="forgotPassword" class="dropdown-item">Zapomniałeś hasła?</a></li>
+  </ul>
+</div>
+<div *ngIf="isLogged">
+    <a class="nav-link dropdown-toggle fs-4 fw-bold " role="button" data-bs-toggle="dropdown" aria-expanded="true">
+        {{userValue?.userNameToShow}}
+      </a>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li *ngIf="userValue?.role?.roleId === 1"><a routerLink="admin" class="dropdown-item">Panel administracyjny</a></li>
+        <li><a (click)="onClickLogout()" routerLink="/" class="dropdown-item">Wyloguj się</a></li>
+      </ul>
+</div>

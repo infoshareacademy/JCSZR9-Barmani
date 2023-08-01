@@ -1,0 +1,220 @@
+.icon {
+    height: 60px;
+    width: 60px;
+    background: #ddd;
+}
+
+.main-bg {
+    min-height: 100vh;
+    background: #6c1048;
+
+}
+.about {
+    background: #6c1048;
+}
+.main-view-sm {
+    min-height: 3vh;
+}
+
+.main-view-md {
+    min-height: 20vh;
+    background: #d89999;
+    border: 2px solid #999;
+}
+
+.main-view-lg {
+    min-height: 70vh;
+    background: #d89999;
+    border: 2px solid #999;
+}
+
+.foto {
+    max-width: 300px;
+}
+
+body {
+    color: white
+}
+
+.btn1 {
+    background-color: #e9bb31;
+}
+
+    .btn1:hover {
+        background-color: #e93c30;
+    }
+
+.btn2 {
+    background-color: #e9bb31;
+}
+
+    .btn2:hover {
+        background-color: #da0b85;
+        font-weight: bolder;
+    }
+
+.icon {
+    height: 55px;
+    width: 55px;
+    background: #943b54;
+}
+
+    .icon:hover {
+        height: 61px;
+        width: 61px;
+        background: #943b54;
+    }
+
+.iconactive {
+    height: 65px;
+    width: 65px;
+    background: #943b54;
+}
+
+.navShow {
+    border: 4px;
+    border-right: 0px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #da0b85;
+}
+
+.pinkborda {
+    border: 4px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #da0b85;
+}
+
+.pinkborda-l {
+    border-left: 4px;
+    border-left-style: solid;
+    border-left-color: #da0b85;
+}
+
+.pinkborda-r {
+    border-right: 4px;
+    border-right-style: solid;
+    border-right-color: #da0b85;
+}
+
+.search-button {
+    background-color: #6c1048;
+    min-height: 60px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: white;
+    box-shadow: none;
+    border :none;
+    padding: 10px;
+}
+
+.search-button:hover {
+    box-shadow: none;
+    border-color: #ced4da;
+}
+
+.btn {
+    border-radius: 5px;
+}
+
+.form-control {
+    border: none;
+    border-radius: 5px;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #ced4da;
+}
+
+
+.drop {
+    background-color: rgba(0,0,0,0.6);
+}
+.autor {
+    max-width: 192px;
+}
+
+.nav-button {
+    min-height: 60px;
+    background-color: #dd2391;
+    color: white;
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-size: 1.7rem;
+}
+
+    .nav-button:hover {
+        color: #6c1048;
+    }
+.nav-icon {
+    margin-right: 25px;
+
+    font-size: 1.8rem;
+}
+.stopka {
+    background-color: rgba(0,0,0,0.6);
+}
+.ingredientList {
+    min-height: 200px;
+    max-height: 300px;
+    overflow: hidden auto;
+}
+.ingredientListSearch {
+    min-height: 100px;
+    max-height: 300px;
+    overflow: hidden auto;
+}
+.ingredients-th
+{
+    text-align: center;
+}
+.ingredients-td {
+    text-align: center;
+}
+.searchResult {
+    max-height: 100px;
+    text-decoration: none;
+    color: white;
+    border-bottom: 1px solid;
+    border-color: black;
+    background-color: rgba(0,0,0,0.9);
+    opacity:1;
+}
+    .searchResult:hover {
+        background-color: #943b54;
+        color: white;
+    }
+.cardSearch {
+    text-decoration: none;
+    color: white;
+    background-color: black;
+}
+
+    .cardSearch:hover {
+        background-color: darkkhaki;
+        color: black;
+    }
+.panel-header
+{
+
+    align-items:center;
+    text-decoration:none;
+    color: white;
+}
+.panel-header-active {
+    height: inherit;
+    text-decoration: none;
+    color: black;
+    background-color: yellow;
+}
+.panel-header:hover
+{
+    height:inherit;
+    color:black;
+    background-color:yellow;
+}

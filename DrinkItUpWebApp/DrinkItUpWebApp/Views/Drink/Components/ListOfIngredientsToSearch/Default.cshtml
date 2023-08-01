@@ -1,0 +1,30 @@
+﻿@model DrinkItUpWebApp.Models.IngredientsSearchModel
+@{
+	var allNames = string.Empty;
+	if (Model.IngredientsNames != null)
+	{
+		allNames = String.Join(",", Model.IngredientsNames);
+	}
+
+	var searchNames = string.Empty;
+	if (Model.IngredientsToSearch != null)
+	{
+		searchNames = String.Join(",", Model.IngredientsToSearch);
+	}
+	
+}
+@if (Model.IngredientsToSearch != null)
+{
+	foreach (var ingredient in Model.IngredientsToSearch)
+	{
+		<a class="btn btn-warning fw-bold mx-1 my-1"
+		asp-action="DrinkMixerRemove" 
+		asp-route-allnames="@allNames"
+		asp-route-searchnames="@searchNames"
+		asp-route-name="@ingredient">- @ingredient</a>
+	}
+}
+else
+{
+	<p class="lead fw-bold">Nie dodałeś jeszcze żadnego składnika...</p>
+}

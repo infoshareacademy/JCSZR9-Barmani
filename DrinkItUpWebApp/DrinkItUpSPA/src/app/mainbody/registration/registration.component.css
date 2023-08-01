@@ -1,0 +1,14 @@
+.registration{
+    border: 2px;
+    border-color: rgb(180, 159, 180);
+    border-style:solid;
+    
+}
+
+.mainBody{
+    background-color: #6c1048;
+    border: 1px;
+    border-color: darkmagenta;
+    border-style:double;
+    min-height: 750px;
+}

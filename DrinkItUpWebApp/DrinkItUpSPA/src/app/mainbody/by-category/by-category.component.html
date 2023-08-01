@@ -1,0 +1,68 @@
+<div class="container-fluid rounded">
+    <div class="row">
+        <div class="col-md-12 col-lg-3 secondBody rounded">
+            <div class="lead fw-bold text-center align-items-center my-2 border-bottom border-warning" style="height:90px">
+                <form name="CategoryName">
+                    <div class="form-group mx-1 my-1">
+                        <label for="CategoryName" class="control-label">Sortuj po:</label>
+                        <select [(ngModel)]="formValue" (ngModelChange)="onCategoryChoose()" name="CategorName" class="form-select" aria-label="Select Category">
+                            <option [ngValue]="'Alkohol dominujący'">Alkohol dominujący</option>
+                            <option [ngValue]="'Poziom trudności'">Poziom trudności</option>
+                            <option selected [ngValue]="'Wszystkie drinki'">Wszystkie drinki</option>
+            
+                        </select>
+            
+                    </div>
+                </form>
+                <div class="d-block text-center my-4 stopka" [ngSwitch]="formValue">
+                    <p class="fs-2 fw-bold" *ngSwitchCase="'Wszystkie drinki'">{{formValue}}</p>
+                    <div class="" *ngSwitchCase="'Alkohol dominujący'">
+                        <a class="mx-2 form-group" (click)="onMainAlcoholChoose(mainAlcohol)"  *ngFor="let mainAlcohol of mainAlcohols">
+                            <div [ngClass]="{'panel-header-active': chosen === mainAlcohol.name, 'panel-header': chosen != mainAlcohol.name }">
+                                {{mainAlcohol.name}}
+                            </div>
+                        </a>
+                    </div>
+                    <div class="" *ngSwitchCase="'Poziom trudności'">
+                        <a class="mx-2 form-group" (click)="onDifficultyChoose(difficulty)"  *ngFor="let difficulty of difficulties">
+                            <div [ngClass]="{'panel-header-active': chosen === difficulty.name, 'panel-header': chosen != difficulty.name }">
+                            {{difficulty.name}}
+                            </div>
+                        </a>
+                    </div>
+                    <p *ngSwitchDefault></p>
+                </div>
+            
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-9 container-fluid rounded-2">
+            <div class="d-block text-center mainBody my-1 rounded">
+                <p class="lead fs-3 fw-bold">Przeglądaj drinki:</p>
+                <hr>
+                <div class="h-100 d-block mx-1 p-1 text-center rounded ">
+                    <a class="text-decoration-none lead " [routerLink]="'../detail/'+drink.drinkId" href="#" *ngFor="let drink of results">
+                        <div class="my-2 pinkborda cardSearch d-flex justify-content-center align-items-center" style="height: 160px;">
+                            <div class="row d-flex justify-content-center align-items-center" style="width: inherit;height:inherit;">
+                                <div class="col-2">
+                                    <img [src]="'../../../assets/'+drink.drinkPhotoId" class="" style="max-height: 150px;" alt="...">
+                                </div>
+    
+                                <p class="col-2 fs-4 fw-bold">{{drink.name}}</p>
+    
+                                <div class="d-inline-block col-3">
+                                    <p>Alkohol dominujący: {{drink.mainAlcohol.name}}</p>
+                                    <p>Poziom trudności: {{drink.difficulty.name}}</p>
+                                </div>
+    
+                                <div class="col-5">
+                                    <span class="fw-bold">Opis przygotowania:</span>
+                                    <p>{{drink.description.slice(0,100)}} ...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

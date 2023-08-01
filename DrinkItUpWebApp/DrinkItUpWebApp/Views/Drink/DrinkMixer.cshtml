@@ -1,0 +1,88 @@
+﻿@using DrinkItUpWebApp.Models
+@using Microsoft.AspNetCore.Components.Web
+@model IngredientsSearchModel
+@{
+	var searchNames = string.Empty;
+	if (Model.IngredientsToSearch != null)
+	{
+		searchNames = String.Join(",", Model.IngredientsToSearch);
+	}
+	
+}
+<script>
+	$(document).ready(function () {
+		$("#searchByIngredients").keyup(function () {
+			$.ajax({
+				type: "POST",
+				url: '@Url.Action("AutoCompleteIngredients", "Drink")',
+				data: { Prefix: $(this).val(), Idefix: $("#ByIngredients").val() },
+				dataType: "json",
+				success: function (data) {
+					$("#autoCompleteAnswers").html('');
+					$("#autoCompleteAnswers").show();
+					$(data).toArray().forEach((element) => {
+						var inner_html = '<div class="btn btn-warning mx-1 my-1 addIngredient">+' + element + '</div>';
+						$("#autoCompleteAnswers").append(inner_html);
+					});
+				}
+			});
+		});
+
+		$(document).on("click", ".addIngredient", function () {
+			var ingredientName = $(this).text().replace("+","");
+			 var searchNames = $("#ByIngredients").val();
+			var url = '/Drink/DrinkMixerAdd?searchnames=' + searchNames + '&name=' + ingredientName;
+			 $.ajax({
+				 type: "POST",
+				 url: '@Url.Action("DrinkMixerAdd", "Drink")',
+				data: { searchnames: searchNames , name: ingredientName },
+				 success: function () {
+                // Przekierowanie do nowego widoku
+					window.location.href = url
+            }
+				 
+    });
+});
+});
+</script>
+<div class="row h-100 p-2" style="width: inherit;">
+	<div class="d-block col-md-6 col-lg-6 pinkborda-r">
+		<div class="d-flex justify-content-center p-2">
+			<p class="display-6 fw-bolder">Co masz w barku!?</p>
+		</div>
+		<div class="pinkborda my-2">
+			<input id="searchByIngredients" type="text" class="form-control" placeholder="Wpisuj składniki i dodawaj podpowiedzi...">
+		</div>
+		<div id="autoCompleteAnswers" class="ingredientListSearch">
+ 
+
+		</div>
+		<div>
+			<p class="lead">...lub wybierz z listy!</p>
+		</div>
+		<div class="bg-white h-50 rounded-2 ingredientList">
+			@await Component.InvokeAsync("ListOfIngredients", new {ingredientsNames = Model.IngredientsNames, ingredientsToSearch = Model.IngredientsToSearch })
+
+		</div>
+		<div class="pinkborda my-2">
+			<input id="ByIngredients" hidden value="@searchNames" type="text" class="form-control">
+		</div>
+	</div>
+	<div class="d-block col-md-6 col-lg-6 p-2 pinkborda-l">
+
+			<div class="col-12">
+				<p class="display-6 fw-bolder p-2">Z tego miksujemy:</p>
+			</div>
+			<div class="col-12 my-2  container-fluid justify-content-center h-50 pinkborda ingredientList">
+				@await Component.InvokeAsync("ListOfIngredientsToSearch", new {ingredientsNames = Model.IngredientsNames, ingredientsToSearch = Model.IngredientsToSearch })
+			</div>
+
+				<a class="col-12 btn btn-lg btn-warning fw-bolder"
+						asp-action="DrinkMixerResults"
+						asp-route-searchnames="@searchNames"
+				>Szukaj po tym co masz w barku!</a>
+
+
+	</div>
+
+</div>
